@@ -74,6 +74,40 @@ Until at least one external case clears, this is a candidate, not a principle.
 
 ---
 
+## Findings from synthetic portability test (2026-05-01)
+
+A synthetic external test was run on 2026-05-01: apply the framework cold to a hypothetical builder with a deliberately-different biography (Maria Reyes-Chen, RN, MSN — fourteen years pediatric oncology, niece died of glioblastoma in 2019, building "Anchor" for parents of kids with cancer). The framework produced a coherent product clearly *hers* and not a Hans clone, validating the portability claim provisionally. The test also surfaced three real architectural items that need to be addressed in v1.2:
+
+### Finding 1 — Principle #3 wellness-scoping is too narrow
+
+**Current state.** v1.1 scopes "Designed to be needed less, not more" as wellness-specific, marking it `n/a` for operator tools (Operator, Custer) in the conformance matrix.
+
+**The test surfaced.** Maria's product is neither wellness nor operator — it is a *caregiver tool*. The principle still applies but with a different success criterion: capability under crisis (parent advocating for their child more effectively over time), not autonomy after recovery (wellness frame).
+
+**Implication for v1.2.** The current binary scoping (wellness | operator) misses caregiver-tools, advocacy-tools, education-tools, and several other categories. The principle is more universal than v1.1 currently states. Reframe the scoping note to: *"the dependency test applies to all products; the success criterion varies by product domain."* List the known shapes (wellness → autonomy after recovery; operator → capability at work; caregiver → capability under crisis) and accept that future builders will surface new shapes.
+
+### Finding 2 — Principle #7 should be renamed
+
+**Current state.** Principle #7 is "Stoic commandments." Stoicism is the framework that survived your collapse and rebuilt you. It is the right framework for *your* products.
+
+**The test surfaced.** Maria's product needs a commandments file and a Guardian audit, but Stoicism is not her ethical floor. Her floor is palliative-care ethics + trauma-informed care. The form (commandments file + Guardian audit + drift detection) is portable; the framework name (Stoic) is not.
+
+**Implication for v1.2.** Rename Principle #7 to something framework-agnostic — candidates: "Commandments rooted in the builder's ethical framework," "Ethical commandments and drift audit," "Doctrine commandments." The Stoic specifics belong in TOP's product-level commandments file, not in the meta-doctrine. The principle is "have a commandments file and audit drift against it" — the contents come from whoever's biography is doing the building.
+
+### Finding 3 — "Crisis" is product-defined; the floor pattern is universal
+
+**Current state.** Principle #11 is "Crisis floors above features." In v1.1 the implicit example is TOP's suicide-prevention floor (Veterans Crisis Line 988, hard-coded above every feature, ungated, A/B-test-forbidden).
+
+**The test surfaced.** Maria's crisis is not suicidal ideation — it is acute oncologic emergency (child showing emergency symptoms, immediate care-team or ER routing). Custer's crisis is different again (election-day field emergency, candidate threat). Operator's crisis surface is unclear.
+
+**Implication for v1.2.** The principle should explicitly state two things: (a) the *pattern* of a crisis floor (hard-coded above features, ungated, A/B-test-forbidden) is universal; (b) *what counts as crisis* is product- and builder-defined and must be named explicitly per product. Without this distinction, a future builder will assume your suicide-floor is *the* crisis floor instead of *a* crisis floor.
+
+### What the test did not cover
+
+These findings are from a synthetic test only. A real external test (an actual EMBA peer or other builder applying the framework cold) is still required before Candidate 2 (portability principle) can be ratified. Synthetic tests miss things real builders surface — friction, resistance, moments where the framework feels alien, biographical detail that does not slot cleanly. Treat these three findings as a pre-test checklist of items to fix; expect the real external test to surface more.
+
+---
+
 ## Items deferred to v1.2 from v1.1 stress test (already tracked elsewhere)
 
 - TOP Guardian regex bug (`f?"""` pattern) — fix during Anatomy v2 Session 1
