@@ -1,0 +1,31 @@
+{
+  "product": "TOP",
+  "doctrine_version": "v1.1",
+  "captured_at": "2026-04-30T22:16:57.310659",
+  "specialists": {
+    "vera": {
+      "error": "<ContextVar name='user_id' at 0x1085d8680>"
+    },
+    "rex": {
+      "error": "No triple-quoted SYSTEM_PROMPT found in /Users/hansprahl/Projects/local-mcp/agents/specialists/office.py"
+    },
+    "scout": {
+      "error": "No triple-quoted SYSTEM_PROMPT found in /Users/hansprahl/Projects/local-mcp/agents/specialists/wellness.py"
+    },
+    "atlas": {
+      "error": "<ContextVar name='user_id' at 0x1085d8680>"
+    },
+    "recon": {
+      "error": "No triple-quoted SYSTEM_PROMPT found in /Users/hansprahl/Projects/local-mcp/agents/specialists/recon.py"
+    },
+    "lingo": {
+      "error": "No source file for agent 'lingo'"
+    },
+    "forge": {
+      "error": "No triple-quoted SYSTEM_PROMPT found in /Users/hansprahl/Projects/local-mcp/agents/specialists/dev.py"
+    },
+    "maven": {
+      "error": "No triple-quoted SYSTEM_PROMPT found in /Users/hansprahl/Projects/local-mcp/agents/specialists/marketing.py"
+    }
+  }
+}

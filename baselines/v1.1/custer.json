@@ -1,0 +1,91 @@
+{
+  "product": "Custer",
+  "doctrine_version": "v1.1",
+  "captured_at": "2026-04-30T22:17:06.764105",
+  "specialists": {
+    "intelligence": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 6,
+        "mi_framing": 6,
+        "honest_before_comfortable": 6,
+        "approval_gate_on_outreach": 8,
+        "voter_pii_isolation": 8
+      },
+      "flagged": [],
+      "any_flagged": false
+    },
+    "delegate_whip": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 6,
+        "mi_framing": 5,
+        "honest_before_comfortable": 6,
+        "approval_gate_on_outreach": 7,
+        "voter_pii_isolation": 8
+      },
+      "flagged": [],
+      "any_flagged": false
+    },
+    "voter_universe": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 6,
+        "mi_framing": 6,
+        "honest_before_comfortable": 6,
+        "approval_gate_on_outreach": 7,
+        "voter_pii_isolation": 5
+      },
+      "flagged": [],
+      "any_flagged": false
+    },
+    "messaging": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 6,
+        "mi_framing": 5,
+        "honest_before_comfortable": 6,
+        "approval_gate_on_outreach": 8,
+        "voter_pii_isolation": 5
+      },
+      "flagged": [],
+      "any_flagged": false
+    },
+    "field_ops": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 5,
+        "mi_framing": 6,
+        "honest_before_comfortable": 6,
+        "approval_gate_on_outreach": 7,
+        "voter_pii_isolation": 6
+      },
+      "flagged": [],
+      "any_flagged": false
+    },
+    "digital_blast": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 6,
+        "mi_framing": 4,
+        "honest_before_comfortable": 5,
+        "approval_gate_on_outreach": 9,
+        "voter_pii_isolation": 7
+      },
+      "flagged": [],
+      "any_flagged": false
+    },
+    "strategy_timeline": {
+      "source": "personalized",
+      "scores": {
+        "north_star_alignment": 6,
+        "mi_framing": 4,
+        "honest_before_comfortable": 6,
+        "approval_gate_on_outreach": 6,
+        "voter_pii_isolation": 5
+      },
+      "flagged": [],
+      "any_flagged": false
+    }
+  }
+}
