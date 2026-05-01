@@ -15,7 +15,7 @@ This is not a chatbot. This is not a wizard. It is a structured measurement of w
 1. **Clone** this kit into a new repo (or fork the parent doctrine repo and work in `kit/`).
 2. **Interview.** Run `python kit/coverage.py --interview`. The script walks `kit/onboarding/questions.yaml` end to end, writing your answers into the appropriate template fields.
 3. **Score.** At any time, run `python kit/coverage.py --score`. Output: per-template fill rate, overall coverage percentage, and the next questions blocking 100%.
-4. **Chassis** (Phase 2, not yet built). Once coverage is at or above the Method's threshold, the chassis bootstrapper reads the populated templates and generates a runnable AI product instance with Crisis Floor, Approval Queue, named specialists, AAR loop, per-user memory, and Prompt Guardian wired in.
+4. **Chassis** (Phase 2, components shipped — bootstrapper next). The chassis is the runtime substrate every kit-bootstrapped product imports. Six portable components live in `kit/chassis/`: Crisis Floor, Approval Queue, Per-User Context, Named Specialists registry, AAR Loop, and Prompt Guardian. Each is parameterizable per product, has 20+ unit tests, and lifts the proven shape from TOP / Operator / Custer. The Phase 2 finale is the bootstrapper that reads a populated kit and instantiates these components against the product's STORY / COMMANDMENTS / CRISIS_TRIGGERS / etc.
 
 ## What's in the kit (Phase 1)
 
@@ -32,7 +32,14 @@ kit/
 │   └── SECURITY.md       — data isolation, approval gates, secret hygiene
 ├── onboarding/
 │   └── questions.yaml    — the interview script, mapped to template fields
-└── coverage.py           — interview runner + scoring engine
+├── coverage.py           — interview runner + scoring engine
+└── chassis/              — Phase 2: portable runtime components
+    ├── crisis_floor.py     — substring-match safety floor (lifted from TOP)
+    ├── approval_queue.py   — irreversible-action gating + executors + hooks
+    ├── user_context.py     — ContextVar with LookupError-on-unset
+    ├── specialists.py      — named-specialist registry + role-scoped tools
+    ├── aar.py              — After-Action Review SQLite log + calibration
+    └── prompt_guardian.py  — commandment-driven scoring + queued corrections
 ```
 
 Templates use HTML comment markers the scorer can detect:

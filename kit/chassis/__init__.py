@@ -30,6 +30,11 @@ from kit.chassis.aar import (
     SUCCESS, FAILURE, PARTIAL, ABANDONED, VALID_OUTCOMES,
     HABIT, TASK, GOAL, ROUTINE, RECOMMENDATION,
 )
+from kit.chassis.prompt_guardian import (
+    Commandment, CommandmentScore, GuardianReport, GuardianError,
+    PromptGuardian,
+    build_scoring_system_prompt, build_correction_system_prompt,
+)
 
 __all__ = [
     "CrisisFloor", "CrisisEvent",
@@ -40,4 +45,7 @@ __all__ = [
     "AAR", "AARLog", "CalibrationReport",
     "SUCCESS", "FAILURE", "PARTIAL", "ABANDONED", "VALID_OUTCOMES",
     "HABIT", "TASK", "GOAL", "ROUTINE", "RECOMMENDATION",
+    "Commandment", "CommandmentScore", "GuardianReport", "GuardianError",
+    "PromptGuardian",
+    "build_scoring_system_prompt", "build_correction_system_prompt",
 ]
