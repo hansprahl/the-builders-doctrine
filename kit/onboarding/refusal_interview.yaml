@@ -1,0 +1,212 @@
+# The Builders' Kit — Refusal List Interview
+#
+# Drives the REFUSAL_LIST.md interview (Phase 1.1). Runs after questions.yaml
+# (the STORY.md interview) so the refusal generation can pull from
+# formative_crisis and the_users answers.
+#
+# The pattern: refusals are derived, not borrowed. The Method assumes a builder
+# whose refusal list comes from things they have lived (formative_crisis) and
+# things they have seen happen to people they care about (the_users). The
+# interview uses those STORY answers as raw material.
+#
+# Voice-capture rules apply (see questions.yaml header). The runner does not
+# generate refusals from scratch; the builder writes each refusal in their
+# own words. The runner's job is to surface the candidates STORY suggests,
+# not to author the list.
+
+version: 0.1
+schema: kit-onboarding/v1
+depends_on: questions.yaml          # STORY.md must be populated first
+
+settings:
+  no_ai_paraphrase: true
+  capture_raw: true
+  allow_skip: false                 # refusals are load-bearing — no skipping
+  default_target: kit/templates/REFUSAL_LIST.md
+  min_refusals: 3                   # below this, coverage cannot reach 100%
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Pre-interview prerequisite check
+# ──────────────────────────────────────────────────────────────────────────────
+
+prerequisites:
+  - check: STORY.md formative_crisis populated above min_words
+    on_fail: |
+      The refusal interview reads from STORY.md formative_crisis as its raw
+      material. Run questions.yaml first and complete that field before
+      returning to this interview. Coverage will block until STORY is at or
+      above the Method's threshold.
+  - check: STORY.md the_users populated above min_words
+    on_fail: |
+      The refusal interview also reads from STORY.md the_users. Complete that
+      field before returning here.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Interview
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Before we start
+    type: framing
+    body: |
+      Your refusal list is what the product will never do, no matter who asks,
+      no matter how the request is framed, no matter what the model wants to
+      drift toward. It is the most load-bearing part of your doctrine because
+      it is what survives the pressure to compromise.
+
+      You inherit three refusal categories from THE_BUILDERS_DOCTRINE.md II.8:
+      engagement-maximization, surveillance, and parasocial replacement. Those
+      are floor. Your product-specific refusals extend them.
+
+      This interview surfaces refusal candidates from your STORY answers and
+      asks you to write each one in your own words. We will produce at least
+      three product-specific refusals. Below three, coverage cannot reach
+      100%.
+
+  - id: inherited_review
+    title: Inherited refusals — confirm or specialize
+    type: review
+    body: |
+      The three inherited refusals apply to every product in the portfolio.
+      For each, confirm it applies to your product, and if there is a
+      product-specific specialization, capture it now. The specializations
+      become first-class entries in your REFUSAL_LIST.md.
+    sub_prompts:
+      - |
+        Engagement-maximization: does your product touch any user surface
+        that could turn into a streak/leaderboard/dopamine loop? If yes,
+        what specifically must your product never do in that surface?
+      - |
+        Surveillance: does your product collect, store, or transmit any user
+        data? If yes, what specifically must your product never do with it?
+        (e.g., "never transmit voter PII to LLM context", "never sell
+        behavioral data", "never retain audio after transcription")
+      - |
+        Parasocial: does your product address users in distress, grief, or
+        isolation? If yes, what specifically must your product never do
+        in those moments? (e.g., "never roleplay as a person", "never
+        position itself as a relationship", "never accept the user's
+        request to become a substitute for a human")
+
+  - id: crisis_to_refusal
+    title: Crisis → refusal
+    type: derivation
+    pulls_from: questions.yaml::formative_crisis
+    body: |
+      Your formative_crisis answer named things you have lived that you do
+      not want to see reproduced. Each crisis pattern usually implies one
+      refusal — the behavior that, if your product performed it, would
+      reproduce the crisis pattern in someone else.
+
+      The runner reads your formative_crisis answer back to you and asks:
+      "Given this, what is the one thing your product must never do?" Capture
+      the answer in your own words.
+    capture:
+      target_field: refusal_1
+      quality_checks:
+        - Names a specific behavior, not a category
+        - Traces explicitly to formative_crisis
+        - Names the edge case (the moment the temptation to drift would arise)
+
+  - id: users_to_refusal
+    title: Users → refusal
+    type: derivation
+    pulls_from: questions.yaml::the_users
+    body: |
+      Your the_users answer named what users need the product to never do,
+      because of where they are coming from. That answer typically implies
+      one or two more refusals — the behaviors that, if your product
+      performed them, would harm the user population specifically.
+    capture:
+      target_field: refusal_2
+      quality_checks:
+        - Names a specific behavior tied to the user population
+        - Traces explicitly to the_users
+    follow_up:
+      prompt: |
+        If your the_users answer implied a second user-derived refusal, capture
+        it now (refusal_3). If only one, mark refusal_3 as drawn from a
+        different STORY field and proceed.
+
+  - id: failure_to_refusal
+    title: Failure → refusal (often the third)
+    type: derivation
+    pulls_from: questions.yaml::failure_pattern
+    body: |
+      Your failure_pattern answer is often where the third refusal lives —
+      the thing you yourself once did, that the failure taught you to never
+      do again, and that you will not allow your product to do on your behalf.
+      A builder who does not encode their own failure into the product's
+      refusal list will see the failure recur in the product.
+    capture:
+      target_field: refusal_3
+      quality_checks:
+        - Names a specific behavior derived from your own failure
+        - Traces explicitly to failure_pattern
+    optional_extension: |
+      If your STORY suggests more than three product-specific refusals, the
+      runner will offer to capture refusal_4, refusal_5, ... in additional
+      KIT:FIELD blocks. There is no upper limit; there is a lower limit of
+      three.
+
+  - id: edge_case_audit
+    title: Edge cases the refusals must hold under
+    type: validation
+    body: |
+      For each refusal you wrote, the runner asks: "Under what user request,
+      framed how, would you be tempted to drift? Name the specific scenario.
+      The refusal must hold under that scenario." If you cannot name the
+      tempting scenario, the refusal is too abstract — return and rewrite.
+    quality_checks:
+      - Each refusal has at least one named tempting scenario it holds against
+      - Edge cases are written into the refusal entry itself, not a separate
+        field
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_check
+    title: Trace check
+    type: review
+    body: |
+      The runner prints a trace summary: each refusal, its STORY field
+      source, its tempting-scenario edge case, and word count. Refusals
+      whose trace is missing or whose edge case is unnamed are flagged.
+
+  - id: handoff
+    title: Next interview
+    type: handoff
+    body: |
+      The next interview file (crisis_interview.yaml, Phase 1.2) takes your
+      formative_crisis and any floor_principles candidates and walks you
+      through CRISIS_TRIGGERS.md — the trigger phrases and fixed-response
+      language for the moments where the product must stop and route to a
+      human. Run it now or later. Coverage will tell you when the kit is
+      complete.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  pulls_from_directive: |
+    The runner reads the named field from the depends_on file's populated
+    target before presenting the section. If the field is missing or below
+    min_words, the prerequisite check fails and the interview cannot proceed.
+
+  refusal_count_floor: |
+    coverage.py rejects a REFUSAL_LIST.md with fewer than min_refusals (3)
+    populated entries. The interview structurally produces three; an honest
+    builder who genuinely has fewer than three product-specific refusals
+    should re-examine STORY — the typical cause is an under-developed
+    formative_crisis or the_users answer.
+
+  ghostwrite_guard: |
+    Refusals are the highest-stakes field for ghostwrite detection. An
+    AI-generated refusal list is the failure mode the Method exists to
+    prevent. The runner applies a stricter threshold here than for STORY
+    fields and warns prominently when the threshold trips.

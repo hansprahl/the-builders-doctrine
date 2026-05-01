@@ -51,12 +51,14 @@ Implemented:
 - [x] Kit structure
 - [x] STORY.md template
 - [x] COMMANDMENTS.md template
-- [ ] REFUSAL_LIST.md template
+- [x] REFUSAL_LIST.md template
 - [ ] CRISIS_TRIGGERS.md template
 - [ ] SPECIALIST_TEMPLATE.md template
 - [ ] AGENT_DOCTRINE.md template
 - [ ] SECURITY.md template
-- [x] questions.yaml interview script (STORY.md only; refusal/crisis/specialist/etc. interview files deferred)
+- [x] questions.yaml interview script (STORY.md)
+- [x] refusal_interview.yaml interview script (REFUSAL_LIST.md, depends on STORY)
+- [ ] crisis_interview.yaml (CRISIS_TRIGGERS.md)
 - [ ] coverage.py scoring engine
 
 First instance bootstrapped 2026-05-01: `custer-mcp/STORY.md` scaffold generated from kit template, fields awaiting interview. This is the first multi-user-style run of the kit — the scaffold was produced product-agnostically, then localized with Custer framing.
