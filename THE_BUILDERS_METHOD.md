@@ -2,8 +2,9 @@
 
 **A reproducible framework for AI builders whose lived experience should compile into product behavior, not be lost to it.**
 
-**Method v1.0 — 2026-05-01 — by Hans Prahl**
-**Status: agnostic edition. Derived from The Builders Doctrine v1.1, with the three portability findings from synthetic test 2026-05-01 incorporated. Distributable.**
+**Method v0.9 — Provisional — 2026-05-01 — by Hans Prahl**
+
+**Status — Provisional draft.** Two preconditions must clear before this becomes a v1.0 release. (1) The reproducibility protocol described in Section VIII must exist as an executable script and run end-to-end on at least one of the author's products with metrics within 5% of the documented baseline. (2) The conformance audit described in Section IX must be scored independently by at least one outside reader, not by the author. Until both clear, treat this as one builder's articulation of his own practice, with portability claimed but not yet tested. The framework may still be useful — but the strongest claim it makes (portability through reproducibility) is unverified. **Section II below states the limits in full.**
 
 ---
 
@@ -33,7 +34,53 @@ This is who the method is for: anyone whose biography is the unfair advantage th
 
 ---
 
-## II. The Eleven Principles
+## II. Limits and provisional status
+
+This section is placed early on purpose. A reviewer of v0.9 (referenced below as CD) surfaced that the document had been treating its limits as a closing footnote when they should govern how a reader weighs everything that follows. The limits below are the gaps between what this framework claims and what has been tested. Each is operationally significant.
+
+### 1. The reproducibility script does not yet exist end-to-end
+
+Section VIII describes a 48-hour clean-room rebuild protocol as the test that separates this method from artisanal one-offs. The script does not yet exist as an executable. Until it does, the reproducibility claim is rhetorical, not falsifiable. The framework is in the same epistemic state as the artisanal practice it critiques. **Action required for v1.0:** the script must be built, run on at least one of the author's products, and produce metrics within 5% of the documented baseline.
+
+### 2. The conformance audit has not been third-party scored
+
+Every ✓/⚠/✗ mark in the author's portfolio audit (TOP, Operator, Custer) was assigned by the author or his AI thought partner. None has been scored by an outside reader. Until at least one independent scorer reads the framework cold and assigns conformance marks to one of the author's products, the audit is one builder's self-articulation, not a method test. **Action required for v1.0:** independent scoring by at least one outside reader.
+
+### 3. The "agnostic" claim is overstated
+
+Several choices in this framework — weekly Guardian audit cadence, drift as the central failure mode, the specific shape of the CONFIDENCE/REASONING block — reflect the author's particular operational sensibility (military intelligence, recovery practice, Stoic discipline). A builder from a different domain may reasonably want different cadences and different primary failure modes. A palliative-care builder's primary failure mode might be silence (the agent goes quiet when it should escalate), not drift. A legal-AI builder's primary failure mode might be overconfident hallucination dressed in citation form. The principles port. The specific failure-mode catalogue does not.
+
+### 4. The single external case is synthetic, not real
+
+Section X (Worked example) contains two cases: TOP (real, the author's wellness AI) and Anchor (a hypothetical caregiver tool). Anchor was constructed by the author of this framework as a synthetic test of portability. It is not n=2 evidence; it is n=1 with an illustrative second instance. Treat the Anchor case as illustrative reasoning about how the principles might apply in a deliberately-different biographical context, not as a second data point.
+
+### 5. This may be a doctrine more than a method
+
+CD's reframe: the most portable thing in this document is not the eleven principles or the artifact list; it is the *stance* (biography as engineering input, ethical floors written down, irreversible-action gates, designed to be needed less). The specific machinery for enforcing the stance is one builder's implementation. The strongest version of this document may be "here is how I do it, and here is what generalizes" rather than "here is the universal method." The author is sitting with this critique. Future revisions may restructure accordingly.
+
+### 6. Eleven principles may be too many
+
+Several principles in Section III collapse into adjacent ones if read closely (Named specialists + Commandments + Guardian are all about accountability through explicit artifacts). A future revision may consolidate to five or six core principles with the others as named sub-doctrines. The current count is preserved for v0.9 to reduce churn while the deeper limits above are addressed.
+
+### 7. The Anatomy framework extension is in flight
+
+A separate framework (the Anatomy Doctrine) extends measurement from drift scores to a body-system metaphor (Soul, Brain, Heart, Voice, Gut, Hands, Muscle, Connective Tissue, Skin, Blood + Heartbeat). Method v0.9 includes the measurement surface but does not require Anatomy. Builders may adopt Anatomy as an extension when they want richer per-product health signals. The Anatomy v2 implementation plan is a separate document.
+
+### 8. Multi-tenant readiness is per-product
+
+Some products applying this method are single-tenant (one builder, one user). Some are multi-tenant (commercial products serving many users with isolation between them). The method does not yet specify the multi-tenant patterns. Treat multi-tenant readiness as a per-product architectural decision until method v2.x.
+
+### 9. The commandments scoring rubric is not language-model-agnostic
+
+Method v0.9's Guardian implementations are tied to specific model vendors. Migrating between model families requires re-baselining. The rubric is portable in principle, but the implementations are not yet plug-and-play.
+
+### What this provisional status does not invalidate
+
+Several elements of this framework are defensible today, even before the reproducibility script and third-party audit clear: the distinction between technical and biographical moats, the Approval Queue / irreversible-action gate as a default for agentic systems, the CONFIDENCE/REASONING block + AAR loop as a calibration mechanism, the dependency test ("designed to be needed less"), the refusal list as a first-class artifact. These are stated cleanly enough that any AI builder can adopt them today. The provisional status applies to the *system-level claim* (this framework is reproducible across builders) — not to the individual mechanisms, which stand on their own engineering merit.
+
+---
+
+## III. The Eleven Principles
 
 Eleven principles. Seven foundational ethics that govern what the product stands for. Four operational doctrines that govern how the ethics translate into product architecture. Each principle is stated three ways: the **principle** (what is true), the **why** (what makes the principle non-optional), the **how to apply** (what you do as the builder), and the **in code** (where the principle is enforced as a real mechanism).
 
@@ -153,7 +200,7 @@ Eleven principles. Seven foundational ethics that govern what the product stands
 
 ---
 
-## III. The Required Artifacts
+## IV. The Required Artifacts
 
 The principles above produce real files in your product repository. If a principle does not produce a file, the principle is not honored — only aspirational. Below is the minimum artifact set every product applying this method must contain.
 
@@ -207,9 +254,9 @@ The hard floors per product. Things that cannot be violated. Domain-specific.
 
 ---
 
-## IV. The Architecture of Trust
+## V. The Architecture of Trust
 
-Trust is not a marketing claim. Trust is the property of a system in which every principle in Section II maps to a specific enforcement mechanism that exists in code. If the mechanism is not in code, the principle is not honored. Below is the mapping. Verify each row in your own product. Do not list a mechanism that does not exist.
+Trust is not a marketing claim. Trust is the property of a system in which every principle in Section III maps to a specific enforcement mechanism that exists in code. If the mechanism is not in code, the principle is not honored. Below is the mapping. Verify each row in your own product. Do not list a mechanism that does not exist.
 
 | Principle | Mechanism | What it gates |
 |---|---|---|
@@ -227,7 +274,7 @@ Trust is not a marketing claim. Trust is the property of a system in which every
 
 ---
 
-## V. The Doctrine Stack
+## VI. The Doctrine Stack
 
 The method sits at the top of a layered doctrine stack. Layers below the method are technical. Layers above the method are biographical (your STORY.md, your commandments, your refusals). The stack is what makes the framework reproducible.
 
@@ -251,7 +298,7 @@ A new product is scaffolded top-down. A new specialist is checked bottom-up.
 
 ---
 
-## VI. The Wiring
+## VII. The Wiring
 
 Two diagrams. One walkthrough. The wiring is the visual proof that biography compiles into product behavior through reproducible mechanisms.
 
@@ -382,7 +429,7 @@ The left column is biographical and product-specific. The right column is the me
 
 ---
 
-## VII. The Measurement Surface
+## VIII. The Measurement Surface
 
 A product applying this method produces specific metrics. The metrics are how you know the method is honored, not aspirational.
 
@@ -416,7 +463,7 @@ Run the protocol on your own product before claiming the method is honored. Run 
 
 ---
 
-## VIII. Conformance Audit Format
+## IX. Conformance Audit Format
 
 The conformance audit is the periodic review of your portfolio against this method. Run it quarterly or before any external claim that you apply the method (grant proposal, investor pitch, public post).
 
@@ -442,9 +489,9 @@ A product with any ⚠ or ✗ rows must have an explicit remediation plan. A pro
 
 ---
 
-## IX. Worked example — two products, two builders
+## X. Worked example — illustrative cases
 
-The method is portable. Two illustrative cases below show the same architecture applied to different biographies and different domains. The shared architecture is the method. The differing content is the biography.
+**Read this section with Section II Limit #4 in mind.** The two cases below are not n=2 evidence of portability. Case A (TOP) is a real product the author built. Case B (Anchor) is a hypothetical product the author of this framework constructed as a synthetic illustration — the same person reasoning about how the principles *might* apply to a deliberately-different biography. Until a real external builder applies the framework cold to their own product and produces their own STORY.md, commandments, refusal list, and Guardian baseline, the portability claim is provisional. Treat the two cases as illustrative reasoning about how the architecture might separate from biographical content, not as evidence that it does.
 
 ### Case A — TOP (Thriving On Purpose)
 
@@ -464,9 +511,11 @@ The method is portable. Two illustrative cases below show the same architecture 
 
 **Memory.** Per-user knowledge graph: relationships, journal history, AAR loop, habit streaks (informational, not gamified).
 
-### Case B — Anchor (illustrative caregiver tool)
+### Case B — Anchor (synthetic illustration, not a real product)
 
-**Builder.** Pediatric oncology nurse, fourteen years bedside, niece died of glioblastoma in 2019, MSN in health informatics.
+**Note before reading.** Anchor is hypothetical. The author of this framework constructed it as a synthetic portability test. Anchor is not a real product. The case below represents the author's reasoning about how the principles might apply in a deliberately-different biographical context, not independent evidence that they do. See Section II Limit #4 for the full statement.
+
+**Builder (illustrative).** Pediatric oncology nurse, fourteen years bedside, niece died of glioblastoma in 2019, MSN in health informatics.
 
 **Product domain.** AI tool for parents of children with cancer. Mobile primary surface.
 
@@ -482,31 +531,13 @@ The method is portable. Two illustrative cases below show the same architecture 
 
 **Memory.** Per-family knowledge graph: child's medical history, care team contacts, decisions made, questions asked across specialists, pattern detection across appointments.
 
-### What the cases share
+### What the cases would share, if both were built
 
-Both products run the same architecture: orchestrator routing to named specialists, per-user memory layer, CONFIDENCE/REASONING block on every response, Approval Queue gating irreversible actions, Crisis Floor as first-node, Prompt Guardian on weekly cadence, AAR loop calibrating confidence claims against outcomes.
+Case A (TOP) runs the architecture described above. Case B (Anchor), were it built per this framework, would run the same architecture: orchestrator routing to named specialists, per-user memory layer, CONFIDENCE/REASONING block on every response, Approval Queue gating irreversible actions, Crisis Floor as first-node, Prompt Guardian on weekly cadence, AAR loop calibrating confidence claims against outcomes.
 
-Both products read as their builder's product, not a clone. The voices are different. The commandments are different. The refusal lists are different. The crisis triggers are different. The specialists are named differently. The memory contents are different.
+In the illustration, the two products read as their builders' products — not as clones. The voices differ. The commandments differ. The refusal lists differ. The crisis triggers differ. The specialists are named differently. The memory contents are different.
 
-The architecture ports. The biographies do not.
-
----
-
-## X. Honest gaps
-
-This method is not finished. The honest gaps are:
-
-1. **External validation is provisional.** As of method v1.0, the framework has been audited internally across one builder's portfolio (TOP, Custer, Operator) and synthetically tested against one external case (Anchor). A real external case — an actual builder applying the method cold to their own product and producing their own STORY.md, commandments, Guardian baseline — is required before the portability claim is fully ratified.
-
-2. **The Anatomy framework is in flight.** A separate framework (the Anatomy Doctrine) extends measurement from drift scores to a body-system metaphor (Soul, Brain, Heart, Voice, Gut, Hands, Muscle, Connective Tissue, Skin, Blood + Heartbeat). Method v1.0 includes the measurement surface but does not require Anatomy. Builders may adopt Anatomy as an extension when they want richer per-product health signals.
-
-3. **Multi-tenant readiness is per-product.** Some products in this method are single-tenant (one builder, one user — TOP-style). Some are multi-tenant (commercial campaign software, commercial caregiver platforms). The method does not yet specify the multi-tenant patterns. Treat multi-tenant readiness as a per-product architectural decision until method v2.x.
-
-4. **The reproducibility protocol is the strongest claim and the weakest test.** Most products applying the method do not yet have a 48-hour clean-room rebuild script that runs end-to-end. Build yours. Run it. If you cannot, the method is aspirational for your product.
-
-5. **The commandments scoring rubric is not yet language-model-agnostic.** Method v1.0's Guardian implementations are tied to specific model vendors. Migrating between model families (e.g. switching specialist backends) requires re-baselining. The rubric is portable in principle, but the implementations are not yet plug-and-play.
-
-These gaps are not failures. They are the open work of method v1.x → v2.x. Honest gap statement is itself a method discipline.
+The illustration suggests the architecture ports while the biographies diverge. This is reasoning by the author of the framework, not independent evidence of portability. The portability claim remains provisional until a real external case clears (Section II Limit #4).
 
 ---
 
@@ -520,14 +551,14 @@ If you are starting a new product, the order is:
 4. Define your crisis triggers and escalation routes.
 5. Scaffold the architecture: orchestrator + per-user memory + Approval Queue + Crisis Floor as first-node + named-specialist registry.
 6. Author your first specialist following SPECIALIST_TEMPLATE.md.
-7. Run the Guardian baseline. Capture the metrics in Section VII.
-8. Run the conformance audit (Section VIII). Note the ⚠ and ✗ rows.
+7. Run the Guardian baseline. Capture the metrics in Section VIII.
+8. Run the conformance audit (Section IX). Note the ⚠ and ✗ rows.
 9. Build the reproducibility protocol script. Run it once. Confirm the rebuild succeeds.
 10. Iterate.
 
 If you are auditing an existing product, the order is:
 
-1. Run the conformance audit (Section VIII) honestly. Mark ⚠ and ✗ where they are real, not where they are convenient.
+1. Run the conformance audit (Section IX) honestly. Mark ⚠ and ✗ where they are real, not where they are convenient. Then, before claiming the audit means anything externally, get an outside reader to score it independently — see Section II Limit #2.
 2. For each ⚠ or ✗, write the remediation plan with a date.
 3. Build the missing artifacts (STORY.md, commandments, refusal list, etc.) if they do not exist.
 4. Build the missing mechanisms (Guardian, AAR loop, Approval Queue, Crisis Floor) if they do not exist.

@@ -210,22 +210,22 @@ build_pdf "$DIST/doctrine-combined.md" \
 # --- PDF 2: The Builders' Method v1.0 (agnostic, distributable) --------------
 
 echo ""
-echo "Building PDF 2: The Builders' Method v1.0…"
+echo "Building PDF 2: The Builders' Method v0.9 Provisional…"
 
 cat > "$DIST/00-method-title.md" <<'EOF'
 # THE BUILDERS' METHOD
 
-**Method v1.0**
+**Method v0.9 — Provisional**
 **2026-05-01**
 **by Hans Prahl**
 
 ---
 
-A reproducible framework for AI builders whose lived experience should compile into product behavior, not be lost to it.
+A framework-in-progress for AI builders whose lived experience should compile into product behavior, not be lost to it.
 
-The method is portable. The biography is yours to bring.
+**Provisional status.** Two preconditions must clear before this becomes a v1.0 release: (1) the reproducibility protocol must run end-to-end on at least one of the author's products, and (2) the conformance audit must be scored by at least one outside reader. Until both clear, this document is one builder's articulation of his own practice. The framework may still be useful — but the strongest claim it makes (portability through reproducibility) is unverified. **See Section II for the full provisional-status statement.**
 
-This document is method v1.0 of The Builders' Method, an instance of the broader brand AI Tradecraft. The method is offered as a framework for adoption. Cite the source when you apply or extend it. The method is meant to spread. The biographies that compile through it are not.
+This document is method v0.9 of The Builders' Method, an instance of the broader brand AI Tradecraft. The framework is offered for adoption. Cite the source when you apply or extend it.
 
 <div style="page-break-after: always;"></div>
 EOF
@@ -239,8 +239,8 @@ EOF
 } > "$DIST/method-combined.md"
 
 build_pdf "$DIST/method-combined.md" \
-  "The Builders' Method — v1.0" \
-  "$DIST/the-builders-method-v1.0.pdf"
+  "The Builders' Method — v0.9 Provisional" \
+  "$DIST/the-builders-method-v0.9-provisional.pdf"
 
 # --- Done --------------------------------------------------------------------
 
