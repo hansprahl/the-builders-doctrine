@@ -1,0 +1,499 @@
+# The Builders' Kit — Security Interview
+#
+# Drives the SECURITY.md interview (Phase 1.5). Runs after questions.yaml
+# (STORY.md) so posture calibration can read from the_users and threat
+# actors can read from formative_crisis.
+#
+# Output: a SECURITY.md the builder can hand to a reader unfamiliar with
+# the codebase, and that reader can audit the security posture without
+# reading the code. Data inventory, threat model, defenses, open risks,
+# surface-level structural gaps, vulnerability reporting, incident
+# runbook.
+#
+# The interview's load-bearing moments are: (a) posture calibration —
+# the floor is set by the most sensitive data class held, not the
+# average; (b) the open-risks enumeration — refusing to fill is failure;
+# (c) the surface-gap section — naming gaps you can't fix inside this
+# codebase is honesty, not weakness, and is the part most builders skip.
+
+version: 0.1
+schema: kit-onboarding/v1
+depends_on: questions.yaml          # STORY.md must be populated first
+
+settings:
+  no_ai_paraphrase: true
+  capture_raw: true
+  allow_skip: false
+  default_target: kit/templates/SECURITY.md
+  honesty_floor: true                # open risks must be enumerated; "none" without
+                                     # explicit greenfield-with-date justification fails
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Pre-interview prerequisite check
+# ──────────────────────────────────────────────────────────────────────────────
+
+prerequisites:
+  - check: STORY.md the_users populated above min_words
+    on_fail: |
+      Posture calibration is set by the population the product serves.
+      Run questions.yaml and complete the_users field before returning here.
+  - check: STORY.md formative_crisis populated above min_words
+    on_fail: |
+      Threat-model thinking is informed by the lived experience that
+      justifies the posture being higher than baseline. Complete
+      formative_crisis first.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Interview
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Before we start
+    type: framing
+    body: |
+      SECURITY.md is the document a reader uses to audit this product's
+      posture without reading the code. It is the most direct artifact
+      between you and someone deciding whether to trust the product with
+      data that matters to them.
+
+      The interview produces nine answers: posture calibration, data
+      inventory, threat model (in/out/actors), regulatory positioning,
+      defenses in place, open risks, surface-level structural gaps,
+      vulnerability reporting commitment, incident-response runbook.
+
+      Two of those nine are the load-bearing honesty moments — the
+      open-risks list and the surface-gap section. Most SECURITY.md
+      documents in the wild fail at exactly those two. The interview
+      flags ceremonial answers and refuses to advance.
+
+  - id: posture_calibration
+    title: Posture calibration
+    type: scoping
+    target_field: product_posture
+    pulls_from:
+      - questions.yaml::the_users
+    body: |
+      Name the calibration this product is held to and why. The floor
+      is set by the most sensitive data class held — not the average,
+      not what the builder prefers, not what feels proportionate.
+      A product holding bank credentials is financial-grade whether
+      the builder likes the ceremony or not.
+    sub_prompts:
+      - What is the most sensitive data class this product holds?
+        (regulated PII, financial credentials, mental-health-adjacent
+        text, voter file, etc.)
+      - What is the appropriate posture floor for that class?
+        Reference patterns - financial-grade (Operator), medical-
+        adjacent (TOP), political-campaign (Custer), consumer-grade.
+      - Trace to the_users - what about the population sets the floor?
+      - If the posture is "as-if" — calibrated to a regime you are not
+        legally bound by — name that explicitly. The "as-if" framing is
+        honest and load-bearing; it distinguishes statutory from
+        voluntary protections.
+    quality_checks:
+      - Posture is named in product-specific language, not generic
+      - Floor is justified by the most sensitive data class, not average
+      - Trace to the_users is explicit
+
+  - id: data_inventory
+    title: Data inventory — the table
+    type: enumeration
+    target_field: data_inventory
+    body: |
+      The data inventory is the spine of the document. Every distinct
+      class of data the product holds, its sensitivity, where it
+      physically lives. If a class exists in the running system but is
+      not in the table, the table is wrong.
+    sub_prompts:
+      - Walk through each storage layer (SQLite tables, JSON files,
+        third-party services, .env, OAuth token files). What classes
+        of data are in each?
+      - Assign sensitivity per class. Tiers - Critical (credentials,
+        financial keys, regulated PII), Very High (mental-health-adjacent,
+        identity narrative), High (regulatory, professional PII, account
+        credentials), Medium (operational metadata), Low (logs).
+      - "Where it lives" must be a real path or service — not "various
+        places" and not "the database."
+    quality_checks:
+      - At least one Critical row if the product holds credentials
+      - Every row has a real path or service (no hand-waves)
+      - Every storage location in the running code is represented
+
+  - id: threat_in_scope
+    title: Threat model — in scope
+    type: enumeration
+    target_field: threat_in_scope
+    body: |
+      The failure modes this product's defenses are designed to resist.
+      Be specific to this product. A generic list (XSS, CSRF, SQLi) is
+      signal that the threat model has not been thought through.
+    sub_prompts:
+      - What is the worst-case failure mode for the most sensitive
+        data class? (cross-tenant leak, PII exfiltration, irreversible
+        action without approval)
+      - What injection surfaces exist? (prompt injection from scraped
+        content, incoming email, user messages)
+      - What approval-bypass paths could exist? (specialist self-approve,
+        admin allowlist drift, scheduled job without gate)
+      - What supply-chain or credential-exfiltration paths matter?
+    quality_checks:
+      - At least 5 failure modes named
+      - Each is specific to this product (not boilerplate OWASP)
+
+  - id: threat_out_scope
+    title: Threat model — out of scope
+    type: enumeration
+    target_field: threat_out_scope
+    body: |
+      The failure modes this product is *not* designed to resist. As
+      load-bearing as the in-scope list because it tells the reader
+      where this document stops covering them, so they can compensate
+      at a different layer.
+    sub_prompts:
+      - What does the product trust about the operator's environment?
+        (physical access, device session, full-disk encryption)
+      - What upstream platforms does the product trust? (Anthropic,
+        Stripe, Telegram, Plaid)
+      - What infrastructure-level attacks are not in scope?
+        (DoS against the host, compromise of the cloud provider)
+    quality_checks:
+      - Physical access to operator/user device named
+      - Upstream platform compromise named for each major dependency
+      - Each item is a real failure mode, not a hand-wave
+
+  - id: threat_actors
+    title: Threat model — actors
+    type: enumeration
+    target_field: threat_actors
+    body: |
+      Who is most plausibly going to come at this product? Primary,
+      secondary, tertiary, in order of likelihood. Tie to the product
+      context — Custer's primary is "opposition research entity"; TOP's
+      is "a pilot user's account being compromised"; Operator's is
+      "hostile content in scraped competitor pages."
+    sub_prompts:
+      - Primary actor — who has the strongest motivation to come at
+        this specific product?
+      - Secondary — supply chain, compromised dependency, hostile
+        content in upstream data sources?
+      - Tertiary — opportunistic external probing?
+    quality_checks:
+      - Primary actor is product-specific (not "external attacker")
+      - At least three tiers named
+
+  - id: compliance_positioning
+    title: Regulatory / compliance positioning
+    type: conditional
+    target_field: compliance_positioning
+    gate: |
+      Does this product hold any regulated data class?
+      (voter file, HIPAA-adjacent health data, financial accounts,
+      EU resident data, COPPA-covered minors, child welfare records,
+      attorney-client work product, etc.)
+    if_no:
+      capture: |
+        One sentence on why no regulated data is held. The interview
+        accepts N/A here only with reasoning that traces to the data
+        inventory.
+    if_yes:
+      sub_prompts:
+        - Name the regime explicitly. (CRS 1-2-305, HIPAA, GDPR, TCPA,
+          CAN-SPAM, GLBA, COPPA, PCI-DSS, attorney-client privilege,
+          state breach notification, etc.)
+        - What specific obligations does the product meet? Be concrete -
+          "voter PII never transmitted to LLM, only aggregates", not
+          "we comply with CRS 1-2-305."
+        - Are you legally bound by the regime, or calibrated to it
+          "as if"? The "as-if" framing — TOP's HIPAA-adjacent posture —
+          is honest and load-bearing; tell the reader explicitly which
+          protections are statutory and which are voluntary.
+        - For each regime named, what is the worst-case statutory or
+          regulatory exposure if the protection fails?
+      quality_checks:
+        - Each regime named with the specific obligations met
+        - "As-if" calibrations distinguished from statutory ones
+        - Worst-case exposure named
+
+  - id: defenses_in_place
+    title: Defenses currently in place
+    type: enumeration
+    target_field: defenses_in_place
+    body: |
+      The defenses that *actually exist in the running code as of this
+      commit*. Aspirational defenses go in "Known open risks" below,
+      not here. The line between the two is what makes this section
+      trustworthy to the reader.
+    sub_prompts:
+      - Secret hygiene — gitignore patterns, gitleaks pre-commit,
+        secret scanning, .env file mode.
+      - Approval gates — which actions are gated, where the queue
+        lives in code, who can approve.
+      - Per-user / per-tenant data isolation — set_user_id contract,
+        ContextVar, LookupError on unset.
+      - Prompt-level safety — Prompt Guardian audit cadence,
+        Reflection Gate, refusal-list enforcement.
+      - Crisis floor — if applicable, point to CRISIS_TRIGGERS.md
+        wiring.
+      - SQL — parameterized queries, allowlist of column names.
+      - File permissions — .env mode, data/ mode (if hardened).
+    quality_checks:
+      - Each defense names the mechanism (file path, function, table)
+      - Aspirational items are not in this section
+      - Crisis floor is referenced if CRISIS_TRIGGERS.md applies
+
+  - id: known_open_risks
+    title: Known open risks
+    type: enumeration_required
+    target_field: known_open_risks
+    body: |
+      The defenses you have *not* yet built. Required, not aspirational —
+      refusing to enumerate is the failure mode this section exists to
+      prevent. A SECURITY.md with no open-risks list is either a
+      greenfield product on day one (acceptable, write "none currently
+      identified" with the date and check back) or an aging document
+      whose author has stopped looking (the failure mode).
+    sub_prompts:
+      - File permissions — anything still on default umask?
+      - Rate limiting — any endpoint that could be enumerated or
+        abused?
+      - Self-approve paths — any tool a specialist could use to
+        approve its own action?
+      - Sanitization — any inbound content (scraped, user-supplied)
+        passed into prompts unfiltered?
+      - Encryption at rest — any sensitive directory not encrypted?
+      - Audit logging — any sensitive read or write not logged?
+    quality_checks:
+      - At least one open risk is enumerated, OR
+      - "None currently identified" with explicit greenfield-with-date
+        justification
+      - Each risk names impact and planned mitigation
+    blocking: true                   # honesty floor — no skip path
+
+  - id: surface_gaps
+    title: Surface-level structural gaps
+    type: honesty
+    target_field: surface_gaps
+    body: |
+      Some gaps are not bugs to fix in the next sprint — they are
+      structural properties of a surface this product depends on, and
+      they will not close until that surface is replaced.
+
+      The reference example: TOP runs on Telegram. Telegram bot chats
+      are not end-to-end encrypted, the company is non-US/EU
+      jurisdiction, the founder was arrested in France 2024. None of
+      that is fixable inside TOP; it is fixable by replacing Telegram.
+      Until then, the gap is named, the pilot scope is gated on it,
+      and the exit plan is the Phase 5 native app.
+
+      Most SECURITY.md documents in the wild skip this section. The
+      interview pushes against that skip — the honest "no gap" is a
+      real answer; the dishonest "no gap" is the failure mode.
+    sub_prompts:
+      - Does this product depend on a messaging platform whose trust
+        posture or jurisdiction creates structural exposure? (Telegram,
+        WhatsApp, SMS via a foreign carrier)
+      - Does it depend on a third-party service that holds copies of
+        sensitive content? (Stripe, Plaid, OAuth-grant providers)
+      - Does it have an inbound surface — voice, photo, scraped page —
+        that creates exposure inside the product even with all defenses
+        in place?
+      - For each gap named: (a) the surface and its trust posture,
+        (b) what flows through it that is sensitive, (c) any mitigation
+        available today not yet adopted (and why deferred), (d) the
+        exit plan, (e) acceptable-use scope today (which users this
+        is okay for, which it is not).
+    quality_checks:
+      - Surfaces are named with jurisdiction or technical limit
+      - Sensitive content flowing through is enumerated
+      - Exit plan exists and is dated to a real product phase
+      - Acceptable-use scope today is explicit (pilot vs. production)
+    na_path:
+      capture: |
+        One paragraph on why no structural gaps exist. Trace to the
+        data flow — every surface the product depends on, and why
+        each is acceptable for the current posture.
+
+  - id: vulnerability_reporting
+    title: Reporting a vulnerability
+    type: configuration
+    target_field: vulnerability_reporting
+    body: |
+      The reporter contact, the channel, what to include, and the
+      response-time commitment. The commitment is a promise the builder
+      makes to the reporter. Calibrate to posture — campaign-season
+      products commit faster acknowledgement; medical-adjacent products
+      commit faster user notification on data-exposure incidents.
+    sub_prompts:
+      - Contact email or channel for vulnerability reports.
+      - What should the reporter include? (description, repro,
+        impact, contact)
+      - Acknowledgement window — 24h / 72h / 7d?
+      - Assessment window after ack?
+      - Patch timeline commitment?
+      - Posture-specific commitments — financial-grade should add
+        "key rotation within 1 hour of confirmation"; political-
+        campaign should add "same-day rotation, same-day legal-counsel
+        notification on regulated-data exposure."
+      - State explicitly that public GitHub issues are not the channel.
+    quality_checks:
+      - Acknowledgement window is named with a specific time
+      - Posture-specific commitments included if applicable
+      - Public-issue channel explicitly excluded
+
+  - id: incident_response_plan
+    title: Incident response runbook
+    type: runbook
+    target_field: incident_response_plan
+    body: |
+      The numbered runbook the operator follows when something has
+      gone wrong. Shape is durable across products: contain → rotate →
+      review → notify → preserve → remediate → post-mortem. Contents
+      are product-specific.
+    sub_prompts:
+      - Contain — what gets disabled first? (deployment, scheduled
+        jobs, bot, dashboard)
+      - Rotate — exact ordered list of keys to rotate, where to rotate
+        each (Stripe Dashboard, BotFather /revoke, Google Account
+        Security, Anthropic Console).
+      - Review — what audit trails do you inspect? (Stripe dashboard
+        for unauthorized charges, Gmail Sent for unauthorized emails,
+        Railway logs for anomalous activity)
+      - Notify — affected parties, channel, timeline. Include
+        regulatory-mandatory notification if applicable.
+      - Preserve — what state to snapshot before it rotates out?
+        (logs, DB, approval queue, archives)
+      - Remediate — root-cause fix, regression test.
+      - Post-mortem — where it gets documented (this file, AAR, public
+        disclosure).
+      - Posture-specific - financial → reverse unauthorized charges,
+        regulated → legal-counsel review before public notification,
+        medical-adjacent → 72h user notification per GDPR-style
+        principles.
+    quality_checks:
+      - Rotation order is specific (which key first, which platform)
+      - Notification timeline is named for affected-user and regulator
+      - Posture-specific additions present if applicable
+
+  - id: security_dependencies
+    title: Security-relevant dependencies
+    type: enumeration
+    target_field: security_dependencies
+    body: |
+      The third-party services whose compromise would degrade this
+      product's security posture. Naming them lets a reader see the
+      chain so they can assess whether each link in the chain meets
+      their own bar.
+    sub_prompts:
+      - LLM provider (Anthropic, OpenAI, local Ollama) — what does
+        it have access to?
+      - Messaging surface (Telegram, Twilio SMS, Email/SMTP).
+      - Payment processor if applicable.
+      - Auth/OAuth providers.
+      - Hosting platform.
+      - Data sources (Plaid, government APIs, partner integrations).
+
+  - id: operational_security
+    title: Operational security (operator-side)
+    type: configuration
+    target_field: operational_security
+    body: |
+      Practices that bind the operator, not the product, but which the
+      product's posture depends on. Disk encryption, key storage,
+      screen-share discipline, third-party file-hosting prohibitions.
+    sub_prompts:
+      - Full-disk encryption (FileVault / BitLocker / LUKS)?
+      - .env file mode (0o600)?
+      - Cloud-sync prohibition for sensitive directories?
+      - MFA on dependency dashboards?
+      - Password manager use?
+      - Screen-share discipline during sensitive ops?
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_check
+    title: Trace check
+    type: review
+    body: |
+      The runner prints a trace summary: posture, data-inventory row
+      count, threat-actor tiers, defenses count, open-risks count,
+      surface-gap status (named / N/A-with-reasoning), incident-runbook
+      step count, dependencies count. Honesty floor — open-risks empty
+      without justification, or surface-gaps marked N/A without
+      reasoning, blocks completion.
+
+  - id: rotation_drill
+    title: Rotation drill (recommended)
+    type: validation
+    body: |
+      The runner offers a key-rotation drill: rotate one credential
+      end-to-end and verify the system reaches the same operational
+      state. Rotation plans that have never been exercised are wishes,
+      not plans. The drill is recommended, not mandatory — but
+      builders who skip it should not be surprised when the real
+      rotation under incident pressure does not work.
+
+  - id: handoff
+    title: Next interview
+    type: handoff
+    body: |
+      Phase 1 has one more template+interview pair queued
+      (AGENT_DOCTRINE) before coverage.py ties the kit together.
+      AGENT_DOCTRINE is primary-source work — most builders will not
+      have a worked example yet — and the recommended path is to
+      author it directly inside one product first, then extract to
+      the kit. Run when block time and a target product are both
+      available.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  posture_calibration_check: |
+    The runner reads the data inventory and flags inconsistency between
+    the named posture and the highest-sensitivity row. A product with
+    a Critical-tier credential row but a "consumer-grade" posture
+    cannot complete the interview. The floor is set by the data, not
+    the builder.
+
+  open_risks_floor: |
+    The known_open_risks field is the honesty floor. Empty answers
+    are accepted only with explicit "greenfield-with-date" justification
+    (project age under 30 days, no production data yet). Aging products
+    cannot pass this floor with an empty list — the runner refuses to
+    advance.
+
+  surface_gaps_honesty: |
+    The surface_gaps section is the second honesty floor. The N/A path
+    is allowed but requires a paragraph tracing every surface to its
+    trust posture. The TOP/Telegram pattern is the canonical example
+    of how to fill this section honestly — name jurisdiction, name
+    technical limits, name what flows through, name the exit plan,
+    name acceptable-use scope today.
+
+  ghostwrite_guard: |
+    Posture calibration, threat-actor naming, and the surface-gap
+    paragraph are voice-bearing — they reveal the builder's actual
+    threat model and risk tolerance. The runner refuses LLM-paraphrased
+    answers and requires the builder's own words.
+
+  multi_tenant_note: |
+    For multi-tenant products, the posture, data inventory, and
+    threat model are tenant-invariant — properties of the product.
+    The vulnerability reporting and incident response may be
+    per-tenant (tenant administrator notified separately from the
+    product's central oncall). The interview surfaces this when the
+    product registers as multi-tenant in earlier interviews.
+
+  reuse_for_existing: |
+    For products with an authored SECURITY.md already (TOP, Operator,
+    Custer), the interview supports a "reuse" mode: the builder
+    pastes the existing file, the runner parses it into the KIT:FIELD
+    blocks, and the interview only prompts for missing or below-floor
+    fields. The output is the same SECURITY.md but with kit markers
+    added so coverage.py can score future drift.
