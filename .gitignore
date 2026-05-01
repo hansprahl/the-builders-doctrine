@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Working drafts (never commit)
+_*.md
+draft_*.md
+WIP_*.md
+
+# Halsey overnight audit drafts — never commit
+OVERNIGHT_AUDIT.md
