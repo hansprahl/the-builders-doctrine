@@ -49,15 +49,17 @@ The scorer reads each field, checks whether it is populated substantively (above
 
 Implemented:
 - [x] Kit structure
-- [ ] STORY.md template
-- [ ] COMMANDMENTS.md template
+- [x] STORY.md template
+- [x] COMMANDMENTS.md template
 - [ ] REFUSAL_LIST.md template
 - [ ] CRISIS_TRIGGERS.md template
 - [ ] SPECIALIST_TEMPLATE.md template
 - [ ] AGENT_DOCTRINE.md template
 - [ ] SECURITY.md template
-- [ ] questions.yaml interview script
+- [x] questions.yaml interview script (STORY.md only; refusal/crisis/specialist/etc. interview files deferred)
 - [ ] coverage.py scoring engine
+
+First instance bootstrapped 2026-05-01: `custer-mcp/STORY.md` scaffold generated from kit template, fields awaiting interview. This is the first multi-user-style run of the kit — the scaffold was produced product-agnostically, then localized with Custer framing.
 
 Not yet implemented (Phase 2+):
 - Parameterized chassis (Approval Queue, Crisis Floor, named specialists, AAR loop, per-user memory, Prompt Guardian) extracted from TOP and made portable

@@ -1,0 +1,261 @@
+# The Builders' Kit — Onboarding Interview
+#
+# Drives the STORY.md interview (Phase 1). The runner (coverage.py --interview)
+# walks each question, captures the builder's answer, and writes it into the
+# matching template field by `target` path + `field` name.
+#
+# Multi-user from day one. No question assumes Hans's biography. The interview
+# is product-agnostic. Custer, Operator, TOP, and any future builder's product
+# all bootstrap from the same yaml.
+#
+# Voice-capture rules (read to the builder before the first question):
+#
+#   1. Answer in your own words. The Method assumes the moat is your memory,
+#      not the model's. If an AI ghostwrites your STORY, the trace breaks and
+#      the product compiles to a fiction.
+#   2. The interview accepts voice memos, dictation, raw text, or paste from
+#      a journal. It will not paraphrase. It will not "improve" your answers.
+#      It writes them as you said them.
+#   3. Specifics over abstractions. "I served in Iraq" is weaker than "I was
+#      SIGINT platoon sergeant in Baghdad in 2009 and led linguists into
+#      downtown targets I will not name in writing." Pick the second register.
+#   4. Skipping a required field is allowed but blocks coverage from reaching
+#      100%. The scorer will surface what is missing without judgment.
+#   5. Crises that are still unresolved should be marked unresolved. The
+#      Method does not require a tidy ending, only an honest one.
+
+version: 0.1
+schema: kit-onboarding/v1
+
+settings:
+  # Enforced by coverage.py at write-time
+  no_ai_paraphrase: true
+  capture_raw: true
+  allow_skip: true
+  default_target: kit/templates/STORY.md
+
+# ──────────────────────────────────────────────────────────────────────────────
+# STORY.md — biographical compile-target (Principle #1)
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Before we start
+    type: framing
+    body: |
+      This interview produces your STORY.md — the document Principle #1 of
+      The Builders' Method calls "the compile-target." Every behavior in the
+      product you build with this kit must trace back to something you say
+      here. If you can't say it, the product can't honor it. If you say
+      something here that the product won't honor, the product is incomplete.
+
+      The interview takes 60–90 minutes if you answer substantively. You can
+      pause and resume; answers are saved as you go. There are seven fields,
+      one optional. The scorer will tell you when each field is sufficient.
+
+  - id: founder_origin
+    title: Origin
+    target_field: founder_origin
+    required: true
+    min_words: 120
+    prompt: |
+      Where did you come from? Family, geography, formative early environment.
+      The conditions that shaped how you read the world before you had words
+      for it.
+    sub_prompts:
+      - Who raised you, where, in what conditions?
+      - What was assumed of you, what was withheld, what was forbidden?
+      - What kind of person were you expected to become, and what did you do
+        with that expectation?
+      - Names, places, scenes a reader can picture — not abstractions.
+    quality_checks:
+      - At least one named place
+      - At least one named person or relationship
+      - A sentence about expectations placed on you
+    examples_anonymized:
+      - "Mining-town childhood, single mother, expected to enlist by 17."
+      - "First-generation immigrant household, expected to be the translator."
+
+  - id: formative_crisis
+    title: Formative crisis
+    target_field: formative_crisis
+    required: true
+    min_words: 150
+    prompt: |
+      What broke you, what you survived, or what broke something you cared
+      about. The crises your refusal list comes from — the things you will
+      never let your product do, because you have seen what happens when those
+      things happen.
+    sub_prompts:
+      - The load-bearing crises, not every hardship.
+      - The ones that make you flinch when the pattern recurs in someone else.
+      - Specific enough that an agent reading this could recognize the pattern
+        when a user describes a version of it.
+      - If unresolved, say so. The Method does not require resolution.
+    quality_checks:
+      - Names the crisis with specificity, not in the abstract
+      - Identifies what the crisis cost
+      - Identifies what the crisis recurring in someone else looks like
+    refusal_seed:
+      note: |
+        Each formative crisis seeds at least one item in your REFUSAL_LIST.md.
+        The interview will surface those candidates after you finish this
+        section.
+
+  - id: competence_pattern
+    title: Competence pattern
+    target_field: competence_pattern
+    required: true
+    min_words: 100
+    prompt: |
+      What you have done well, and the discipline behind it. Not a resume —
+      the underlying capability the resume happens to be evidence of.
+    sub_prompts:
+      - Where did the competence come from — training, repetition, mentorship,
+        hard environments?
+      - What specifically can you do that most people in your domain cannot?
+      - What does the discipline look like in practice — daily, weekly, under
+        pressure?
+    quality_checks:
+      - Names a specific skill, not a category
+      - Names how the skill was developed, not just claimed
+    note: |
+      The Method assumes the builder is encoding real competence, not borrowed
+      authority. If you find yourself describing something you read about
+      rather than something you have done, stop and pick a different skill.
+
+  - id: failure_pattern
+    title: Failure pattern
+    target_field: failure_pattern
+    required: true
+    min_words: 100
+    prompt: |
+      Where you have failed, and what the failures taught you. A builder who
+      refuses to name their failures will build a product that hides its own.
+    sub_prompts:
+      - What you tried, what broke, what you took too long to admit?
+      - What the failure cost — money, relationships, reputation, time, health?
+      - What the failure changed about how you make decisions now?
+    quality_checks:
+      - Names a specific failure with a cost attached
+      - Names what changed afterward
+    honesty_floor: |
+      If the answer to "what did the failure cost" is "nothing," the failure
+      is probably not load-bearing. Pick a different one.
+
+  - id: recovery_arc
+    title: Recovery arc
+    target_field: recovery_arc
+    required: false
+    min_words: 80
+    prompt: |
+      If you have rebuilt from something — addiction, illness, bankruptcy,
+      divorce, exile, trauma — describe the rebuild. Often the recovery arc
+      is the engine of the product, because the user the product serves is
+      often a version of the builder mid-recovery.
+    sub_prompts:
+      - What collapsed, what the bottom looked like?
+      - What you stood up first?
+      - Who helped?
+      - What is still in progress?
+    skip_acceptable: true
+    skip_note: |
+      If your story does not include a recovery arc, mark this field N/A and
+      explain briefly why. A skipped arc is not a defect — but unmarked skips
+      drop coverage.
+
+  - id: present_purpose
+    title: Present purpose
+    target_field: present_purpose
+    required: true
+    min_words: 100
+    prompt: |
+      Why you are building now. What you are trying to compile into product.
+    sub_prompts:
+      - What changed for you that made building this the right next thing?
+      - What would be lost if you did not build it?
+      - What can you specifically encode into it that no one else can —
+        not because you are special, but because the bio above gives you
+        compile-time inputs no one else has?
+    quality_checks:
+      - Answers "why now" not just "why"
+      - Connects to at least one earlier field (origin, crisis, competence,
+        failure, or recovery)
+
+  - id: the_users
+    title: The users
+    target_field: the_users
+    required: true
+    min_words: 120
+    prompt: |
+      Who specifically you are building for, and what about your story makes
+      you uniquely able to serve them.
+    sub_prompts:
+      - Who are they? How did they get there? What are they dealing with?
+      - What about your story makes you the right person to build for them?
+      - What patterns do you recognize in them that another builder would miss?
+      - What do they need the product to never do, because of where they are
+        coming from?
+    quality_checks:
+      - Describes a population the builder can characterize with specificity
+      - Connects user need to a refusal candidate (something the product must
+        never do)
+    refusal_seed:
+      note: |
+        The "what they need the product to never do" answer seeds additional
+        items in your REFUSAL_LIST.md. The interview will surface those
+        candidates after this section.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing — coverage prompt + handoff
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_check
+    title: Trace check
+    type: review
+    body: |
+      The interview is now ready to write your answers into STORY.md. Before
+      it does, it will print a trace summary: each populated field, its
+      word count, and whether it meets minimums. You will see what is
+      complete, what is short, and what is skipped.
+
+      Anything below minimum is not a failure. It is a pointer for where to
+      come back when you have more to say.
+
+  - id: refusal_handoff
+    title: Refusal list seeding
+    type: handoff
+    body: |
+      The next interview file (refusal_interview.yaml, Phase 1.1) takes the
+      crisis and user fields you just answered and walks you through turning
+      them into REFUSAL_LIST.md entries. You can run it now or later. The
+      coverage scorer will tell you when REFUSAL_LIST.md is ready.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes for coverage.py (Phase 1 runner)
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  field_writer: |
+    Each section's answer is written between the matching KIT:FIELD markers in
+    the target file. The runner does not modify text outside the markers.
+    Existing answers are preserved; the runner asks before overwriting.
+
+  word_count: |
+    The runner computes word count after stripping markdown formatting and
+    placeholder bracket text. min_words is a floor for "substantive," not a
+    cap. A 60-word answer that is dense and specific can pass review with a
+    note; a 200-word answer that is vague will be flagged.
+
+  capture_modes:
+    - text:    paste or type directly
+    - dictate: voice-to-text (system dictation; runner does not transcribe)
+    - file:    paste path to a markdown/txt file with the answer
+
+  ghostwrite_guard: |
+    If the runner detects an answer that looks AI-generated (uniform sentence
+    length, hedge-heavy phrasing, no named specifics), it will warn but not
+    block. The builder can confirm "yes this is mine" and proceed. The warning
+    is logged for the audit trail.
