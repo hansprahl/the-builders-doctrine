@@ -23,9 +23,11 @@ from kit.chassis.approval_queue import (
     JsonFileStore,
     PENDING, APPROVED, REJECTED, EXECUTED, FAILED,
 )
+from kit.chassis.user_context import UserContext
 
 __all__ = [
     "CrisisFloor", "CrisisEvent",
     "Action", "ApprovalQueue", "InMemoryStore", "JsonFileStore",
     "PENDING", "APPROVED", "REJECTED", "EXECUTED", "FAILED",
+    "UserContext",
 ]
