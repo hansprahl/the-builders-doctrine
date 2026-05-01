@@ -1,0 +1,321 @@
+# The Builders' Kit — Crisis Triggers Interview
+#
+# Drives the CRISIS_TRIGGERS.md interview (Phase 1.2). Runs after questions.yaml
+# (STORY.md) so the gating decision and trigger generation can read from
+# the_users and formative_crisis.
+#
+# This interview begins with an applicability check. Not every product needs
+# a crisis floor. The check is honest, not aspirational — a B2B accounting
+# tool with no freeform user text does not need one, and forcing one in
+# would be ceremonial doctrine without operational meaning.
+#
+# If applicable, the interview produces the trigger list, response template,
+# response rationale, surface coverage, alert routing, and logging spec —
+# enough to fill CRISIS_TRIGGERS.md to the level Method coverage requires.
+
+version: 0.1
+schema: kit-onboarding/v1
+depends_on: questions.yaml          # STORY.md must be populated first
+
+settings:
+  no_ai_paraphrase: true
+  capture_raw: true
+  allow_skip: false
+  default_target: kit/templates/CRISIS_TRIGGERS.md
+  hard_floor: true                  # crisis floor is the strictest review
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Pre-interview prerequisite check
+# ──────────────────────────────────────────────────────────────────────────────
+
+prerequisites:
+  - check: STORY.md the_users populated above min_words
+    on_fail: |
+      Crisis applicability is determined by who your users are. Run
+      questions.yaml and complete the_users field before returning here.
+  - check: STORY.md formative_crisis populated above min_words
+    on_fail: |
+      The trigger-list and response-rationale derivations both pull from
+      formative_crisis. Complete that field first.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Interview
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Before we start
+    type: framing
+    body: |
+      Not every product needs a CRISIS_TRIGGERS.md. The first job of this
+      interview is to determine whether yours does. The answer is binary:
+      either users may bring distress to your product through a freeform
+      text surface, or they cannot. There is no in-between.
+
+      If yes, the rest of the interview produces a trigger list, fixed
+      response, surface coverage, alert routing, and logging spec — the
+      load-bearing safety surface of your product, expressed at audit-layer
+      visibility. The Method considers this the strictest possible review
+      because the failure mode is irreversible.
+
+      If no, we mark CRISIS_TRIGGERS.md as N/A with reasoning, and the
+      coverage scorer accepts that mark. An honest "does not apply" is
+      worth more than a ceremonial template fill.
+
+  - id: applicability_gate
+    title: Does your product need a crisis floor?
+    type: gate
+    target_field: crisis_applicability
+    questions:
+      - |
+        Does your product's user-facing surface include any inbound channel
+        where a user can author freeform text? (chat, message captions,
+        email reply, voice messages with transcription, web form, SMS)
+      - |
+        Could the population in your STORY.md the_users field plausibly
+        bring distress to that surface? (suicidal ideation, self-harm,
+        substance relapse, domestic violence disclosure, child welfare
+        disclosure, acute mental-health crisis)
+    branch:
+      both_yes: continue_to_full_interview
+      either_no: capture_na_reasoning
+    capture_na_reasoning:
+      target_field: crisis_applicability
+      prompt: |
+        Capture a one-paragraph reasoning for why this file does not apply
+        to your product. Name the surface population and why crisis cannot
+        plausibly arrive there. Trace to the_users.
+      then: skip_to_closing
+
+  - id: kind_of_crisis
+    title: What kind of crisis
+    type: scoping
+    target_field: crisis_applicability      # populated alongside the gate
+    body: |
+      Name the specific kind of distress your users may bring to the
+      product. Be concrete — "users may express suicidal ideation in chat
+      messages" is operational; "users may have hard moments" is not.
+    sub_prompts:
+      - Which surface(s) is the crisis most likely to arrive on?
+      - Is the population narrow (your STORY's primary users) or broader
+        (anyone who happens to find the product)?
+      - Is there a secondary crisis category (e.g., substance relapse in
+        addition to suicidal ideation) that needs a separate response
+        protocol? If yes, this interview produces the primary one and
+        flags the second for a follow-up interview.
+
+  - id: trigger_list_derivation
+    title: Trigger list — what counts as a crisis substring
+    type: derivation
+    pulls_from:
+      - questions.yaml::the_users
+      - questions.yaml::formative_crisis
+    target_field: trigger_phrases
+    body: |
+      The trigger list is a flat set of lowercased substrings. A message
+      triggers if any phrase appears as a substring after `.lower()`. The
+      list is intentionally broad on the side of false-positives.
+
+      The runner offers the canonical TOP suicide/self-harm list as a
+      reference (only because it is the proven shape, not the proven
+      content). Your list will reflect the kind of crisis named in the
+      previous section. Build it in your own words.
+    sub_prompts:
+      - List direct-statement triggers ("X myself", "want to Y").
+      - List metaphor-bordering triggers ("better off without me", "no
+        reason to keep going").
+      - List plan-language triggers if applicable ("thinking about
+        ending it", "going to do it tonight").
+      - List self-harm / substance-relapse / domestic-violence triggers
+        as appropriate to your product's crisis kind.
+      - For each phrase, ask: would a user in genuine distress plausibly
+        type this? If yes, include it. The cost of including is occasional
+        false-positives; the cost of excluding is the failure mode the
+        floor exists to prevent.
+    quality_checks:
+      - At least 10 phrases for the primary crisis kind
+      - Phrases are lowercased substrings, not regexes
+      - No phrases narrower than necessary (e.g., "suicide" alone is fine;
+        "I want to commit suicide tonight" is too narrow)
+
+  - id: response_authoring
+    title: Response template — the exact text the product sends
+    type: authoring
+    target_field: response_template
+    body: |
+      Write the canonical response. Every word is load-bearing because the
+      response will fire under load, possibly to someone in acute distress,
+      and the next thing they read may matter more than anything else the
+      product ever sends them.
+
+      Reference shape (TOP's response, not yours):
+
+          Stop.
+          I can't help you with this. A machine can't.
+          What you need right now is a real person.
+          [resource line 1]
+          [resource line 2]
+          [resource line 3]
+          Real people. Right now. 24/7. Please reach out.
+
+      Your response will have its own voice and its own resources. Author
+      it in your own words.
+    sub_prompts:
+      - What is the opener? (Single word or short sentence that interrupts
+        the trajectory.)
+      - What is the truth-statement about what your product is and is not?
+      - What are the resources you route to, in what order, and why that
+        order? (Population-first ordering — TOP routes to Veterans Crisis
+        Line first because the user population is veterans.)
+      - What is the closing line? (The asks the user to take the next
+        step toward a human.)
+    quality_checks:
+      - The response names at least one specific human-staffed resource
+        (phone, text line, in-person)
+      - The response does not invite the user to keep talking to the
+        product about the crisis
+      - The response is fixed text — no model-generated personalization
+
+  - id: response_rationale
+    title: Why the response says what it says
+    type: rationale
+    target_field: response_rationale
+    body: |
+      Walk through your response sentence by sentence and name the design
+      choice behind each. Trace each choice to formative_crisis or
+      the_users. Without rationale captured, future contributors cannot
+      tell which words are load-bearing and which are aesthetic.
+    quality_checks:
+      - Each sentence in the response has a paragraph of rationale
+      - Rationale traces to a STORY field
+
+  - id: response_exclusions
+    title: What the response does NOT do
+    type: anti_pattern
+    target_field: response_exclusions
+    body: |
+      Common failure modes to enumerate explicitly: does the response
+      offer to keep talking? Does it suggest a follow-up tool inside
+      the product? Does it lock the user out? Does it chain into any
+      LLM call? Does it validate the feeling? Does it claim the product
+      is "here for you"?
+
+      Naming the exclusions makes future drift harder.
+
+  - id: surfaces_audit
+    title: Inbound surfaces — every one wrapped
+    type: audit
+    target_field: surfaces_table
+    body: |
+      List every inbound user-text surface in your product and confirm
+      each one calls the crisis check before any other logic.
+    sub_prompts:
+      - Chat / message text — wrapped?
+      - Photo or document captions — wrapped? (caption text only;
+        images are not analyzed)
+      - Voice messages — wrapped? (transcribed first, then substring
+        check)
+      - Email reply — wrapped if applicable
+      - SMS — wrapped if applicable
+      - Web form submission — wrapped if applicable
+      - Any other inbound text surface
+    quality_checks:
+      - Every wrapped surface has a file:line citation
+      - Every unwrapped surface is listed under "pending" (release-blocking
+        when shipped)
+
+  - id: alert_routing
+    title: Admin alert — who gets paged
+    type: configuration
+    target_field: admin_alert_recipient
+    body: |
+      When the crisis check fires, the product alerts a human responsible
+      for the product (or for the user). This is the human-loop closure:
+      the machine cannot help, but the human might know the person.
+    sub_prompts:
+      - Who receives the alert in the v1 instance? (typically the builder)
+      - What channel? (Telegram, email, SMS, Slack, pager)
+      - Are there suppression rules? (e.g., self-alert loops when the
+        triggering user is the alert recipient)
+      - In a multi-tenant deployment, who receives the alert per tenant?
+        (tenant administrator, central oncall, both)
+    quality_checks:
+      - Alert recipient and channel are named
+      - Self-alert suppression considered explicitly
+      - Multi-tenant routing addressed if applicable
+
+  - id: review_cadence
+    title: Review cadence
+    type: configuration
+    body: |
+      The default cadence (weekly Guardian, monthly manual test, on every
+      inbound-path PR) applies. The interview asks whether your product
+      needs additional cadence — for example, monthly is light if your
+      product is high-volume; some builders run a synthetic crisis
+      injection nightly. Capture any deviation here.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_check
+    title: Trace check
+    type: review
+    body: |
+      The runner prints a trace summary: applicability, trigger list size,
+      response word count, rationale completeness, surface coverage table,
+      alert routing, logging configuration. Hard-floor — fields below
+      threshold block the kit's overall coverage from completing.
+
+  - id: bootstrap_test
+    title: Bootstrap test
+    type: validation
+    body: |
+      The runner offers a synthetic crisis test: pipe a literal trigger
+      phrase through your product's inbound handler in a test environment
+      and verify (a) the response fires, (b) the admin alert reaches the
+      configured recipient, (c) the WARNING log line lands. Do not skip
+      this — a CRISIS_TRIGGERS.md spec that has never been exercised
+      against the running code is not a spec. It is a wish.
+
+  - id: handoff
+    title: Next interview
+    type: handoff
+    body: |
+      Phase 1 has three more template+interview pairs queued
+      (SPECIALIST_TEMPLATE, AGENT_DOCTRINE, SECURITY) before coverage.py
+      ties the kit together. Run the next interview when you have block
+      time.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  na_path: |
+    The applicability gate produces an N/A entry when both gating
+    questions return No. coverage.py treats that N/A as fully populated
+    for scoring purposes — an honest "does not apply" is worth full
+    coverage. The reasoning paragraph is required to prevent ceremonial
+    skips.
+
+  trigger_list_seed: |
+    The runner offers TOP's published list (from local-mcp/CRISIS_TRIGGERS.md)
+    as a *shape* reference, never as content the builder copies. The
+    ghostwrite guard is strict here — a trigger list copied verbatim from
+    the reference is a failure mode the runner blocks.
+
+  hard_floor_review: |
+    Every field in this interview is required (no skip_acceptable, except
+    on the conditional surfaces_pending). The coverage scorer cannot
+    reach 100% on a partially populated CRISIS_TRIGGERS.md. The Method
+    considers this the strictest review because crisis is the moment
+    where every other commandment pauses.
+
+  multi_tenant_note: |
+    For multi-tenant products, the trigger list, response, surface
+    coverage, and detection mechanism are tenant-invariant — they are
+    properties of the product, not of the tenant. The alert routing is
+    per-tenant. The interview captures this separation explicitly.
