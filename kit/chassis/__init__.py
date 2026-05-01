@@ -25,6 +25,11 @@ from kit.chassis.approval_queue import (
 )
 from kit.chassis.user_context import UserContext
 from kit.chassis.specialists import Specialist, SpecialistRegistry
+from kit.chassis.aar import (
+    AAR, AARLog, CalibrationReport,
+    SUCCESS, FAILURE, PARTIAL, ABANDONED, VALID_OUTCOMES,
+    HABIT, TASK, GOAL, ROUTINE, RECOMMENDATION,
+)
 
 __all__ = [
     "CrisisFloor", "CrisisEvent",
@@ -32,4 +37,7 @@ __all__ = [
     "PENDING", "APPROVED", "REJECTED", "EXECUTED", "FAILED",
     "UserContext",
     "Specialist", "SpecialistRegistry",
+    "AAR", "AARLog", "CalibrationReport",
+    "SUCCESS", "FAILURE", "PARTIAL", "ABANDONED", "VALID_OUTCOMES",
+    "HABIT", "TASK", "GOAL", "ROUTINE", "RECOMMENDATION",
 ]
