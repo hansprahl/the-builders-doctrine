@@ -4,7 +4,7 @@ The meta-doctrine for the Hans Prahl AI portfolio. This repository is the canoni
 
 > **Prime Directive.** I build AI as agentic versions of myself — ethics and lived experience encoded into code that acts within intent and stops at irreversible. The moat is memory, not model. Designed to be needed less, not more. Truth is architecture; the lie detector built in. A clean room rebuilds from doctrine and commits, or the product is a snowflake.
 
-Read [THE_BUILDERS_DOCTRINE.md](THE_BUILDERS_DOCTRINE.md) for the full doctrine.
+Read [THE_BUILDERS_DOCTRINE.md](THE_BUILDERS_DOCTRINE.md) for the full doctrine. Read [EXPLAINER.md](EXPLAINER.md) for the plain-language version — used when explaining the framework to a non-technical reader, peer, or investor without diluting the austere doctrine.
 
 ## Status
 

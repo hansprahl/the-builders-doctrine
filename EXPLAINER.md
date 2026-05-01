@@ -1,0 +1,96 @@
+# EXPLAINER
+
+> Plain-language translator for THE_BUILDERS_DOCTRINE. The doctrine itself is austere by design. This file is for explaining the doctrine to a non-technical reader, a peer at dinner, or to yourself when you need to remember what it actually says.
+>
+> The doctrine is the source of truth. This file is a tool. They are different artifacts and serve different audiences.
+
+---
+
+## What it is, in one sentence
+
+The Builders Doctrine is the master playbook for how I build AI products — a single document that says what makes a product *mine*, what I refuse to build, and how I prove the work is repeatable.
+
+## Why it matters
+
+Most people building AI products are flying by feel. They write some prompts, deploy, see what works, change things, repeat. Each product comes out as a one-off. You can't tell why one works and another doesn't. You can't reproduce the success. You can't teach the method.
+
+I'm doing it the opposite way. I wrote down the rules first, before the products, and every product I build follows those rules. The framework itself becomes the differentiator. When a grant reviewer or investor asks "is this a one-off or a system?" — I hand them a document.
+
+## The structure, using a kitchen analogy
+
+A head chef who runs three different restaurants — French bistro, taco truck, fine dining — has different menus, different voices, different customers in each. But every kitchen runs by the same head chef's discipline.
+
+That's the layering:
+
+| Layer | What it is | Kitchen analogy |
+|---|---|---|
+| **The Builders Doctrine** | The chef's whole philosophy. Why we cook, what we refuse to serve, what we owe the customer. Universal. | Head chef's playbook |
+| Per-product CLAUDE.md | The voice and commandments for each individual product. | This kitchen's menu and tone |
+| AGENT_DOCTRINE.md | How AI agents wire together — memory, routing, tool access, accountability. | How the line operates: stations, expediter, ticket flow |
+| **PROMPT_DOCTRINE.md** | The universal rules for how every prompt is written. The most important technical document — bad prompt equals bad agent. | How recipes are written so any cook can read and execute |
+| SECURITY.md | The hard floors for each product. Things that cannot be violated. | Health code |
+| SPECIALIST_TEMPLATE.md | The build sheet for adding a new agent. | New-hire orientation packet |
+
+## The eleven principles, in one sentence each
+
+**Foundational ethics — what I will and will not stand for. Each was earned somewhere in life:**
+
+1. **The code is the man.** My products carry my ethics whether I intend it or not, so I have to encode the regulated version of myself into them.
+2. **The moat is the memory.** What makes my products unfakeable isn't the AI model — anyone can swap models. It's the accumulated memory of every relationship and every lived event the products carry.
+3. **Designed to be needed less, not more.** Real help makes you stronger and less reliant. Engagement-maximization makes you weaker and more reliant. I will not build the second.
+4. **Chain of command over autonomous AI.** I tell the AI what I want done. The AI executes within scope. Anything irreversible — sending an email, charging a card, posting publicly — gets my approval first. Always.
+5. **Data sovereignty.** Your data belongs to you. I don't sell it. I don't leak it. I don't pretend you consented when you didn't.
+6. **Truth as architecture.** I built a lie detector into my own product. It tells me when the AI is drifting away from its principles. I want to know.
+7. **Stoic commandments.** No cheerleading. No dark patterns. No streaks-as-dopamine. Honest before comfortable. Contentment, not happiness.
+
+**Operational doctrines — how the ethics translate into actual product architecture:**
+
+8. **The Refusal.** There are categories of products I will not build, and the list is part of the doctrine. Right now: engagement-maximization apps, surveillance products, parasocial replacements for human relationships.
+9. **AI as co-author, not just tool.** I'm not a developer by training. I set the intent and the judgment; the AI executes. Every commit names both contributors. Neither alone produces the product.
+10. **Named specialists, never anonymous prompts.** Every AI agent has a name, a defined job, and a tool allowlist. Anonymous prompts are like anonymous soldiers — no accountability, no track record, no improvement.
+11. **Crisis floors above features.** If a product can encounter someone in crisis, the crisis response is hard-coded above every feature. It cannot be turned off, gated, or A/B-tested. The floor is unkillable.
+
+## Why this is hard to copy — the biography point
+
+Most tech moats erode in five years. Models get commoditized. Features get copied. Pricing gets undercut.
+
+What does not erode: a founder's lived experience. Twenty-one years military intelligence. A brewery I built and lost. Sobriety. PTSD treatment. Two combat tours. Each one installed a discipline that now sits inside my products as principle, as commandment, as guardrail.
+
+Anyone can clone the AI model. Nobody can clone the biography. So the framework that turns the biography into product behavior is the moat. That is what "the code is the man" means: the products are an agentic version of me, and you cannot agentic-version someone else's life.
+
+## How I prove the framework actually works
+
+Three things make it real:
+
+1. **Every product produces the same kinds of measurements.** Drift scores. Confidence calibration. Approval queue throughput. Hard-floor violation counts. Same metrics, different products.
+2. **Reproducibility protocol.** Someone who has never seen the product can clone the repo, restore the data, run a script, and rebuild the product to within 5% variance on every measurement, in 48 hours. If they can't, the framework has failed.
+3. **The audit trail.** Every prompt change is logged. Every irreversible action is queued. Every confidence claim is checked against the actual outcome. The product cannot lie to me without leaving evidence.
+
+## The 60-second elevator pitch
+
+For when someone asks "what are you working on?"
+
+> "I'm building a portfolio of AI products. Most builders are vibes-driven — they write prompts, deploy, see what sticks. The result is artisan one-offs you can't reproduce.
+>
+> I'm doing it differently. I wrote down the rules first. There's a single document called The Builders Doctrine that governs every product I build — what makes it mine, what I refuse to build, how the AI agents are structured, how I measure whether they're working.
+>
+> Eleven principles. Seven are ethical, drawn from lived experience: Marine intelligence, two combat tours, a brewery I built and lost, sobriety, PTSD treatment. Four are operational: what I will not build, how AI is a co-author not just a tool, that every agent has a name and accountability, that crisis response is unkillable.
+>
+> The product sits on top of the doctrine. The doctrine is the moat. Anyone can copy a model. Nobody can copy the biography."
+
+## How to tune depth by audience
+
+The audience matters. Tune the depth:
+
+- **Friend or family member:** the kitchen analogy + the elevator pitch. Most people will get it.
+- **EMBA peer or business person:** add the "framework as moat" point and the reproducibility protocol. They want to know it's a system, not a vibe.
+- **Grant reviewer or investor:** add the eleven principles + the measurement surface. They want to see methodology and evidence.
+- **Veteran or someone who's been through hard things:** lead with the biography point. The framework is born from lived experience, not theory. They will recognize the shape.
+
+## The most important sentence in the whole doctrine
+
+If you only remember one line, remember this:
+
+> "If a clean room cannot rebuild the product from doctrine and commits, I have not built a product. I have built a snowflake."
+
+That's the test. That's what "taken seriously" means. Either anyone can reproduce the work from the documents I left behind, or my work is just my taste — and taste is not a method.
