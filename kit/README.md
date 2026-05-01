@@ -54,13 +54,14 @@ Implemented:
 - [x] REFUSAL_LIST.md template
 - [x] CRISIS_TRIGGERS.md template
 - [x] SPECIALIST_TEMPLATE.md template
-- [ ] AGENT_DOCTRINE.md template
+- [x] AGENT_DOCTRINE.md template
 - [x] SECURITY.md template
 - [x] questions.yaml interview script (STORY.md)
 - [x] refusal_interview.yaml interview script (REFUSAL_LIST.md, depends on STORY)
 - [x] crisis_interview.yaml interview script (CRISIS_TRIGGERS.md, depends on STORY; applicability gate)
 - [x] specialist_interview.yaml (SPECIALIST_TEMPLATE.md; runs once per specialist, not per product)
 - [x] security_interview.yaml (SECURITY.md, depends on STORY; honesty floor on open risks + surface gaps)
+- [x] agent_doctrine_interview.yaml (AGENT_DOCTRINE.md; depends on STORY+COMMANDMENTS+specialist; status floor on all 11 components)
 - [ ] coverage.py scoring engine
 
 First instance bootstrapped 2026-05-01: `custer-mcp/STORY.md` scaffold generated from kit template, fields awaiting interview. This is the first multi-user-style run of the kit — the scaffold was produced product-agnostically, then localized with Custer framing.

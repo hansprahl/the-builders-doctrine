@@ -1,0 +1,572 @@
+# The Builders' Kit — Agent Doctrine Interview
+#
+# Drives the AGENT_DOCTRINE.md interview (Phase 1.6). Runs after
+# questions.yaml (STORY.md), commandments are authored, and at least one
+# pass through specialist_interview.yaml has happened — the doctrine
+# spec is the system-scale view of what the per-specialist authoring
+# converges on.
+#
+# Output: an AGENT_DOCTRINE.md a new contributor can read once and find
+# the code for every component, exercise it, and learn whether it is
+# operational. Eleven components in three layers (Foundation 1-5,
+# Memory+calibration 6-9, Reactivity 10-11). The interview's load-
+# bearing moment is the per-component status — implemented / partial /
+# not_yet / na_with_reasoning. Refusing to mark a status fails.
+#
+# The interview supports a "reuse" mode for products with an authored
+# AGENT_DOCTRINE.md already (TOP, the canonical worked example). The
+# runner parses the existing file into KIT:FIELD blocks and only
+# prompts for missing or below-floor fields.
+
+version: 0.1
+schema: kit-onboarding/v1
+depends_on:
+  - questions.yaml                  # STORY.md must be populated
+  - specialist_interview.yaml       # at least one specialist authored
+                                    # (or N/A with reasoning at posture)
+
+settings:
+  no_ai_paraphrase: true
+  capture_raw: true
+  allow_skip: false
+  default_target: kit/templates/AGENT_DOCTRINE.md
+  status_floor: true                # every component must declare a status;
+                                    # missing or unjustified blocks completion
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Pre-interview prerequisite check
+# ──────────────────────────────────────────────────────────────────────────────
+
+prerequisites:
+  - check: STORY.md the_users populated above min_words
+    on_fail: |
+      Architectural posture is shaped by the population. Run questions.yaml
+      and complete the_users field before returning here.
+  - check: COMMANDMENTS.md exists and is populated
+    on_fail: |
+      Several components (#4 approval passthrough, #7 honesty, #9
+      calibration honesty) trace to commandments. Author COMMANDMENTS.md
+      before authoring AGENT_DOCTRINE.md.
+  - check: at least one specialist authored via specialist_interview.yaml
+    on_fail: |
+      Component #2 (named specialists) and the per-specialist
+      authoring (SPECIALIST_TEMPLATE) are two scales of the same
+      decision. Author at least one specialist first, or mark posture
+      as "single-agent — N/A for components 2/4" with reasoning.
+    skippable_with_justification: true
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Interview
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Before we start
+    type: framing
+    body: |
+      AGENT_DOCTRINE.md is the engineering spec for how this product's
+      multi-specialist agent system remembers, calibrates, and reacts.
+      Eleven components in three layers. The interview asks you to
+      mark a status for each and document the implemented ones to the
+      depth a new contributor can use.
+
+      The shape per component is durable: What / Where / Status / Why
+      it matters / Example / Failure modes. The bar is "a contributor
+      can lift the example and exercise the component" — not a
+      one-paragraph hand-wave.
+
+      The eleven components:
+
+        Foundation (1-5):
+          1  Durable History
+          2  Named Specialists
+          3  Token Trimming
+          4  Specialist Routing
+          5  Proactive Intelligence
+
+        Memory + Calibration (6-9):
+          6  Knowledge Graph
+          7  Confidence Scoring
+          8  Running Estimates
+          9  After-Action Reviews
+
+        Reactivity (10-11):
+          10  Battle Tracking
+          11  Event-Driven Architecture
+
+      Each component has four valid status answers: implemented,
+      partial, not_yet, na_with_reasoning. Refusing to mark a status
+      fails the interview. The Method cares that the gap is named,
+      not that every component is shipped.
+
+  - id: reuse_check
+    title: Reuse check
+    type: gate
+    body: |
+      Does this product already have an authored AGENT_DOCTRINE.md
+      that pre-dates this kit interview? If yes, the runner offers
+      to parse the existing file into KIT:FIELD blocks and only
+      prompt for missing or below-floor fields. The output is the
+      same file but with kit markers added so coverage.py can score
+      future drift.
+
+      TOP's is the canonical worked example. Operator and Custer are
+      the products most likely to use the reuse path next.
+    branch:
+      yes: parse_existing_then_fill_gaps
+      no: continue_to_full_interview
+
+  - id: posture
+    title: Agentic posture
+    type: scoping
+    target_field: agentic_posture
+    pulls_from:
+      - questions.yaml::the_users
+    body: |
+      Name what kind of multi-agent system this is. The answer shapes
+      every subsequent component — a single-agent product marks
+      components 2/4 as N/A with reasoning; a multi-tenant SaaS adds
+      isolation requirements that thread through 1, 6, 8, 9, 11.
+    sub_prompts:
+      - How many specialists does this product have today?
+      - Who orchestrates? (an LLM, a deterministic router, both)
+      - What does "specialist" mean here - a domain owner with its own
+        prompt and tool allowlist? a routed sub-graph? a separate
+        process?
+      - What is the orchestrator NOT allowed to do? (TOP - the
+        orchestrator never calls tools directly; only ask_* wrappers)
+      - Does the_users population set architectural constraints?
+        (per-user isolation, approval routing, regulated-data handling)
+    quality_checks:
+      - Specialist count is named with current implementation status
+      - Orchestrator role is specified
+      - "Not allowed" rule is named
+      - Trace to the_users if applicable
+
+  - id: design_principles_additions
+    title: Design principles — product-specific additions
+    type: optional_authoring
+    target_field: design_principles_additions
+    body: |
+      Five default principles ship with the kit (accumulate-don't-
+      forget, calibrate-against-reality, react-don't-poll, namespace
+      the new stuff, framework is additive). They apply to every
+      product. The interview asks for *additions* — principles
+      specific to this product that future contributors need to know.
+
+  - id: targets_thresholds
+    title: Targets and thresholds
+    type: configuration
+    target_field: targets_thresholds
+    body: |
+      The numbers that tell you whether the doctrine is working.
+      Initial targets are starting points; measured values replace
+      them as data accumulates. The Method cares that you set them
+      explicitly — silent operation without thresholds is what makes
+      framework drift invisible.
+    sub_prompts:
+      - Knowledge graph size after 1 week and 1 month - what counts
+        as Healthy / Watch / Broken in your product?
+      - Query latency for common lookups - typical, acceptable, broken?
+      - DB size - how much do you tolerate before archive/cleanup?
+      - Confidence-block parse rate - what % of specialist responses
+        should emit a parseable block?
+      - AAR coverage - within how many days should pending
+        recommendations have a recorded outcome?
+      - Per-specialist success rate - what is the floor below which
+        the specialist's confidence is structurally inflated?
+      - Running-estimate staleness - what counts as "live"?
+      - Event-handler failure rate - acceptable noise floor?
+    quality_checks:
+      - At least 8 rows in the table
+      - Each row has all three thresholds (Healthy/Watch/Broken)
+      - "Act on Watch" / "treat Broken as incident" rules named
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Component sections — the per-component pattern is shared
+  # ──────────────────────────────────────────────────────────────────────────
+
+  - id: component_1_durable_history
+    title: 1. Durable History
+    type: per_component
+    target_field: component_1_durable_history
+    layer: foundation
+    body: |
+      Conversation state survives process restarts. Without this,
+      every redeploy wipes the user's context.
+    sub_prompts:
+      - What plays this role in your product? (LangGraph SqliteSaver,
+        a custom checkpoint table, a third-party state store)
+      - Where is it? (file paths, DB names, framework wiring)
+      - Status - implemented / partial / not_yet / na_with_reasoning
+      - Why does it matter for *this* product? (the user-visible
+        consequence if state is lost)
+      - Example - a code or config snippet a contributor can lift
+      - At least 3 failure modes with mitigations - DB locking, DB
+        corruption, history poisoning are common.
+
+  - id: component_2_named_specialists
+    title: 2. Named Specialists
+    type: per_component
+    target_field: component_2_named_specialists
+    layer: foundation
+    body: |
+      Each specialist has a persistent identity. The orchestrator
+      routes by name, not by domain string. Naming convention is
+      product-specific.
+    sub_prompts:
+      - Naming convention used in your product (TOP - first names;
+        Operator - call signs; Custer - staff role names)
+      - Where is the registry? (file:line)
+      - Status
+      - Scope-non-overlap rule (how do you prevent two specialists
+        from claiming the same domain?)
+      - Surface rule - do specialist names ever reach user-facing
+        responses? (TOP says no; some products say yes)
+      - Cross-reference SPECIALIST_TEMPLATE.md - the per-specialist
+        authoring path is component 2's per-specialist scale.
+      - Failure modes - name leak to user, two specialists claim same
+        domain, removed specialist still referenced in prompts.
+
+  - id: component_3_token_trimming
+    title: 3. Token Trimming
+    type: per_component
+    target_field: component_3_token_trimming
+    layer: foundation
+    body: |
+      The system enforces a hard token budget on conversation history,
+      preserving message-pair integrity (no orphaned tool_call without
+      tool_result).
+    sub_prompts:
+      - Status - many products start at not_yet; that's acceptable
+        with the path.
+      - Strategy - which trim algorithm, which budget?
+      - Fallback - what happens if trim raises?
+      - Failure modes - budget too low, budget too high, malformed
+        sequence triggers fallback that loses guarantees.
+
+  - id: component_4_specialist_routing
+    title: 4. Specialist Routing
+    type: per_component
+    target_field: component_4_specialist_routing
+    layer: foundation
+    body: |
+      The orchestrator decides which specialist(s) to call. Multi-
+      specialist requests fan out. High-stakes deterministic actions
+      bypass the LLM via mechanical short-circuits.
+    sub_prompts:
+      - Where is the orchestrator?
+      - Routing principle - LLM-decided vs deterministic short-circuits
+      - Mechanical short-circuit examples - when does routing skip
+        the LLM entirely and why?
+      - Failure modes - LLM picks wrong specialist; calls one when
+        request spanned two; buries pending-approval prompt.
+      - Trace to COMMANDMENTS.md - is approval-passthrough doctrine
+        or convention?
+
+  - id: component_5_proactive_intelligence
+    title: 5. Proactive Intelligence
+    type: per_component
+    target_field: component_5_proactive_intelligence
+    layer: foundation
+    body: |
+      Background processes that act without being asked. The
+      dependency test applies — proactive output must make the user
+      *more capable*, not *more reliant*. This is the component most
+      at risk of violating the founding ethic.
+    sub_prompts:
+      - What background processes run? (morning brief, evening checkin,
+        monitor, nudge, scheduled outreach)
+      - Where? (scheduler config, entry points)
+      - Status
+      - Real example - a scheduled job registration from your code
+      - Failure modes - job fires when user isn't reachable; two
+        instances overlap; "helpful" nudge becomes notification stream.
+      - Dependency test - which STORY.md or COMMANDMENTS.md field
+        gates whether a new proactive feature ships?
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Memory + calibration layer
+  # ──────────────────────────────────────────────────────────────────────────
+
+  - id: component_6_knowledge_graph
+    title: 6. Knowledge Graph
+    type: per_component
+    target_field: component_6_knowledge_graph
+    layer: memory
+    body: |
+      The queryable entity/relationship store. Every doctrine
+      component that accumulates cross-cutting state writes here.
+      Other tools read.
+    sub_prompts:
+      - Where? (DB path, module file)
+      - Schema - entities table columns, relationships table columns,
+        indexes, journal mode
+      - Status
+      - Public API - the function names a contributor can call
+      - Conventions - entity-type naming, relationship-type naming
+        (TOP uses SHOUTY_SNAKE_CASE for relationships)
+      - What it's NOT - the graph is not a replacement for per-domain
+        JSON state; explicit boundary
+      - Failure modes - no delete API, no schema validation on JSON
+        blobs, JSON-path scans don't index, cross-user leak risk
+        (CRITICAL for multi-user products), write contention.
+
+  - id: component_7_confidence_scoring
+    title: 7. Confidence Scoring
+    type: per_component
+    target_field: component_7_confidence_scoring
+    layer: memory
+    body: |
+      Every specialist response carries a structured confidence
+      block the orchestrator parses, strips from user-facing reply,
+      and persists. LOW is *valuable*, not failure.
+    sub_prompts:
+      - Status
+      - Format - the exact CONFIDENCE block specialists emit
+      - Scale - HIGH/MEDIUM/LOW with score ranges, or whatever your
+        product uses
+      - Parsing function name and where
+      - Persistence function name and where
+      - Prompt-wiring - how are specialists instructed to emit?
+      - Failure modes - specialist forgets the block; emits in wrong
+        format; performative HIGH; one-word reasoning.
+      - Trace to COMMANDMENTS.md - which honesty commandment makes
+        "I don't know" required?
+
+  - id: component_8_running_estimates
+    title: 8. Running Estimates
+    type: per_component
+    target_field: component_8_running_estimates
+    layer: memory
+    body: |
+      Each specialist maintains a live snapshot of its domain.
+      Orchestrator reads on every turn so routing skips rediscovery.
+    sub_prompts:
+      - Status
+      - Per-specialist schema - what fields each specialist's estimate
+        carries
+      - Public API - update_estimate, get_estimate, refresh_estimate,
+        format_for_prompt
+      - Compute functions - which specialists have real compute, which
+        are placeholders?
+      - Storage - which entity type in the graph
+      - Use in prompts - the exact block format the orchestrator sees
+      - Failure modes - estimate goes stale; compute crashes silently;
+        placeholder specialists never refresh.
+
+  - id: component_9_aar
+    title: 9. After-Action Reviews
+    type: per_component
+    target_field: component_9_aar
+    layer: memory
+    body: |
+      The mechanism that lets truthful data override cheap claims.
+      Confidence is cheap. Outcomes are expensive and truthful. AAR
+      lets reality calibrate the system.
+    sub_prompts:
+      - Status
+      - Public API - record_outcome, get_pending_outcomes,
+        get_calibration_report
+      - Outcome scale - success/failure/partial/abandoned, or your
+        product's variant
+      - Calibration loop - recommendation → graph entity → outcome →
+        linked AAR → calibration report → future confidence
+      - Failure modes - no one records; AAR not linked to source;
+        subjective outcome scale; per-specialist not per-user.
+      - Trace to COMMANDMENTS.md - the honesty commandment that makes
+        outcome tracking required.
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Reactivity layer
+  # ──────────────────────────────────────────────────────────────────────────
+
+  - id: component_10_battle_tracking
+    title: 10. Battle Tracking
+    type: per_component
+    target_field: component_10_battle_tracking
+    layer: reactivity
+    body: |
+      MDMP-origin term. The mapping is product-specific - TOP maps
+      it to projects + stalled-detection; Custer to delegate-whip +
+      assembly progress; Operator to plan history + execution status.
+    sub_prompts:
+      - What plays this role in your product?
+      - Why this mapping - your product probably doesn't run literal
+        MDMP; what does it need from the battle-tracking primitive?
+      - Status
+      - Example - real query against your battle-tracking surface
+      - Failure modes - wrong grain (e.g., flat tasks for a
+        multi-phase initiative), paused-vs-abandoned ambiguity.
+      - Future work - when does this grow a dedicated module?
+
+  - id: component_11_event_bus
+    title: 11. Event-Driven Architecture
+    type: per_component
+    target_field: component_11_event_bus
+    layer: reactivity
+    body: |
+      Internal event bus with persistent storage. Replaces "check
+      every N minutes" polling with "fire when state changes"
+      reactivity.
+    sub_prompts:
+      - Status (many products start at not_yet)
+      - Schema - events table
+      - Public API - publish, subscribe, get_event_log, count_events
+      - Subscription model - in-memory? durable?
+      - Dispatch rules - exact match → wildcard → prefix wildcard
+      - Persistence semantics - events stored before handlers; retry
+        policy; failure handling
+      - Naming convention - <domain>.<verb> (TOP - habit.logged,
+        task.completed, email.triaged, approval.granted)
+      - Failure modes - subscribers in-memory only; handler crashes
+        swallowed; no retry; synchronous dispatch blocks publisher;
+        unbounded events.db growth.
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Composition + validation
+  # ──────────────────────────────────────────────────────────────────────────
+
+  - id: composition_narrative
+    title: How the components compose
+    type: narrative
+    target_field: composition_narrative
+    body: |
+      The value is in the loop, not in any single component. A new
+      contributor reading this section should be able to trace one
+      user request from inbound through every component that touches
+      it. Use real specialist names from your product.
+    quality_checks:
+      - Names real specialists from THIS product (not TOP's)
+      - Walks through at least 6 components in sequence
+      - Ends with a calibration loop closure (AAR informs future
+        confidence)
+
+  - id: validation_command
+    title: Validation
+    type: configuration
+    target_field: validation_command
+    body: |
+      The doctrine self-test. A contributor can run one command and
+      learn whether all components are operational. Real round-trip
+      assertions against temp databases — not import-only smoke tests.
+    sub_prompts:
+      - The exact command (e.g., python runner.py test_doctrine)
+      - For each non-N/A component, what does the test actually do?
+      - For N/A components, the test skips with a marker (not a fail)
+      - The expected final line - "DOCTRINE: N/N components operational"
+      - Where the temp-DB context manager lives so tests don't touch
+        real user data
+
+  - id: out_of_scope
+    title: Out of scope
+    type: enumeration
+    target_field: out_of_scope
+    body: |
+      Features the doctrine deliberately does *not* yet provide.
+      Naming them lets a reader know where the framework stops.
+    sub_prompts:
+      - Per-user data isolation - if doctrine DBs are shared across
+        users today, name it
+      - Encryption at rest - if doctrine writes plaintext, name it
+      - Durable event replay - if events are fire-and-forget, name it
+      - Cross-user calibration - if AAR is per-specialist, name it
+      - Automated cleanup - if entity / event growth is unbounded,
+        name it
+      - Status dashboard - if status is REPL-queried only
+      - Each item - what would be required to bring it in scope?
+
+  - id: migration_status
+    title: Migration status
+    type: optional_status
+    target_field: migration_status
+    body: |
+      Has the product needed a real schema migration yet?
+      Default playbook ships with the template; only the deviation
+      goes here.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_check
+    title: Trace check
+    type: review
+    body: |
+      The runner prints a per-component status summary - implemented
+      / partial / not_yet / na_with_reasoning counts; targets-table
+      row count; failure-mode count per component; composition
+      narrative length. Status floor - any component without a
+      declared status blocks completion.
+
+  - id: validation_drill
+    title: Validation drill
+    type: validation
+    body: |
+      The runner offers to execute the validation command against
+      your codebase and report the per-component pass/fail. A doctrine
+      spec that has never been exercised against running code is not
+      a spec; it is a wish. Skipping the drill is permitted but flagged
+      in the trace summary.
+
+  - id: handoff
+    title: Phase 1 closeout
+    type: handoff
+    body: |
+      AGENT_DOCTRINE is the last template+interview pair before
+      coverage.py ties the kit together. The runner is the next build,
+      and is a code build rather than a doc build.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  status_floor: |
+    Every component must declare one of four statuses - implemented,
+    partial, not_yet, na_with_reasoning. Refusing to mark a status
+    blocks the interview. The Method cares that the gap is named, not
+    that every component is shipped. An aging product with five
+    "not_yet" components and dated paths is more honest than a
+    pretending-to-be-complete product with hand-waved hand-fills.
+
+  reuse_mode: |
+    Products with an authored AGENT_DOCTRINE.md (TOP today; Operator
+    and Custer in 2026-Q2) can use reuse mode. The runner parses the
+    existing file, maps headings to KIT:FIELD names by canonical
+    component number, and prompts only for missing or below-floor
+    fields. Output is the same file with kit markers added so
+    coverage.py scores future drift.
+
+  ghostwrite_guard: |
+    The composition narrative, the agentic posture, and the failure-
+    mode lists are voice-bearing — they reveal architectural
+    judgment specific to the product. The runner refuses LLM-
+    paraphrased answers and requires the builder's own words.
+    Component implementations (paths, function names, schemas) are
+    structural and may be lifted from existing source.
+
+  na_with_reasoning_required: |
+    A product can mark any component N/A — but the reasoning paragraph
+    is not optional. "Single-agent product, no specialists" requires
+    naming the architectural reason. "No multi-turn LLM loop today"
+    requires the path that gets there. Coverage.py treats N/A-with-
+    reasoning as fully populated; N/A without reasoning fails.
+
+  cross_artifact_traces: |
+    Several components require traces to other kit artifacts -
+    component 4 to COMMANDMENTS.md (approval passthrough), component
+    7 to COMMANDMENTS.md (honesty), component 9 to COMMANDMENTS.md
+    (calibration honesty), component 11 to CRISIS_TRIGGERS.md
+    (event bus must not bypass the inbound surface wrap). The runner
+    checks that the referenced artifacts exist; broken references
+    block completion.
+
+  multi_tenant_note: |
+    For multi-tenant products, the failure-mode lists for components
+    1, 6, 8, 9, 11 acquire an additional "cross-tenant leak" entry
+    with explicit mitigation. The interview surfaces this prompt
+    when the product registers as multi-tenant in the security
+    interview's posture-calibration section.
