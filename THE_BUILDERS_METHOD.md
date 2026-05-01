@@ -10,7 +10,7 @@
 
 ## Prime Directive
 
-You build AI as agentic versions of yourself — your ethics and lived experience encoded into code that acts within your intent and stops at irreversible. The moat is memory, not model. Designed to be needed less, not more. Truth is architecture; the lie detector is built in. A clean room rebuilds your product from doctrine and commits within forty-eight hours, or your product is a snowflake and the method has failed you.
+You build AI as agentic versions of yourself — your ethics and lived experience encoded into code that acts within your intent and stops at irreversible. The moat is memory, not model. Designed to be needed less, not more. Truth is architecture; the lie detector is built in. **Target for v1.0:** a clean room rebuilds your product from doctrine and commits within forty-eight hours, or your product is a snowflake and the method has failed the test. The reproducibility protocol that operationalizes this acceptance criterion does not yet exist end-to-end — see Section II Limit #1.
 
 This document is the framework. The biography is yours to bring.
 
@@ -83,6 +83,8 @@ Several elements of this framework are defensible today, even before the reprodu
 ## III. The Eleven Principles
 
 Eleven principles. Seven foundational ethics that govern what the product stands for. Four operational doctrines that govern how the ethics translate into product architecture. Each principle is stated three ways: the **principle** (what is true), the **why** (what makes the principle non-optional), the **how to apply** (what you do as the builder), and the **in code** (where the principle is enforced as a real mechanism).
+
+**Provisional count.** Eleven principles is the v0.9 articulation. A future revision may consolidate to five to seven core principles with the others as named sub-doctrines — see Section II Limit #6 for the consolidation path. Treat the count as a working set, not a final taxonomy.
 
 ### Foundational Ethics
 
@@ -281,7 +283,7 @@ The method sits at the top of a layered doctrine stack. Layers below the method 
 ```
 Builder's Biography (STORY.md, Commandments, Refusal List)
         ↓
-THE BUILDERS' METHOD                  ← this document, agnostic
+THE BUILDERS' METHOD                  ← this document (portability provisional — Section II Limit #3)
         ↓
 Per-product CLAUDE.md                  ← product-specific rules
         ↓
@@ -411,7 +413,7 @@ The walkthrough below uses an illustrative example. Substitute your own product'
 
 **Step 11. Prompt Guardian weekly audit.** Once a week, the Guardian runs a drift audit on every specialist's system prompt. Each prompt is scored against your commandments. Drift triggers a queued correction; you review and approve or reject. The Guardian is the immune system. Without it, the framework is aspirational. With it, the principles are measurable.
 
-### What changes per builder vs what stays constant
+### What appears to change per builder vs. what appears to stay constant
 
 | Layer | Per builder (biographical) | Constant (method) |
 |---|---|---|
@@ -425,7 +427,7 @@ The walkthrough below uses an illustrative example. Substitute your own product'
 | Irreversible action list | Yours | Approval Queue gating pattern |
 | Drift indicators | Yours | Prompt Guardian audit cadence |
 
-The left column is biographical and product-specific. The right column is the method. The method ports. The biography is the moat.
+The left column is biographical and product-specific. The right column is what the method *appears* to make constant. Portability of the right column is provisional pending external validation — see Section II Limit #3. A builder in a different domain (palliative care, legal AI, education) may surface failure modes that require adaptations beyond what the right column currently captures. The biography is the moat regardless.
 
 ---
 
@@ -486,6 +488,27 @@ The audit format:
 **Legend.** ✓ = conforms with named mechanism in code; ⚠ = honored in spirit, gap in mechanism or coverage; ✗ = violates; n/a = not applicable to this product (must justify the n/a in writing).
 
 A product with any ⚠ or ✗ rows must have an explicit remediation plan. A product with multiple ⚠ rows is not yet a method instance — it is an artisanal product borrowing method language. Remediate or stop claiming the method.
+
+### The author's portfolio audit, 2026-05-01
+
+To demonstrate that the audit format above is operational rather than aspirational, the author scored his own four-product portfolio against Section IV's required artifacts on 2026-05-01. The full audit lives in [`ARTIFACT_AUDIT_2026-05-01.md`](ARTIFACT_AUDIT_2026-05-01.md), included with this Method as part of v0.9 Provisional.
+
+**Summary.** Coverage scores (✓ count over 8 required artifacts):
+
+| Product | Coverage | Notes |
+|---|---|---|
+| TOP (veteran wellness AI) | 5/8 | Highest coverage. Commandments inline; PROMPT_DOCTRINE referenced but absent; crisis triggers inline. |
+| Operator (autonomous business agent) | 2/8 | STORY + SECURITY only. Chassis docs missing. |
+| Custer (campaign platform) | 2/8 | Has PROMPT_DOCTRINE, missing STORY entirely — biggest single gap. |
+| Rubicon (paused EMBA digital twin) | 1/8 | Most missing; product paused 2026-04-13. |
+
+Portfolio mean: 2.5/8 (31%). The cross-cutting findings (no extracted commandments file in any product; refusal list lives upstream in the doctrine, not per-product; no dedicated crisis-trigger files; chassis docs only in TOP) are the more important signal than the per-product scores.
+
+**What this means for v0.9.** The Method's Section IV requires eight artifacts. The author's own portfolio has 31% coverage. The honest reading: the Method is currently better understood as the framework the author is *aiming his portfolio toward* than the framework his portfolio *demonstrates*. The remediation plan in the audit document targets full Tier-1 conformance by 2026-05-08 and Tier 1–3 conformance by 2026-05-29.
+
+**What this means for v1.0 release.** The audit above is the author scoring his own portfolio. Section II Limit #2 (third-party audit precondition) requires the same matrix to be scored by an outside reader before v1.0 ships. The audit format works; whether the framework holds up under external scoring is the gate.
+
+This appendix is included so that any reader can hold the framework accountable to the same standard the framework demands of its products.
 
 ---
 
@@ -572,6 +595,6 @@ The method is the document. The method is the artifacts in your repo. The method
 
 **Author.** Hans Prahl — twenty-one years military intelligence (USMC + Colorado Army National Guard, retired First Sergeant), credentialed HUMINT collector and interrogator, brewery founder (2016–2023), sober since 2023-11-11, currently EMBA Cohort 84 at the University of Denver and campaign manager for Taylor LoPresti 2026 (Custer County Commissioner, Colorado).
 
-**Reach.** This document is method v1.0 of The Builders' Method, an instance of the broader brand AI Tradecraft. The author's specific application of this method to his own portfolio is The Builders Doctrine v1.1 (private, separate document). The method is offered to any AI builder whose biography is the unfair advantage they want their product to carry. Use it. Audit yours against it. If you find a gap, the gap belongs to the method.
+**Reach.** This document is Method v0.9 (Provisional) of The Builders' Method, an instance of the broader brand AI Tradecraft. The author's specific application of this method to his own portfolio is The Builders Doctrine v1.1 (private, separate document). The method is offered to any AI builder whose biography is the unfair advantage they want their product to carry. Use it. Audit yours against it. If you find a gap, the gap belongs to the method.
 
-**License.** Method v1.0 is offered as a framework for adoption. Cite the source (`The Builders' Method, Hans Prahl, 2026`) when you apply or extend it. The method is meant to spread. The biographies that compile through it are not.
+**License.** Method v0.9 (Provisional) is offered as a framework for adoption pending the v1.0 preconditions stated in the Status notice at the top of this document. Cite the source (`The Builders' Method v0.9-Provisional, Hans Prahl, 2026`) when you apply or extend it. The method is meant to spread. The biographies that compile through it are not.

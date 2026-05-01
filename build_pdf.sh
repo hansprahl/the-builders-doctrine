@@ -165,12 +165,13 @@ This bundle contains:
 2. **Wiring Diagram and Walkthrough** — visual explanation of how biography compiles into product behavior, including a runtime trace of a real request end-to-end
 3. **Explainer** — plain-language translation for non-technical readers
 4. **Stress Test v1.0** — conformance audit across all three live products (TOP, Operator, Custer)
-5. **Candidates v1.2** — what is in flight for the next doctrine version, including the synthetic portability test findings
-6. **Anatomy Doctrine v2 — Implementation Plan** — the next six-session sprint to extend the body-system measurement framework
+5. **Artifact Audit 2026-05-01** — per-product scoring against the Method's required-artifact set; gap statement and dated remediation plan
+6. **Candidates v1.2** — what is in flight for the next doctrine version, including the synthetic portability test findings
+7. **Anatomy Doctrine v2 — Implementation Plan** — the next six-session sprint to extend the body-system measurement framework
 
 The v1.1 tag remains the canonical released version. v1.2-draft is in flight pending external test of the portability principle.
 
-For the agnostic version of this method (for any builder, not biographical), see *The Builders' Method v1.0* — separate document.
+For the agnostic version of this method (for any builder, not biographical), see *The Builders' Method v0.9 Provisional* — separate document.
 
 <div style="page-break-after: always;"></div>
 EOF
@@ -193,6 +194,10 @@ EOF
   echo '<div style="page-break-before: always;"></div>'
   echo ""
   cat STRESS_TEST_v1.0.md
+  echo ""
+  echo '<div style="page-break-before: always;"></div>'
+  echo ""
+  cat ARTIFACT_AUDIT_2026-05-01.md
   echo ""
   echo '<div style="page-break-before: always;"></div>'
   echo ""
@@ -225,7 +230,9 @@ A framework-in-progress for AI builders whose lived experience should compile in
 
 **Provisional status.** Two preconditions must clear before this becomes a v1.0 release: (1) the reproducibility protocol must run end-to-end on at least one of the author's products, and (2) the conformance audit must be scored by at least one outside reader. Until both clear, this document is one builder's articulation of his own practice. The framework may still be useful — but the strongest claim it makes (portability through reproducibility) is unverified. **See Section II for the full provisional-status statement.**
 
-This document is method v0.9 of The Builders' Method, an instance of the broader brand AI Tradecraft. The framework is offered for adoption. Cite the source when you apply or extend it.
+This document is Method v0.9 (Provisional) of The Builders' Method, an instance of the broader brand AI Tradecraft. The framework is offered for adoption. Cite the source when you apply or extend it.
+
+This bundle includes one appendix: the **Artifact Audit (2026-05-01)** — the author's self-scoring of his own four-product portfolio against the Method's required-artifact set, included as evidence that the audit format works and as honest disclosure that the framework currently has more required-artifact coverage in its document than in its reference portfolio.
 
 <div style="page-break-after: always;"></div>
 EOF
@@ -236,6 +243,10 @@ EOF
   echo '<div style="page-break-before: always;"></div>'
   echo ""
   cat "$DIST/THE_BUILDERS_METHOD.md"
+  echo ""
+  echo '<div style="page-break-before: always;"></div>'
+  echo ""
+  cat ARTIFACT_AUDIT_2026-05-01.md
 } > "$DIST/method-combined.md"
 
 build_pdf "$DIST/method-combined.md" \
