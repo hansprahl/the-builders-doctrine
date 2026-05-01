@@ -62,7 +62,9 @@ Implemented:
 - [x] specialist_interview.yaml (SPECIALIST_TEMPLATE.md; runs once per specialist, not per product)
 - [x] security_interview.yaml (SECURITY.md, depends on STORY; honesty floor on open risks + surface gaps)
 - [x] agent_doctrine_interview.yaml (AGENT_DOCTRINE.md; depends on STORY+COMMANDMENTS+specialist; status floor on all 11 components)
-- [ ] coverage.py scoring engine
+- [x] coverage.py scoring engine — `--score`, `--list`, `--interview SCRIPT`. Detects empty / placeholder / below-min-words / N/A-with-reasoning / conditional-skip; reports per-template fill rate, overall coverage, next blockers.
+
+**Phase 1 complete 2026-05-01.**
 
 First instance bootstrapped 2026-05-01: `custer-mcp/STORY.md` scaffold generated from kit template, fields awaiting interview. This is the first multi-user-style run of the kit — the scaffold was produced product-agnostically, then localized with Custer framing.
 
