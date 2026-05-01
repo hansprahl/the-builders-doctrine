@@ -257,11 +257,17 @@ The agentic network framework that all named specialists conform to. Eleven comp
 
 **Minimum contents.** Each component named, defined, and pointed at the file or module that implements it. New specialist adoption requires all eleven components to be wired.
 
-### PROMPT_DOCTRINE.md
+### PROMPT_DOCTRINE.md — per-product *or* upstream-canonical
 
-The universal structural rules every prompt across every product follows. Sits below this method, applies to any prompt regardless of domain.
+The universal structural rules every prompt across every product follows. Sits below this method, applies to any prompt regardless of domain. Because PROMPT_DOCTRINE is product-agnostic by definition, it admits the same Form A / Form B pattern as the refusal list (Principle 8):
 
-**Minimum contents.** Prompt section schema (role, task, tools, constraints, output format, examples). Anti-patterns list (twelve or so common prompt failure modes). Six-dimension scoring rubric the Guardian uses (clarity, robustness, token efficiency, production readiness, structural conformance, commandment alignment). Model-family rules (vendor-specific quirks).
+**Form A — Per-product `PROMPT_DOCTRINE.md`.** Each product carries its own copy at the repo root.
+
+**Form B — Upstream canonical `PROMPT_DOCTRINE.md` at the doctrine-repo level.** Each product's CLAUDE.md references upstream. The reference portfolio uses Form B (consolidated 2026-05-01). The advantage is that updates propagate to every product at next Guardian audit; the cost is that updates require a doctrine-repo PR rather than a single-product change.
+
+The choice is structural. What is *not* valid is having neither — silent prompt-structure conventions held only in the builder's head and not auditable from the artifact set. The audit-coverage scoring legend treats both forms as ✓ when their respective minimums are met.
+
+**Minimum contents.** Prompt section schema (role, task, tools, constraints, output format, examples). Anti-patterns list (twelve or so common prompt failure modes). Six-dimension scoring rubric the Guardian uses (clarity, robustness, token efficiency, production readiness, structural conformance, commandment alignment). Model-family rules (vendor-specific quirks). Under Form B, each product's CLAUDE.md must reference the upstream artifact explicitly — a reference is the per-product surface that satisfies the artifact requirement.
 
 ### SECURITY.md
 
