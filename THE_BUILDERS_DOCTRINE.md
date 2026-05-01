@@ -1,7 +1,7 @@
 # THE BUILDERS DOCTRINE
 
-**v1.0 — 2026-04-30 — Hans Prahl**
-**Status: private. Public at v1.1 after stress-test propagation to all four products.**
+**v1.1 — 2026-04-30 — Hans Prahl**
+**Status: private. Public after first commercial-pursuit stress test (multi-tenant audit on Operator or commercial Custer onboarding).**
 
 ---
 
@@ -57,6 +57,8 @@ Eleven principles. Seven foundational ethics drawn from lived experience. Four o
 
 **In code.** TOP's wellness specialist is forbidden from cheerleading or rewarding showing up. No streaks-as-dopamine. No variable rewards. Crisis resources hard-coded above every feature, never gated. Guardian's "Scaffold, don't crutch" commandment scores every prompt against the dependency test.
 
+**Scope.** This principle is wellness-scoped. It applies to products where the end user is a person seeking personal change (wellness, recovery, learning, adversity navigation). For operator tools where the user is the builder using AI to do work — Operator, Custer — the dependency test takes a different shape: does this make the operator more capable at their work? Both shapes are honored, but only wellness products require a "Scaffold, don't crutch" commandment audit at the Guardian layer. Stress test 2026-04-30 confirmed this scope; future commercialization of an operator-tool product must re-evaluate scope at that point.
+
 #### 4. Chain of command over autonomous AI
 
 **Principle.** I set the intent. Agents execute within scope. Irreversible actions require explicit approval. Always.
@@ -111,7 +113,9 @@ If a product violates the refusal list, it does not ship. The negative space is 
 
 **Born in.** Not a developer by training. Twenty-one years military intelligence, fifteen years hospitality, zero years CS programs. AI is what makes building possible at this scale and depth. AI without intent is velocity in random directions. The builder's role is intent, judgment, and the why; AI's role is implementation, execution, and the how.
 
-**In code.** Every commit message names the builder's intent and the AI's execution role (`Co-Authored-By` line is doctrine, not metadata). Every Claude Code session begins with intent (the prompt) and ends with judgment (the review). The builder approves every irreversible commit. The AI never ships unreviewed code. The methodology is auditable: any commit can be traced back to an intent statement and a judgment moment in the session log. Breaking the `Co-Authored-By` convention on AI-assisted commits triggers Guardian review at the next audit cycle — the convention is enforced, not aspirational.
+**In code.** Every AI-assisted commit message names the builder's intent and the AI's execution role (`Co-Authored-By` line is doctrine, not metadata). Every Claude Code session begins with intent (the prompt) and ends with judgment (the review). The builder approves every irreversible commit. The AI never ships unreviewed code. The methodology is auditable: any AI-assisted commit can be traced back to an intent statement and a judgment moment in the session log. Breaking the `Co-Authored-By` convention on AI-assisted commits triggers Guardian review at the next audit cycle — the convention is enforced, not aspirational.
+
+**Scope clarification.** The convention applies to AI-assisted commits only. Manual commits made directly by the builder without AI assistance do not require the line and are not violations. Audit baselines (TOP 27/30, Operator 30/30, Custer 29/30 in last 30 commits as of stress test 2026-04-30) reflect this scope.
 
 #### 10. Named specialists, never anonymous prompts
 
@@ -302,3 +306,13 @@ Metrics not claimed without data. The framework's credibility dies the moment a 
 **Authority:** Hans Prahl. Material edits go through me. Editorial edits (clarification, examples, typo correction) do not. The Doctrine is checked into a private repo (`hansprahl/the-builders-doctrine`) at v1.0; each product gets a local copy with a propagation script that flags drift on pre-commit. Public release at v1.1 after the first cross-product stress test.
 
 **Version 1.0** — 2026-04-30 — initial draft. Prime Directive (60 words). Eleven principles split into seven foundational ethics (drawn from lived experience) and four operational doctrines (the Refusal, AI as co-author, Named specialists, Crisis floors above features). Each principle traced to its source moment and to the code mechanism that enforces it. Doctrine stack with PROMPT_DOCTRINE.md elevated as the most important technical doctrine. Measurement surface with reproducibility protocol and honest gap statement.
+
+**Version 1.1** — 2026-04-30 — post-stress-test propagation cycle. Stress test (STRESS_TEST_v1.0.md) confirmed doctrine v1.0 holds under contact with three products (24 conform, 5 partial, 4 not-applicable, 0 violations). Five gaps identified; four addressed in v1.1 work, one explicitly deferred:
+
+- **Custer CONFIDENCE/REASONING port** — `tools/doctrine_confidence.py` ported from TOP, `resolve_prompt()` updated, all 7 specialists now inherit the block at runtime. Closes Principle 6 partial.
+- **REFUSAL_AUDIT.md propagated to TOP, Operator, Custer** — pre-feature scope-lock checklist tied to the three Refusal items. Closes Principle 8 partials across all three products by moving Refusal from character-of-builder to audit surface.
+- **Principle 3 scope clarification** — explicitly wellness-scoped. Operator and Custer correctly carry the spirit but do not require a "Scaffold, don't crutch" commandment audit.
+- **Principle 9 scope clarification** — Co-Authored-By convention applies to AI-assisted commits only. Manual commits without AI assistance are not violations.
+- **Operator multi-tenant readiness** — explicitly deferred until commercial pursuit. Single-user-by-design today; user_context infrastructure to be built before second tenant onboards if commercialized.
+
+Editorial only — no schema changes, no new principles, no new sections. Material structure of v1.0 preserved.

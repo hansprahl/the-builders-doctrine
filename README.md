@@ -8,7 +8,8 @@ Read [THE_BUILDERS_DOCTRINE.md](THE_BUILDERS_DOCTRINE.md) for the full doctrine.
 
 ## Status
 
-- **v1.0** — 2026-04-30 — initial draft. Private. Public at v1.1 after stress-test propagation across all four products.
+- **v1.1** — 2026-04-30 — post-stress-test propagation cycle. Five identified gaps closed (4 addressed, 1 deferred). Editorial clarifications on Principle 3 scope (wellness-specific) and Principle 9 scope (AI-assisted commits only). Private until commercial pursuit.
+- **v1.0** — 2026-04-30 — initial draft.
 - **Authority:** Hans Prahl. Material edits go through Hans. Editorial edits do not.
 
 ## What's in v1
