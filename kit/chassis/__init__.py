@@ -24,10 +24,12 @@ from kit.chassis.approval_queue import (
     PENDING, APPROVED, REJECTED, EXECUTED, FAILED,
 )
 from kit.chassis.user_context import UserContext
+from kit.chassis.specialists import Specialist, SpecialistRegistry
 
 __all__ = [
     "CrisisFloor", "CrisisEvent",
     "Action", "ApprovalQueue", "InMemoryStore", "JsonFileStore",
     "PENDING", "APPROVED", "REJECTED", "EXECUTED", "FAILED",
     "UserContext",
+    "Specialist", "SpecialistRegistry",
 ]
