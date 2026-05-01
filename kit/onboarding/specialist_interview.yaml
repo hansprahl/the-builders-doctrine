@@ -1,0 +1,365 @@
+# The Builders' Kit — New Specialist Interview
+#
+# Different shape from STORY/REFUSAL/CRISIS interviews. Those run ONCE during
+# onboarding. This interview runs ONCE PER SPECIALIST — every time the builder
+# adds a named agent to the product, they fill out a copy of SPECIALIST_TEMPLATE.md
+# walked by this script.
+#
+# Pre-condition: STORY.md, COMMANDMENTS.md, REFUSAL_LIST.md, and (if applicable)
+# CRISIS_TRIGGERS.md exist for the product. Adding a specialist before those
+# exist puts the specialist into a chassis with no doctrine to inherit — the
+# Method considers that out of order.
+
+version: 0.1
+schema: kit-onboarding/v1
+mode: per_specialist                # not part of the one-shot onboarding flow
+depends_on:
+  - questions.yaml                  # STORY.md
+  - refusal_interview.yaml          # REFUSAL_LIST.md
+  # crisis_interview.yaml not strictly required — applicability gate may have
+  # marked it n/a. The runner accepts either populated CRISIS_TRIGGERS.md or
+  # the n/a marker.
+
+settings:
+  no_ai_paraphrase: true
+  capture_raw: true
+  allow_skip: false
+  default_target: kit/templates/SPECIALIST_TEMPLATE.md
+  produces: copy of template, named per specialist
+                                    # e.g., agents/specialists/{name}.spec.md
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Pre-interview prerequisite check
+# ──────────────────────────────────────────────────────────────────────────────
+
+prerequisites:
+  - check: COMMANDMENTS.md exists and is populated
+    on_fail: |
+      A specialist inherits the product's commandments. Without a populated
+      COMMANDMENTS.md, the specialist has nothing to inherit, and the
+      Prompt Guardian has nothing to audit against. Author commandments
+      first.
+  - check: REFUSAL_LIST.md exists and has at least min_refusals entries
+    on_fail: |
+      Every new specialist runs through a refusal scope-lock audit before
+      merge. Without a populated REFUSAL_LIST.md, the audit cannot run.
+      Run refusal_interview.yaml first.
+  - check: CRISIS_TRIGGERS.md exists OR is explicitly marked n/a
+    on_fail: |
+      If your product has user-facing surfaces, a CRISIS_TRIGGERS.md is
+      required (or an explicit n/a marker for products that cannot
+      encounter user distress). Run crisis_interview.yaml first.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Interview
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Adding a new specialist
+    type: framing
+    body: |
+      You are about to add a named agent to your product's chassis. The
+      specialist will hold a tool allowlist, a system prompt, and a defined
+      scope inside the product. Letting it drift from doctrine — letting it
+      own a domain it should not, hold tools it should not, or self-approve
+      its own actions — is the most common way a chassis stops being
+      trustworthy.
+
+      This interview produces a filled SPECIALIST_TEMPLATE.md committed
+      alongside the specialist's code. The Prompt Guardian audits the
+      resulting SYSTEM_PROMPT before merge. Drift on any soft commandment
+      queues a correction; drift below a hard floor is a release blocker.
+
+  - id: case_for_splitting
+    title: Why a new specialist
+    target_field: specialist_identity
+    body: |
+      Before doing the work of standing up a new specialist, make the case
+      that this work cannot be absorbed by an existing specialist. Most
+      "new specialist" requests should turn into "extend existing specialist"
+      after this section.
+    sub_prompts:
+      - Which existing specialist would otherwise handle this domain?
+      - Why is it worth splitting? (Common reasons: scope is large enough
+        to overflow context budget; the new domain has incompatible voice;
+        the new domain has different approval/PII discipline; the new
+        domain is on a different cadence or trigger surface.)
+      - If you cannot make the case, stop. Extend the existing specialist
+        instead.
+    quality_checks:
+      - Names an existing specialist explicitly
+      - Names a concrete reason for splitting (not "feels different" but
+        "owns surface X with discipline Y that conflicts with existing
+        specialist's discipline Z")
+
+  - id: hard_floor_gates
+    title: Hard-floor applicability
+    target_field: hard_floor_gates
+    type: gate
+    body: |
+      Your product's COMMANDMENTS.md names some hard floors. Some of them
+      apply to this specialist; some do not. Walk the gates.
+    sub_prompts:
+      - Does this specialist touch user PII (voters, customers, tenants,
+        end-users)? If yes, the data-isolation discipline applies (§5a).
+      - Does this specialist send outreach or take external actions
+        (email, SMS, social, payment, content publish, contract dispatch)?
+        If yes, the outreach-queue discipline applies (§5b).
+      - Is your product multi-tenant? If yes, the tenant-isolation
+        discipline applies (§5c).
+      - Does this specialist touch a regulated surface (clinical, legal,
+        financial, voter, child-welfare)? If yes, the regulated-surface
+        discipline applies (§5d).
+    quality_checks:
+      - Each gate answered yes or no, with reasoning
+      - No "maybe" — if maybe, treat as yes and answer the discipline
+        section
+
+  - id: scope_boundary
+    title: Scope — owns and does NOT own
+    target_field: scope_boundary
+    body: |
+      Scope is the second-most-common drift. Be explicit. Name overlapping
+      specialists by name; vague boundaries become vague specialists.
+    quality_checks:
+      - Owns and does-not-own both populated
+      - Cross-specialist calls named
+      - Handoff triggers named (when does this specialist say "that's not
+        mine")
+
+  - id: tools_allowlist
+    title: Tool allowlist
+    target_field: tools
+    body: |
+      Tools are the security boundary. Vague allowlists are the same as
+      no allowlist. Specialists never self-approve — `approve()` and
+      `reject()` (or your product's equivalents) are explicitly excluded.
+    sub_prompts:
+      - Existing tools needed (be minimal — if a tool is "nice to have"
+        but not required, exclude it)
+      - New tools required, with what each does and what each returns
+      - Approval-gated tools (every tool with a real-world effect)
+      - Tools deliberately excluded (especially self-approve tools)
+    quality_checks:
+      - Existing-tools list is minimal (not "all of tools/")
+      - New-tools list specifies real-world-effect status per tool
+      - Self-approve tools explicitly excluded
+
+  - id: approval_audit
+    title: Reversibility test for each effect-bearing tool
+    target_field: approval_audit
+    type: validation
+    body: |
+      For each tool that potentially has a real-world effect, ask: *"If
+      this runs by mistake, can the user reverse it in under 60 seconds
+      for under $0?"* If no, it queues. The test is mechanical, not
+      aesthetic.
+    quality_checks:
+      - Every effect-bearing tool has the reversibility test result
+      - Every queueing tool has the queue path named
+
+  - id: doctrine_wiring
+    title: Doctrine integration
+    target_field: doctrine_wiring
+    body: |
+      Walk the universal doctrine-integration table in the template,
+      then walk your product's specific list (from COMMANDMENTS.md and
+      the product's CLAUDE.md "before adding a specialist" checklist).
+      Confirm each item or flag the deviation with reasoning.
+    quality_checks:
+      - Every checklist item is checked or has reasoning for deviation
+      - SYSTEM_PROMPT skeleton is sketched (full prompt comes in §7)
+
+  - id: data_isolation
+    title: User-data isolation (if applicable)
+    target_field: data_isolation
+    type: conditional
+    only_if: hard_floor_gates contains user_pii_yes
+    body: |
+      Specialists that touch user PII have a different bar. Aggregation
+      to LLM context is the universal pattern: tools that touch user
+      rows reduce them to counts, segments, summaries before any LLM
+      sees them.
+    sub_prompts:
+      - Which tools touch user rows?
+      - What is the aggregation pattern? (How does the tool reduce
+        individual rows to LLM-safe outputs?)
+      - What is the chain-of-custody log path?
+      - What stops a future tool from leaking individual rows? (mechanism,
+        not just policy)
+    quality_checks:
+      - Aggregation pattern is concrete, not aspirational
+      - Logging path named
+      - Bypass-prevention mechanism named (code-level, not "we won't")
+    if_skipped: mark n/a with reasoning
+
+  - id: outreach_discipline
+    title: Outreach approval (if applicable)
+    target_field: outreach_discipline
+    type: conditional
+    only_if: hard_floor_gates contains outreach_yes
+    sub_prompts:
+      - Outreach surfaces (SMS, email, social, press, etc.)
+      - Queue path for each
+      - Approval UX — where does the operator see queued actions?
+      - No-bypass guarantee — what stops a code path from firing
+        without queueing?
+    if_skipped: mark n/a with reasoning
+
+  - id: tenant_isolation
+    title: Per-tenant isolation (if multi-user)
+    target_field: tenant_isolation
+    type: conditional
+    only_if: hard_floor_gates contains multi_tenant_yes
+    sub_prompts:
+      - ContextVar set at entry?
+      - LookupError on unset (no silent fallbacks)?
+      - Memory reads scoped to current tenant?
+      - Memory writes tagged with tenant user_id?
+      - External APIs carry per-tenant scoping?
+      - Specialist runs cleanly for two distinct tenants in same process?
+    quality_checks:
+      - Every sub-prompt answered
+      - Failure mode named if any answer is no
+    if_skipped: mark n/a with reasoning
+
+  - id: regulated_compliance
+    title: Regulated-surface compliance (if applicable)
+    target_field: regulated_compliance
+    type: conditional
+    only_if: hard_floor_gates contains regulated_yes
+    sub_prompts:
+      - Which regulation? (CRS 1-2-305, HIPAA, fair-lending, COPPA, etc.)
+      - What is the compliance discipline at this product?
+      - What audit trail is required, and where does it live?
+    if_skipped: mark n/a with reasoning
+
+  - id: state_consumption
+    title: Shared-state read/write
+    target_field: state_consumption
+    body: |
+      Most products thread shared state through every specialist
+      (a snapshot, a session, a workspace context). Specify what this
+      specialist reads, writes, and how it handles stale data.
+    sub_prompts:
+      - Shared-state object name
+      - Fields read by this specialist
+      - Fields written/updated
+      - Stale-data handling: refuse, surface gap, fall back?
+    if_no_state: mark section n/a-pending; flag the missing shared state
+                 as a product-level gap
+
+  - id: system_prompt
+    title: Author the SYSTEM_PROMPT
+    target_field: system_prompt
+    type: authoring
+    body: |
+      Write the full SYSTEM_PROMPT. The Prompt Guardian will score this
+      against every commandment dimension at merge time. The interview
+      offers a checklist of required elements:
+
+        - Role line (product-specific)
+        - Domain scope and explicit non-scope
+        - Direction posture (surface ambiguity, take commander's intent)
+        - CONFIDENCE/REASONING block requirement
+        - Approval queue requirement
+        - Refusal-scope-lock citation
+        - Voice (per product COMMANDMENTS.md)
+        - Hard-floor disciplines that apply (PII, outreach, tenant,
+          regulated)
+        - Confidentiality of internals (specialist names not surfaced
+          to users unless directly asked, if product policy)
+
+      The runner walks each element and the builder writes prose. The
+      runner does not author the prose.
+    quality_checks:
+      - Every required element present
+      - Voice matches COMMANDMENTS.md (Guardian will catch drift)
+      - At least 200 words (denser than 200 is fine; less is suspicious)
+
+  - id: refusal_audit_entry
+    title: Refusal scope-lock audit
+    target_field: refusal_audit_entry
+    type: audit
+    body: |
+      Every new specialist runs through the refusal audit before merge.
+      Paste your product's refusal-audit template (from REFUSAL_LIST.md
+      or REFUSAL_AUDIT.md) and fill it in for this specialist. The
+      audit must check both the inherited refusals (engagement-max,
+      surveillance, parasocial) and the product-specific refusals.
+    quality_checks:
+      - Every inherited refusal box checked or revisions explained
+      - Every product-specific refusal box checked or revisions explained
+      - Verdict declared: PASS / REVISE / REFUSE
+    blocking: true
+                                    # interview cannot complete with REVISE
+                                    # or REFUSE; builder must address findings
+                                    # before merge
+
+  - id: validation_checklist
+    title: Pre-merge validation
+    type: checklist
+    body: |
+      The runner produces the validation checklist for this specialist
+      and walks each item. Items requiring runtime verification (Guardian
+      score, Reflection Gate run, hard-floor tests, multi-tenant
+      concurrency test) are marked deferred-to-CI and the runner records
+      the expected outcome.
+    quality_checks:
+      - Every applicable validation box has a planned verifier
+      - Deferred-to-CI items have an expected pass/fail criterion
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_check
+    title: Trace check
+    type: review
+    body: |
+      The runner prints the populated SPECIALIST_TEMPLATE.md instance,
+      trace summary, and the open validation checklist. The instance is
+      written to the product's specialist directory (e.g.,
+      `agents/specialists/{name}.spec.md`) and committed alongside the
+      specialist's code in the same PR.
+
+  - id: handoff
+    title: Build the specialist
+    type: handoff
+    body: |
+      The interview produced the spec. The implementation work follows:
+      author the specialist file, register in the orchestrator, run the
+      Prompt Guardian, run the Reflection Gate, exercise the
+      hard-floor tests, and confirm the cockpit / duty-roster surface
+      shows the specialist correctly under load. The validation
+      checklist in the spec is the merge gate.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  per_specialist_file: |
+    Each run of this interview produces one SPECIALIST_TEMPLATE.md instance,
+    named per specialist (e.g., `archer.spec.md`). The runner does not
+    overwrite existing instances; it asks before doing so.
+
+  conditional_sections: |
+    Sections 5a–5d are gated by §1's hard-floor answers. The runner
+    skips gated-off sections automatically and inserts an n/a marker
+    with the reasoning captured at gate time.
+
+  guardian_handshake: |
+    On completion, the runner can hand the SYSTEM_PROMPT off to the
+    Prompt Guardian for a pre-merge score. Drift on any soft commandment
+    queues a correction; drift below a hard floor blocks the merge. The
+    handshake is optional during interview but required before PR.
+
+  reuse_for_existing: |
+    Existing specialists that pre-date this template can be back-filled
+    by running the interview against them. The runner detects existing
+    specialist files in the product and offers to back-fill spec
+    documents for any that are missing.
