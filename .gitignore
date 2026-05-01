@@ -10,6 +10,12 @@ dist/
 *.swp
 *~
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
 # Working drafts (never commit)
 _*.md
 draft_*.md
