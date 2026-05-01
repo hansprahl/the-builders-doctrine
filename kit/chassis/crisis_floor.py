@@ -58,9 +58,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Iterable, Optional
 
-# Reuse the kit's KIT:FIELD parser so a populated CRISIS_TRIGGERS.md is the
-# single source of truth.
-from kit.coverage import parse_template
+# NOTE: The KIT:FIELD parser (kit.coverage.parse_template) is imported lazily
+# inside from_kit_template() so this chassis module can be vendored or
+# packaged independently of the kit's onboarding tooling. The chassis core
+# (CrisisFloor + CrisisEvent) has no dependency on coverage.py.
 
 DEFAULT_LOG_MARKER = "CRISIS DETECTED"
 DEFAULT_EXCERPT_LEN = 120
@@ -203,6 +204,8 @@ class CrisisFloor:
         if not template_path.exists():
             raise FileNotFoundError(f"template not found: {template_path}")
 
+        # Lazy import — only required when loading from a kit template.
+        from kit.coverage import parse_template
         fields = {f.name: f for f in parse_template(template_path)}
 
         # Applicability gate. If the file is N/A, the floor does not apply.

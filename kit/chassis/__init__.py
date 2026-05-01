@@ -15,22 +15,22 @@ preserves the doctrine's invariants:
 Phase 2 of the kit ships these one at a time. Crisis Floor is first.
 """
 
-from kit.chassis.crisis_floor import CrisisFloor, CrisisEvent
-from kit.chassis.approval_queue import (
+from .crisis_floor import CrisisFloor, CrisisEvent
+from .approval_queue import (
     Action,
     ApprovalQueue,
     InMemoryStore,
     JsonFileStore,
     PENDING, APPROVED, REJECTED, EXECUTED, FAILED,
 )
-from kit.chassis.user_context import UserContext
-from kit.chassis.specialists import Specialist, SpecialistRegistry
-from kit.chassis.aar import (
+from .user_context import UserContext
+from .specialists import Specialist, SpecialistRegistry
+from .aar import (
     AAR, AARLog, CalibrationReport,
     SUCCESS, FAILURE, PARTIAL, ABANDONED, VALID_OUTCOMES,
     HABIT, TASK, GOAL, ROUTINE, RECOMMENDATION,
 )
-from kit.chassis.prompt_guardian import (
+from .prompt_guardian import (
     Commandment, CommandmentScore, GuardianReport, GuardianError,
     PromptGuardian,
     build_scoring_system_prompt, build_correction_system_prompt,
