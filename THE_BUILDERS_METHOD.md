@@ -166,9 +166,16 @@ Eleven principles. Seven foundational ethics that govern what the product stands
 
 **Why.** Without an explicit refusal list, scope creep eats the principles. A product asked to do everything will eventually be asked to do something it should not. The refusal list makes the answer pre-decided. The pre-decision is the discipline.
 
-**How to apply.** Maintain a refusal list per product. Examples of refusal categories: surveillance products, parasocial replacements for human relationships, engagement-maximization apps, products that claim to predict what they cannot, products that gamify domains where gamification harms. Yours will differ. Make the list public to your team and to your users. Update it deliberately, never under pressure.
+**How to apply.** Maintain a canonical refusal list, and a per-product audit trail that checks every feature against it. Examples of refusal categories: surveillance products, parasocial replacements for human relationships, engagement-maximization apps, products that claim to predict what they cannot, products that gamify domains where gamification harms. Yours will differ. Make the list public to your team and to your users. Update it deliberately, never under pressure.
 
-**In code.** Refusal list lives at the product repo root. New feature specs cite the refusal list explicitly. The pull request template asks: *does this feature touch any item on the refusal list*. If yes, the feature halts pending explicit refusal-list update.
+The refusal list itself can live in one of two places, and the choice is structural, not aesthetic:
+
+- **Per-product `REFUSAL_LIST.md`** — appropriate when the builder has one product, or when products span domains different enough that the refusals do not generalize (a wellness product and a tax product share little).
+- **Upstream canonical list, plus per-product `REFUSAL_AUDIT.md`** — appropriate when the builder has a portfolio whose products share an ethical center of gravity. The canonical list lives in the builder's doctrine document (the level above the method). Each product's `REFUSAL_AUDIT.md` points upstream to the canonical list and serves as the feature-by-feature audit log. Each product's commandments file carries a one-section summary pointing to both.
+
+The reference portfolio uses the second pattern. The first is fully valid; the choice is a function of how many products the builder runs and how unified their ethical center is. What is *not* valid is having neither — silent refusals, held only in the builder's head, not auditable from the artifact set.
+
+**In code.** Whichever pattern is chosen, the refusal must be machine-checkable from the artifact set. New feature specs cite the refusal list explicitly. The pull request template asks: *does this feature touch any item on the refusal list*. If yes, the feature halts pending explicit refusal-list update. Where the upstream-plus-audit pattern is used, every product must contain a `REFUSAL_AUDIT.md` with the audit template and a populated audit history — a pointer file alone is not sufficient.
 
 #### 9. AI as co-author
 
@@ -218,11 +225,19 @@ The ethical floors the product will not violate. Five to twelve commandments. On
 
 **Minimum contents.** Each commandment named, written in declarative language (the product *will not* / *will*). A short paragraph for each commandment explaining what it covers and why it exists. A meta-section naming the framework (Stoic, palliative-care, professional code, religious, secular) so the framework is explicit, not implicit.
 
-### Refusal list
+### Refusal list — `REFUSAL_LIST.md` *or* upstream-canonical + `REFUSAL_AUDIT.md`
 
-The categories of features the product will not contain. Public. Updated deliberately, never under pressure.
+The categories of features the product will not contain. Public. Updated deliberately, never under pressure. Per Principle 8, this artifact may take one of two forms.
 
-**Minimum contents.** Each refused category named. A short paragraph for each refusal explaining the harm being refused. A pull-request template that explicitly checks proposed features against the list.
+**Form A — Per-product `REFUSAL_LIST.md`.** A standalone document at the product repo root naming each refused category in declarative language.
+
+*Minimum contents.* Each refused category named. A short paragraph for each refusal explaining the harm being refused. A pull-request template that explicitly checks proposed features against the list.
+
+**Form B — Upstream canonical list + per-product `REFUSAL_AUDIT.md`.** The canonical list lives in the builder's doctrine document (the layer above the method). Each product carries a `REFUSAL_AUDIT.md` that points upstream and is the audit log of feature-by-feature checks. Each product's commandments file carries a "What X will never build" summary pointing to both.
+
+*Minimum contents.* The canonical list (upstream) meets Form A's minimum-contents requirement. Each product's `REFUSAL_AUDIT.md` contains: a pointer to the canonical upstream list, a per-product note describing which refusal categories are highest-risk for this product's domain, the audit template (used as a pre-feature checklist), and a populated audit history table. A pointer file alone — without the template and history — does not satisfy this artifact.
+
+The audit-coverage scoring legend treats both forms as ✓ when their respective minimums are met. A `REFUSAL_AUDIT.md` that points upstream but lacks the audit template or history scores ⚠. Neither form present scores ✗.
 
 ### SPECIALIST_TEMPLATE.md
 
@@ -269,7 +284,7 @@ Trust is not a marketing claim. Trust is the property of a system in which every
 | 5. Data sovereignty | Per-user isolation, gitleaks pre-commit, audit log | What leaves the product |
 | 6. Truth as architecture | CONFIDENCE/REASONING block + AAR loop | What the agent claims |
 | 7. Commandments + Guardian | Commandments file + scheduled drift audit | What the agent says |
-| 8. The Refusal | Refusal list + PR-template check | What features are proposed |
+| 8. The Refusal | Refusal list (Form A) or upstream + REFUSAL_AUDIT.md (Form B) + PR-template check | What features are proposed |
 | 9. AI as co-author | Co-Authored-By commit hook | Who the audit trail names |
 | 10. Named specialists | Specialist registry + SPECIALIST_TEMPLATE checklist | Which agent handled which request |
 | 11. Crisis floors | Crisis check as first-node + hard-floor Guardian commandment | What the agent does in crisis |
