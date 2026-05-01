@@ -40,7 +40,7 @@ Legend: ✓ = conforms with named mechanism; ⚠ = partial (honored in spirit, g
 
 | # | Principle | TOP | Operator | Custer |
 |---|---|---|---|---|
-| 1 | The code is the man | ✓ | ✓ | ✓ |
+| 1 | The code is the story | ✓ | ✓ | ✓ |
 | 2 | The moat is the memory | ✓ | ✓ | ✓ |
 | 3 | Designed to be needed less | ✓ | n/a (wellness-specific) | n/a (wellness-specific) |
 | 4 | Chain of command over autonomous AI | ✓ | ✓ | ✓ |

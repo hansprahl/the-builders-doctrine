@@ -1,7 +1,9 @@
 # THE BUILDERS DOCTRINE
 
-**v1.1 — 2026-04-30 — Hans Prahl**
+**v1.2-draft — 2026-05-01 — Hans Prahl**
 **Status: private. Public after first commercial-pursuit stress test (multi-tenant audit on Operator or commercial Custer onboarding).**
+
+**v1.2 changes in flight:** Principle #1 renamed from "The code is the man" to "The code is the story" — universalized so the method is portable to any builder (see CANDIDATES_v1.2.md). v1.1 tag remains canonical until v1.2 is ratified.
 
 ---
 
@@ -33,13 +35,15 @@ Eleven principles. Seven foundational ethics drawn from lived experience. Four o
 
 ### Foundational Ethics
 
-#### 1. The code is the man
+#### 1. The code is the story
 
-**Principle.** Products are agentic versions of me. Ethics, doctrine, and lived experience encoded into agents that act within my intent. The founder's psychology is in the product whether the founder intends it or not. The work is to encode the regulated founder.
+**Principle.** Products are stories compiled into software. Whoever builds a product encodes their story — ethics, doctrine, lived experience — into agents that act within the builder's intent. The builder's psychology is in the product whether the builder intends it or not. The work is to encode the regulated builder, deliberately, by writing the story down (STORY.md) so it compiles into the prompts on purpose instead of by accident.
+
+**Why it universalizes.** The line is not autobiographical. Any builder applying this method encodes *their* story. The method is portable; the moat belongs to whoever uses it. Hans's biography is the moat for Hans's products; an EMBA peer's biography becomes the moat for theirs. The framework that turns biography into product behavior is what is shared. The biography itself is not.
 
 **Born in.** Florence Brewing, 2016–2023. Built a hospitality company that nearly took me with it when emotion overrode process. Sobriety installed the governor on 2023-11-11. Realization that came after: the founder's unregulated state was already in the product. The product had been my dysregulation, externalized.
 
-**In code.** Every specialist's system prompt is authored against product commandments derived from my ethics. Every Guardian audits drift against those commandments. The biography is in the training data because the prompts are the training data, and I write the prompts.
+**In code.** Every specialist's system prompt is authored against product commandments derived from the builder's ethics. Every Guardian audits drift against those commandments. STORY.md sits in every product as the source narrative the prompts are derived from. The biography is in the training data because the prompts are the training data, and the builder writes the prompts.
 
 #### 2. The moat is the memory
 
@@ -151,7 +155,7 @@ The biography is training data. State the sequence. State what each chapter inst
 
 - **Campaign Manager, Taylor LoPresti 2026.** Currently. Won Custer County Republican Assembly 27 of 28 delegates (96%) on March 28, 2026. Installed: relationship intelligence as the unfair advantage in a small-county race, real-world stress test for the AI methodology. → Engineering artifact: the per-user knowledge graph, contact graph, and whip board in custer-mcp.
 
-That sequence sits in every prompt. Agents do not drift under pressure because the man who built the governor already survived worse. The code is the man. Guardian score confirms it.
+That sequence sits in every prompt. Agents do not drift under pressure because the builder who installed the governor already survived worse. The code is the story. Guardian score confirms it.
 
 ---
 

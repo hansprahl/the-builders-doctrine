@@ -35,7 +35,7 @@ That's the layering:
 
 **Foundational ethics — what I will and will not stand for. Each was earned somewhere in life:**
 
-1. **The code is the man.** My products carry my ethics whether I intend it or not, so I have to encode the regulated version of myself into them.
+1. **The code is the story.** Any product carries its builder's ethics whether the builder intends it or not. The work is to encode the regulated version of the builder — write the story down (STORY.md) so it compiles into the prompts deliberately, not by accident. The line applies to anyone who picks up the method; the story being compiled is whoever's story is doing the building.
 2. **The moat is the memory.** What makes my products unfakeable isn't the AI model — anyone can swap models. It's the accumulated memory of every relationship and every lived event the products carry.
 3. **Designed to be needed less, not more.** Real help makes you stronger and less reliant. Engagement-maximization makes you weaker and more reliant. I will not build the second.
 4. **Chain of command over autonomous AI.** I tell the AI what I want done. The AI executes within scope. Anything irreversible — sending an email, charging a card, posting publicly — gets my approval first. Always.
@@ -56,7 +56,7 @@ Most tech moats erode in five years. Models get commoditized. Features get copie
 
 What does not erode: a founder's lived experience. Twenty-one years military intelligence. A brewery I built and lost. Sobriety. PTSD treatment. Two combat tours. Each one installed a discipline that now sits inside my products as principle, as commandment, as guardrail.
 
-Anyone can clone the AI model. Nobody can clone the biography. So the framework that turns the biography into product behavior is the moat. That is what "the code is the man" means: the products are an agentic version of me, and you cannot agentic-version someone else's life.
+Anyone can clone the AI model. Nobody can clone the biography. So the framework that turns the biography into product behavior is the moat. That is what "the code is the story" means: every builder's product is an agentic version of *their* story, and you cannot agentic-version someone else's life. The method is portable — anyone can adopt it. The moat is not — it belongs to whoever's biography is doing the building.
 
 ## How I prove the framework actually works
 
