@@ -16,5 +16,16 @@ Phase 2 of the kit ships these one at a time. Crisis Floor is first.
 """
 
 from kit.chassis.crisis_floor import CrisisFloor, CrisisEvent
+from kit.chassis.approval_queue import (
+    Action,
+    ApprovalQueue,
+    InMemoryStore,
+    JsonFileStore,
+    PENDING, APPROVED, REJECTED, EXECUTED, FAILED,
+)
 
-__all__ = ["CrisisFloor", "CrisisEvent"]
+__all__ = [
+    "CrisisFloor", "CrisisEvent",
+    "Action", "ApprovalQueue", "InMemoryStore", "JsonFileStore",
+    "PENDING", "APPROVED", "REJECTED", "EXECUTED", "FAILED",
+]
