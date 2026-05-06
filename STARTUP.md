@@ -82,7 +82,7 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 - `ARTIFACT_AUDIT_2026-05-01.md` — audit at v1.0 lock
 - `STORY.md` — founder narrative; tail before any new chapter
 
-**Memory files (load on demand):**
+**Memory files (load on demand)** — all live in the portfolio-meta scope at `/Users/hansprahl/.claude/projects/-Users-hansprahl-Projects/memory/`:
 - `reference_builders_doctrine_canonical.md` — canonical location, layer position, v1.0 contents
 - `project_assayer_brand_lock.md` — public-release brand lock 2026-05-05
 - `project_agentic_tuner_hypothesis.md` — parent hypothesis; Assayer is the locked name
