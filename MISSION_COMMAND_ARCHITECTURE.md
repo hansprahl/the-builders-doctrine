@@ -57,6 +57,52 @@ Platoon Leader (PL) — Officer-tier, Opus
 
 ---
 
+## The Authority Gradient
+
+MCA today maps capability (Opus/Sonnet/Haiku) and tool surface across echelons. **It must also map authority** — the set of actions an agent may resolve without escalating. Mission Command scales precisely because decisions do not all ladder to the commander. NCOs and soldiers act within scope. Without an explicit authority gradient, every novel decision ladders to the PL by default, which is exactly the bottleneck MCA is designed to remove.
+
+The gradient is doctrinal, not legal. LLMs hold no command authority in the human sense. The gradient is **architectural encoding** of bounded autonomy, not anthropomorphized rank.
+
+### The three tiers
+
+| Tier | Sets / approves | Does not |
+|---|---|---|
+| **Officer (PL)** | Intent. Cross-squad reallocation. Plan revision when reality diverges. Calls `declare_done`. Approves world-boundary actions where authority is delegated by Hans. | Execute artifacts directly. |
+| **NCO (SL)** | Task assignment within squad. Soldier QC. Re-task and re-do calls. SITREP filtering up. The mentor-and-enforce tier: knows the standard, enforces it, doesn't need PL to confirm a re-do. | Cross-squad coordination. Plan revision. Intent rewrite. |
+| **Soldier** | Execution within task spec. Disciplined initiative within scope (interpret ambiguous task, choose between equivalent approaches). `"I don't know"` as the calibrated stop signal. | Resolve own QC. Decide their own task is complete. Take any action with external effect without NCO approval. |
+
+### Authority is approval-queue routing, not bypass
+
+Principle #4 (chain of command over autonomous AI) is a hard floor: irreversible actions require Hans's explicit approval. The gradient does not move that floor. It **routes** approval by action class.
+
+| Action class | Resolves at | Why |
+|---|---|---|
+| Reversible within the unit (re-do, re-task, re-run a soldier, internal scratch state) | NCO | Cost is internal-only; no external state changed |
+| Reversible within the mission but crosses an internal artifact boundary (commit a draft to the unit's working file, update task ledger, revise plan within current OPORD) | PL | Persists to the unit; future echelons inherit |
+| Crosses an external boundary (API call, message sent, file written outside unit working dir, user-visible change, persistent product state) | **Hans (existing approval queue)** | World boundary — Principle #4's hard floor |
+
+The NCO tier can authorize a re-do because the cost is internal. Nothing past the world boundary gets authorized by anything but Hans. **The hard floor stays intact.** What changes is that intra-unit churn stops bottlenecking on the PL.
+
+### Disciplined initiative — the scope per tier
+
+Each tier may revise within its scope and must escalate beyond it. **Initiative within scope, refusal beyond it, flag ambiguity rather than invent.** Principle #12's *what else?* gate runs at every tier before that tier's done-call.
+
+- **Officer:** may revise the plan when reality diverges from situation; may NOT rewrite Hans's commander's intent. If intent is unclear, RFI up.
+- **NCO:** may re-task a soldier when the soldier's output fails QC; may NOT reassign across squads. If a soldier blocks repeatedly on a task class, escalate.
+- **Soldier:** may choose between equivalent execution paths under task spec; may NOT redefine the task. If the task as written cannot be executed truthfully, return `"I don't know"` with reasoning.
+
+### Violation-logging — the safety on the gradient
+
+Bounded authority works only if violations are observable. The system must log:
+
+- Any action where an agent's tier-scope was exceeded (NCO authorized something PL-tier, soldier authorized something NCO-tier).
+- Any case where the same NCO routes the same re-do five times to the same soldier without escalating — evidence that the authority bound is too loose or the soldier is mis-tasked.
+- Any case where the PL approves an action that should have routed to Hans — gradient leak at the world boundary.
+
+Logged violations are doctrine evidence, not punishment. Each closed Funkytown experiment reviews violations as input to the next gradient calibration.
+
+---
+
 ## Scale by recursion
 
 | Pattern | Total agents (rough) | Composition |
@@ -69,6 +115,86 @@ Platoon Leader (PL) — Officer-tier, Opus
 Above battalion, additional staff functions become non-optional (S-1 personnel, S-2 intelligence, S-3 operations, S-4 logistics, S-6 signal/comms). These map to specialized cross-cutting agents that serve the line echelons.
 
 The architectural promise: scaling does not require re-inventing coordination at each tier. It requires recursion within a known doctrine.
+
+### Roles per echelon
+
+Scale is not just "more agents." New **roles** emerge at each echelon — functional positions that don't exist at the level below. The Army's centuries-iterated answer to "what coordination jobs appear at each scale" is the role taxonomy below. Each role is a *functional position*, not a rank claim. (See discipline note in the naming convention footer — ranks are documentation, never identity.)
+
+| Echelon | Officer-tier roles | NCO-tier roles | Staff / specialist channel |
+|---|---|---|---|
+| **Squad** (~4) | — | SL (Squad Leader) | — |
+| **Platoon** (~13) | PL (Platoon Leader) | SL | — |
+| **Company** (~50) | **CC** (Company Commander), **XO** (Executive Officer) | **1SG** (First Sergeant), **PSG** (Platoon Sergeant) per platoon, SLs | First specialists attach (S-2 intel, S-4 logistics shapes) |
+| **Battalion** (~200) | **BC** (Battalion Commander), **XO** (MAJ-shape), command of 3–4 CCs | **CSM** (Command Sergeant Major), 1SGs, PSGs, SLs | **Full S-staff**: S-1 personnel, S-2 intel, S-3 ops, S-4 logistics, S-6 signal, plus warrant-officer-shaped technical specialists |
+
+**What each new role does that didn't exist below:**
+
+- **CC (Company Commander).** Sets intent for 3–4 platoons. The PL cannot do this — the PL is owning one platoon's execution. CC owns the *mission* across platoons and the trade-offs between them.
+- **XO (Executive Officer).** Runs internal operations so the commander can think externally. At Company, this is the 1LT/MAJ-shape that owns logistics, coordination, internal sync — freeing the CC to focus on mission and external relationships.
+- **1SG (First Sergeant).** Senior NCO. Owns standards, training, and discipline across all the company's platoons. Not in the chain of command in the same way as the officer line — runs the **enlisted side** in parallel. Advises the CC on enlisted matters.
+- **PSG (Platoon Sergeant).** SFC-shape senior NCO inserted between PL and SLs at platoon scale. At Platoon today (Funkytown 01), this role is collapsed into the PL; at Company scale, PSG separates from PL because the PL has more on their plate.
+- **BC / CSM.** Battalion analogues — set intent across companies, run the senior NCO channel across the battalion's 1SGs.
+
+### Today's evidence: Platoon only
+
+Functionality validated to date: **Platoon Pattern** (Funkytown experiment 01, Stage 8 Run 1). N=3 across 7 ablation stages.
+
+The Company and Battalion role taxonomy above is **doctrine, not validated architecture.** It names the scale-up path so the doctrine is legible and the falsification ladder is explicit (per `founding_principle_full_portfolio_pipeline_2026-05-11`), but no chassis primitives should be built for it until a Company-scale Funkytown experiment provides evidence. Hardening Platoon-only evidence into "portfolio-wide" claims is the trap MCA must not fall into.
+
+The falsification ladder:
+
+1. ✅ **Platoon** — works (Stage 8 Run 1).
+2. ⏳ **Company** — does intent-decomposition survive one more hop? Does the officer/NCO/staff split that emerges materially change outcomes?
+3. ⏳ **Battalion** — does the four-layer intent stack hold? Where does it fail?
+
+Each rung must be experimentally validated before doctrine for the next rung becomes load-bearing.
+
+---
+
+## The Staff Channel
+
+ADP 6-0 carries **two parallel structures**, not one. The chain of command runs officer → NCO → soldier as described above. Beside it runs a second structure: the **staff and specialist channel** — domain experts with advisory authority within their specialty and no command authority over the line.
+
+This distinction is load-bearing for MCA at scale. As soon as a unit exceeds platoon, the commander cannot personally hold every domain (intel, legal, operations, logistics, signal). Staff officers and warrant officers attach to provide that depth. Their authority is *within their specialty*; their posture is *advisory*. They cannot give orders to line soldiers.
+
+### Two channels, two authority types
+
+| Channel | Authority shape | Examples (Army) | Examples (portfolio today) |
+|---|---|---|---|
+| **Command (line)** | Hierarchical. Sets intent, allocates resources, signs for outcomes. Intent flows down; SITREP flows up. | PL, CC, BC | PL (Funkytown 01), the supervisor router in Custer |
+| **Staff / specialist** | Advisory within domain. Provides analysis and recommendations to the commander. Never overrides the line. | S-2 (intel), S-3 (ops), S-4 (logistics), S-6 (signal); Warrant Officers as technical experts | Drake (OPFOR/S-2-shape), Marshall (Legal), Sentinel (IG/Ethics), Halsey (CTO/S-6-shape) |
+
+### Where the named specialists already sit
+
+This doctrine closes a latent ambiguity: **the named specialists in the portfolio (Drake, Marshall, Sentinel, Halsey, and equivalents) have always been staff-channel agents, not chain-of-command agents.** They were named under the *external-standard auditor category* (see `project_external_standard_auditor_category.md` in portfolio-meta memory). The Army-side name for that category is the **staff channel**. Naming both gives builders one vocabulary that maps cleanly to the doctrine — line agents are command channel, named specialists are staff channel.
+
+Specifically:
+
+- **Drake (OPFOR / red team)** → S-2-shape (intelligence and adversary analysis).
+- **Marshall (Legal / IP)** → Warrant-officer-shape (technical specialty advisor, no chain-of-command position).
+- **Sentinel (IG / Ethics)** → Inspector General-shape (audit authority within ethics domain; advisory, not commanding).
+- **Halsey (CTO / Engineering)** → S-6-shape (signal/communications/engineering specialty).
+
+### The advisory-never-override-always-log rule
+
+Real units have constant line/staff friction. The S-2 flags a tactical risk the PL doesn't want to hear. The Warrant Officer advises against a technical move the CC has already decided. The Inspector General finds a discipline gap. In every case, the doctrine is the same:
+
+1. **Advisory** — the staff agent provides the analysis with calibrated confidence and reasoning.
+2. **Never override** — the staff agent does not have command authority. The line decides. The line can decline the advice.
+3. **Always log** — the advice and the line's decision are both recorded. Staff-channel flags that are declined are doctrine evidence, not noise. If a declined Drake flag predicts a real failure downstream, that's input to gradient calibration.
+
+Without the log requirement, the staff channel either gets ignored (advice evaporates) or quietly starts commanding (specialist's recommendation becomes de-facto order). Both failures collapse the two-channel structure into one. Logging is what keeps both channels real.
+
+### Where the staff channel lives in the protocols
+
+Staff agents do not appear in OPORD-down (they don't take orders from the line) or SITREP-up (they don't report to the PL as subordinates). They participate via:
+
+- **RFI** — the line requests analysis from staff. Staff returns answer with confidence and source.
+- **CCIR** — staff agents are the standing watchers on commander's critical information requirements.
+- **PIR/EEI** — staff drives the proactive intelligence collection.
+- **COP layers** — staff agents write to specific COP layers (S-2 owns intel layers, S-4 owns logistics layers, etc.). The commander reads.
+
+The four primary protocols already accommodate the staff channel; the channel itself just needed naming.
 
 ---
 
@@ -267,5 +393,22 @@ Three reasons MCA is a stronger architectural thesis than other multi-agent fram
 - **OPORD-down / SITREP-up / RFI / COP** = the four primary protocols (two messages down/up, one tracked-request, one durable state)
 - **CCIR / PIR / battle rhythm** = staff-process refinements that run on top of the four primary protocols
 - **Mission Command UX paradigm** = the user reads the COP and issues intent against it; the user does not converse with the unit
+- **Authority gradient** = the three-tier mapping (officer / NCO / soldier) of which action class an agent may resolve without escalating; routing across the gradient is approval-queue routing, never bypass of Principle #4's hard floor
+- **Command channel / staff channel** = the two parallel structures; line agents run the command channel, named specialists (Drake, Marshall, Sentinel, Halsey) run the staff channel with advisory-never-override-always-log discipline
+- **Role vs. rank** = `role` and `authority_tier` are load-bearing fields the architecture reads; ranks (CPT, SFC, CW3) appear only as documentation of the role's doctrinal lineage
 
 If a future contributor confuses MDMP with MCA, point them here. MDMP is what the commander does in their head. MCA is the architecture they command within. If they confuse a dashboard with a COP, point them here too — a dashboard reports; a COP commands.
+
+### Discipline — ranks are documentation, never identity
+
+Army ranks (PVT, SPC, SGT, SSG, SFC, MSG, 1SG, SGM, CSM, 2LT, 1LT, CPT, MAJ, LTC, COL, WO1–CW5) are precise vocabulary for *roles* that took centuries of bloody iteration to refine. Borrowing the role taxonomy is doctrinally honest. Borrowing rank as **agent identity** is not.
+
+Hard rule: **no agent is tagged "MSG Reeves" or "SGT Drake."** The Stoic register refuses costume language; ADP 6-0's rank structure carries esprit, lineage, and earned authority that LLM agents do not have and cannot have. What ports is the *role-shape* — what the position does, what authority it carries, where it sits in the unit. What does not port is the rank as a name.
+
+In practice:
+
+- Load-bearing fields the architecture reads: `authority_tier: officer | nco | soldier`, `role: PL | SL | CC | XO | 1SG | PSG | soldier | etc.`, `channel: command | staff`.
+- Documentation-only references the architecture does not read: the docstring on a `role` definition may say *"PL is the 2LT/1LT-shape — the platoon leader role in ADP 6-0 §3-4"* to anchor the lineage. That's a comment, not a field.
+- An agent's user-visible label, when it has one, uses its **callsign** (1/2/A) or **functional name** (`drake`, `sentinel`), never a rank.
+
+If a future contributor proposes giving an agent a rank-name as its identifier, point them here. Rank inflation collapses the load-bearing distinctions (officer/NCO/soldier) into LARP. The doctrine refuses it.

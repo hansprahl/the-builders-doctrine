@@ -1,9 +1,17 @@
 # THE BUILDERS DOCTRINE
 
-**v1.2-draft — 2026-05-01 — Hans Prahl**
+**v1.2 — 2026-05-13 — Hans Prahl**
 **Status: private. Public after first commercial-pursuit stress test (multi-tenant audit on Operator or commercial Custer onboarding).**
 
-**v1.2 changes in flight:** Principle #1 renamed from "The code is the man" to "The code is the story" — universalized so the method is portable to any builder (see CANDIDATES_v1.2.md). v1.1 tag remains canonical until v1.2 is ratified.
+**v1.2 ratifies (relative to v1.1):**
+- Principle #1 renamed from *"The code is the man"* to *"The code is the story"* — universalized so the method is portable to any builder (see `CANDIDATES_v1.2.md`).
+- **Principle #12 — *What else? Active extraction*** added as a sixth operational doctrine. Reflection Gate before `declare_done` at every tier; "I don't know" as calibrated stop signal. Scope-inverted for wellness-shaped products.
+- **Principle #13 — *The Long Horizon*** added as a seventh operational doctrine. Compounding-asset test for every build; pairs with the Working Backwards methodology adopted in this cycle.
+- **Mission Command Architecture (MCA)** adopted as the portfolio-wide structural layer. Authority Gradient (officer/NCO/soldier) + Scale-Up Role Taxonomy + Staff Channel (the named-specialists category) + Discipline note on ranks-as-documentation. Empirically validated at Platoon scale (Funkytown Experiment 01); Company and Battalion patterns are doctrine, not yet validated architecture.
+- **Working Backwards methodology** (Amazon PR/FAQ-first) folded in as the portfolio's scoping discipline, operationalizing Principle #13 at the scoping layer.
+- **Kit** brought current: 88 KIT:FIELD blocks across 8 templates (was 74 across 7); `pr_faq_interview.yaml` added; new fields cover Principle #12, Principle #13, MCA position per specialist, and the full PR/FAQ surface.
+
+Total: thirteen principles (seven foundational ethics + six operational doctrines). See `## II. The Founding Principles` for the canonical list.
 
 ---
 
