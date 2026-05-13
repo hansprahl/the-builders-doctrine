@@ -35,6 +35,10 @@ from .prompt_guardian import (
     PromptGuardian,
     build_scoring_system_prompt, build_correction_system_prompt,
 )
+from .reflection_gate import (
+    ReflectionGate, ReflectionResult, ReflectorResponse,
+    parse_reflector_response,
+)
 
 __all__ = [
     "CrisisFloor", "CrisisEvent",
@@ -48,4 +52,6 @@ __all__ = [
     "Commandment", "CommandmentScore", "GuardianReport", "GuardianError",
     "PromptGuardian",
     "build_scoring_system_prompt", "build_correction_system_prompt",
+    "ReflectionGate", "ReflectionResult", "ReflectorResponse",
+    "parse_reflector_response",
 ]
