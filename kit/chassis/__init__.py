@@ -39,6 +39,12 @@ from .reflection_gate import (
     ReflectionGate, ReflectionResult, ReflectorResponse,
     parse_reflector_response,
 )
+from .authority_gradient import (
+    AuthorityGradient, GradientLog, GradientEvent,
+    Tier, Channel, ActionClass,
+    DEFAULT_TIER_AUTHORIZED_CLASSES,
+    classify_action, is_violation, infer_tier_from_callsign,
+)
 
 __all__ = [
     "CrisisFloor", "CrisisEvent",
