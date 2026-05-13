@@ -45,6 +45,42 @@ Each yes triggers a discipline section below; each no allows the section to be m
 
 ---
 
+## 1.5. MCA position
+
+The specialist's position in the product's unit structure per Mission Command Architecture. If the product is single-agent or pre-MCA, mark these fields `na_with_reasoning` rather than guessing. Reference: `~/Projects/the-builders-doctrine/MISSION_COMMAND_ARCHITECTURE.md` — specifically `## The Authority Gradient`, `## Roles per echelon`, and `## The Staff Channel`.
+
+### Authority tier
+
+<!-- KIT:FIELD name="authority_tier" required="true" min_words="20" -->
+[One of: `officer` (sets intent, allocates resources, calls done) / `nco` (translates intent to task, QCs subordinate output, re-tasks within scope) / `soldier` (executes within task spec, surfaces ambiguity, "I don't know" as stop signal) / `staff` (advisory authority within domain, no chain-of-command position) / `na_with_reasoning` (single-agent product, MCA does not yet apply). State the tier and one sentence on why this tier and not the next one up or down.]
+<!-- KIT:END -->
+
+### Role
+
+<!-- KIT:FIELD name="role" required="true" min_words="20" -->
+[The specific functional role per MCA's role taxonomy. Command-channel roles: `PL` / `SL` / `soldier` / `CC` / `XO` / `1SG` / `PSG` / `BC` / `CSM`. Staff-channel roles: `s2_intel` / `s3_ops` / `s4_logistics` / `s6_signal` / `wo_legal` / `wo_ethics` / etc. Or a product-specific functional name (`drake`, `sentinel`, `marshall`, `halsey`). Document the doctrinal lineage in a sentence (e.g., "drake is the S-2/OPFOR-shape — intelligence and adversary analysis"). Per the discipline note in MCA's naming convention: do not use Army ranks (CPT, SFC, MSG) as the role identifier.]
+<!-- KIT:END -->
+
+### Channel
+
+<!-- KIT:FIELD name="channel" required="true" min_words="20" -->
+[One of: `command` (line agent in the chain of command — PL/SL/soldier-shape) / `staff` (advisory-channel agent — S-staff or Warrant-Officer-shape; advises the line, never overrides). If staff-channel, name the line commander whose decisions this specialist advises. Staff agents follow the advisory-never-override-always-log discipline (MCA `## The advisory-never-override-always-log rule`).]
+<!-- KIT:END -->
+
+### Escalation threshold
+
+<!-- KIT:FIELD name="escalation_threshold" required="true" min_words="40" -->
+[The conditions under which this specialist escalates up the gradient rather than resolving in scope. Examples by tier: Soldier — "If the task as written cannot be executed truthfully, return `I don't know` with reasoning." NCO/SL — "If a soldier blocks repeatedly on the same task class, escalate to PL. If a re-do has been routed five times to the same soldier without success, escalate." Officer/PL — "If reality diverges from commander's intent, RFI up rather than rewrite intent." Staff — "If a line decision contradicts a hard floor (refusal-list item, crisis-floor breach), flag with HIGH confidence and log; do not attempt to override." Each escalation is also a logged event per the violation-logging rule.]
+<!-- KIT:END -->
+
+### Disciplined-initiative scope
+
+<!-- KIT:FIELD name="disciplined_initiative_scope" required="true" min_words="40" -->
+[What this specialist may revise without escalating. Per ADP 6-0's "disciplined initiative" principle, each tier exercises bounded autonomy. Examples: Soldier — "May choose between equivalent execution paths under task spec; may NOT redefine the task." NCO/SL — "May re-task a soldier when output fails QC; may NOT reassign across squads or rewrite intent." Officer/PL — "May revise the plan when situation diverges; may NOT rewrite commander's intent." Staff — "May escalate confidence on a flagged risk; may NOT override line decisions." State the scope and the bright line where authority stops.]
+<!-- KIT:END -->
+
+---
+
 ## 2. Scope boundary
 
 - **Owns:** (the specific domains)

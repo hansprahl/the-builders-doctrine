@@ -1,0 +1,525 @@
+# The Builders' Kit — PR/FAQ Interview
+#
+# Drives the PR_FAQ_TEMPLATE.md authoring loop (Phase 1.6). Runs after
+# STORY, COMMANDMENTS, REFUSAL_LIST so the press release can trace to the
+# builder's bio, the harm-analysis can reference the refusal list, and the
+# long-horizon moat answer can pull from STORY.
+#
+# Two modes:
+#   - bootstrap mode: a builder's first PR/FAQ for their product (runs once,
+#     during initial onboarding, after STORY + REFUSAL_LIST land)
+#   - per-feature mode: a fresh PR/FAQ authored every time scope is committed
+#     (runs N times, before any code on a new feature)
+#
+# Both modes use the same KIT:FIELD blocks. Target file differs:
+#   - bootstrap: kit/templates/PR_FAQ_TEMPLATE.md (the builder's first artifact)
+#   - per-feature: <product>/working_backwards/<feature>_v<n>.md
+#
+# Honesty floors enforced as blocking:
+#   - Refusal List check must PASS or the interview halts (no PR/FAQ for a
+#     feature that fails the refusal check; the build stops)
+#   - Crisis Floor check must PASS for any product touching vulnerable users
+#   - Kill criterion must be measurable (no "if it doesn't work")
+#   - Long-horizon moat cannot be "it's just a feature" — the test for
+#     whether the build deserves to exist past the launch quarter
+#   - Working Backwards self-audit cannot be "nothing changed" — if the
+#     writing didn't surface anything, it didn't do its job
+
+version: 0.1
+schema: kit-onboarding/v1
+depends_on:
+  - questions.yaml         # STORY.md
+  - refusal_interview.yaml # REFUSAL_LIST.md
+  - crisis_interview.yaml  # CRISIS_TRIGGERS.md (gates crisis_floor_check)
+
+settings:
+  no_ai_paraphrase: true           # press release voice must be the builder's
+  capture_raw: true
+  allow_skip: false
+  default_target: kit/templates/PR_FAQ_TEMPLATE.md
+  honesty_floor: true              # kill criterion and long-horizon moat
+                                    # have hard refusal paths
+  mode: bootstrap                  # or "per_feature" — set at invocation
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Pre-interview prerequisite check
+# ──────────────────────────────────────────────────────────────────────────────
+
+prerequisites:
+  - check: STORY.md populated to coverage floor
+    on_fail: |
+      The PR/FAQ pulls from STORY (why_us, why_now, harm_analysis).
+      Run questions.yaml to populate STORY before returning here.
+  - check: REFUSAL_LIST.md populated
+    on_fail: |
+      The refusal_list_check field requires REFUSAL_LIST.md to compare
+      against. Run refusal_interview.yaml first.
+  - check: COMMANDMENTS.md populated
+    on_fail: |
+      The chain_of_command_posture field traces to COMMANDMENTS.md.
+      Run commandments interview before returning here.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Interview
+# ──────────────────────────────────────────────────────────────────────────────
+
+sections:
+
+  - id: intro
+    title: Before we start
+    type: framing
+    body: |
+      Working Backwards is Amazon's PR/FAQ-first product development method,
+      adopted by the Builders' Doctrine 2026-05-12 as the portfolio-shared
+      scoping process. You write the press release before any code. If you
+      cannot write the press release plainly, the product is not yet specified
+      clearly enough. The exercise is what forces clarity.
+
+      The doctrine layer this interview enforces is Principle #13 (The Long
+      Horizon): the internal FAQ must defend the product on the ten-year
+      horizon, not the launch quarter. Short-horizon shortcuts that erode
+      long-horizon trust are the failure mode this template surfaces.
+
+      Three honesty floors block completion:
+        - Refusal List check (PASS required to continue)
+        - Kill criterion must be measurable (a specific metric, not "if it
+          doesn't work")
+        - Long-horizon moat cannot collapse to "it's just a feature"
+
+      Output: a single PR_FAQ artifact, ~6 pages, that a customer could read
+      (Part 1) and that a future-you can audit the build-or-kill decision
+      against (Parts 2-3).
+
+  - id: hard_floor_check
+    title: Hard-floor applicability — which conditional fields apply
+    type: scoping
+    target_field: hard_floor_check
+    body: |
+      Some checks below are conditional. State which hard floors this
+      product/feature touches so the interview can route to the right
+      conditional fields.
+    sub_prompts:
+      - Does this product/feature serve a population that can include
+        someone in crisis? (TOP-shape — yes; Operator-shape — typically no)
+        If yes, crisis_floor_check applies.
+      - Does this touch a regulated surface? (voter PII under CRS, HIPAA-
+        adjacent data, financial data, ITAR-controlled content) If yes,
+        regulatory_risk applies.
+      - Is this a wellness-shaped product where the user is seeking
+        personal change? If yes, dependency_test_check applies (Principle
+        #3 inverts scope for operator-tools).
+      - Is the product/feature multi-tenant in any deployment? If yes,
+        per-user isolation discipline applies downstream.
+    quality_checks:
+      - Each applicable floor is explicitly named
+      - Each n/a determination has reasoning, not silence
+
+  - id: press_release
+    title: Press release — the customer-facing announcement
+    type: composition
+    target_field: press_release
+    body: |
+      One page in customer language. No internal jargon. The press release
+      tests whether you have a clear product or a vague intention. Write
+      the headline first. If the headline doesn't compress to one
+      customer-readable line, the product is not yet scoped.
+    sub_prompts:
+      - Headline — one line, customer-readable, states the news.
+      - Subheading — audience + benefit, one line.
+      - Summary — one paragraph: what the product is, who it's for, why
+        it matters now.
+      - Problem — concrete scenario with specific customer, specific
+        volume metric, specific cost. Generic pain points fail this
+        section. Pattern: "A [size] [vertical] company with [metric]
+        needs [outcome] but [obstacle]. Today they [workaround] which
+        costs [$X / Y hours]."
+      - Solution — plain language walkthrough: input → output → time →
+        cost. The customer should be able to follow without diagrams.
+      - Quote from builder — one or two sentences, builder's voice,
+        plain not hyped. Use the founder's own words from STORY where
+        possible.
+      - Quote from hypothetical customer — one or two sentences in
+        customer voice with specific outcome, not generic praise.
+      - Call to action — specific URL, contact, signup path.
+    quality_checks:
+      - Headline is customer-readable (not engineering-readable)
+      - Problem cites specific numbers (volume, cost, time)
+      - Solution names input → output explicitly
+      - Total length ≤ 1 page (~400 words)
+    body_followup: |
+      If the press release ran past one page, stop and narrow. Working
+      Backwards' load-bearing constraint is the length — overflow is the
+      signal that scope is too broad.
+
+  - id: external_faq
+    title: External FAQ — the eight questions a customer asks
+    type: composition
+    target_field: external_faq
+    body: |
+      Customer language only. Eight questions, plain answers, no hedging.
+    sub_prompts:
+      - "What is [product]?"
+      - "Who is it for?" — specific customer archetype
+      - "What problem does it solve?" — expand on edge cases
+      - "How does it work?" — step by step, customer-facing
+      - "What does it cost?" — pricing model with specific numbers or range
+      - "How is it different from [closest competitor]?" — name and compare
+      - "When can I use it?" — specific timeline
+      - "What's the catch?" — honest limitations
+    quality_checks:
+      - Competitor is named, not "other tools in this space"
+      - Pricing is named even if range or assumption
+      - "What's the catch?" answer is real, not a humble-brag
+
+  - id: why_us
+    title: Why are we the ones to build it — biographical moat
+    type: voice_bearing
+    target_field: why_us
+    pulls_from:
+      - questions.yaml::formative_crisis
+      - questions.yaml::lived_experience
+    body: |
+      This is the Principle #2 question — the moat is the memory. The
+      answer is not "we have a strong team." Name the specific edge that
+      doesn't compound for anyone else: lived experience, regulatory
+      access, technical depth from prior arenas, ground-truth corpus,
+      biographical pattern recognition. Trace to STORY.
+    quality_checks:
+      - At least one biographical anchor is named (a specific arena, role,
+        crisis)
+      - The edge does not compound for an LLM-only competitor
+      - Trace to STORY field is explicit
+
+  - id: long_horizon_moat
+    title: What does the moat look like at scale — 10-year horizon
+    type: voice_bearing
+    target_field: long_horizon_moat
+    body: |
+      Principle #13 (The Long Horizon). The brewery taught the principle
+      in dollars — the four-year compound (brand, location, relationships,
+      regulars) wasn't visible to quarterly-snapshot tools. The same
+      inverts here: every short-horizon shortcut that erodes long-horizon
+      trust costs more than it saves.
+
+      The internal FAQ must defend the product on the ten-year horizon.
+      What compounds? What becomes harder to copy as the product matures?
+      Memory? Ground-truth corpus? Network effects? Regulatory position?
+    sub_prompts:
+      - What asset compounds with each user-month of operation?
+      - What does the product know after 10 years of operation that a
+        Day-1 competitor cannot replicate?
+      - If a competitor copied today's feature set, what would they
+        still be missing?
+      - Reference WORKING_BACKWARDS.md for the format.
+    quality_checks:
+      - Compounding asset is named, not implied
+      - The asset is biographical or corpus-shaped (not technical-only —
+        technical moats erode in 90 days per Hans's standing position)
+    refusal_path: |
+      If the honest answer is "nothing structural — it's just a feature,"
+      the build fails Principle #13. Reconsider the scope or kill. The
+      interview refuses to write a long_horizon_moat that collapses to
+      a feature-level claim.
+
+  - id: why_build_and_now
+    title: Why build, and why now
+    type: composition
+    target_fields:
+      - why_build
+      - why_now
+    body: |
+      The strategic rationale and the timing argument. If timing doesn't
+      exist, this is a perpetual idea — kill or table. If rationale is
+      "founder thinks it's interesting," reconsider.
+    sub_prompts:
+      - Demand evidence: frequency (how often the need surfaces), segment
+        (who is asking), channel (who could intro). The Brad Hampton call
+        2026-05-12 is the canonical example: 7/10 of his calls hit the
+        same problem, segment named (SMB), channel offered (his network).
+      - Timing: what changed in the market, the platform layer, or the
+        customer's posture in the last 6–12 months that makes this the
+        right time. Not 12 months ago, not 12 months from now.
+    quality_checks:
+      - Demand evidence has frequency, segment, channel (all three)
+      - Timing argument cites a specific change, not a vibe
+
+  - id: kill_criterion
+    title: Kill criterion — pre-registered
+    type: pre_registration
+    target_field: kill_criterion
+    body: |
+      The specific metric or signal that tells us to kill this product.
+      Pre-registered means decided BEFORE the build, not after. "If it
+      doesn't work" is not a kill criterion — it's an opt-out.
+    sub_prompts:
+      - What metric? (CAC, conversion rate, retention, qualified intros,
+        revenue, NPS, whatever measures success for this product)
+      - What threshold and timeline? Pattern: "If CAC > $X by day N" or
+        "If conversion < Y% by quarter Z" or "If zero qualified intros
+        materialize from Brad's channel in 60 days."
+      - Who is responsible for the kill decision? (typically the builder;
+        for portfolio products, the founder)
+    quality_checks:
+      - Metric is named (not "if it doesn't feel right")
+      - Threshold has a number
+      - Timeline has a date or interval
+    refusal_path: |
+      The interview refuses kill criteria that are not measurable. If you
+      cannot write a number and a date, you cannot stop the build honestly,
+      and the build becomes a perpetual zombie.
+
+  - id: harm_analysis
+    title: Who is harmed by this product if it succeeds
+    type: voice_bearing
+    target_field: harm_analysis
+    body: |
+      The refusal-list-adjacent question. Does success harm anyone? Users,
+      communities, the labor market, the founder's portfolio coherence?
+      Refusal-list candidates often surface here that didn't appear in
+      REFUSAL_LIST.md — the writing makes them visible.
+    sub_prompts:
+      - Direct user harm — does this make the user worse off in any
+        dimension while making them better off in another? (dependency
+        risk, attention extraction, autonomy erosion)
+      - Third-party harm — does it harm someone NOT using the product
+        (the labor market, public discourse, an existing community)?
+      - Portfolio harm — does it compromise another product in the
+        portfolio? (e.g., engagement-max in Operator would compromise
+        TOP's designed-to-be-needed-less posture)
+      - For each harm named: acceptable, unacceptable, or refusal-list
+        candidate?
+    quality_checks:
+      - At least one harm is honestly considered (the answer "no harm at
+        all" is allowed but must trace through each category)
+      - Refusal-list candidates surfaced here are added to REFUSAL_LIST.md
+        before the PR/FAQ is final
+
+  - id: refusal_check
+    title: Does this pass the Refusal List check
+    type: gating
+    target_field: refusal_list_check
+    body: |
+      Compare the product/feature against REFUSAL_LIST.md and the
+      product's commandments. PASS or FAIL with reason.
+    sub_prompts:
+      - Walk through each top-level refusal in REFUSAL_LIST.md.
+      - Mark each: not-touched / touched-and-honored / touched-and-violated.
+      - Any touched-and-violated stops the build.
+    quality_checks:
+      - Each refusal is explicitly addressed (not silently passed over)
+      - PASS or FAIL is stated, with the violated refusal named if FAIL
+    blocking: true
+    on_fail: |
+      A FAIL on refusal_list_check stops the interview. The PR/FAQ for
+      a feature that violates a refusal does not exist — the build
+      stops. Surface the violation to the operator, log it as a doctrine
+      event, and exit.
+
+  - id: dependency_test_check
+    title: Does this pass the Dependency Test — wellness products only
+    type: conditional_gating
+    target_field: dependency_test_check
+    gate: |
+      Did hard_floor_check mark this product as wellness-shaped?
+    if_no:
+      capture: |
+        N/A with reasoning. Operator-tool products (Operator, Custer,
+        Rubicon) invert the dependency test per Principle #3's scope
+        rule — the test for operator-tools is "does this make the
+        operator more capable at their work" not "does this make them
+        more reliant."
+    if_yes:
+      sub_prompts:
+        - Does this feature make the user more capable WITHOUT the
+          tool, or more reliant on it?
+        - If the feature is removed in 6 months, is the user worse off
+          (failed) or roughly the same with new habits (passed)?
+      quality_checks:
+        - PASS or FAIL is stated
+        - The user-without-tool counterfactual is named, not implied
+      blocking: true
+      on_fail: |
+        Wellness products that fail the Dependency Test do not ship.
+        This is Principle #3's hard floor.
+
+  - id: crisis_floor_check
+    title: Does this pass the Crisis Floors check
+    type: conditional_gating
+    target_field: crisis_floor_check
+    gate: |
+      Did hard_floor_check mark this product as serving vulnerable users?
+    if_no:
+      capture: |
+        N/A with reasoning. State the population this product serves
+        and why crisis-floor doctrine does not apply.
+    if_yes:
+      sub_prompts:
+        - Reference CRISIS_TRIGGERS.md and the product's crisis-floor
+          implementation.
+        - Confirm the crisis floor is hard-coded ABOVE the feature
+          (detection runs on every user message before any specialist
+          routing).
+        - Confirm the floor is never gated by feature flag, paywall,
+          or onboarding step.
+      quality_checks:
+        - PASS or FAIL is stated
+        - Crisis-floor implementation is cited by file path
+      blocking: true
+      on_fail: |
+        Products touching vulnerable users that fail the Crisis Floors
+        check do not ship. Principle #11's hard floor.
+
+  - id: chain_of_command_posture
+    title: Chain-of-command posture — Type 1 vs Type 2 actions
+    type: enumeration
+    target_field: chain_of_command_posture
+    body: |
+      Principle #4. Every action this feature can take is either Type 1
+      (irreversible, founder-approval-gated) or Type 2 (reversible,
+      agent-executable within scope). For MCA-shaped products, also
+      route by authority tier per the gradient table.
+    sub_prompts:
+      - List every action this feature can take.
+      - For each: Type 1 or Type 2? Reversibility test — "If this runs
+        by mistake, can the user reverse it in under 60 seconds for
+        under $0?" If no, it's Type 1.
+      - For MCA-shaped products: which authority tier resolves each
+        action class? (NCO for in-unit, PL for in-mission, Hans for
+        world-boundary)
+    quality_checks:
+      - Every action is classified
+      - Type 1 actions name the approval-queue path
+      - MCA-shaped products name the authority tier per action
+
+  - id: working_backwards_self_audit
+    title: How did the writing change the scope
+    type: voice_bearing
+    target_field: working_backwards_self_audit
+    body: |
+      The honesty floor on the Working Backwards method. If nothing
+      changed between v0 and the current draft — if the press release
+      came out clean on the first pass — the writing didn't do its job.
+      Working Backwards' value is in what it forces you to find.
+    sub_prompts:
+      - What was modified between v0 and the current draft?
+      - Did the FAQ surface a blocker the press release glossed over?
+      - Did the kill criterion force a re-scope?
+      - Did the harm_analysis surface a refusal candidate?
+      - Did the long_horizon_moat collapse the first time you tried
+        to write it?
+    quality_checks:
+      - At least one substantive change is named
+      - "Nothing changed" is treated as a failure of the method, not
+        the product
+    refusal_path: |
+      If genuinely nothing changed across drafts, the interview offers
+      two paths: either (a) the scope was clear before writing started
+      (rare; document the evidence), or (b) the writing was performative
+      and needs another pass. Default is (b).
+
+  - id: decision_record
+    title: Build-or-kill decision
+    type: pre_registration
+    target_field: decision_record
+    body: |
+      The decision the writing has produced. Pre-registered means the
+      decision is made BEFORE seeing market signal. INVESTIGATE FURTHER
+      is allowed as a decision IF it names the specific evidence needed.
+    sub_prompts:
+      - Build-or-kill review date.
+      - Decision: BUILD / INVESTIGATE FURTHER / KILL.
+      - If INVESTIGATE FURTHER: what evidence resolves the gating
+        question?
+      - If BUILD: the narrow first slice scope.
+      - If KILL: rationale recorded for future-you.
+    quality_checks:
+      - Decision is stated, not deferred
+      - INVESTIGATE FURTHER answers name the resolving evidence
+      - BUILD decisions name the narrow first slice
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Closing
+# ──────────────────────────────────────────────────────────────────────────────
+
+closing:
+  - id: trace_summary
+    title: Trace check
+    type: review
+    body: |
+      The runner prints a trace summary: press release length, external
+      FAQ completion, internal FAQ completion, kill criterion (named /
+      missing), long-horizon moat (compounding asset named / missing),
+      refusal check (PASS / FAIL), crisis floor (PASS / N/A), dependency
+      test (PASS / N/A), decision (BUILD / INVESTIGATE / KILL). Honesty
+      floor — kill criterion missing, long-horizon moat missing, or
+      refusal/crisis FAIL blocks completion.
+
+  - id: per_feature_handoff
+    title: Per-feature mode handoff
+    type: handoff
+    body: |
+      In per-feature mode, this PR/FAQ becomes the spec the build runs
+      against. Future Working Backwards reviews compare the build to
+      this artifact. Drift between the PR/FAQ and the shipped product
+      is the signal that scope crept or the doctrine slipped.
+
+  - id: bootstrap_handoff
+    title: Bootstrap mode handoff
+    type: handoff
+    body: |
+      In bootstrap mode, this is the builder's first PR/FAQ for their
+      product. Subsequent feature-level PR/FAQs reuse the same template
+      but target <product>/working_backwards/<feature>_v<n>.md. The
+      bootstrap PR/FAQ stays at kit/templates/ as the durable record
+      of the product's founding scope.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Implementation notes
+# ──────────────────────────────────────────────────────────────────────────────
+
+implementation_notes:
+  measurable_kill_floor: |
+    The kill_criterion field has a refusal_path. The runner inspects the
+    answer for a numeric threshold and a date/interval. Answers that lack
+    either are returned for revision. Builders who refuse to write a
+    measurable kill criterion are surfaced — the build is not signed off
+    until they do.
+
+  long_horizon_floor: |
+    The long_horizon_moat field has a refusal_path. The runner inspects
+    for compounding-asset language (memory, corpus, network effects,
+    regulatory). Answers that collapse to feature-level claims ("it's
+    fast", "it's well-designed") are returned for revision. Principle
+    #13's enforcement layer.
+
+  refusal_check_blocking: |
+    The refusal_check section is blocking. A FAIL halts the interview
+    and surfaces the violation to the operator. The PR/FAQ is not
+    completed; the build does not proceed.
+
+  conditional_routing: |
+    crisis_floor_check and dependency_test_check are conditional on
+    hard_floor_check. The runner reads the hard_floor_check field and
+    routes accordingly. n/a-with-reasoning is the canonical answer for
+    products that do not touch the relevant floor.
+
+  voice_bearing_fields: |
+    why_us, long_horizon_moat, harm_analysis, and working_backwards_self_audit
+    are voice-bearing. The runner refuses LLM-paraphrased answers — these
+    fields must be in the builder's words. Press release quotes and the
+    customer-voice quote are also voice-bearing but allow lighter
+    polishing.
+
+  per_feature_mode: |
+    When invoked with mode=per_feature, the default_target redirects to
+    <product>/working_backwards/<feature>_v<n>.md and the prerequisite
+    checks are reduced (STORY, REFUSAL, COMMANDMENTS already populated
+    by virtue of being downstream of bootstrap). The interview itself
+    runs identically; only target and prerequisites differ.
+
+  reuse_for_existing: |
+    Like security_interview, this interview supports a "reuse" mode for
+    products with an existing PR/FAQ. The builder pastes the file, the
+    runner parses it into KIT:FIELD blocks, and the interview prompts
+    only for missing or below-floor fields. Useful for retrofitting
+    Working Backwards onto features already shipped.

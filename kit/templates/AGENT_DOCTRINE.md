@@ -166,6 +166,52 @@ An internal event bus with persistent storage. Replaces "check every N minutes" 
 
 ---
 
+## MCA — unit structure
+
+Mission Command Architecture (`~/Projects/the-builders-doctrine/MISSION_COMMAND_ARCHITECTURE.md`) is the portfolio's structural layer for multi-agent systems. A product authoring AGENT_DOCTRINE must declare its unit structure, how it isolates context between echelons, and what its intent-down format looks like — or mark `na_with_reasoning` if the product is single-agent and MCA does not apply.
+
+### Unit structure
+
+The shape of this product's unit: which echelons exist, who fills each role, how the authority gradient is encoded, and where the staff channel attaches (if any). Reference unit shapes in MCA: Squad (~4), Platoon Pattern (~13), Company Pattern (~50), Battalion Pattern (~200). Most products at v1 are Squad- or Platoon-shaped.
+
+<!-- KIT:FIELD name="unit_structure" required="true" min_words="80" -->
+[Fill: which echelons this product has and the role at each (PL? SLs? soldiers? staff specialists?). The authority_tier per role (officer / nco / soldier per the Authority Gradient section of MCA). Callsign convention (numeric like `1/2/A` or functional like `drake`). Span of control per echelon (3-7 direct reports per ADP 6-0). If this product is single-agent or non-hierarchical, mark `na_with_reasoning` and explain why MCA scale-up doesn't apply yet (e.g., single-user wellness product, validation experiment, sub-platoon team). Reference: MCA `## Roles per echelon` and `## The Authority Gradient`.]
+<!-- KIT:END -->
+
+### Echelon isolation
+
+A load-bearing MCA property: higher echelons see SITREPs, not soldier internals. Aggregation happens at every echelon. Without isolation, flat-context multi-agent systems hit token limits at N≈20. Describe how this product enforces context isolation between echelons.
+
+<!-- KIT:FIELD name="echelon_isolation" required="true" min_words="60" -->
+[Fill: how this product prevents higher-echelon context from contaminating with lower-echelon internals. Examples - filtered tool palette per echelon (PL has `delegate_to_squad` but not artifact tools); structured return shape (SITREP_UP schema, no free-form prose); separate conversation threads per echelon. If single-agent, mark `na_with_reasoning`. Failure mode: if you don't isolate, an SL's full reasoning trace leaks into the PL's context and the unit doesn't scale past Squad.]
+<!-- KIT:END -->
+
+### Intent format
+
+The OPORD-down format used in this product. Commander's intent (the *why*) is load-bearing — without it, decentralized execution collapses into compliance under diverging reality.
+
+<!-- KIT:FIELD name="intent_format" required="true" min_words="60" -->
+[Fill: the schema this product uses for INTENT_DOWN. Minimum fields per MCA: `addressee`, `situation`, `mission`, `execution`, `intent` (the why), `end_state` (return conditions), `deadline_steps`. If you use a custom shape, document it. If single-agent or pre-MCA, mark `na_with_reasoning`. Example from MCA: `{"addressee": "1/1", "situation": "...", "mission": "...", "intent": "...", "end_state": "...", "deadline_steps": 8}`.]
+<!-- KIT:END -->
+
+---
+
+## Active extraction gate (Principle #12)
+
+Principle #12 (*What else? Active extraction*) requires a Reflection Gate before `declare_done` at every tier. The agent surfaces what is unknown rather than burying it in a confident summary. "I don't know" is the calibrated stop signal. The Reflection Gate is where the K/I/G (Known/Inferred/Gap) discipline becomes load-bearing.
+
+**Scope inversion** — per the Principle #12 doctrine, the gate has three scope conditions:
+
+- **Operator-tool products** (Operator, Custer, Rubicon-style): apply the gate as written — the system asks *itself* what else might be true or missing before declaring complete.
+- **Wellness-shaped products** (TOP and any future product where the end user is a person seeking personal change): the gate inverts — the system does **not** interrogate the user with recursive "what else?" Surveillance shape is refused. Instead the system facilitates the user asking "what else?" of *themselves*.
+- **Founder scope**: the system does not extract from the founder *as a person*. STORY/MEMORY are curated by the founder, not queried.
+
+<!-- KIT:FIELD name="active_extraction_gate" required="true" min_words="80" -->
+[Fill: this product's scope condition (operator-tool / wellness / mixed) and how the Reflection Gate is implemented at each echelon's done-call. Operator-tool example: PL calls `what_else_reflection` before `declare_done`; the gate inspects the SITREP for K/I/G coverage and returns Gaps that route to RFIs. Wellness example: the gate is inverted — agent prompts user with a reflective question rather than executing recursive extraction (TOP's evening checkin shape). If this product does not yet implement the gate, mark `not_yet` with the path to implementation. Trace to MCA `## The Authority Gradient` (each tier's done-call runs its own gate) and to THE_BUILDERS_DOCTRINE.md Principle #12.]
+<!-- KIT:END -->
+
+---
+
 ## How the components compose
 
 The value is in the loop, not in any single component. A new contributor reading this section should be able to trace one user request from inbound through every component that touches it.

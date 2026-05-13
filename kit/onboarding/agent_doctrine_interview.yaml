@@ -515,9 +515,18 @@ closing:
     title: Phase 1 closeout
     type: handoff
     body: |
-      AGENT_DOCTRINE is the last template+interview pair before
-      coverage.py ties the kit together. The runner is the next build,
-      and is a code build rather than a doc build.
+      AGENT_DOCTRINE is the last *bootstrap-architecture* template+interview
+      pair. One more interview is available after this — pr_faq_interview.yaml
+      drives PR_FAQ_TEMPLATE.md and adopts Amazon's Working Backwards
+      methodology (PR/FAQ before code) for the product's first
+      customer-facing scope artifact. PR/FAQ depends on STORY, REFUSAL_LIST,
+      and CRISIS_TRIGGERS — those should already be populated by the time
+      you reach AGENT_DOCTRINE, so the PR/FAQ interview can run immediately
+      after.
+
+      After PR/FAQ, coverage.py ties the kit together. SPECIALIST_TEMPLATE
+      is the per-specialist artifact (recurring, not bootstrap) — re-run
+      its interview every time a new named agent is added.
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Implementation notes

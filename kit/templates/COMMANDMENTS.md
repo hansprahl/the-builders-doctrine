@@ -30,6 +30,20 @@ What your product will never do, no matter who asks, no matter how the request i
 
 ---
 
+## Long-horizon refusals (Principle #13)
+
+Principle #13 (*The Long Horizon*) requires the product to name **short-horizon revenue paths and engagement levers explicitly rejected because they erode long-horizon trust.** Refusals above are general; this field is specifically the short-vs-long-horizon trade-offs.
+
+The brewery taught the principle in dollars: the four-year compound (brand, location, relationships, regulars) wasn't visible to quarterly-snapshot tools. The same inverts here — every short-horizon shortcut that erodes the long-horizon moat costs more than it saves. Sobriety installed the same principle on the personal scale.
+
+Each entry below is a *path* you could have taken (and competitors will take) but chose not to, with reasoning that names the long-horizon trade.
+
+<!-- KIT:FIELD name="long_horizon_refusals" required="true" min_words="80" -->
+[List 3–6 specific short-horizon revenue / engagement paths your product refuses. Each entry: the path itself (one sentence), what it would yield in the short term (revenue / DAU / retention), what it would erode over the long horizon (trust / sovereignty / dependency / chain-of-custody), and trace to STORY or REFUSAL_LIST. Examples of the form: "We refuse to add a notification stream — would lift D7 retention by an estimated 12% based on category benchmarks but converts a tool the user controls into one that controls the user (violates designed-to-be-needed-less)." / "We refuse to sell anonymized behavioral telemetry to third parties — clean ARPU lift but breaks data sovereignty (Principle #5)." / "We refuse to add variable-reward mechanics — would lift session length but degrades the wellness population we exist to serve." Trace each entry to a Principle (typically #2 memory-moat, #3 needed-less, #5 sovereignty, #6 truth-as-architecture, or the relevant STORY chapter). Trace also to `WORKING_BACKWARDS.md` if the PR/FAQ for the feature surfaced the trade. If the product has not yet faced a short-horizon temptation worth refusing, mark `not_yet` with the path to first identification (typically the first PR/FAQ exercise).]
+<!-- KIT:END -->
+
+---
+
 ## Floor principles
 
 The non-negotiable safety/ethics floor below which the product will not function. These differ from refusals in that they are *operating preconditions* — if the floor is breached, the product stops, hands off, or fails closed. They are not behaviors the product avoids; they are conditions the product requires to operate.
