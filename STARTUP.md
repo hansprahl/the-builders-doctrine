@@ -4,9 +4,9 @@
 
 ## Identity
 
-Portfolio-meta repo for **AI Tradecraft, by Hans Prahl**. Holds the methodology (Builders' Doctrine), the Kit (coverage scorer + interview templates that walk a builder through it), and the Chassis (six portable runtime components lifted from TOP/Operator/Custer). Sits *above* every per-product `CLAUDE.md`. Private through v1.0; public release gated on one external builder running the kit cold and producing a working instance.
+Portfolio-meta repo for **AI Tradecraft, by Hans Prahl**. Holds the methodology (Builders' Doctrine), the Kit (coverage scorer + interview templates that walk a builder through it), and the Chassis (seven portable runtime components lifted from TOP/Operator/Custer + ported from Principle #12). Sits *above* every per-product `CLAUDE.md`. Private through public release; release gated on one external builder running the kit cold and producing a working instance.
 
-**Stage:** v1.0 tagged 2026-04-30. Phase 1 (kit/coverage) and Phase 2 (chassis suite — six components, parity-tested vs. TOP) shipped 2026-05-01. Public-release brand **LOCKED 2026-05-05 as Assayer**. Doctrine prose has grown materially since the v1.0 tag: **two new operational doctrines folded into `THE_BUILDERS_DOCTRINE.md`** — Principle #12 *What else? Active extraction* (2026-05-06, `876f452`) and Principle #13 *The Long Horizon* (2026-05-12, `ad0d125`). Portfolio-wide agentic architecture **Mission Command Architecture (MCA)** added 2026-05-12 (`3a3bb0d`), empirically validated at Platoon scale via Funkytown Experiment 01 (N=3 × 7 ablation stages, ~$64 API spend). Amazon Leadership Principles cross-map + Working Backwards methodology adopted same commit. Tag is still v1.0 but the surface is wider; a v1.1 cut is overdue.
+**Stage:** **v1.2 tagged 2026-05-13** (ratifies the in-flight v1.2 changes that had been live since 2026-05-01). v1.0 + v1.1 tagged 2026-04-30 (initial draft + post-stress-test propagation cycle). v1.2 captures: Principle #1 rename ("code is the story"), Principle #12 *What else? Active extraction* (2026-05-06, `876f452`), Principle #13 *The Long Horizon* (2026-05-12, `ad0d125`), Mission Command Architecture (2026-05-12, `3a3bb0d`) with Authority Gradient + Scale-Up Role Taxonomy + Staff Channel sections added (2026-05-13, `82e26ff`), Amazon LP cross-map + Working Backwards methodology, Kit field surface brought current (88 fields across 8 templates), `pr_faq_interview.yaml`, and `chassis/reflection_gate.py` (seventh chassis component, Principle #12 primitive, 29 tests). Public-release brand **LOCKED 2026-05-05 as Assayer**. MCA is empirically validated at Platoon scale (Funkytown Experiment 01, N=3 × 7 ablation stages, ~$64); Company and Battalion scale-up taxonomy is doctrine, not validated architecture.
 
 ## Commander's intent (north star)
 
@@ -41,16 +41,16 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 - **`PRINCIPLE_13_DRAFT.md`** — drafting workspace for Principle #13 (already folded into the doctrine prose; retained as scratchpad).
 - **`PROMPT_DOCTRINE.md`** — universal prompt structural rules. The rubric every product's Guardian enforces.
 - **`THE_BUILDERS_METHOD.md`** — the methodology in builder-facing form.
-- **`kit/coverage.py`** — single-file scorer. Three CLI surfaces (`--score`, `--list`, `--interview`). **Scores against the v1.0 surface** — does not yet check for #12, #13, or MCA wiring. Drift gap.
+- **`kit/coverage.py`** — single-file scorer. Three CLI surfaces (`--score`, `--list`, `--interview`). As of v1.2: scores **88 fields across 8 templates** including the new MCA position fields (SPECIALIST_TEMPLATE), Principle #12 gate (AGENT_DOCTRINE), Principle #13 refusals (COMMANDMENTS), and the Working Backwards surface (PR_FAQ_TEMPLATE).
 - **`kit/templates/`** — seven templates (STORY, COMMANDMENTS, REFUSAL_LIST, CRISIS_TRIGGERS, SPECIALIST_TEMPLATE, AGENT_DOCTRINE, SECURITY) with `KIT:FIELD` markers.
-- **`kit/onboarding/`** — six interviews with `depends_on` graphs that enforce authoring order.
-- **`kit/chassis/`** — six portable runtime components: Crisis Floor, Approval Queue, Per-User Context (ContextVar with LookupError-on-unset), Named Specialists, AAR Loop, Prompt Guardian. 158 unit tests; 8 parity tests against TOP's actual production constants.
+- **`kit/onboarding/`** — seven interviews with `depends_on` graphs that enforce authoring order (added `pr_faq_interview.yaml` in v1.2).
+- **`kit/chassis/`** — **seven portable runtime components** (added `reflection_gate.py` in v1.2): Crisis Floor, Approval Queue, Per-User Context (ContextVar with LookupError-on-unset), Named Specialists, AAR Loop, Prompt Guardian, **Reflection Gate** (Principle #12 primitive, scope-aware: operator_tool / wellness / founder; 29 unit tests). 187 unit tests total; 8 parity tests against TOP's actual production constants.
 - **`baselines/v1.1/`** — frozen baseline for the next stress-test propagation.
 
 ## Active risks
 
 1. **Single-builder validation still pending.** Brad call 2026-05-12 named a market gap and offered conditional intros; no external builder has yet run the Kit cold. Brad is channel, not customer — the release gate has not moved.
-2. **Doctrine–Kit drift.** Doctrine prose carries 13 principles + MCA + Working Backwards. The Kit's `coverage.py` scorer + templates still score against the v1.0 surface (11 principles, six original chassis components, no MCA echelon checks). A builder running the Kit cold today gets coverage credit for the v1.0 surface and zero signal on whether they implemented #12, #13, or MCA. **This is the gate-blocking gap.**
+2. ~~**Doctrine–Kit drift.**~~ **CLOSED in v1.2 (2026-05-13).** Doctrine carries 13 principles + MCA + Working Backwards. The Kit's templates now score those layers explicitly: AGENT_DOCTRINE has `active_extraction_gate` + MCA unit-structure fields; COMMANDMENTS has `long_horizon_refusals`; SPECIALIST_TEMPLATE has `authority_tier`/`role`/`channel`/`escalation_threshold`/`disciplined_initiative_scope`; PR_FAQ_TEMPLATE has the full Working Backwards surface. A builder running the Kit cold post-v1.2 gets signal on every layer the doctrine carries.
 3. **MCA empirical claim is one experiment.** Funkytown 01 = Platoon scale only, N=3 across 7 stages. "Portfolio-wide architecture" before a second independent validation (Company scale at minimum) is real audit-grade exposure. Hans's stated falsification ladder (`founding_principle_full_portfolio_pipeline_2026-05-11.md`): Platoon → Company → Battalion. Company scale not yet run.
 4. **Soak debt on the chassis wiring** (carry-over). 3,500 lines shipped 2026-05-01. `chassis/wire-approval-queue` was local-only and unpushed at last check; re-verify Operator side before asserting state. Five of six chassis components were unwired anywhere as of 2026-05-01.
 5. **Brand-collision in adjacent space.** `assayer.dev` is live in production-readiness-review. Acceptable but real; no silent re-litigation without new info.
@@ -65,6 +65,10 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 
 ## Recent significant changes
 
+- **`1755af2` chassis/reflection_gate — seventh portable chassis component (Principle #12) (2026-05-13)**
+- **`6c9c3a6` Kit — close Doctrine drift; 88 fields across 8 templates, pr_faq interview lands (2026-05-13)**
+- **`82e26ff` MCA — Authority Gradient + Scale-Up Role Taxonomy + Staff Channel; ratify v1.2 (2026-05-13)**
+- **`f1ece26` STARTUP.md — refresh to current state (2026-05-13)**
 - `3a3bb0d` Mission Command Architecture doctrine + Scheduler primitive spec + example task (2026-05-12)
 - `ad0d125` Adopt Amazon LP cross-map + Working Backwards methodology; add Principle #13 Long Horizon (2026-05-12)
 - `876f452` Add Principle #12 *What else? Active extraction* (2026-05-06)
@@ -79,7 +83,7 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 ## Pointer index
 
 **Doctrine artifacts (this repo):**
-- `THE_BUILDERS_DOCTRINE.md` — the methodology prose, v1.0 + post-tag #12, #13
+- `THE_BUILDERS_DOCTRINE.md` — the methodology prose, v1.2 (13 principles)
 - `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (2026-05-12)
 - `SCHEDULER_SPEC_DRAFT.md` — primitive spec paired with MCA
 - `WORKING_BACKWARDS.md` — Amazon PR/FAQ-first scoping methodology (adopted 2026-05-12)
