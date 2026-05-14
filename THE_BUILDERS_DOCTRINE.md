@@ -153,7 +153,21 @@ If a product violates the refusal list, it does not ship. The negative space is 
 
 **In code.** A Reflection Gate "what else?" pass runs before `declare_done` across the portfolio: what assumption did the brief volunteer, what assumption did it bury, what noun did the agent fail to drill into, what next-degree relationship did the agent not follow. Prompt Guardian gains an `active_extraction` dimension scored 1–10 — did the specialist extract, or did it accept what the input volunteered. AAR at `declare_done` adds a structured *"what else might I have missed?"* question alongside the existing got-right / got-wrong / uncertain block. The "I don't know" terminator is calibrated: if the agent's next answer would be a guess at confidence above 0.5, return *"I don't know — collection gap: [what]"* instead of generating. Endless pursuit is disciplined pursuit, not greedy pursuit.
 
-**Empirical posture (Funkytown Experiment 02b, 2026-05-13, N=12).** The Reflection Gate's *confident-zero-gaps* signature (builder declares confidence ≥0.75 AND zero gaps AND reflector found gaps) did not fire on any of 12 stress-engineered runs at Opus 4.7 PL — six runs with the trap broadcast in the brief, six runs with every cue stripped. The builder caught the buried trap on its own every time, declared confidence in the 0.55–0.72 range, and named gaps in its own done_result. The gate fired `iterate` correctly in all 12 runs; the signature simply never lit. **Read this as a capability finding, not a gate failure.** At frontier capability the gate is *defense-in-depth* — the backstop when capability regresses, when cheaper models are used at PL, when context dilutes the builder, when something goes weird. The chassis primitive ships unchanged. The expectation moves: we should be *surprised* when the signature fires, and investigate when it does. The `confident_zero_gaps_rate` becomes a capability indicator, not a target metric.
+**Empirical posture (Funkytown Experiment 02b, 2026-05-13, N=31 final after Haiku scale-up).** Stress-engineered runs against the eligibility-audit brief at three PL tiers:
+
+- **Opus 4.7 PL (N=12, 6 v1 cued + 6 v2 cue-stripped):** 0 catches. Mean confidence 0.62. Builder surfaced gaps on its own every run.
+- **Sonnet 4.6 PL (N=3 v1 cued):** 0 catches. Mean confidence 0.77. Builder still enumerated weaknesses in its done_result reasoning.
+- **Haiku 4.5 PL (N=13 v1 cued after scale-up + N=3 v2 cue-stripped):** **1 catch in 16 runs.** Original 1/3 read suggested a tier effect; scaling to N=13 collapsed the v1 rate to 1/13 (7.7%, CI [0.2%, 36%]). Fisher's exact test of Haiku v1 (1/13) vs Opus v1 (0/6) returns **p ≈ 0.5** — the data does not statistically distinguish capability tiers on this signature.
+
+**Combined: 1 catch in 31 stress-engineered runs (3.2%, 95% CI [0.1%, 17%]). The gate's primary-detection purpose is not empirically supported on the failure mode it was built for.** An engineered trigger that should have lit up at least one tier produced near-total silence across all three.
+
+Two interpretations were attempted and both retracted:
+1. *"Defense in depth at frontier, primary detection at sub-frontier"* — retracted when N=13 scale-up showed the original 1/3 Haiku read was sampling noise.
+2. *"Structured-uncertainty-declaration enforcement"* — retracted as post-hoc salvage under the audit-measurement-before-law rule (Principle #12's own discipline applied to its own evidence).
+
+**Honest doctrinal posture as of 2026-05-13 late evening:** the Reflection Gate chassis primitive ships unchanged for composition value (callback hooks into ApprovalQueue, audit-log surface, future-capability-regression backstop), but **the doctrinal claim about what the gate primarily catches is deprecated pending redesign.** The redesign workstream targets the actual observed failure mode — semantically careful prose that still represents structurally incomplete work — possibly by inspecting artifact-tier evidence rather than declare_done structure. Until that workstream lands a fresh empirical claim, do not advertise the gate as a primary-detection mechanism for confident-zero-gaps work.
+
+This entire retraction was triggered by a Grok second-opinion read on 2026-05-13 evening that named the salvage attempt plainly. The retraction is itself an application of Principle #12: ask what else might be wrong about the claim, not just what was right about the answer.
 
 **Scope.** This principle has three scope conditions. Apply the right one or refuse the action.
 
