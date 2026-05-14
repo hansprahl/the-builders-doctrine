@@ -96,6 +96,7 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 - `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (2026-05-12); civilian readers should hit `ADP_6_0_TRANSLATION.md` first
 - `ADP_6_0_TRANSLATION.md` — civilian glossary for the Army vocabulary in MCA + doctrine (2026-05-13 late eve)
 - `MCA_PROPOSED_EXTENSIONS.md` — **PROPOSED / UNVALIDATED.** Doctrinal sketches for Medical channel, Signal channel, NCO Support Channel clarification (2026-05-13 late eve). Law V applies recursively; no extension migrates to MCA without a passing Funkytown experiment
+- `CHASSIS_PROPOSED_EXTENSIONS.md` — **PROPOSED / UNVALIDATED.** Chassis-primitive sketch for `adversarial_review.py` — LLM-as-reviewer replacement for the regex founder-romance detector at the 2026-05-25 deliverable slot. Pre-registered detection-rate experiment, cost cap, prompt-versioning discipline. Laws VII + X apply recursively; no migration to `kit/chassis/` without passing validation (recall ≥70%, precision ≥60%, cost discipline)
 - `SCHEDULER_SPEC_DRAFT.md` — primitive spec paired with MCA
 - `WORKING_BACKWARDS.md` — Amazon PR/FAQ-first scoping methodology (adopted 2026-05-12)
 - `AMAZON_LP_CROSSMAP.md` — Amazon Leadership Principles cross-map
