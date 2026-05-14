@@ -4,6 +4,8 @@
 
 **Source doctrine:** U.S. Army ADP 6-0, *Mission Command: Command and Control of Army Forces*. Mission Command is the Army's published doctrine for decentralized execution under clear commander's intent. Refined over centuries of bloody iteration. Stress-tested under conditions where coordination failure kills people.
 
+**Civilian readers:** Read [ADP_6_0_TRANSLATION.md](ADP_6_0_TRANSLATION.md) first. It glosses every Army term in this document (OPORD, SITREP, PL/SL/CC, S-2/S-4, COCOM-as-destination-not-pitch, etc.) without softening the load-bearing distinctions.
+
 **Claim:** Industry's "agent swarms" and "multi-agent orchestration" frameworks are reinventing this from scratch without the constraint discipline that the military earned. MCA ports the working doctrine into an LLM substrate and adds founder biography as the load-bearing constraint substrate.
 
 ---
