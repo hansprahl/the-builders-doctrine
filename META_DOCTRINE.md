@@ -46,13 +46,85 @@ These laws are operating implicitly across the existing doctrine. Formalize them
 **Operational consequences.**
 - Rung 3 (Company) is **not yet validated** as of 2026-05-13. The MVP run set from that night is engineering scaffold, not a rung advance.
 - The Squad → Platoon claims (rungs 1, 2) **were validated under conditions that meet or approximate Law V's standard** (Experiment 01 + 02 had real squad hierarchies, real artifact production, multiple runs). Those rungs remain claimed.
-- The budget estimate to climb the rest of the ladder must be revised, but the honest answer is: **unmeasured above Platoon.** What we have measured: Funkytown 01 (Platoon, N=3 × 7 stages, ~$64). Funkytown 02 + 02b (Platoon-scale Authority Gradient + Reflection Gate stress corpus, ~$80–100 combined). Funkytown 03 (Company, MVP smoke + full-hierarchy smoke, **no per-call usage was logged by the runner** — costs unknown but BUILD_SPEC budgeted $35–75 for the whole experiment). The previous "~$60K–120K total API to climb the ladder" and the post-Law-V "~$200K–500K" numbers were both back-of-envelope guesses on top of guesses. The honest framing for now: per-Platoon-rung is measured at ~$60–100; each higher rung is expected to scale geometrically (rough multiplier 3–5× per rung) but is unmeasured. The total ladder cost cannot be stated to an order of magnitude until the next two rungs (Company, Battalion) have measured runs. **Action item:** the funkytown runner must log per-call usage on every CC/PL/SL/soldier invocation before the next rung-N attempt, so Law V validation produces a measured cost number as a byproduct rather than a guess.
+- The budget estimate to climb the rest of the ladder is **unmeasured above Platoon.** Measured so far: Funkytown 01 (Platoon, N=3 × 7 stages, ~$64). Funkytown 02 + 02b (Platoon-scale Authority Gradient + Reflection Gate stress corpus, ~$80–100 combined). Funkytown 03 N=9 Haiku Company engineering scaffold (2026-05-13 late evening with usage tracker wired in): **mean $1.07/run, total $9.66 for N=9, mean wall 32 min, range $0.86–$1.73.** Engineering scaffold only — the brief carried a hand-placed observer-visible trap, which Law V explicitly rejects as evidence for a rung-3 validation claim. Earlier "$60K–120K", "$200K–500K", and "$10K–50K" total-ladder figures were all guess-on-guess and are all withdrawn. **The honest framing is the only defensible one until measurement: per-Platoon-rung measured at ~$60–100; per-Company-rung-engineering-scaffold measured at ~$10 (N=9 Haiku); rungs 4–9 unmeasured. The total ladder cost cannot be stated until the harness exists and Battalion has run under Law V.** The usage tracker is now in place; the next rung-N attempt produces a measured cost number as a byproduct of validation rather than a separate task.
 - Any future claim of the form *"MCA scales to rung N"* must cite the N≥9 full-hierarchy + live-conflict run set that supports it, OR explicitly note the claim is engineering scaffold not doctrinal advance.
 
 **Cross-references.**
 - The retraction that produced Law V: Funkytown Experiment 03 FINDINGS.md, 2026-05-13 late evening.
 - The audit rule Law V applies recursively to the framework: `~/.claude/projects/-Users-hansprahl-Projects/memory/feedback_audit_measurement_before_law.md`.
 - The adversarial review trigger: 2026-05-13 evening Grok second-opinion paste (manual workflow; not persisted as memory per `feedback_grok_second_opinion_workflow.md`).
+
+---
+
+---
+
+## Law VI — Biographical Falsification Gate
+
+**Stated:** Any Law I claim (biography as moat — biographical substrate as causally load-bearing in agent decision-making) requires **N≥9 runs across ≥3 briefs with blinded generic-biography controls and independent external statistician audit** of pre-registered analysis plan before propagation to any external claim, chassis port, or product integration that depends on the causal moat thesis. **Funkytown Experiment 01 Stage 7 data is deprecated as a Law I causal claim until this bar is met.** The Reflection Gate and Authority Gradient chassis primitives port forward as engineering only; the biographical-moat causal interpretation is withdrawn pending replication.
+
+**Trigger.** 2026-05-13 late evening. Grok adversarial review named the Stage 7 finding (N=3 per arm on one engineered brief, no blinded controls, no reverse arm — Hans's biography stripped and generic inserted across multiple briefs) as a single falsifiable observation any external auditor collapses in a weekend. The most consequential claim in the doctrine rested on a study Hans would not accept from anyone else. The morning's Reflection Gate retraction is the same pattern one layer up: founder optimism wearing science's uniform, propped up by N too small to support the load.
+
+**Scope.** Applies to any Law I claim. Does not apply to Reflection Gate or Authority Gradient chassis primitives as engineering — they ship forward as portable code. It does apply to any claim of the form *"biographical substrate is causally load-bearing"* in pitches, PR/FAQs, external prose, or chassis-port justification.
+
+**Operational consequences.**
+- Stage 7 N=3 data deprecated as Law I evidence as of 2026-05-13 late evening.
+- Law VI replication experiment scheduled. Briefs to span fragile-venture (Stage 7's original shape), regulatory-compliance (different domain), and wellness-shaped inverted-scope (tests substrate causality when Principle 3 inverts).
+- Power calculation against detected Stage 7 effect size with Holm-Bonferroni or equivalent multi-comparison correction, plus pre-registered analysis plan committed to git, plus independent external statistician sign-off — all required before kickoff.
+- No external claim of the biographical-moat causal thesis may ship before Law VI replication completes.
+
+---
+
+## Law VII — Provisional Doctrine Rule
+
+**Stated:** No principle, extension, or sequence step survives first adversarial packet without a **scheduled falsification experiment or measured counter-data**. Holds require execution dates, not stance. Defending a claim in prose after adversarial challenge — without committing to a measurement that could falsify it — is itself an observer-bias pattern that Law II is built to prevent.
+
+**Trigger.** 2026-05-13 late evening. Grok's round-three review caught founder-romance prose in the round-two response: defending three holds (Principle 3, military framing, three proposed MCA extensions) with biographical voice rather than data. The biographical substrate makes this error chronic — biographical voice can launder weak arguments that lived experience.
+
+**Operational consequences.**
+- Every hold in the framework requires an execution date pointing at a falsification experiment, or it gets retracted.
+- Three retroactive applications on 2026-05-13: Principle 3 (TOP retention falsification verdict by 2026-06-15), Law VI Stage 7 replication (kickoff 2026-05-20, completion 2026-06-30), refusal-propagation off-ramp primitive (spec deadline 2026-05-25).
+- Any hold without a date by 2026-05-20 either gets a date or gets retracted.
+
+---
+
+## Law VIII — Meta-Schedule Gate
+
+**Stated:** Any multi-workstream timeline carrying doctrinal claims requires **published hours budget, weekly tripwires, and pre-registered contingency (truncate / re-scope) before first milestone.** No schedule survives contact with founder bandwidth unmodeled.
+
+**Trigger.** 2026-05-13 late evening. Grok's round-four review named the meta-schedule itself as untested under the same echelon-decay and attention-reallocation effects the framework studies in the agents. A six-deliverable schedule across 35 days without an overlay against EMBA cohort 84 + Custer campaign through 2026-11-03 + diabetes + sobriety maintenance is the same pattern as the brewery and the restaurant: finite founder bandwidth, unmodeled, used to absorb overrun. The Guard sergeant who survived two ambushes still had finite bandwidth.
+
+**Operational consequences.**
+- Human-time budget published 2026-05-15 with weekly tripwires per workstream.
+- Pre-registered truncation criteria — specific overlay-overrun thresholds that automatically trigger climb-pauses-at-Platoon-and-ship — committed before any downstream deliverable starts.
+- Two-tripwire-miss rule: if any single workstream overruns projected hours by 25% OR misses two consecutive weekly tripwires, the climb pauses and re-scopes.
+- Truncate-at-Platoon contingency produces a **shippable Platoon-validated v1.0 release package** — doctrine + MCA + 8 chassis components + Funkytown 01 + Funkytown 02 + ADP 6-0 translation + Law I deprecation notice + acknowledgement that rungs 3–9 are hypothesis. Public release at Platoon-validated scope is itself a real release, not a failure.
+
+---
+
+## Law IX — Delegation Threshold
+
+**Stated:** Any workstream exceeding **40 founder hours** or carrying **>3 parallel deliverables** requires **explicit delegation to a named external agent or chassis component before dates lock**. Meta-layer is not exempt. The founder is the single point of failure on every deliverable until delegation is operationalized; refusing to model that fact is itself an over-claim.
+
+**Trigger.** 2026-05-13 late evening. Grok's round-five review named the structural flaw that no amount of dated deliverables fixes: Hans is the single point of failure on every workstream. Five deliverables in 35 days against EMBA finals + campaign + health management = <30% on-time delivery probability under realistic variance.
+
+**Operational consequences.**
+- Bandwidth overlay against the current schedule (six deliverables 2026-05-15 → 2026-06-30) runs before 2026-05-15. If overlay shows >40 founder hours on any single workstream or >3 parallel deliverables in any active week without delegation, the schedule gets re-cut at the gate, not at the first missed milestone.
+- Delegation candidates: named external reviewers (statistician, veteran-founder peer, Brad on commercial framing); chassis components (founder-romance detector running pre-commit); paid external consult.
+
+---
+
+## Law X — Execution Threshold (the cap)
+
+**Stated:** **No new law or deliverable may be added from an adversarial packet until the prior packet's top three actions have shipped with measurement surface. Meta-workstreams capped at 20% of total founder hours. Execution threshold applies retroactively: if any scheduled deliverable remains prose-only after its date, it is truncated from the framework and replaced by measured output from the nearest completed run. All scheduled deliverables are published with raw data link or git commit hash; prose-only artifacts auto-truncate at date.**
+
+**The cap.** META_DOCTRINE holds at six formal laws (V–X). No Law XI added without (a) a real over-claim caught that none of V–X catch, and (b) two prior laws sunset under the pruning rule first. **Doctrine inflation is itself an over-claim shape**, and Law X plus the cap names it.
+
+**Trigger.** 2026-05-13 late evening. Grok's round-five and round-six reviews caught the meta-bloat pattern: five adversarial rounds had produced four formal laws governing how laws are made, twelve dated deliverables, and zero new chassis ports or replication runs executed. Doctrine about how to make doctrine about how to review doctrine is paralysis disguised as rigor. The man who survived two ambushes in eleven days did not write ROE about writing ROE — he stood post.
+
+**Operational consequences.**
+- Six formal META_DOCTRINE entries (V–X) is the current ceiling.
+- Sunset clause: any META_DOCTRINE law that has not fired (caught a real over-claim or measurement gap) in two adversarial review cycles becomes a pruning candidate. Automated GitHub issue opens in the repo for any law passing two cycles without a firing event. Pruning is mechanical, not founder discretion.
+- The dialogue layer is itself under Law VII now — provisional until execution produces evidence. Next adversarial round happens only when measured data has shipped from a prior commitment, not on schedule prose.
 
 ---
 
