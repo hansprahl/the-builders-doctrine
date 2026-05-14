@@ -8,6 +8,8 @@ Portfolio-meta repo for **AI Tradecraft, by Hans Prahl**. Holds the methodology 
 
 **Stage:** **v1.2 tagged 2026-05-13** (ratifies the in-flight v1.2 changes that had been live since 2026-05-01). v1.0 + v1.1 tagged 2026-04-30 (initial draft + post-stress-test propagation cycle). v1.2 captures: Principle #1 rename ("code is the story"), Principle #12 *What else? Active extraction* (2026-05-06, `876f452`), Principle #13 *The Long Horizon* (2026-05-12, `ad0d125`), Mission Command Architecture (2026-05-12, `3a3bb0d`) with Authority Gradient + Scale-Up Role Taxonomy + Staff Channel sections added (2026-05-13, `82e26ff`), Amazon LP cross-map + Working Backwards methodology, Kit field surface brought current (88 fields across 8 templates), `pr_faq_interview.yaml`, `chassis/reflection_gate.py` (seventh chassis component, Principle #12 primitive, 29 tests), and `chassis/authority_gradient.py` (eighth chassis component, MCA Authority Gradient primitive, 43 tests, 2026-05-13 `992e1b1`). Public-release brand **LOCKED 2026-05-05 as Assayer**. MCA is empirically validated at Platoon scale across two experiments: Funkytown 01 (N=3 × 7 ablation stages, ~$64) and Funkytown 02 Authority Gradient (N=3, 2026-05-13, mean 61.1% in-unit resolution, 0 tier violations, 0 hard-floor breaches — ✅ validate). Company and Battalion scale-up taxonomy is doctrine, not validated architecture.
 
+**Late evening 2026-05-13 — Grok adversarial review + retractions + Law V + ADP 6-0 translation:** Two over-claims caught and retracted: (a) Experiment 02b's "structured-uncertainty enforcement" reframe of the Reflection Gate (1/31 catches on engineered trigger is failure, not reframe-able win — gate's primary-detection claim deprecated pending redesign); (b) Funkytown 03 MVP smoke test mis-claimed as "first-contact validation of MCA at Company echelon" — N=3 simplified single-Sonnet platoons on a synthetic brief with a hand-placed trap is engineering scaffold, not doctrinal advance. Both retractions committed (`ed1eff7`). Result: **`META_DOCTRINE.md` opened with Law V — Echelon Decay Gate** (any rung-N MCA validation claim requires N≥9 full-hierarchy runs with live cross-echelon conflict injected). Ladder-budget honest number revised $60K-120K → $200K-500K. **`ADP_6_0_TRANSLATION.md` shipped** (`37fde63`) closing the civilian-audience risk on Army vocabulary — every Army term inline-glossed for external prose; COCOM-as-destination-not-pitch made explicit. Validated rungs today: **Squad + Platoon (1, 2 of 9).** Rung 3 (Company) **not yet validated.**
+
 ## Commander's intent (north star)
 
 > Lived experience compiled into AI-product behavior. Ethics encoded as commandments, refusals named explicitly, agents calibrated against truthful outcomes. Methodology ships free; operationalization (kit, hosted onboarding, audits) generates revenue downstream. The hard gate is one external builder running the kit cold and producing a working product instance. Until that happens, none of this goes public.
@@ -51,7 +53,7 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 
 1. **Single-builder validation still pending.** Brad call 2026-05-12 named a market gap and offered conditional intros; no external builder has yet run the Kit cold. Brad is channel, not customer — the release gate has not moved.
 2. ~~**Doctrine–Kit drift.**~~ **CLOSED in v1.2 (2026-05-13).** Doctrine carries 13 principles + MCA + Working Backwards. The Kit's templates now score those layers explicitly: AGENT_DOCTRINE has `active_extraction_gate` + MCA unit-structure fields; COMMANDMENTS has `long_horizon_refusals`; SPECIALIST_TEMPLATE has `authority_tier`/`role`/`channel`/`escalation_threshold`/`disciplined_initiative_scope`; PR_FAQ_TEMPLATE has the full Working Backwards surface. A builder running the Kit cold post-v1.2 gets signal on every layer the doctrine carries.
-3. **MCA empirical claim is one experiment.** Funkytown 01 = Platoon scale only, N=3 across 7 stages. "Portfolio-wide architecture" before a second independent validation (Company scale at minimum) is real audit-grade exposure. Hans's stated falsification ladder (`founding_principle_full_portfolio_pipeline_2026-05-11.md`): Platoon → Company → Battalion. Company scale not yet run.
+3. **MCA empirical claims governed by Law V (Echelon Decay Gate).** Squad + Platoon are validated (Funkytown 01 N=3 × 7 stages; Funkytown 02 N=3 Authority Gradient). Company is **not yet validated** — the 2026-05-13 evening MVP smoke test (`runs/20260513T*` in funkytown 03) is engineering scaffold per the post-Grok retraction, and Law V now requires N≥9 full-hierarchy runs with live cross-echelon conflict injected before any rung-N validation claim can ship. See `META_DOCTRINE.md` for the law text. Hierarchical-attention-decay is the named failure mode Law V forces measurement on. Falsification ladder unchanged (`founding_principle_full_portfolio_pipeline_2026-05-11.md`): Platoon → Company → Battalion → ... → COCOM; sample-size discipline tightened.
 4. **Soak debt on the chassis wiring** (carry-over). 3,500 lines shipped 2026-05-01. `chassis/wire-approval-queue` was local-only and unpushed at last check; re-verify Operator side before asserting state. **Seven of eight chassis components remain unwired in any product** as of 2026-05-13 — the eighth (`authority_gradient`) is referenced in all 4 product CLAUDE.mds (Custer `356669a`, TOP `55e7a88`, Operator `376510c`, RPR `9943bcc`) but not yet imported by any product code. Operator is the queued first adopter for `authority_gradient` per the same `chassis/wire-approval-queue` precedent.
 5. **Brand-collision in adjacent space.** `assayer.dev` is live in production-readiness-review. Acceptable but real; no silent re-litigation without new info.
 6. **No CI on this repo.** All gates (gitleaks, prompt-injection scan, parity tests) live in product repos. Doctrine repo is doctrine + kit; treat changes here as carefully as any product repo because every product inherits at next Guardian audit.
@@ -65,6 +67,11 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 
 ## Recent significant changes
 
+- **`37fde63` ADP 6-0 civilian translation — close audience-risk gap on Army vocabulary; COCOM-as-destination explicit (2026-05-13 late eve)**
+- **`ed1eff7` Retractions + Law V — Echelon Decay Gate seeded post-Grok review; 02b reframe + 03 MVP over-claim retracted (2026-05-13 late eve)**
+- **`637f85a` Principle #12 — empirical posture paragraph from Experiment 02b (later retracted into Law V; see `ed1eff7`) (2026-05-13)**
+- **`c899218` STORY coda — 2026-05-13 — "4 Star General with a COCOM of agents"; destination framing (2026-05-13)**
+- **`9d27fee` STORY.md — 2026-05-13 chapter: The day the doctrine ran on itself (2026-05-13)**
 - **`992e1b1` chassis/authority_gradient — eighth portable chassis component (MCA primitive); funkytown Experiment 02 closed ✅ (2026-05-13)**
 - **`1755af2` chassis/reflection_gate — seventh portable chassis component (Principle #12) (2026-05-13)**
 - **`6c9c3a6` Kit — close Doctrine drift; 88 fields across 8 templates, pr_faq interview lands (2026-05-13)**
@@ -85,7 +92,9 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 
 **Doctrine artifacts (this repo):**
 - `THE_BUILDERS_DOCTRINE.md` — the methodology prose, v1.2 (13 principles)
-- `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (2026-05-12)
+- `META_DOCTRINE.md` — methodological laws governing the doctrine itself (Laws I-IV implicit; **Law V — Echelon Decay Gate** seeded 2026-05-13 late eve post-Grok review)
+- `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (2026-05-12); civilian readers should hit `ADP_6_0_TRANSLATION.md` first
+- `ADP_6_0_TRANSLATION.md` — civilian glossary for the Army vocabulary in MCA + doctrine (2026-05-13 late eve)
 - `SCHEDULER_SPEC_DRAFT.md` — primitive spec paired with MCA
 - `WORKING_BACKWARDS.md` — Amazon PR/FAQ-first scoping methodology (adopted 2026-05-12)
 - `AMAZON_LP_CROSSMAP.md` — Amazon Leadership Principles cross-map
