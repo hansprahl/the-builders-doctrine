@@ -20,14 +20,14 @@ The roman-numeral numbering (V) preserves Grok's framing and signals that Laws I
 
 ---
 
-## Laws I–IV — placeholders for future formalization
+## Laws I–IV — implicit operating laws
 
-These laws are operating implicitly across the existing doctrine. Formalize them into this file when a future review surfaces the need.
+Four laws operate implicitly across the doctrine. They are not formalized as separate META_DOCTRINE entries because Law X explicitly caps doctrine inflation; naming them as implicit is the work.
 
-- **Law I (implicit):** Biography as moat — the founder's lived sequence is the unfair advantage; the doctrine compiles it into agent behavior. Referenced in the Amazon LP cross-map and throughout `THE_BUILDERS_DOCTRINE.md`. Restated phrasing in some artifacts: *"hold the line under pull."*
-- **Law II (implicit):** Audit measurement before drafting any law — codified as `feedback_audit_measurement_before_law.md` in memory and referenced in Funkytown Experiment 02. Any metric used to justify a doctrinal claim must be audited against trace data before the claim ships.
-- **Law III (implicit):** Chassis-from-experiment loop — doctrine prose → experiment design → empirical test → chassis primitive → product integration → doctrine update. Each step constrains the next; falsified hypotheses update doctrine before the chassis ships. Named for the first time in `STORY.md` chapter for 2026-05-13.
-- **Law IV (implicit):** Truth as architecture — Principle #3 of the doctrine elevated to a methodological law. Every doctrinal claim is calibrated against what is actually known. No softened intel, no false certainty laundered as confidence. The lie detector is built in.
+- **Law I — Biography as substrate.** The founder's lived sequence is the engineering input the doctrine compiles into agent behavior. The *causal* moat interpretation (biographical substrate as load-bearing in agent decision-making) was deprecated 2026-05-13 and is conditional on Law VI replication (verdict 2026-07-20). What remains operational without replication: biography as deliberate prompt-authoring source.
+- **Law II — Audit measurement before drafting any law.** Codified as `feedback_audit_measurement_before_law.md` in memory; any metric used to justify a doctrinal claim must be audited against trace data before the claim ships. Has fired against the Reflection Gate reframe (2026-05-13 morning), Funkytown 03 over-claim (2026-05-13 evening), and the Sarah Chen invented-user scenario (2026-05-15).
+- **Law III — Chassis-from-experiment loop.** Doctrine prose → experiment design → empirical test → chassis primitive → product integration → doctrine update. Each step constrains the next; falsified hypotheses update doctrine before the chassis ships.
+- **Law IV — Truth as architecture.** Principle #3 of the Doctrine elevated to a methodological law. Every doctrinal claim is calibrated against what is actually known. No softened intel, no false certainty laundered as confidence.
 
 ---
 

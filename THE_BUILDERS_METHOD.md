@@ -48,31 +48,18 @@ Every ✓/⚠/✗ mark in the author's portfolio audit (TOP, Operator, Custer) w
 
 ### 3. The "agnostic" claim is overstated
 
-Several choices in this framework — weekly Guardian audit cadence, drift as the central failure mode, the specific shape of the CONFIDENCE/REASONING block — reflect the author's particular operational sensibility (military intelligence, recovery practice, Stoic discipline). A builder from a different domain may reasonably want different cadences and different primary failure modes. A palliative-care builder's primary failure mode might be silence (the agent goes quiet when it should escalate), not drift. A legal-AI builder's primary failure mode might be overconfident hallucination dressed in citation form. The principles port. The specific failure-mode catalogue does not.
+Several choices in this framework — weekly Guardian audit cadence, drift as the central failure mode, the specific shape of the CONFIDENCE/REASONING block — reflect the author's particular operational sensibility (military intelligence, recovery practice, Stoic discipline). A builder from a different domain may reasonably want different cadences and different primary failure modes. A palliative-care builder's primary failure mode might be silence (the agent goes quiet when it should escalate), not drift. A legal-AI builder's primary failure mode might be overconfident hallucination dressed in citation form. The principles port. The specific failure-mode catalogue does not. **Falsification surface:** Law VI external-builder replication (verdict 2026-07-20). The Kit (8 templates × 88 fields) is internal scaffolding for portability; only a real external builder running it produces evidence.
 
-### 4. The single external case is synthetic, not real
+### Earlier limits, struck 2026-05-15
 
-Section X (Worked example) contains two cases: TOP (real, the author's wellness AI) and Anchor (a hypothetical caregiver tool). Anchor was constructed by the author of this framework as a synthetic test of portability. It is not n=2 evidence; it is n=1 with an illustrative second instance. Treat the Anchor case as illustrative reasoning about how the principles might apply in a deliberately-different biographical context, not as a second data point.
+The 2026-05-15 framework-holds audit struck six prior limits as either addressed by other work or reclassified as editorial/engineering rather than doctrinal holds. Brief disposition for the record:
 
-### 5. This may be a doctrine more than a method
-
-CD's reframe: the most portable thing in this document is not the eleven principles or the artifact list; it is the *stance* (biography as engineering input, ethical floors written down, irreversible-action gates, designed to be needed less). The specific machinery for enforcing the stance is one builder's implementation. The strongest version of this document may be "here is how I do it, and here is what generalizes" rather than "here is the universal method." The author is sitting with this critique. Future revisions may restructure accordingly.
-
-### 6. Eleven principles may be too many
-
-Several principles in Section III collapse into adjacent ones if read closely (Named specialists + Commandments + Guardian are all about accountability through explicit artifacts). A future revision may consolidate to five or six core principles with the others as named sub-doctrines. The current count is preserved for v0.9 to reduce churn while the deeper limits above are addressed.
-
-### 7. The Anatomy framework extension is in flight
-
-A separate framework (the Anatomy Doctrine) extends measurement from drift scores to a body-system metaphor (Soul, Brain, Heart, Voice, Gut, Hands, Muscle, Connective Tissue, Skin, Blood + Heartbeat). Method v0.9 includes the measurement surface but does not require Anatomy. Builders may adopt Anatomy as an extension when they want richer per-product health signals. The Anatomy v2 implementation plan is a separate document.
-
-### 8. Multi-tenant readiness is per-product
-
-Some products applying this method are single-tenant (one builder, one user). Some are multi-tenant (commercial products serving many users with isolation between them). The method does not yet specify the multi-tenant patterns. Treat multi-tenant readiness as a per-product architectural decision until method v2.x.
-
-### 9. The commandments scoring rubric is not language-model-agnostic
-
-Method v0.9's Guardian implementations are tied to specific model vendors. Migrating between model families requires re-baselining. The rubric is portable in principle, but the implementations are not yet plug-and-play.
+- **Anchor synthetic case** — folded into Limit #2 + Limit #3; the Law VI external replication is the falsification surface.
+- **Doctrine-vs-method reframe** — decided: both ship. The Doctrine names *what* is true; the Method names *how* to enforce it. The Builders' Kit is the third leg (templates + interviews).
+- **Eleven-principles consolidation** — superseded; principles now count thirteen after #12 (active extraction) and #13 (the long horizon) added. Consolidation is editorial preference, not a hold.
+- **Anatomy v2 framework** — opt-in extension; lives in `ANATOMY_V2_PLAN.md` as separate document. Not a Method hold.
+- **Multi-tenant readiness** — per-product architectural decision; trigger is second-tenant onboarding, not a calendar date.
+- **Model-vendor coupling in Guardian** — engineering reality, not a doctrinal hold. Implementations are vendor-coupled; the rubric ports.
 
 ### What this provisional status does not invalidate
 

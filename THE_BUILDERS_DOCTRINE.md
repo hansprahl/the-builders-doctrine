@@ -165,7 +165,7 @@ Two interpretations were attempted and both retracted:
 1. *"Defense in depth at frontier, primary detection at sub-frontier"* — retracted when N=13 scale-up showed the original 1/3 Haiku read was sampling noise.
 2. *"Structured-uncertainty-declaration enforcement"* — retracted as post-hoc salvage under the audit-measurement-before-law rule (Principle #12's own discipline applied to its own evidence).
 
-**Honest doctrinal posture as of 2026-05-13 late evening:** the Reflection Gate chassis primitive ships unchanged for composition value (callback hooks into ApprovalQueue, audit-log surface, future-capability-regression backstop), but **the doctrinal claim about what the gate primarily catches is deprecated pending redesign.** The redesign workstream targets the actual observed failure mode — semantically careful prose that still represents structurally incomplete work — possibly by inspecting artifact-tier evidence rather than declare_done structure. Until that workstream lands a fresh empirical claim, do not advertise the gate as a primary-detection mechanism for confident-zero-gaps work.
+**Honest doctrinal posture as of 2026-05-13 late evening:** the Reflection Gate chassis primitive ships unchanged for composition value (callback hooks into ApprovalQueue, audit-log surface, future-capability-regression backstop), but **the doctrinal claim about what the gate primarily catches is deprecated.** The deprecation stands until and unless a fresh empirical claim ships with N≥9 evidence on a measured failure mode. No redesign workstream is scheduled; if one emerges later, it is a new claim subject to Law VII at that time. Do not advertise the gate as a primary-detection mechanism for confident-zero-gaps work.
 
 This entire retraction was triggered by a Grok second-opinion read on 2026-05-13 evening that named the salvage attempt plainly. The retraction is itself an application of Principle #12: ask what else might be wrong about the claim, not just what was right about the answer.
 
@@ -372,9 +372,7 @@ Metrics not claimed without data. The framework's credibility dies the moment a 
 
 **v1.0 ships:** Prime Directive, I (Why), II (Principles with lineage), III (Person), IV (Architecture of Trust), V (Doctrine Stack), VII (Measurement Surface).
 
-**Deferred to v1.1:** VI (Method — start, ship, maintain a new product), VIII (Borg Principle — cross-product compounding), IX (Audience-specific framing for SBIR / VC / EMBA), X (Living document policy — versioning, propagation, authority delegation).
-
-**Why deferred:** v1 ratifies the meta-layer so doctrine propagation can begin immediately. VI–X benefit from being written after at least one stress-test propagation cycle to all four products. Shipping perfect before usable is planning theater.
+**Sections not in this doctrine (2026-05-15 holds audit):** Method lives as its own document (`THE_BUILDERS_METHOD.md`) — section in the Doctrine would be redundant. Living-document policy is `META_DOCTRINE.md` (Laws V–X). Audience-specific framing belongs in pitch artifacts, not canonical doctrine. Cross-product Borg behavior is encoded in the chassis-port surface and validated empirically; doctrinal prose adds no signal. The four previously-deferred sections (VI Method, VIII Borg, IX Audience, X Living-document) were struck rather than dated — the work is either elsewhere or unneeded.
 
 **Authority:** Hans Prahl. Material edits go through me. Editorial edits (clarification, examples, typo correction) do not. The Doctrine is checked into a private repo (`hansprahl/the-builders-doctrine`) at v1.0; each product gets a local copy with a propagation script that flags drift on pre-commit. Public release at v1.1 after the first cross-product stress test.
 

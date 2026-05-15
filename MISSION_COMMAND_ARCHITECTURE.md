@@ -145,9 +145,9 @@ The Company and Battalion role taxonomy above is **doctrine, not validated archi
 
 The falsification ladder:
 
-1. ✅ **Platoon** — works (Stage 8 Run 1).
-2. ⏳ **Company** — does intent-decomposition survive one more hop? Does the officer/NCO/staff split that emerges materially change outcomes?
-3. ⏳ **Battalion** — does the four-layer intent stack hold? Where does it fail?
+1. ✅ **Platoon** — validated (Funkytown 01 Stage 8 Run 1; Funkytown 02 Authority Gradient N=3).
+2. ⏳ **Company** — unvalidated. Advance gated by Law V harness (N≥9 full-hierarchy + live cross-echelon conflict). Out of v1.0 scope; reopens at v1.5 or later when harness budget permits.
+3. ⏳ **Battalion** — unvalidated. Advance gated by Law V harness after Company clears. Out of v1.0 scope.
 
 Each rung must be experimentally validated before doctrine for the next rung becomes load-bearing.
 
