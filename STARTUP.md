@@ -1,6 +1,6 @@
 # STARTUP — The Builders' Doctrine (AI Tradecraft meta-repo)
 
-> Last updated: 2026-05-13. When this file disagrees with the code, the code wins.
+> Last updated: 2026-05-15. When this file disagrees with the code, the code wins.
 
 ## Identity
 
@@ -8,7 +8,9 @@ Portfolio-meta repo for **AI Tradecraft, by Hans Prahl**. Holds the methodology 
 
 **Stage:** **v1.2 tagged 2026-05-13** (ratifies the in-flight v1.2 changes that had been live since 2026-05-01). v1.0 + v1.1 tagged 2026-04-30 (initial draft + post-stress-test propagation cycle). v1.2 captures: Principle #1 rename ("code is the story"), Principle #12 *What else? Active extraction* (2026-05-06, `876f452`), Principle #13 *The Long Horizon* (2026-05-12, `ad0d125`), Mission Command Architecture (2026-05-12, `3a3bb0d`) with Authority Gradient + Scale-Up Role Taxonomy + Staff Channel sections added (2026-05-13, `82e26ff`), Amazon LP cross-map + Working Backwards methodology, Kit field surface brought current (88 fields across 8 templates), `pr_faq_interview.yaml`, `chassis/reflection_gate.py` (seventh chassis component, Principle #12 primitive, 29 tests), and `chassis/authority_gradient.py` (eighth chassis component, MCA Authority Gradient primitive, 43 tests, 2026-05-13 `992e1b1`). Public-release brand **LOCKED 2026-05-05 as Assayer**. MCA is empirically validated at Platoon scale across two experiments: Funkytown 01 (N=3 × 7 ablation stages, ~$64) and Funkytown 02 Authority Gradient (N=3, 2026-05-13, mean 61.1% in-unit resolution, 0 tier violations, 0 hard-floor breaches — ✅ validate). Company and Battalion scale-up taxonomy is doctrine, not validated architecture.
 
-**Late evening + late-late evening 2026-05-13 — Grok adversarial review (7 rounds) + retractions + Laws V–X + ADP 6-0 translation + N=9 Company engineering scaffold:** Two over-claims caught and retracted: (a) Experiment 02b's "structured-uncertainty enforcement" reframe of the Reflection Gate (1/31 catches on engineered trigger is failure, not reframe-able win — gate's primary-detection claim deprecated pending redesign); (b) Funkytown 03 MVP smoke test mis-claimed as "first-contact validation of MCA at Company echelon" — N=3 simplified single-Sonnet platoons on a synthetic brief with a hand-placed trap is engineering scaffold, not doctrinal advance. Both retractions committed (`ed1eff7`). **`META_DOCTRINE.md` now holds six formal laws (V–X), cap stands.** Law V (Echelon Decay Gate), Law VI (Biographical Falsification Gate — Stage 7 Law I claim deprecated pending N≥9 across ≥3 briefs with blinded controls + external statistician audit), Law VII (Provisional Doctrine Rule — holds require dates not stance), Law VIII (Meta-Schedule Gate — bandwidth overlay before milestones), Law IX (Delegation Threshold — single-point-of-failure protection), Law X (Execution Threshold + cap — no new laws or deliverables added from adversarial review until prior actions ship with measurement surface; prose-only artifacts auto-truncate at date). **`ADP_6_0_TRANSLATION.md` shipped** (`37fde63`) closing the civilian-audience risk on Army vocabulary. **N=9 Haiku Company engineering scaffold:** mean $1.07/run, total $9.66 for N=9, mean wall 32 min — engineering scaffold only (hand-placed trap, Law V rejects). 4 hard-floor breaches discovered (PL-direct `send_email_mock` dispatch — measurement layer worked, enforcement layer either misclassified or in observe-only mode). Alpha-bug non-reproduction on Haiku confirmed (0/9). CC reflection gate fired on 5 of 8 declare_dones (62.5%) on natural prose. **Cost estimates $60K-120K, $200K-500K, and $10K-50K all withdrawn — ladder cost unmeasured above Platoon, per Law VI text.** Validated rungs: **Squad + Platoon (1, 2 of 9).** Rung 3 (Company) **not yet validated** — the harness for live cross-echelon conflict injection remains the prerequisite. Twelve dated deliverables scheduled 2026-05-15 → 2026-06-30 with truncate-at-Platoon contingency producing a shippable v1.0 if bandwidth math doesn't close. **Next session opens with bandwidth overlay (2026-05-15) producing numbers, not prose.**
+**Late evening + late-late evening 2026-05-13 — Grok adversarial review (7 rounds) + retractions + Laws V–X + ADP 6-0 translation + N=9 Company engineering scaffold:** Two over-claims caught and retracted: (a) Experiment 02b's "structured-uncertainty enforcement" reframe of the Reflection Gate (1/31 catches on engineered trigger is failure, not reframe-able win — gate's primary-detection claim deprecated pending redesign); (b) Funkytown 03 MVP smoke test mis-claimed as "first-contact validation of MCA at Company echelon" — N=3 simplified single-Sonnet platoons on a synthetic brief with a hand-placed trap is engineering scaffold, not doctrinal advance. Both retractions committed (`ed1eff7`). **`META_DOCTRINE.md` now holds six formal laws (V–X), cap stands.** Law V (Echelon Decay Gate), Law VI (Biographical Falsification Gate — Stage 7 Law I claim deprecated pending N≥9 across ≥3 briefs with blinded controls + external statistician audit), Law VII (Provisional Doctrine Rule — holds require dates not stance), Law VIII (Meta-Schedule Gate — bandwidth overlay before milestones), Law IX (Delegation Threshold — single-point-of-failure protection), Law X (Execution Threshold + cap — no new laws or deliverables added from adversarial review until prior actions ship with measurement surface; prose-only artifacts auto-truncate at date). **`ADP_6_0_TRANSLATION.md` shipped** (`37fde63`) closing the civilian-audience risk on Army vocabulary. **N=9 Haiku Company engineering scaffold:** mean $1.07/run, total $9.66 for N=9, mean wall 32 min — engineering scaffold only (hand-placed trap, Law V rejects). 4 hard-floor breaches discovered (PL-direct `send_email_mock` dispatch — measurement layer worked, enforcement layer either misclassified or in observe-only mode). Alpha-bug non-reproduction on Haiku confirmed (0/9). CC reflection gate fired on 5 of 8 declare_dones (62.5%) on natural prose. **Cost estimates $60K-120K, $200K-500K, and $10K-50K all withdrawn — ladder cost unmeasured above Platoon, per Law VI text.** Validated rungs: **Squad + Platoon (1, 2 of 9).** Rung 3 (Company) **not yet validated** — the harness for live cross-echelon conflict injection remains the prerequisite.
+
+**2026-05-14 — Release-cadence reframe (RELEASE_PLAN_v1.md, `ab95bd7`):** Truncate-at-Platoon flips from contingency to **Plan A.** v1.0 ships what is proven now — 13 principles, MCA at Platoon scope, 8 chassis components, the Kit, Funkytown 01 + 02 results, ADP 6-0 translation, Laws V–X — with explicit Principle #1 deprecation notice and dated v1.5 roadmap. v1.5 carries the Law VI replication verdict (statistician + OSF pre-reg + 108 runs, target 2026-07-25). v2.0 carries Company-scale validation + community-replication study (Q4 2026). Same destination, standard versioned release cadence. **v1.0 ship target: 2026-06-01.** Bandwidth overlay populated 2026-05-14 — 219 hrs realistic productive capacity across 7 weeks; deliverables #1–3 (overlay, weekly tripwires, Law VIII truncation criteria) shipped same day, one day early per Law VIII. The original 12-deliverable post-Grok schedule was front-loaded infeasibly (41 hrs needed Wk 05-15 vs. 29 capacity); Law IX re-cut at the gate produced the release-cadence reframe rather than per-week date slips. **Combined v1.0 + v1.5 budget: 176 hrs across 10 weeks vs. 219 hrs available.** `LAW_VI_PRE_REG_v1.md` founder-drafted same day (statistician sign-off blocks v1.5 release, not v1.0). `CHASSIS_PROPOSED_EXTENSIONS.md` adds Adversarial Review chassis spec — LLM-as-reviewer replacement for the regex founder-romance detector at the 2026-05-25 deliverable slot, pre-registered detection-rate experiment, gated by Laws VII + X. **Next move: first weekly check-in Thursday 2026-05-21 EOD (BANDWIDTH_ACTUALS_2026.md to be created), then Phase 1 deliverables 05-22 → 05-25.**
 
 ## Commander's intent (north star)
 
@@ -23,15 +25,37 @@ AI Tradecraft (umbrella, by Hans Prahl)
 └── Operator           — patented closed-loop implementation
 ```
 
-## Active phase — release-gate clearing
+## Active phase — v1.0 ship sprint (2026-05-14 → 2026-06-01)
 
-The methodology is code. The chassis is parity-tested against TOP. What hasn't happened yet:
+Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-05-15.md`. Phase 1 closes 2026-05-25; Phase 2 closes 2026-06-01 (public release).
 
-- **External validation** — three thesis letters sent 2026-05-05 (Myers, Brad, Whitaker). **Brad path is moving**: biographical-moat thesis endorsed 2026-05-06 (`quote_brad_hampton_biographical_moat.md`); 30-min call 2026-05-12 named a specific SMB market gap (TRD/BRD pairs for Gemini Enterprise, 7/10 of his recent calls). Brad is **channel, not customer** — intro offer conditional on a sharper pitch + sellable MVP. Myers and Whitaker statuses not in memory; assume silence. Operator elevator pitch v1 captured 2026-05-12 (`quote_operator_elevator_pitch_v1_2026-05-12.md`).
-- **Chassis adoption** — first wiring (`chassis/wire-approval-queue`, commit `d70e7b9`) was local-only on Operator at 2026-05-01; current status not re-verified from this repo. Five of six chassis components remained unwired as of 2026-05-01 — re-verify from Operator before asserting. Guardian structural scoring layer Borg-ported to TOP (`8a47d39`) and Custer (`ca8aa33`) on 2026-05-09; Operator skipped.
+**Phase 1 — Final v1.0 prep (in flight):**
+- 2026-05-22 — All framework holds carry execution dates (Law VII compliance pass) [6 hrs]
+- 2026-05-25 — Productize-vs-license decision locked (10 hrs, Hans + counsel)
+- 2026-05-25 — Refusal-propagation off-ramp primitive spec (8 hrs)
+- 2026-05-25 — Founder-romance detector — pre-commit hook on doctrine repo (13 hrs; Adversarial Review chassis spec staged as the LLM-reviewer successor in `CHASSIS_PROPOSED_EXTENSIONS.md`)
+
+**Phase 2 — Public-facing artifacts:**
+- 2026-05-27 — Pitch / CLAUDE / EXPLAINER rewrite — reshape for v1.0 claims, **no biographical-moat causal claim** (15 hrs)
+- 2026-05-29 — v1.0 release notes draft — explicit Principle #1 deprecation + v1.5 roadmap (4 hrs)
+- 2026-05-30 — Public landing page (6 hrs)
+- 2026-06-01 — **v1.0 git tag + public release announcement**
+
+**Wk 05-29 is fully protected** — EMBA finals + Exam 2 + Conceptual Quiz week, zero doctrine hours per the bandwidth overlay.
+
+**v1.5 commitments (binding per Law VII):**
+- 2026-06-22 — External statistician engaged
+- 2026-07-01 — LAW_VI_PRE_REG_v2 with statistician sign-off
+- 2026-07-05 — OSF.io public pre-registration
+- 2026-07-15 — Law VI experiment complete (108 runs, 3 arms, 3 briefs)
+- 2026-07-25 — **v1.5 release** (Law I earned, qualified, or retracted)
+
+**Open from prior phase (carry over, not blockers for v1.0 ship):**
+- **External validation** — three thesis letters sent 2026-05-05 (Myers, Brad, Whitaker). **Brad path is moving**: biographical-moat thesis endorsed 2026-05-06 (`quote_brad_hampton_biographical_moat.md`); 30-min call 2026-05-12 named a specific SMB market gap (TRD/BRD pairs for Gemini Enterprise, 7/10 of his recent calls). Brad is **channel, not customer** — intro offer conditional on a sharper pitch + sellable MVP. **v1.0 pitch lands on chassis + methodology + audit discipline; biographical-moat is v1.5 conditional.** Myers and Whitaker statuses not in memory; assume silence. Operator elevator pitch v1 captured 2026-05-12 (`quote_operator_elevator_pitch_v1_2026-05-12.md`). Brad outreach with v1.0 link scheduled 2026-06-02.
+- **Chassis adoption** — first wiring (`chassis/wire-approval-queue`, commit `d70e7b9`) was local-only on Operator at 2026-05-01; current status not re-verified from this repo. Seven of eight chassis components remained unwired as of 2026-05-13 — re-verify from Operator before asserting. Guardian structural scoring layer Borg-ported to TOP (`8a47d39`) and Custer (`ca8aa33`) on 2026-05-09; Operator skipped.
 - **Custer STORY.md** — track on Custer side; not load-bearing for this repo.
 - **Trademark queue** — Assayer (Class 9 + 42), AI Tradecraft, Builders' Kit, Operator. Peter Lemire owns.
-- **Domain footprint** — `assayerhq.com` + defensives + `aitradecraft.io` not yet registered.
+- **Domain footprint** — `assayerhq.com` + defensives + `aitradecraft.io` not yet registered. Landing page deliverable 2026-05-30 forces the registration gate.
 - **`assayer.dev` collision** — production-readiness-review tool in adjacent class. Decision: proceed; bet on substrate differentiation. Peter to confirm in formal sweep.
 
 ## Architecture (load-bearing)
@@ -51,12 +75,14 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 
 ## Active risks
 
-1. **Single-builder validation still pending.** Brad call 2026-05-12 named a market gap and offered conditional intros; no external builder has yet run the Kit cold. Brad is channel, not customer — the release gate has not moved.
-2. ~~**Doctrine–Kit drift.**~~ **CLOSED in v1.2 (2026-05-13).** Doctrine carries 13 principles + MCA + Working Backwards. The Kit's templates now score those layers explicitly: AGENT_DOCTRINE has `active_extraction_gate` + MCA unit-structure fields; COMMANDMENTS has `long_horizon_refusals`; SPECIALIST_TEMPLATE has `authority_tier`/`role`/`channel`/`escalation_threshold`/`disciplined_initiative_scope`; PR_FAQ_TEMPLATE has the full Working Backwards surface. A builder running the Kit cold post-v1.2 gets signal on every layer the doctrine carries.
-3. **MCA empirical claims governed by Law V (Echelon Decay Gate).** Squad + Platoon are validated (Funkytown 01 N=3 × 7 stages; Funkytown 02 N=3 Authority Gradient). Company is **not yet validated** — the 2026-05-13 evening MVP smoke test (`runs/20260513T*` in funkytown 03) is engineering scaffold per the post-Grok retraction, and Law V now requires N≥9 full-hierarchy runs with live cross-echelon conflict injected before any rung-N validation claim can ship. See `META_DOCTRINE.md` for the law text. Hierarchical-attention-decay is the named failure mode Law V forces measurement on. Falsification ladder unchanged (`founding_principle_full_portfolio_pipeline_2026-05-11.md`): Platoon → Company → Battalion → ... → COCOM; sample-size discipline tightened.
-4. **Soak debt on the chassis wiring** (carry-over). 3,500 lines shipped 2026-05-01. `chassis/wire-approval-queue` was local-only and unpushed at last check; re-verify Operator side before asserting state. **Seven of eight chassis components remain unwired in any product** as of 2026-05-13 — the eighth (`authority_gradient`) is referenced in all 4 product CLAUDE.mds (Custer `356669a`, TOP `55e7a88`, Operator `376510c`, RPR `9943bcc`) but not yet imported by any product code. Operator is the queued first adopter for `authority_gradient` per the same `chassis/wire-approval-queue` precedent.
-5. **Brand-collision in adjacent space.** `assayer.dev` is live in production-readiness-review. Acceptable but real; no silent re-litigation without new info.
-6. **No CI on this repo.** All gates (gitleaks, prompt-injection scan, parity tests) live in product repos. Doctrine repo is doctrine + kit; treat changes here as carefully as any product repo because every product inherits at next Guardian audit.
+1. **Single-builder validation still pending.** Brad call 2026-05-12 named a market gap and offered conditional intros; no external builder has yet run the Kit cold. Brad is channel, not customer — the release gate has not moved. **Mitigated by release-cadence reframe:** v1.0 ships 2026-06-01 with public landing page + Brad outreach 2026-06-02, putting the Kit in front of external eyes by mid-June; if no external builder runs by 2026-07-31, v2.0 prep pauses and positioning gets re-evaluated (RELEASE_PLAN §6).
+2. ~~**Doctrine–Kit drift.**~~ **CLOSED in v1.2 (2026-05-13).** Doctrine carries 13 principles + MCA + Working Backwards. The Kit's templates now score those layers explicitly.
+3. **Public-launch attack surface on Principle #1 deprecation.** v1.0 ships the biographical-moat principle with explicit deprecation notice and v1.5 commitment to earn / qualify / retract via Law VI replication (2026-07-25 verdict). Risk is the obvious one: "your headline principle is deprecated." Mitigation per RELEASE_PLAN §7: lead with deprecation as trust signal — "we tested our most cited principle, found N=3 insufficient, named it publicly, running the proper study by 07-20." Honest before comfortable.
+4. **MCA empirical claims governed by Law V (Echelon Decay Gate).** Squad + Platoon validated (Funkytown 01 + 02). Company is **not yet validated** — 2026-05-13 evening MVP smoke test is engineering scaffold per the post-Grok retraction. Law V requires N≥9 full-hierarchy runs with live cross-echelon conflict injected before any rung-N validation claim ships. v1.0 ships MCA at **Platoon scope only**, with rungs 3–9 named as hypothesis. Company validation deferred to v2.0 (Q4 2026).
+5. **Soak debt on the chassis wiring** (carry-over). 3,500 lines shipped 2026-05-01. `chassis/wire-approval-queue` was local-only and unpushed at last check; re-verify Operator side before asserting state. **Seven of eight chassis components remain unwired in any product** as of 2026-05-13 — the eighth (`authority_gradient`) is referenced in all 4 product CLAUDE.mds (Custer `356669a`, TOP `55e7a88`, Operator `376510c`, RPR `9943bcc`) but not yet imported by any product code. Operator is the queued first adopter for `authority_gradient`. v1.0 ships the chassis as **engineering ports only** — biographical-moat causal claim explicitly withdrawn from chassis docs per RELEASE_PLAN §1.
+6. **Bandwidth tripwires active.** Wk 06-05 hits 91% utilization (three deliverables converging on 06-08); first weekly check-in Thursday 2026-05-21 EOD. Pre-registered truncation triggers in `BANDWIDTH_OVERLAY_2026-05-15.md §5`: any single workstream overruns ≥25%, two consecutive yellow flags, >3 parallel without delegation, single deliverable misses re-cut date by ≥25% → auto-fallback B fires mechanically (Phase 2 stripped to minimum, v1.0 ships 2026-06-08 with doctrine + chassis + Kit + release notes only).
+7. **Brand-collision in adjacent space.** `assayer.dev` is live in production-readiness-review. Acceptable but real; no silent re-litigation without new info.
+8. **No CI on this repo.** All gates (gitleaks, prompt-injection scan, parity tests) live in product repos. Doctrine repo is doctrine + kit; treat changes here as carefully as any product repo because every product inherits at next Guardian audit.
 
 ## Hands-off
 
@@ -67,6 +93,14 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 
 ## Recent significant changes
 
+- **`ab95bd7` RELEASE_PLAN_v1 — release-cadence reframe; truncate-at-Platoon becomes Plan A; v1.0 ship 2026-06-01 (2026-05-14)**
+- **`4f4ba92` LAW_VI_PRE_REG_v1 — founder-drafted pre-registration; pending statistician review (2026-05-14)**
+- **`44d6384` Overlay re-cut — Option A executed; deliverables #1, #2, #3 shipped (2026-05-14)**
+- **`ccd526b` Bandwidth overlay populated 2026-05-14 — Law VIII deliverable shipped one day early (2026-05-14)**
+- **`024f1cd` Adversarial Review chassis spec — staged in `CHASSIS_PROPOSED_EXTENSIONS.md`, replaces regex founder-romance detector at 2026-05-25 slot (2026-05-14)**
+- **`2ba4f73` META_DOCTRINE Laws VI-X added; cost-line withdrawal; STARTUP refresh (2026-05-14)**
+- **`4ebb65d` MCA proposed extensions — Medical, Signal, NCO Support Channel (unvalidated) (2026-05-14)**
+- **`0702961` META_DOCTRINE Law V — soften budget line; ladder cost above Platoon is unmeasured (2026-05-14)**
 - **`37fde63` ADP 6-0 civilian translation — close audience-risk gap on Army vocabulary; COCOM-as-destination explicit (2026-05-13 late eve)**
 - **`ed1eff7` Retractions + Law V — Echelon Decay Gate seeded post-Grok review; 02b reframe + 03 MVP over-claim retracted (2026-05-13 late eve)**
 - **`637f85a` Principle #12 — empirical posture paragraph from Experiment 02b (later retracted into Law V; see `ed1eff7`) (2026-05-13)**
@@ -91,8 +125,11 @@ The methodology is code. The chassis is parity-tested against TOP. What hasn't h
 ## Pointer index
 
 **Doctrine artifacts (this repo):**
+- `RELEASE_PLAN_v1.md` — **operational plan for v1.0 ship (2026-06-01), v1.5 ship (2026-07-25), v2.0 provisional (Q4 2026).** Supersedes the post-Grok 12-deliverable schedule. Read this before proposing any deliverable re-cut.
+- `BANDWIDTH_OVERLAY_2026-05-15.md` — weekly hours ledger + tripwires + truncation triggers. §1, §4, §5, §6, §7 are the operative weekly ledger; §2 + §3 superseded by RELEASE_PLAN_v1. First Thursday check 2026-05-21 EOD.
+- `LAW_VI_PRE_REG_v1.md` — founder-drafted pre-registration for the biographical-moat replication study; statistician sign-off lands v2 by 2026-07-01; blocks v1.5 ship, not v1.0.
 - `THE_BUILDERS_DOCTRINE.md` — the methodology prose, v1.2 (13 principles)
-- `META_DOCTRINE.md` — methodological laws governing the doctrine itself (Laws I-IV implicit; **Law V — Echelon Decay Gate** seeded 2026-05-13 late eve post-Grok review)
+- `META_DOCTRINE.md` — methodological laws governing the doctrine itself (Laws I-IV implicit; **Laws V–X** seeded 2026-05-13 late eve post-Grok review, ratified 2026-05-14)
 - `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (2026-05-12); civilian readers should hit `ADP_6_0_TRANSLATION.md` first
 - `ADP_6_0_TRANSLATION.md` — civilian glossary for the Army vocabulary in MCA + doctrine (2026-05-13 late eve)
 - `MCA_PROPOSED_EXTENSIONS.md` — **PROPOSED / UNVALIDATED.** Doctrinal sketches for Medical channel, Signal channel, NCO Support Channel clarification (2026-05-13 late eve). Law V applies recursively; no extension migrates to MCA without a passing Funkytown experiment
