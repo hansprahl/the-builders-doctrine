@@ -1,10 +1,12 @@
 ---
-status: SCAFFOLD — populated 2026-05-14; numbers due 2026-05-15
+status: ACTIVE — populated 2026-05-14; superseded in PART by RELEASE_PLAN_v1.md
 gate: Law VIII (Meta-Schedule) + Law IX (Delegation Threshold)
 owner: Hans Prahl
 ---
 
 # Bandwidth Overlay — 2026-05-15 → 2026-06-30
+
+> **2026-05-14 update.** §2 (twelve deliverables) and §3 (weekly schedule) are **superseded by RELEASE_PLAN_v1.md** as of 2026-05-14 PM. The release-cadence reframe moves Law VI replication work into v1.5 prep (post 2026-06-01 v1.0 ship). §1 competing-demands grid, §4 tripwires, §5 truncation triggers, §6 delegation candidates, and §7 status snapshot remain operative as the weekly operational ledger. The bandwidth budget (~219 hrs across 7 weeks) still applies; the deliverable distribution against it now follows RELEASE_PLAN_v1.md Phase 1 + Phase 2.
 
 > Law VIII: hours budget + weekly tripwires + pre-registered truncation criteria, published before first milestone.
 > Law IX: any workstream >40 founder hours or any active week with >3 parallel deliverables without delegation = schedule re-cuts at the gate, not at first missed milestone.
