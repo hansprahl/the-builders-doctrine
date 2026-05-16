@@ -38,6 +38,45 @@ Pre-Anatomy work. Closes the cross-product API drift surfaced in `STRESS_TEST_v1
 
 **Acceptance:** all three products score-clean against their own Guardian without API errors.
 
+### Session 1B — Approval-queue API standardization
+
+Carved out of Session 1 after the queue recon (2026-05-15) surfaced drift larger than the plan anticipated. Session 1 closed cleanly on the Guardian half; the queue half is its own session because the storage layer is heterogeneous, not just the function names.
+
+**What the recon found:**
+
+1. **Category key trichotomy** — Operator uses `action_type`, TOP uses `type`, Custer pending_posts uses `channel` (which is semantically a sub-discriminator, not a top-level type). Custer also has a *second* queue (`blasts`) that splits build/approve/execute across three calls.
+2. **Storage heterogeneity** — Operator + TOP persist JSON files; Custer uses SQLite. IDs differ (8-char uuid string vs int autoincrement). Payload encoding differs (dict / JSON-string / TEXT column / normalized columns).
+3. **Approve-vs-execute conflation** — Operator separates `approve_action` (state transition) from `execute_approved` (side effect). TOP and Custer pending_posts collapse them — approving fires the side effect immediately. Anatomy v2's `approve(id)` must define which semantic it locks in.
+4. **`reject(id, reason)` signature missing** — Operator and TOP both lack the `reason` param; Custer blasts has no reject path at all. Only Custer pending_posts has it.
+5. **`pending(channel=None)` filter + `throughput_stats()` are net-new across the board** — channel filtering exists in some schemas but is never exposed; throughput counting exists only as an internal rate-limit helper in Operator.
+
+**Locked canonical API:**
+
+| Function | Signature | Semantics |
+|---|---|---|
+| `queue(action_type, payload)` | `(str, dict) -> str` (returns id) | Enqueue; never executes |
+| `approve(id)` | `(str) -> dict` | State transition only; returns payload. Side effect via separate `execute(id)` call (Operator pattern; TOP/Custer get a refactor to split the two) |
+| `reject(id, reason)` | `(str, str) -> str` | Reason becomes mandatory; persisted on the item |
+| `pending(channel=None)` | `(Optional[str]) -> list[dict]` | Filter by channel/sub-discriminator |
+| `throughput_stats()` | `() -> dict` | Returns `{queued_24h, approved_24h, rejected_24h, executed_24h, median_time_to_decision, p95_time_to_decision}` — the Spinal Cord body system reads this directly |
+
+**Storage canonicalization:** payload always crosses the wire as `dict`; persistence converts to whatever the backend needs. ID type is opaque str across the wire (uuid for Operator/TOP, str(int) for Custer SQLite rows).
+
+**Per-product migration:**
+
+- **Operator** (`tools/approvals.py`): add `reason` param to reject, add `pending(channel=None)`, add `throughput_stats()`, alias canonical names alongside legacy `queue_action`/`approve_action`. ~2h.
+- **TOP** (`tools/approvals.py`): split approve from execute, add `reason`, convert `details` JSON-string → `payload` dict, add `pending(channel=None)` + `throughput_stats()`. ~3h.
+- **Custer** (`tools/pending_posts.py`): split approve from execute, expose existing `rejection_reason` via canonical signature, rename `channel`→`action_type` (with `channel` becoming a payload field), add `pending(channel=None)` filter + `throughput_stats()`. ~3h.
+- **Custer blasts** (`agents/digital_blast.py` + `db/schema.py`): add `reject(id, reason)` path; the existing build/approve/execute three-step stays but gains a canonical surface. ~1h.
+- **Cross-queue Spinal Cord aggregator** in Custer (one body needs throughput across both queues). ~2h.
+- **Tests + validation** (per-product unit + cross-product parity). ~2h.
+
+**Total effort:** ~13–14h. Own session.
+
+**Acceptance:** all three products expose the canonical five via consistent signatures; Spinal Cord prerequisite met (Session 3 can read `throughput_stats()` without product-specific adapters).
+
+**Sequencing rule:** Session 1B blocks Session 3 (Immune System depends on standardized Guardian — done — and Spinal Cord depends on standardized queue throughput stats). Session 2 (Soul reweight + Spinal Cord body system itself) also depends on 1B. Session 1B must land before Session 2.
+
 ### Session 2 — Tier 1.1 (Soul reweight) + Tier 1.4 (Spinal Cord)
 
 **Deliverables:**
