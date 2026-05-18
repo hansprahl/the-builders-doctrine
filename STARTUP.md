@@ -44,7 +44,7 @@ Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-0
 **Wk 05-29 is fully protected** — EMBA finals + Exam 2 + Conceptual Quiz week, zero doctrine hours per the bandwidth overlay.
 
 **v1.5 commitments (binding per Law VII):**
-- 2026-06-22 — External statistician engaged
+- 2026-06-22 — External statistician engaged *(resolves BANDWIDTH_OVERLAY §4c.1: the overlay's 2026-05-18 statistician-id deadline is superseded by the release-cadence reframe `ab95bd7`. Cascade does not fire; truncate-at-Platoon is already Plan A.)*
 - 2026-07-01 — LAW_VI_PRE_REG_v2 with statistician sign-off
 - 2026-07-05 — OSF.io public pre-registration
 - 2026-07-15 — Law VI experiment complete (108 runs, 3 arms, 3 briefs)
