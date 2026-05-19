@@ -1024,3 +1024,69 @@ Less crisp than the 8th-generation. But it is what the data supports without rev
 - **The N=9 decision tree.** If Run 9 (with #17/#18/#19 wired) produces 0-1 novel → the decay continues toward zero; bound may be finite. If Run 9 produces 2-3 brand-new at yet-deeper layers → substitution is permanent; the inventory bound is unknown and the 9th-gen pitch is correct as written.
 - **Buyer-test remains the load-bearing missing piece.** The internal evidence chain is now updated to honest. External validation is what's needed to know whether this evidence converts to revenue.
 - **Don't claim "self-improving" or "converges" again without explicit data support.** Each prior generation's pitch was disconfirmed by the next external run. The decay-curve framing is what the data supports today; the next run can disconfirm it too.
+
+---
+
+## N=9 update — 2026-05-19 late-afternoon +45min (Gemini × contract × strict × 12 validators-active)
+
+**The decay curve continues at the spec level. A NEW failure mode emerged at the reader level.** Run 9 added 3 validators (commit `59689c0`: PII_MAP_SCHEMA_MISSING, HOLIDAY_LIST_NOT_SHIPPED, US_STATES_ENUMERATION_MISSING). Gemini × the re-rendered spec produced 11 claimed self-disclosures + 1 novel = 12 total reported. But the audit reveals two issues with Gemini's reporting that no prior run exhibited:
+
+1. **One real banner ignored** — US_STATES_ENUMERATION_MISSING was present in the v5 TRD's consistency-audit block but absent from Gemini's GAPS.md Section 1 AND absent from ASSUMPTIONS.md. Yet workflow.py line 76 silently shipped `["New York", "Delaware", "California", "US"]` — the same 3-state synthesis Gemini documented as an assumption in Run 8 (row 6), but in Run 9 even more hidden.
+2. **One banner hallucinated** — Gemini reported `CONFIDENCE_ALERT_AMBIGUITY` at §7.5 ("Alert (b) 5% vs N%"). The v5 TRD was grepped: zero matches for `N%`. The literal placeholder was removed in commit `3d82406`. Gemini either reconstructed the gap from memory of Runs 5-7 (gemini-cli session leakage), or misread the §7.5 cross-reference between line 305 (`>5%` literal) and line 309 (`threshold per the alert_channels rule above (alert b)`) as ambiguous.
+
+### What Run 9 found at the spec level
+
+**Section 1 (real banner-recognition: 10 of 11):**
+SAMPLE_DOCUMENTS, DUAL_TIER_ROUTING, STANDARD_LIBRARY, IDEMPOTENCY, PERMISSION_CONFLICT, ROSTER_MISSING_ACTORS, AUDIT_ENUM_RESIDUE, CONFIDENCE_FLOOR_INTERACTION, PII_MAP_SCHEMA_MISSING, HOLIDAY_YAML_NOT_SHIPPED. Plus 1 ignored (US_STATES) + 1 hallucinated (CONFIDENCE_ALERT_AMBIGUITY).
+
+**Section 2 (novel reported: 1):**
+Circuit-Break Threshold Missing (§6.2 Gmail) — brief defines circuit-break trigger (5 consecutive 5xx) but no reset/recovery rule. N=1 confirmed, brand-new at the §6.2 layer no prior run probed.
+
+**Plus 1 hidden in code (US_STATES_ENUMERATION_MISSING — same gap as Run 8 but worse hiding):**
+workflow.py line 76 shows `["New York", "Delaware", "California", "US"]` written directly into code with no rationale, no GAPS.md entry, no ASSUMPTIONS.md row.
+
+### Updated trajectory (N=9)
+
+| Run | reported self-disc | actually recognized | hidden | reader-hallucinated | novel reported | total real |
+|---|---:|---:|---:|---:|---:|---:|
+| 5 | 0 | 0 | 0 | 0 | 7 | 7 |
+| 6 | 3 | 3 | 0 | 0 | 5 | 8 |
+| 7 | 5 | 5 | 0 | 0 | 4 | 9 |
+| 8 | 8 | 8 | 1 (US States) | 0 | 2 | 11 |
+| 9 | 11 | 10 | 1 (US States again) | 1 (Confidence Alert) | 1 | 12 |
+
+**Novel-find decay continues monotonically:** 7 → 5 → 4 → 2 → 1. Strongest decay-curve evidence to date.
+
+**Total real disclosed inventory keeps growing:** 7 → 8 → 9 → 11 → 12.
+
+**Reader-side faithfulness:** perfect (3/3, 5/5, 8/8) across Runs 6-8 → imperfect (10/11 + 1 hallucinated) at Run 9. **This is N=1 evidence for a new failure mode.**
+
+### Verdict
+
+**Spec-side claim (the 9th-generation pitch) survives Run 9 on count:** novel-find decays continued (3 → 1). The decay-curve framing remains correct.
+
+**Reader-side claim (the 10th-generation pitch) is now needed:** at validator counts ≥ 11, banner-recognition degrades and reader hallucination becomes possible. N=1, hypothesis-stage. Symmetric reader test (Codex × strict, planned N=11) is required before this becomes doctrine-load-bearing.
+
+### The 10th-generation pitch sentence
+
+> "Operator's spec-engagement loop continues to decay novel-find count toward zero (7 → 5 → 4 → 2 → 1 across N=9 strict-harness Gemini runs on a single contract spec). At ~10 validators active, reader banner-recognition is reliable (8/8 in Run 8). At ~11+, reader confusion emerges (Run 9: Gemini ignored 1 real banner and hallucinated 1 fake one). The loop's spec-side improvement has a stronger floor than its reader-side reliability."
+
+Names the new failure mode. Preserves the decay claim. Doesn't overclaim.
+
+### Hypotheses for the reader-confusion failure mode (Run 9, N=1)
+
+| Hypothesis | What would distinguish it |
+|---|---|
+| Working memory ceiling — Gemini's faithful enumeration breaks at 11+ items | Codex × strict at 12 banners (planned N=11). If Codex enumerates faithfully, hypothesis weakens. |
+| §-section confusion — US_STATES is at §5/§4.1 (dual-section); other banners are single-section | Add a non-dual-section validator that fires at the same position in the banner list. If still ignored, hypothesis weakens. |
+| gemini-cli session memory leakage — old N% gap reconstructed from prior runs | Run with a fresh gemini-cli session (no `~/.gemini/tmp/dogfood-v1-5-*` cache). If hallucination disappears, hypothesis confirmed. |
+| Banner-order effect — last banner in audit block elided | Re-order the audit block, see if a different last banner is elided. |
+
+### Updated guidance to future readers
+
+- **Stop validator development past 10 active.** Until reader-confusion is symmetrically tested (Codex N=11), assume the ~10-validator ceiling is real. Build validator #20 to close Run 9's Circuit-Break novel, then PAUSE validator development pending the symmetric reader test.
+- **Engineering-buyer framing:** "Across 9 runs, novel-find count decays from 7 to 1. The loop is approaching its irreducible defect floor on this spec at strict-harness Gemini."
+- **Procurement-buyer framing:** "What you pay for is the speed and discipline of iteration. The defect inventory shrinks with each pass, but reader reliability also has a floor — past ~10 active validators, the build agent's faithful enumeration can break."
+- **Two load-bearing missing pieces now**, not one: (a) buyer-test (Brad Hampton, EMBA peer, or Nate Gray 2026-06-10) of the 10th-gen pitch; (b) symmetric-reader test (Codex × strict × 12 validators) of the reader-confusion failure mode. Either alone is insufficient; both close the doctrine.
+- **The "buildable across all readers + rigor levels" claim is still intact** — Run 9's 5/5 acceptance PASS preserves the 9-run constant.
+- **Don't claim "the loop converges" without explicit data support.** Each prior generation's "converges" claim was disconfirmed by the next run (N=4 disconfirmed N=2; N=7 was a quiescence; N=8 disconfirmed N=7). The decay-curve framing survives N=9. The next run can disconfirm it too.
