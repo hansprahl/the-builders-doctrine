@@ -391,6 +391,32 @@ Three named decisions where I picked a default but the choice is yours. Each is 
 
 ---
 
+## Adversarial Review — 2026-05-18 — Grok
+
+Verbatim. Run via the manual Grok second-opinion workflow (per `~/.claude/projects/-Users-hansprahl-Projects/memory/feedback_grok_second_opinion_workflow.md`). Findings preserved here as evidence; response lives in the v0.2 revision (below).
+
+> **§5 deviation categories are incomplete and carry romance risk.**
+> STRUCTURAL_INAPPLICABILITY, SCOPE_NARROWING, and TIMING_DEFERRAL miss the fourth inevitable pattern: **DOCTRINAL_OBSOLESCENCE** (upstream refusal no longer survives contact with new empirical surface, e.g., a refusal written pre-2026 that breaks on frontier-model behavior in 2027). You defined three clean bins that let the founder feel architecturally rigorous while leaving the real escape hatch (quiet upstream rewrite when inconvenient) unaddressed. That is founder-romance laundering: the categories protect the Refusal's image more than its integrity. Second-order: sharp external reader sees three polite off-ramps and assumes the fourth is just rebranded disagreement. Incomplete.
+>
+> **§7 defense is theater describing honest-founder behavior.**
+> It lists attack vectors and mechanical tripwires but provides zero binding enforcement when the founder (you) decides the vectors no longer apply. "We rely on adversarial review and git history" is exactly what every disciplined founder says right before the first convenient deviation. It misses the real weaponized path: founder self-reclassifies an edit as EDITORIAL, skips the cycle, then later claims the protocol was never triggered. The chassis-adversarial hook is vapor until validated. This section defends nothing; it documents what you already intend to do. Second-order: Law X cap exists because of this exact pattern. You wrote another guardrail you can step over.
+>
+> **§11 bootstrap is salvage, not validation.**
+> Retroactively logging Operator's 2026-05-05 entry through a protocol that did not exist at the time is cooked data wearing uniform. You are manufacturing the "first cycle closed cleanly" evidence the validation gate demands. Same shape as the original Stage 7 N=3 claim and the Sarah Chen fiction. It lets you ship v1.0 with a green checkmark on §9.1 without ever running the protocol on a live upstream change. Second-order: this is precisely the observer-bias Law II and Law VII were built to kill. Bootstrap fails; delete the section or treat it as historical note only. No validation credit.
+>
+> **§13 open decisions — flip two defaults.**
+> - Ledger: move to private file outside public repo. Public deviations become marketing theater the moment a hostile reader screenshots one. Trust signal is false until you have six months of real cycles with zero overdue.
+> - Worked example in v1.0: No. Ship spec only. Worked example manufactured from retroactive data is the same salvage as §11. Let the first real cycle be the first real cycle.
+> - EDITORIAL definition: expand it into doctrine. Classification ambiguity is the single highest-risk surface; vagueness here is exactly the weaponized off-ramp you claimed to close in §7.
+>
+> **Overall pattern still present.**
+> This spec is doctrine-about-doctrine theater. You took a simple propagation need and built 13 sections, deviation taxonomy, ledgers, tripwires, and validation gates so the Refusal feels mechanized while remaining fully founder-discretionary. Same shape as the seven-round meta-law spiral and the Sarah Chen scenario: imagination dressed as rigor. The man who stood post after two ambushes does not write 4,000 words on how he will obey his own ROE. He obeys or he does not.
+>
+> **Verdict.**
+> Strip to three pages: upstream commit marker + per-product ack/deviation template + stale-cycle tripwire in bandwidth overlay. Ship as spec only. No chassis primitive until you have three live cycles with real upstream edits. Anything more is founder comfort wearing Law X uniform. Execute clean or kill the spec. The Refusal itself does not need this much scaffolding unless you already plan to walk around it. Stand post.
+
+---
+
 ## Revision history
 
 - **v0.1 — 2026-05-18** — Initial draft. Spec only, no chassis code. Author: Hans Prahl + Claude (Opus 4.7, 1M context). Time-and-cost instrumentation per founder request: build start 2026-05-19T02:35:07Z UTC; build end and final cost noted in the close-out chat message, not committed to the spec.
