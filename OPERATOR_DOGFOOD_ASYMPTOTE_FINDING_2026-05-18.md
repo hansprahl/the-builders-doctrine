@@ -4,16 +4,23 @@
 **Product:** Operator (`~/Projects/operator/`)
 **Method:** Dogfood loop — render spec package → hand to fresh build agent →
 measure gap composition. Four internal iterations (v0–v3, Claude Code) plus
-**two** external iterations (v1.5 run 1 — Acme invoice automation;
-v1.5 run 2 — NDA / vendor-contract clause review). Both external runs:
-OpenAI Codex CLI v0.131.0 / GPT-5.5.
+**three** external iterations:
+- v1.5 Run 1 — Acme invoice automation, OpenAI Codex CLI / GPT-5.5
+- v1.5 Run 2 — NDA / vendor-contract clause review, OpenAI Codex CLI / GPT-5.5
+- v1.5 Run 3 — Acme invoice automation (same spec as Run 1), Google gemini-cli / Gemini 2.5
 
-**Updated 2026-05-18 evening (+~90 min after Run 1):** N=2 cross-domain
-external evidence now logged. Run 2 strengthens the disconfirmation: Bucket
-B (cross-section contradictions) held at exactly 42.9% across two distinct
-workflow domains. The headline below is updated to reflect the N=2 finding.
-The original single-run executive summary is preserved further down for
-the historical record.
+**Updated 2026-05-18 late evening (+~3 hrs after Run 2):** N=3 evidence
+now spans two model families AND two workflow domains. The interpretation
+has shifted twice — first by Run 2's same-family replication of Bucket B
+at 42.9% (strengthening a "stable structural blind spot" reading), then
+by Run 3's cross-family contrast showing Bucket B at 12.5% on the
+identical spec (disconfirming that reading; revealing the 42.9% finding
+as reader-style-specific to Codex, not renderer-property-general).
+
+The headline below reflects the current best interpretation. The
+original single-run and N=2 summaries are preserved further down for
+the historical record — they document the shifting belief as evidence
+accumulated.
 **Spec source:** Acme Widgets synthetic invoice-automation brief
 (`data/engagements/acme-widgets-synthetic-test-data-a4937a/workflow_briefs/invoice_automation_v4.json`)
 **Operator HEAD at run:** `481086a` (commit "specs.py — v3 dogfood
@@ -393,6 +400,126 @@ statistician work scheduled separately per `RELEASE_PLAN_v1.md`.
 
 ---
 
+## Update — Run 3 (2026-05-18 late evening, +~3 hrs after Run 2): cross-family flip
+
+Run 3 was selected per the post-Run-2 SITREP's PIR-1 (cross-model-family
+evidence is the highest-value next collection). The same Acme spec used
+in Run 1 was re-run with a different model family (Gemini 2.5 via
+gemini-cli v0.42.0) to isolate the model-family variable from the
+workflow-domain variable.
+
+### Run 3 result
+
+5/5 acceptance scenarios pass via `unittest` (pytest not in env;
+Gemini's recovery strategy was to switch frameworks, vs Codex's
+conftest.py path-shim). 9 gaps surfaced; 1 was a build-environment
+misclassification (pytest-missing flagged as a spec defect). 8 spec
+gaps after exclusion.
+
+| Bucket | Run 1 (Codex/Acme) | Run 2 (Codex/Contract) | **Run 3 (Gemini/Acme)** |
+|---|---:|---:|---:|
+| A — Mechanical | 28.6% | 14.3% | **0%** |
+| B — Cross-section contradiction | 42.9% | 42.9% | **12.5%** |
+| C — Missing client decision | 28.6% | 14.3% | **37.5%** |
+| D — External-dependency | 0% | 28.6% | **50.0%** |
+
+### The headline interpretation flip
+
+**The N=2 Codex finding ("Bucket B = 42.9% stable across domains,
+therefore a structural v3 renderer blind spot") is disconfirmed by
+Run 3.** The same Acme TRD that Codex reads as having 3 cross-section
+contradictions, Gemini reads as having 1. The "stable cross-family
+blind spot" attribution was wrong. The reproducibility was *within
+Codex*, not within the renderer.
+
+**Updated attribution:** Codex/GPT-5.5 reads cross-section
+contradictions more aggressively than Gemini does. The spec property
+Codex was surfacing as Bucket B is at least partly a property of how
+Codex reads, not how the renderer renders. The renderer is healthier
+than the N=2 picture suggested.
+
+### Implications for the asymptote claim
+
+Bucket C went UP for Gemini (37.5%, comfortably within the original
+"~20–30%" pitch range). The morning's claim — that the loop converges
+on client-decisions as the dominant residual — has more empirical
+support from Gemini than the second-and-third-gen pitch revisions
+suggested. Gemini's reading is **closer to the original hypothesis
+than Codex's reading is**.
+
+### Pitch sentence — fourth generation
+
+| Generation | Sentence | Evidence basis |
+|---|---|---|
+| Original (morning 2026-05-18) | "Operator surfaces the *irreducible client-decision floor* in 3 iterations / ~$5" | Internal Claude-on-Claude only |
+| Revised after Run 1 | "...the backlog converges on ~10-15 questions of which ~20-30% are irreducible client decisions, ~40% contradictions closeable by tooling, ~30% mechanical/packaging" | N=1 external (Codex) |
+| Revised after Run 2 | "...~14-29% irreducible (central tendency ~20%)" | N=2 same-family (Codex × 2) |
+| **Revised after Run 3** | **"...~15-40% irreducible (composition reader-dependent — Gemini ~37%, Codex ~14-29%). The reader the buyer's build platform uses determines which composition they see. What we sell is the speed of producing the backlog, not the composition of it."** | N=3, two model families, two workflow domains |
+
+The fourth-generation sentence is uglier than the first but is the
+only one that survives the N=3 evidence. The cleanest interpretation
+is that **gap composition is reader-dependent more than spec-dependent**,
+and the doctrine pitch should claim "speed-of-backlog" not
+"composition-of-backlog."
+
+### Updated v4 validator backlog status
+
+Six v4 items remain valid work — they all reference real spec defects
+that Codex caught. Item #3 (fixture packaging) is the only item all
+three readers flagged independently; the other five were caught by
+Codex but missed by Gemini.
+
+**Updated framing:** the v4 validators close defects that **at least
+one reader** sees as a defect. Building them raises the
+"minimum-reader-finds-X-contradictions" floor. Useful regardless of
+which reader the buyer's platform uses.
+
+### Replicated null + replicated builder competence
+
+- **Circularity-disclosure null across N=3:** Gemini also did not
+  surface input-provenance unprompted. N=3 evidence: this self-
+  disclosure is Claude-specific behavior, not GPT-class or Gemini-class.
+- **Builder competence cross-family:** 5/5 scenarios pass on every
+  external run. Same architectural choices (dataclasses, Decimal,
+  uuid task IDs, deterministic mocks). Same honest "buildable with
+  reservations" / "not cleanly buildable at fixed price without
+  resolution pass" conclusion. **The Operator-rendered spec format is
+  portable across model families** — a separately valuable product
+  finding, independent of the asymptote question.
+
+### Updated honest limits
+
+The honest-limits sections above stand, with these additions from
+Run 3:
+
+- **N=3 spans two model families × two workflow domains.** No
+  domain-by-family cell is filled (we don't have Gemini/Contract yet).
+  N=4 with that cell filled is a low-cost next move; would confirm or
+  weaken the reader-style finding.
+- **Gemini's classification was less rigorous than Codex's.** Misread
+  pytest-missing as a spec defect; called fixture-packaging an
+  external-dep gap (defensible but Codex's mechanical-defect call is
+  cleaner). Run 3's gap categorization carries a wider error bar than
+  Run 1 or Run 2.
+- **OAuth required for gemini-cli; API key path failed with
+  INVALID_ARGUMENT.** This is a harness-specific authentication
+  finding, not load-bearing for the evidence claim, but worth recording
+  for anyone re-running the experiment.
+
+### Status for v1.5 doctrine release
+
+Reaffirmed and strengthened: this finding is candidate v1.5 appendix
+material as evidence-of-method. N=3 with cross-family disconfirmation
+of an earlier overclaim is **stronger** evidence of the loop's
+falsificatory power than N=2 with replication would have been. The
+loop is genuinely working as a falsifier — each external run has
+improved the interpretation rather than just confirming it.
+
+Does NOT move the Law I/VI causal-claim evidence track; that remains
+separate and gated on the statistician work per `RELEASE_PLAN_v1.md`.
+
+---
+
 ## Cross-references
 
 - Internal iterations:
@@ -412,6 +539,10 @@ statistician work scheduled separately per `RELEASE_PLAN_v1.md`.
   Run 2; the STORY chapter remains accurate as a *narrative-of-belief-
   at-the-time*, with this evidence file as the *belief-after-
   falsification* artifact. STORY postscript (commit `89d00bc`) adds
-  the Run-1 disconfirmation in-narrative.
+  the Run-1 disconfirmation in-narrative; the Run-3 cross-family flip
+  is not yet narrated in STORY (separate decision for a fresh-head
+  session).
+- External iteration Run 3 (Gemini/Acme cross-family):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_gemini25_run3_cross_family-745f92.md`
 - Project memory:
   `~/.claude/projects/-Users-hansprahl-Projects/memory/project_operator_dogfood_asymptote_2026-05-18.md`
