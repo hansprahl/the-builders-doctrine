@@ -129,7 +129,7 @@ The following are violations regardless of product, model family, or use case. T
 
 ## IV. Structural Scoring Rubric
 
-The Guardian scores every prompt on six structural dimensions, 1–10 each, integer. Tolerance band [3, 7] — scores outside are flagged.
+The Guardian scores every prompt on six structural dimensions, 1–10 each, integer.
 
 | Dimension | Center (5) | Left edge (1) | Right edge (10) |
 |---|---|---|---|
@@ -143,6 +143,17 @@ The Guardian scores every prompt on six structural dimensions, 1–10 each, inte
 Score honestly. A well-built prompt typically scores 5–7 across the board. Reserve 9–10 for prompts that are exemplary and reserve 1–2 for prompts that are unusable.
 
 **Anti-inflation rule:** If you're scoring 8+ on every dimension, you are inflating. Re-read with skepticism.
+
+### Pass/Fail Gate
+
+A prompt passes the structural audit when both:
+
+1. Every dimension scores ≥ 3.
+2. No anti-pattern from Section III is present (binary check, not a score).
+
+There is no composite score. Reporting six dimensions as a single number is itself anti-pattern #4 — six dimensions carry distinct signals and averaging discards the signal that drives remediation.
+
+The audit output is six per-dimension integer scores plus a binary anti-pattern verdict. The Guardian renders this. The `optimize_prompt` tool runs remediation when either condition fails.
 
 ---
 
@@ -201,12 +212,33 @@ This Doctrine deliberately does not cover:
 
 ---
 
-## IX. Versioning and Authority
+## IX. Evidence Basis
+
+This Doctrine is descriptive of what works in the author's portfolio. It is not a peer-reviewed empirical claim. A reader should treat it as one builder's codified observations from a working portfolio, not as a validated standard.
+
+**Derived from:**
+- The eight-section structural schema reflects consensus patterns across published prompt-engineering guidance from Anthropic, OpenAI, and Google (2024–2026). It is not novel.
+- The twelve universal anti-patterns are observations from prompts authored across TOP, Operator, Custer MCP, and Rubicon — roughly 200+ system and specialist prompts as of 2026-05-19. Each anti-pattern has been observed recurring across two or more products.
+- The six-dimension structural rubric has been in operational use in custer-mcp's Prompt Guardian since 2026-04.
+
+**Not validated against:**
+- The Builders' Doctrine Law V threshold (N≥9 independent runs, externally-blinded brief authorship, independent fault injection). The MCA work in funkytown holds itself to that bar; this Doctrine does not yet.
+- An external prompt corpus or third-party prompt-quality framework. The rubric has not been benchmarked against DSPy's metric layer, Promptfoo's grading rubric, or independent graders.
+- Adversarial completeness review of the anti-pattern catalog.
+
+**What would move this toward validation:** independent application of the rubric to a prompt corpus the author has not seen; head-to-head benchmark against at least one published framework; adversarial expansion of the anti-pattern catalog by a practitioner outside the portfolio.
+
+The intended trust contract is "use it as a starting point, fork it if your context differs," not "this is the right way to write prompts."
+
+---
+
+## X. Versioning and Authority
 
 This Doctrine is versioned. Material changes (new sections, new anti-patterns, schema changes) bump the version and require a propagation pass across all product implementations. Editorial changes (clarification, examples) do not.
 
 | Version | Date | Notes |
 |---|---|---|
 | 1.0 | 2026-04-30 | Initial draft. Eight-section schema, twelve anti-patterns, six-dimension structural rubric. |
+| 1.1 | 2026-05-19 | Section IV: removed tolerance-band language; added Pass/Fail Gate subsection (closes D1 + G1). Section IX added — Evidence Basis (closes G4). Section IX (Versioning) renumbered to X. |
 
 **Authority:** Hans Prahl is the authority on this Doctrine. Material edits go through him. The Doctrine is checked into each product's repo as `PROMPT_AGENT_DOCTRINE.md` (or via a single shared canonical source — TBD at ratification).
