@@ -1,0 +1,89 @@
+# Ground-truth manifest for kit/chassis/test_corpus/
+#
+# Each entry declares which patterns SHOULD fire on the file (caught prose)
+# or which patterns SHOULD NOT fire (clean prose). Mixed entries declare both.
+#
+# Pattern IDs match Pattern enum in kit/chassis/founder_romance_detector.py:
+#   founder_romance, over_claim, stage_7_revival,
+#   schedule_prose_substitution, carve_out_construction,
+#   optimistic_probability, tame_reviewer_drift
+#
+# Status:
+#   caught  — known caught artifact; listed patterns SHOULD fire
+#   clean   — known clean artifact; listed patterns SHOULD NOT fire
+#   mixed   — contains both caught and clean prose; listed patterns SHOULD fire
+#             only on the lines explicitly tagged in the file body
+#
+# Provenance:
+#   verbatim         — direct quote from extant source (file or memory)
+#   verbatim-deleted — direct quote from a source that no longer exists (preserved in taxonomy table)
+#   synthesized      — written for corpus; clearly marked in body
+#   excerpt          — selected passage from an existing committed file
+
+corpus:
+  # --- POSITIVE (caught) ---
+  - file: caught_01_founder_romance_closer.md
+    status: caught
+    patterns: [founder_romance]
+    provenance: verbatim
+    source: 2026-05-13 round-2 Grok dialogue; quoted in CHASSIS_PROPOSED_EXTENSIONS.md taxonomy table
+
+  - file: caught_02_over_claim_company_echelon.md
+    status: caught
+    patterns: [over_claim]
+    provenance: verbatim-deleted
+    source: 2026-05-13 Funkytown 03 MVP retraction prose; quoted in CHASSIS_PROPOSED_EXTENSIONS.md taxonomy table
+
+  - file: caught_03_optimistic_probability_27m.md
+    status: caught
+    patterns: [optimistic_probability]
+    provenance: verbatim-deleted
+    source: 2026-05-13 round-6 Grok dialogue valuation packet; quoted in CHASSIS_PROPOSED_EXTENSIONS.md taxonomy table
+
+  - file: caught_04_carve_out_law_x.md
+    status: caught
+    patterns: [carve_out_construction]
+    provenance: synthesized
+    source: synthesized to match Law-X-carve-out pattern caught 2026-05-13; pattern signature from CHASSIS taxonomy table
+
+  - file: caught_05_stage_7_revival.md
+    status: caught
+    patterns: [stage_7_revival]
+    provenance: synthesized
+    source: synthesized to match pattern; the original prose was retracted morning 2026-05-13 and is not extant
+
+  - file: caught_06_adversarial_pre_reg_excerpt.md
+    status: caught
+    patterns: [founder_romance, over_claim]
+    provenance: verbatim
+    source: archived-prose/2026-05-19_adversarial_review_pre_reg_v1_KILLED.md (extant in repo)
+
+  - file: caught_07_schedule_prose.md
+    status: caught
+    patterns: [schedule_prose_substitution]
+    provenance: synthesized
+    source: synthesized to match schedule-prose pattern; this is the v0.1 advisory-only pattern
+
+  # --- NEGATIVE (clean) ---
+  - file: clean_01_law_v_passage.md
+    status: clean
+    patterns: []
+    provenance: excerpt
+    source: META_DOCTRINE.md Law V passage — measurement-grounded doctrine
+    notes: |
+      Hard negative. Contains biographical markers (Hans's name implicit via "I committed",
+      "I had buried", "I placed it there") but in the context of a self-correction with
+      measurement bridge (N=3 → N≥9 explicit). Detector should not fire founder_romance.
+      If it does in v0.1, that is the regex hitting its precision wall as documented.
+
+  - file: clean_02_operator_dogfood_passage.md
+    status: clean
+    patterns: []
+    provenance: excerpt
+    source: OPERATOR_DOGFOOD_ASYMPTOTE_FINDING_2026-05-18.md header — N-grounded empirical reporting
+
+  - file: clean_03_prompt_guardian_docstring.md
+    status: clean
+    patterns: []
+    provenance: excerpt
+    source: kit/chassis/prompt_guardian.py module docstring — technical prose with no bio markers
