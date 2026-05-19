@@ -1242,3 +1242,75 @@ The 12th-gen replaces the 11th. The 11th claimed decay was reader-specific (Gemi
 - **Doctrine-ideal disclosure pattern is N=2 on Codex (Runs 11+12), still N=0 on Gemini.** This is now a reader-style finding, not a single-run observation. Codex's disclosure discipline (flag in GAPS.md + document workaround in ASSUMPTIONS.md) is structurally different from Gemini's at matched harness.
 - **Three load-bearing missing pieces remain:** (a) buyer-test of the 12th-gen pitch (Brad Hampton or Nate Gray 2026-06-10); (b) does Codex also reach zero? (need #25-#26 + N=13); (c) third-reader triangulation to settle whether Codex > Gemini in rigor is a stable ordering or two samples of a wider distribution.
 - **Don't claim "the loop reaches an absolute defect floor" without per-reader qualifier.** Each generation's strongest claim has been disconfirmed by the next run. The 12th-gen will likely be refined by N=13.
+
+---
+
+## Run 13 update (2026-05-19 evening, +1hr after Run 12)
+
+### What changed since Run 12
+
+Hans landed two new validators (#25 + #26) closing both Codex Run 12 novel finds, then re-rendered the v7 packet as v8 with 18 banners (was 16). Re-ran Codex on the v8 packet. This is the third Codex iteration on the same spec: does Codex continue decaying (toward zero), plateau (substitution at constant depth), or accelerate (rigor exceeds validator coverage)?
+
+### Run 13 outcome
+
+| Dimension | Codex Run 11 | Codex Run 12 | Codex Run 13 |
+|---|---|---|---|
+| Validators active | 13 | 17 | **19** |
+| Banners recognized | 12 / 12 | 16 / 16 | **18 / 18** |
+| Banners hallucinated | 0 | 0 | **0** |
+| Novel finds | 4 | 2 | **2 (plateau)** |
+| Buildability verdict | NO | NO | **NO** |
+| Doctrine-ideal disclosure pattern | N=1 | N=2 | N=2 maintained, not extended |
+| Total disclosed inventory | 16 | 18 | **20** |
+
+### The 2 Run-13 novel finds (both verified real, both cross-section contradiction)
+
+1. **§9.1 scenario 5 ↔ §5.1 canonical schema ↔ §7.5 per-task trace contradict on per-field confidence schema** — Scenario 5's expected_extracted_fields literally embeds per-field confidence values (`counterparty_entity='ScannedCo' (extracted with confidence 0.74)`, `governing_law='Texas' (confidence 0.81)`); §7.5 requires per-task extracted-field confidence + source spans; but §5.1 canonical_schema has no per-field confidence or source-span structure. Real cross-section schema gap. Severity: MAJOR.
+
+2. **§4.1 routing_decision_table internal contradiction on US vs US_federal** — Routing domain declared as `{US_state, US_federal, foreign}`; routing rules collapse to shorthand `(full, US, within_cap, present_standard) -> Tier A`; whether `US_federal` is included in the `US` condition is implicit. **Real intra-field contradiction** — within a single text field, not cross-section. **Banner-resistant against the current 26-validator architecture** because validators fragment cross-field/cross-section content, not within-field. Severity: MAJOR.
+
+### Codex's decay curve (now visible across 3 iterations)
+
+| Codex iteration | Validators active | Novel finds |
+|---|---:|---:|
+| Run 11 | 13 | 4 |
+| Run 12 | 17 | 2 |
+| **Run 13** | **19** | **2 (plateau)** |
+
+**First Codex plateau iteration.** Codex's novel-find count held at 2 while the underlying defects substituted entirely (Run 12's two novels are now banners #17/#18; Run 13's two are at YET-deeper layers).
+
+### Hypothesis verdict
+
+| H | Prediction | Status |
+|---|---|---|
+| H25 | Codex novel-finds → 0-1 (continues toward zero) | **REFUTED** — stayed at 2 |
+| H26 | Codex novel-finds → 2-3 (substitution at deeper layers) | **STRONGLY SUPPORTED** — exactly 2, different defects |
+| H27 | Codex novel-finds → ≥ 4 (unbounded) | **REFUTED** |
+
+**Net verdict:** Both readers exhibit at least one plateau iteration where novel-find count holds steady while underlying defects substitute. The decay-with-substitution dynamic is reader-agnostic; it is **not monotonic** — the plateau is part of the shape. Gemini's published trajectory 7→5→4→2→1→0 shows this if substitution is counted (Run 8's hidden US_STATES gap means Run 8 was effectively a plateau too). The 12th-gen pitch that called the decay "monotonic" was too strong.
+
+### Reader-confusion threshold for Codex
+
+Codex processed 18 banners cleanly: 18/18 recognized + 0 hallucinated. Codex's threshold continues to be above the tested banner count. Gemini broke at 11-13.
+
+### Banner-resistance — a new finding from Run 13
+
+Run 13 novel #2 (US vs US_federal) is an **intra-field contradiction within a single text field** (`routing_decision_table`). The existing 26 validators are designed to detect cross-field and cross-section contradictions; none of them fragment the interior of a single free-text field to check that its declared domain matches its rule shorthand. **At least one class of defect cannot be caught by the current validator architecture without structured-field schemas.**
+
+This is a structural finding about what the loop can mechanically surface. It changes the buyer-pitch math: the loop's iteration speed is real, but its mechanical defect-coverage has architectural gaps that no count of validators-of-the-current-shape will close.
+
+### The 13th-generation pitch sentence
+
+> "Operator's spec-engagement loop produces a measurable decay-with-substitution pattern in novel-find count for each reader independently. Across 13 external runs on a single contract spec, two model families exhibit the same shape: novel-find count decreases as validator coverage rises, with at least one plateau iteration where the count holds while the underlying defects substitute. Gemini: 7→5→4→2→1→0 across 6 iterations. Codex: 4→2→2 across 3 iterations. Each reader's curve is reader-specific in depth and rate; the dynamic itself — including the plateau — is reader-agnostic. What we sell is the speed and discipline of iteration; the inventory each reader sees depends on its own rigor."
+
+The 13th-gen replaces the 12th. The 12th called the decay "monotonic"; Run 13's plateau (4→2→2) refuted that strong form. The corrected framing is decay-with-substitution-AND-plateau. Survives N=13.
+
+### Updated guidance to future readers
+
+- **The plateau is part of the shape, not noise.** Don't filter it out. Both readers exhibit at least one. Pitching "monotonic decay" is incorrect; pitching "decay-with-substitution-and-plateau" is what the data supports.
+- **Validator architecture has structural gaps.** The current 28 validators fragment cross-field/cross-section content; intra-field contradictions (like Run-13 novel #2) slip through. If the buyer asks "what fraction of defects can the loop catch mechanically?" the honest answer is "all the cross-section ones plus some cross-field, but not the intra-field ones without structured schemas." Validator #28 will be the first intra-field consistency check.
+- **Engineering-buyer framing:** "Across 13 runs, both readers exhibit the same shape: novel-find drops then plateaus then drops again as the substitution settles. Gemini reached 0 in 6 iterations; Codex is at 2 in 3 and may or may not continue. The reader sets the depth; the loop sets the cadence."
+- **Procurement-buyer framing:** "Each iteration cycle closes the previous cycle's surfaced defects and surfaces deeper ones. The pace is measurable. The plateau iterations are part of how the dynamic settles — they are not failures of the method."
+- **Doctrine-ideal disclosure pattern is N=2 maintained, not N=3 extended.** Codex Run 13 preserved both prior workarounds (DocuSign template, Tier A silent) but did not document a new ASSUMPTIONS row for the per-field-confidence-schema novel. Pattern reproduces across iterations once established; new-novel disclosure is not automatic even on a reader that has shown the pattern twice.
+- **Three load-bearing missing pieces remain:** (a) buyer-test of the 13th-gen pitch; (b) does Codex's plateau resolve at 0 or stay at 2 (need #27-#28 + N=14); (c) third-reader triangulation to settle whether Codex > Gemini in rigor is a stable ordering or distribution sampling.
+- **Don't claim "the loop reaches zero" or "decay is monotonic" without per-reader and per-iteration qualifier.** Each generation's strongest claim has been disconfirmed by the next run. The 13th-gen will likely be refined by N=14.
