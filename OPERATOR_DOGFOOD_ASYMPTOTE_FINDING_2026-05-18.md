@@ -1391,3 +1391,71 @@ The 14th-gen replaces the 13th. The 13th established decay-with-substitution-and
 - **Procurement-buyer framing (updated):** "We have run our spec-quality method on our own product 14 times. It caught 21 defects across the runs, including one in our own rendering code. The discipline is real and measurable. Your engagement is the same method applied to your spec."
 - **Three load-bearing missing pieces remain:** (a) buyer-test of the 14th-gen pitch; (b) does Codex reach zero like Gemini (need renderer-bug fix + #29 + N=15); (c) third-reader triangulation. The 14th-gen pitch IS the artifact to take to Brad Hampton / Nate Gray 2026-06-10.
 - **Don't claim "the loop is finite" or "we've caught all the bugs."** Each generation's strongest claim has been disconfirmed by the next run. The 14th-gen will likely be refined by N=15 too. The honesty IS the moat.
+
+---
+
+## Run 15 update (2026-05-19 evening, +3hr after Run 14) — CONVERGENCE AT ZERO
+
+### What changed since Run 14
+
+Hans landed the renderer fix at `tools/specs.py:_render_service_account_roster` (parses SA from `auth_method` instead of deriving from `system.lower()`) and added validator #29 SA_ROSTER_VS_AUTH_METHOD_MISMATCH as defensive coverage for the brief-side equivalent. Re-rendered the v9 packet as v10 with 20 banners (Run 14's renderer-bug novel was closed by the fix, not by a new banner). Re-ran Codex.
+
+### Run 15 outcome — Codex hits zero
+
+| Dimension | Codex Run 11 | Codex Run 12 | Codex Run 13 | Codex Run 14 | Codex Run 15 |
+|---|---|---|---|---|---|
+| Validators active | 13 | 17 | 19 | 21 | **22 + renderer fix** |
+| Banners recognized | 12/12 | 16/16 | 18/18 | 20/20 | **20/20** |
+| Banners hallucinated | 0 | 0 | 0 | 0 | **0** |
+| Novel finds | 4 | 2 | 2 | 1 (renderer bug) | **0 (CONVERGENCE)** |
+| Buildability verdict | NO | NO | NO | NO | **NO** |
+
+### The full N=15 trajectory across both readers
+
+| Reader | Iterations to zero | Curve |
+|---|---:|---|
+| Gemini | 6 | 7 → 5 → 4 → 2 → 1 → 0 |
+| **Codex** | **5** | **4 → 2 → 2 → 1 → 0** |
+
+**Decay-to-zero is reader-agnostic.** Both readers converge to zero novel finds on the same converged spec. The reader-rigor delta — Codex needed only 5 iterations starting from a lower count (4 vs Gemini's 7) — is consistent with Codex's higher per-iteration rigor.
+
+### Hypothesis verdict
+
+| H | Prediction | Status |
+|---|---|---|
+| H31 | Codex novel-finds → 0 (decay-to-zero reproduces) | **STRONGLY SUPPORTED** |
+| H32 | Codex novel-finds → 1 (yet-deeper layer) | **REFUTED** |
+| H33 | Codex novel-finds → 2+ (substitution returns) | **REFUTED** |
+
+**Net verdict:** Convergence at zero is reader-agnostic on this contract spec. The 14th-gen pitch (loop catches our own bugs) survives; the 15th-gen adds the convergence claim across both reader families. The total disclosed inventory at convergence is **21 distinct defects** — 20 spec-side banners + 1 Operator-renderer bug (caught at Run 14, fixed at Run 15).
+
+### The 15th-generation pitch sentence
+
+> "Operator's spec-engagement loop produces a measurable decay-with-substitution pattern that terminates at zero novel finds for each reader independently. Across 15 external runs on a single contract spec, two model families converge: Gemini reaches zero novels in 6 iterations (7→5→4→2→1→0); Codex reaches zero in 5 iterations (4→2→2→1→0). At iteration 4 on the Codex side, the loop surfaced a defect in Operator's own rendering code — not in the brief. By iteration 5, that defect is also closed and the curve lands at zero. The discipline of running the loop on our own output is what catches our own bugs AND drives both readers to zero. What we sell is that discipline, applied to your spec, at the same standard."
+
+The 15th-gen replaces the 14th. The 14th claimed the loop catches our own bugs. Run 15 added the convergence: both readers terminate at zero on the same converged spec. Survives N=15.
+
+### Updated guidance to future readers — the strongest position the series has held
+
+The pitch math at N=15:
+- **21 distinct defects** surfaced across 15 readings on a single contract spec
+- **20 banners** now pre-fire on Round 1 of any contract-style brief (validator coverage Operator HEAD carries forward)
+- **Both readers** terminate at zero on the converged spec (Gemini: 6 iter, Codex: 5 iter)
+- **One defect was in Operator's own renderer** (caught at Run 14, fixed at Run 15, validator #29 added as defensive coverage)
+
+This is the strongest defensible position the dogfood loop has held. The buyer-pitch artifact is now: *here is a 15-run record on a single contract spec, two reader families converging to zero novel-finds, with one of our own renderer bugs caught and closed inside the same loop. The method is real and measurable.*
+
+### Meta-pattern warning — every prior generation was refuted by the next run
+
+The 15th-gen could also be refuted. Two near-term decisive tests are running concurrently with this lock:
+
+1. **Third-reader triangulation.** Claude itself as third reader on the v10 packet. If finds 2-4 novels, then Codex+Gemini's zero is reader-bounded, not absolute convergence. The 15th-gen would revert to "convergence per reader, not absolute."
+2. **Cross-domain.** Acme invoice brief re-rendered at HEAD `b1b6d1c` with all 29 validators + renderer fix. If Codex finds 4-7 novels on Round 1, that validates the validator-portfolio compounding claim (each new spec gets all 29 validators on Round 1, but spec-specific defects still surface — strong commercial pitch). If Codex finds 0, the convergence is too good — likely indicates over-fitting to the contract spec specifically.
+
+Both tests' results will land in subsequent doctrine updates. The 15th-gen is the strongest position the data supports as of this lock; the next two tests will either reinforce it or qualify it.
+
+### Doctrine consequence — the dogfood loop pattern is now empirically grounded
+
+15 iterations, 2 reader families, 1 renderer bug caught in our own code, both curves terminate at zero. The buyer-pitch math has changed from theoretical-method to empirically-grounded-method. The discipline is now the artifact, not the curve itself — the curve is evidence the discipline works.
+
+For buyers who ask "how do you know your method scales beyond the contract spec?" the honest answer is: *we don't yet — that's what the cross-domain Acme test is for, running concurrently with this lock. We'll report back.*
