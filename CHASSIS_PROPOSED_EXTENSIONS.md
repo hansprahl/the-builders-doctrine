@@ -5,11 +5,25 @@
 **Date opened:** 2026-05-13 late-late evening, hours after the seven-round META_DOCTRINE dialogue closed with Law X adopted and silence committed.
 **Why this file exists:** Mirrors `MCA_PROPOSED_EXTENSIONS.md` in shape and discipline. Holds chassis-primitive proposals that have a clear failure mode and design sketch but have not yet earned a `kit/chassis/*.py` slot through experiment. Sits parallel to MCA extensions because the questions are different: MCA extensions propose new *channels* in the agent architecture; chassis extensions propose new *runtime primitives* that any product can compose.
 
-One extension sketched: **Adversarial Review.** This replaces — does not add to — the regex founder-romance detector already scheduled as a 2026-05-25 deliverable. Same slot, different implementation.
+One extension sketched and **RETRACTED 2026-05-19** after Grok cold-read KILL verdict on the pre-registration plan: **Adversarial Review.** The regex founder-romance detector named in `feedback_close_up_this_session.md` round-7 commitments is the canonical 2026-05-25 Phase 1 deliverable; the LLM-as-reviewer chassis path is closed. The retracted §1 below is preserved verbatim as falsification evidence per Law VII (a falsified extension is doctrine evidence, not embarrassment).
 
 ---
 
-## 1. Adversarial Review Chassis (`chassis/adversarial_review.py`)
+## 1. Adversarial Review Chassis (`chassis/adversarial_review.py`) — **RETRACTED 2026-05-19**
+
+> **Status: RETRACTED 2026-05-19 by Grok cold-read KILL verdict on `ADVERSARIAL_REVIEW_PRE_REG_v1.md` (founder-drafted 2026-05-18, never committed to repo root).**
+>
+> **Verdict summary:** Fox-and-henhouse theater wearing Law VII uniform. Recursive self-deception — the chassis is meant to catch founder-romance in doctrinal artifacts, yet the pre-reg itself was founder-romance about building a romance detector. Naming the COI in §10 did not bind it. Corpus selection bias, lenient self-coding on the only filled ground-truth example, prompt-stability audit at N=2 as checkbox theater, no negative-control artifact, no external coder for ground truth. Strip-to-scope (the disposition of `REFUSAL_PROPAGATION_OFFRAMP_SPEC.md` v0.1 the day before) was named as the pattern itself and ruled out as an option.
+>
+> **Killed artifact preserved at:** [`archived-prose/2026-05-19_adversarial_review_pre_reg_v1_KILLED.md`](archived-prose/2026-05-19_adversarial_review_pre_reg_v1_KILLED.md) — full pre-reg verbatim, full Grok verdict verbatim, disposition note.
+>
+> **What ships instead:** the regex founder-romance detector pre-commit hook for the 2026-05-25 Phase 1 deliverable slot. 13-hour budget. Per the original `feedback_close_up_this_session.md` round-7 commitment that this chassis was attempting to replace.
+>
+> **What the workflow catches and what it does not.** The Grok cold-read manual workflow (`feedback_grok_second_opinion_workflow.md`) is the load-bearing audit gate. The chassis was the founder trying to mechanize the workflow so the workflow could stop being needed. The workflow does not get to stop being needed. Four catches in seven days (seven-round META spiral 2026-05-13, Sarah Chen 2026-05-15, REFUSAL_PROPAGATION v0.1 2026-05-18, this pre-reg 2026-05-19). Recognition latency is decreasing; the production of the pattern is not.
+
+The original spec sketch follows, preserved verbatim. **Nothing below this banner is load-bearing.** The section is kept under Law VII so future builders can inspect the shape of what was caught.
+
+---
 
 **Replacement for:** the regex founder-romance detector named in `feedback_close_up_this_session.md` round-7 commitments. The regex version is retired in favor of an LLM-as-reviewer chassis primitive because the substrate's failure modes drift faster than a regex rule library can keep current, and the cost math (under $0.10 per review at production-typical artifact size) makes the smarter version cheaper to maintain than the simpler one.
 
@@ -235,6 +249,6 @@ Per Law X applied recursively to chassis itself:
 1. **No section in this file is allowed to migrate to `kit/chassis/*.py` without passing the validation requirement named in its section.**
 2. **No external claim** (in pitches, README, EXPLAINER) is allowed to reference an `adversarial_review` chassis component as part of the validated chassis until migration is complete.
 3. **If the validation experiment falsifies the chassis** (recall <70%, precision <60%, or cost discipline fails), the section here is updated with the falsification result and either revised or retracted. Falsifications are doctrine evidence.
-4. **The regex founder-romance detector ships as fallback** for the 2026-05-25 deliverable slot if this chassis does not pass validation by the slot's date.
+4. **The regex founder-romance detector ships as the canonical 2026-05-25 deliverable.** The Adversarial Review chassis path was RETRACTED 2026-05-19 per the §1 banner — the pre-reg was killed by Grok cold-read before any chassis code was written. The regex detector reverts from "fallback" to "primary" for the Phase 1 slot. 13-hour budget. Pre-commit hook on doctrine repo per the original `feedback_close_up_this_session.md` round-7 spec.
 
-This file is a staging area, not a backlog. Sections move out (to `kit/chassis/` or to retraction) when evidence arrives.
+This file is a staging area, not a backlog. Sections move out (to `kit/chassis/` or to retraction) when evidence arrives. **First section to reach terminal state: §1, retracted 2026-05-19** — the file's own discipline working as designed.
