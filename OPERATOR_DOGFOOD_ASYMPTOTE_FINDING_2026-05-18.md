@@ -1,13 +1,21 @@
 # Operator Dogfood Asymptote — Empirical Finding
 
-**Run date:** 2026-05-18
+**Run date:** 2026-05-18 (Runs 1–3) + 2026-05-19 (Run 4)
 **Product:** Operator (`~/Projects/operator/`)
 **Method:** Dogfood loop — render spec package → hand to fresh build agent →
 measure gap composition. Four internal iterations (v0–v3, Claude Code) plus
-**three** external iterations:
+**four** external iterations completing the 2×2 design (two model families × two domains):
 - v1.5 Run 1 — Acme invoice automation, OpenAI Codex CLI / GPT-5.5
 - v1.5 Run 2 — NDA / vendor-contract clause review, OpenAI Codex CLI / GPT-5.5
 - v1.5 Run 3 — Acme invoice automation (same spec as Run 1), Google gemini-cli / Gemini 2.5
+- v1.5 Run 4 — Contract review (same spec as Run 2), Google gemini-cli / Gemini 2.5
+
+**Updated 2026-05-19 morning (Run 4):** The 2×2 design is now complete.
+N=4 shows that not only does gap composition vary by reader (the N=3
+finding), but so does **gap count** — Gemini Run 4 surfaced only 3 gaps
+on the contract spec where Codex Run 2 surfaced 7. The pitch sentence
+moves to a fifth generation that names both effects. Earlier
+interpretations preserved below as belief-trajectory record.
 
 **Updated 2026-05-18 late evening (+~3 hrs after Run 2):** N=3 evidence
 now spans two model families AND two workflow domains. The interpretation
@@ -544,5 +552,85 @@ separate and gated on the statistician work per `RELEASE_PLAN_v1.md`.
   session).
 - External iteration Run 3 (Gemini/Acme cross-family):
   `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_gemini25_run3_cross_family-745f92.md`
+- External iteration Run 4 (Gemini/Contract — 2×2 cell completion):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_gemini25_run4_contract_review-c8a3d1.md`
+- Evidence packet Run 4 (contract review variant):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_evidence_packet_contract/`
+- Operator HEAD at Run 4: `89d00bc` (same as Run 2)
 - Project memory:
   `~/.claude/projects/-Users-hansprahl-Projects/memory/project_operator_dogfood_asymptote_2026-05-18.md`
+
+---
+
+## Update — N=4 (Run 4, 2026-05-19 morning) — 2×2 design complete
+
+**Run:** Gemini 2.5 / gemini-cli v0.42.0, contract review spec (identical to Codex Run 2).
+**Result:** 5/5 acceptance PASS. Total gaps: **3** (vs Codex's 7 on the same spec).
+
+| Bucket | Count | % |
+|---|---:|---:|
+| A — Mechanical render defect | 1 | 33.3% |
+| B — Cross-section contradiction | 1 | 33.3% |
+| C — Missing client decision | 1 | 33.3% |
+| D — External-dependency | 0 | 0% |
+
+**The 2×2 picture across all four external runs:**
+
+| | Invoice automation (Acme) | Contract review (NDA/MSA) |
+|---|---|---|
+| **Codex / GPT-5.5** | Run 1: 7 gaps (A 28.6% / **B 42.9%** / C 28.6% / D 0%) | Run 2: 7 gaps (A 14.3% / **B 42.9%** / C 14.3% / D 28.6%) |
+| **Gemini 2.5** | Run 3: 8 gaps (A 0% / B 12.5% / C 37.5% / **D 50%**) | **Run 4: 3 gaps (A 33.3% / B 33.3% / C 33.3% / D 0%)** |
+
+### What N=4 changes
+
+1. **The N=3 "reader-style" framing was incomplete.** N=3 said composition
+   varies by reader. N=4 says **count varies by reader too**. The count-
+   effect is large: Gemini surfaces less than half the gaps Codex does
+   on the same contract spec.
+
+2. **The "Codex reads Bucket B at 42.9% stable" finding is now
+   disconfirmed in TWO directions.** Cross-family (Gemini reads B at
+   12.5–33.3% on the same specs Codex reads at 42.9%) and cross-domain
+   (Gemini reads B at 12.5% in invoice, 33.3% in contract — same reader,
+   different domains). The 42.9% finding is **Codex-specific**, not
+   spec-specific.
+
+3. **Bucket D is reader × domain interactive — not a stable property of
+   either reader alone.** Gemini Run 3 found 50% Bucket D; Gemini Run 4
+   found 0%. Codex Run 1 found 0%; Codex Run 2 found 28.6%. The
+   external-dependency bucket appears to be the most volatile under
+   reader × domain interaction.
+
+4. **Reader-independent floor across all four runs:** approximately ONE
+   Bucket A defect (samples/fixtures missing) and ONE Bucket C defect
+   (some form of "client must enumerate"). Minimum-reader-finds-this is
+   **~2 gaps**. Everything beyond is reader-dependent.
+
+5. **Both readers find buildable specs in all four runs.** Buildability
+   is the constant; surfacing varies. This is a stronger position to
+   sell from than "irreducible floor": *Operator produces buildable
+   specs across reader families.*
+
+### Pitch sentence — fifth generation
+
+> **"What we sell is the speed of producing a defect backlog. Both the size and the composition of that backlog vary by which build platform reads the spec — Codex surfaces ~7 gaps with cross-section contradictions dominant; Gemini surfaces 3–8 gaps with client decisions and external dependencies dominant. Across N=4 runs, every spec produced a buildable implementation and a backlog ≥ 2 gaps. The asymptote is the backlog itself, not its composition."**
+
+Longer and less memorable than the fourth generation. First generation
+to name the **count effect** alongside the composition effect. **Not
+yet buyer-tested.**
+
+### Updated guidance to future readers
+
+- Stop offering "asymptote at ~10 questions" as an Operator claim. N=4
+  contradicts it. The asymptote is "≥ 2 gaps" — much weaker, but what
+  the evidence supports.
+- Lead with "buildable across reader families" as the central evidence
+  claim. The variation is in gap surfacing, not in spec quality.
+- The next external run worth doing is **N=5 with a stricter test
+  harness** — disambiguates Gemini's lower gap count from test-rigor
+  confound. Gemini Run 4's test for scenario 2 only checks `error_class`,
+  which the workflow hardcodes, so the test rigor and the gap-surfacing
+  count may be correlated rather than independent.
+- The v4 validator backlog grows from 6 to **8** items (two new from
+  Run 4's gaps: value-less-NDA Tier D route disambiguation; standard-
+  clause-library reference field).
