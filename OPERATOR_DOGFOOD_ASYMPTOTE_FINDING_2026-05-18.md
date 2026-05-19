@@ -957,3 +957,70 @@ this "convergence at 9 in 3 iterations" is supported by all 7 runs.
   evidence chain is complete (N=7, convergence demonstrated, 5
   validators shipped + tested). External validation is what's needed
   to know whether this evidence converts to revenue.
+
+---
+
+## N=8 update — 2026-05-19 late-afternoon (Gemini × contract × strict × 9 validators-active)
+
+**The Run 7 convergence claim is refuted.** Run 8 added 4 validators (commit `3d82406`: SA_ROSTER_MISSING_NAMED_ACTORS, AUDIT_ENUM_DOMAIN_RESIDUE, CONFIDENCE_FLOOR_INTERACTION_UNSPECIFIED, TOKEN_FORM_PLACEHOLDER) + removed the literal `> N% of tasks` placeholder from §7.5 renderer. Gemini × the re-rendered spec produced **8 self-disclosed + 3 novel = 11 total disclosed**. Run 7's "ZERO brand-new defects" result was **a one-iteration quiescence between spec layers**, not terminal convergence.
+
+### What Run 8 found
+
+**Section 1 — Self-disclosed (8 of 8 recognized by Gemini):**
+SAMPLE_DOCUMENTS, DUAL_TIER_ROUTING, STANDARD_LIBRARY, IDEMPOTENCY, PERMISSION_CONFLICT (all 5 from Run 7) plus the 3 new validator banners (ROSTER_MISSING_ACTORS, AUDIT_ENUM_RESIDUE, CONFIDENCE_FLOOR_INTERACTION). **Banner visibility is empirically validated** — Gemini sees every consistency-audit banner and reports it correctly in GAPS.md.
+
+**Section 2 — Novel finds (3, of which only 2 reported):**
+
+| Gap | Section | How surfaced |
+|---|---|---|
+| Holiday YAML Missing | §7.3.1 / B14 | Reported in GAPS.md (external-dependency gap) |
+| PII Map Schema Missing | §5.3 / B7 interior | Reported in GAPS.md (missing client decision) |
+| US States enumeration | §5.2 (e) / business_rules | **Hidden in ASSUMPTIONS.md row 6 as "US states = ['New York', 'Delaware', 'California'] for this build"** — Gemini synthesized a 3-state list and shipped through silently. Self-classification miss, consistent with the N=5 "~85% accurate self-classification" finding. |
+
+### The decay curve
+
+| Run | self-disclosed | novel | brand-new | total disclosed |
+|---|---:|---:|---:|---:|
+| 5 | 0 | 7 | 7 | 7 |
+| 6 | 3 | 5 | 2 (Permission Gap, Idempotency) | 8 |
+| 7 | 5 | 4 | 0 (quiescence) | 9 |
+| 8 | 8 | 3 | 2-3 (Holiday YAML, PII Schema, US States) | 11 |
+
+**Novel-find count decays monotonically:** 7 → 5 → 4 → 3. Each iteration closes ~1-2 of the previous iteration's novel finds.
+
+**Brand-new defect discovery is non-monotonic:** 7, 2, 0, 2-3. Run 7 was a one-iteration false-positive on terminal convergence. New layers continue to surface defects as iteration eats through the prior layer.
+
+**Total disclosed inventory keeps growing:** 7 → 8 → 9 → 11. The defect bound on this spec is at least 11; the actual bound is not yet known.
+
+### Verdict
+
+**The 8th-generation pitch ("converges in 3 iterations to 9 reader-knowable defects") is refuted.** That claim rested on Run 7's quiescence between spec layers — which Run 8 demonstrated was not terminal.
+
+**The 9th-generation pitch (the honest reading):**
+
+> "Operator's spec-engagement loop is monotonically improving. Across 8 external runs on a single contract spec, novel-find count decays — 7 → 5 → 4 → 3 — as each iteration closes the previous iteration's defects. The total reader-knowable inventory keeps growing as deeper layers are probed (11+ defects surfaced so far). What the buyer pays for is the speed and discipline of iteration, not a finite defect list."
+
+Less crisp than the 8th-generation. But it is what the data supports without revisionism, and it survives Run 8's disconfirmation.
+
+### What Run 8 establishes
+
+- All 8 self-disclosures are recognized by Gemini → banner-visibility is reliable across the 4 new validators
+- Build-through-assumptions pattern persists → buyer affordance is real (every BLOCKING is an explicit decision)
+- Novel-find count is in monotonic decay → the loop is genuinely improving
+- Self-classification is unreliable for ~15% of defects — Gemini hid the US States gap in ASSUMPTIONS.md (consistent with the prior N=5 finding)
+
+### What Run 8 does not establish
+
+- That the defect inventory is finite (Run 7 made us think it might be — Run 8 disconfirmed)
+- Where the floor is (the inventory is at least 11; we don't know the bound)
+- That decay continues to zero (one data point at 3 cannot project to 0)
+
+### Updated guidance to future readers
+
+- **Stop pitching as "converges."** That framing came from Run 7 alone and was refuted by Run 8. The accurate framing per N=8 is **monotonically improving on a decay curve** — novel-find count drops each iteration, but total inventory keeps growing as new layers are probed.
+- **Engineering-buyer framing:** "Across 8 runs, novel-find count decays from 7 to 3. Each iteration closes the prior iteration's open defects. We don't claim a finite list."
+- **Procurement-buyer framing:** "What you pay for is the speed and discipline of iteration. The defect inventory grows as we drill deeper into your spec, but the rate of new discoveries drops with each pass."
+- **The v4 validator backlog now has 6 outstanding items** (down from 7 pre-Run-8): three N=1-confirmed from Run 8 (#17 PII_MAP_SCHEMA, #18 HOLIDAY_LIST_SHIPPED, #19 US_STATES_ENUMERATION) + three N=1 from other readers (#1 TRD↔SOW, #5 exception-enum, #7 value-less-NDA).
+- **The N=9 decision tree.** If Run 9 (with #17/#18/#19 wired) produces 0-1 novel → the decay continues toward zero; bound may be finite. If Run 9 produces 2-3 brand-new at yet-deeper layers → substitution is permanent; the inventory bound is unknown and the 9th-gen pitch is correct as written.
+- **Buyer-test remains the load-bearing missing piece.** The internal evidence chain is now updated to honest. External validation is what's needed to know whether this evidence converts to revenue.
+- **Don't claim "self-improving" or "converges" again without explicit data support.** Each prior generation's pitch was disconfirmed by the next external run. The decay-curve framing is what the data supports today; the next run can disconfirm it too.
