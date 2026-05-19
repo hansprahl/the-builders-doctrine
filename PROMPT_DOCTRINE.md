@@ -4,6 +4,8 @@
 
 **Status.** Canonical upstream artifact. Lives at the doctrine-repo level, not per-product. Each product's CLAUDE.md references this file. Originally drafted in `custer-mcp/PROMPT_DOCTRINE.md`; consolidated here 2026-05-01 per Tier 2 of [ARTIFACT_AUDIT_2026-05-01.md](ARTIFACT_AUDIT_2026-05-01.md). Parallel to the refusal-list Form B pattern documented in [THE_BUILDERS_METHOD.md](THE_BUILDERS_METHOD.md) Principle 8.
 
+**Public-release surface.** This document is the `DOCTRINE.md` shipped with **Assayer** — the public-release brand (locked 2026-05-05) for the methodology's free surface under the AI Tradecraft umbrella. Assayer pairs the Doctrine with a scorer reference implementation; both free. The paid surface (Builders' Kit, Operator) implements the closed-loop corrector on top of this rubric.
+
 **Scope:** This document governs the *structure* of every system prompt, specialist prompt, tool description, and runtime prompt template authored across the portfolio. It is product-agnostic. It applies to TOP, Operator, Custer, Rubicon, and any future product.
 
 **Out of scope:** Voice, ethics, brand, product commandments, tone, prohibited topics, hard floors. Those live in each product's COMMANDMENTS.md and AGENT_DOCTRINE.md as Product Commandments.
@@ -250,4 +252,4 @@ This Doctrine is versioned. Material changes (new sections, new anti-patterns, s
 | 1.1 | 2026-05-19 | Section IV: removed tolerance-band language; added Pass/Fail Gate subsection (closes D1 + G1). Section IX added — Evidence Basis (closes G4). Section IX (Versioning) renumbered to X. |
 | 1.2 | 2026-05-19 | Section II: quantified model-family token guidance — replaced "long/shorter/aggressive" with ~10K / ~2K / ~1K token defaults (closes D3). Section IV: added "Why six dimensions, not eight" subsection explaining schema/rubric asymmetry (closes G3). Section VII: replaced "every product" capability claims with verified per-product implementation status; reframed Borg Guardian from present-tense to planned-not-built (closes D2). |
 
-**Authority:** Hans Prahl is the authority on this Doctrine. Material edits go through him. The Doctrine is checked into each product's repo as `PROMPT_AGENT_DOCTRINE.md` (or via a single shared canonical source — TBD at ratification).
+**Authority:** Hans Prahl is the authority on this Doctrine. Material edits go through him. The canonical source lives at `the-builders-doctrine/PROMPT_DOCTRINE.md`; each product's CLAUDE.md references this upstream file rather than checking in a copy.
