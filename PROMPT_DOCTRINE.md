@@ -82,27 +82,29 @@ Every prompt is composed of selectively applied sections. Not every prompt needs
 
 The structural schema is universal. The *encoding* of the schema is model-specific.
 
+Numbers below are working defaults from the author's portfolio, not measured optima. Treat them as starting points; tune per use case.
+
 ### Claude (Sonnet, Opus, Haiku)
 - Use XML tags for sections: `<role>`, `<task>`, `<context>`, `<output_format>`, `<thinking>`, `<example>`, `<constraints>`.
 - System prompt does the heavy lifting. User message is the per-turn instruction.
-- Long system prompts are fine — Claude rewards structure.
+- System prompts up to ~10K tokens are common in production; Claude rewards explicit structure at length and does not penalize verbosity the way smaller-context models do.
 - Place `<thinking>` instructions before the response request.
 
 ### GPT (4, 4o, 5)
 - Split into system message and user message clearly.
 - XML tags work but are less idiomatic than markdown headers.
-- Shorter system prompts than Claude. Front-load the most important instruction.
+- Target system prompts under ~2K tokens. Front-load the most important instruction — these models attend more strongly to the start of the system block.
 - Few-shot examples in user messages, not system.
 
 ### Gemini (1.5+, 2.x)
 - Single coherent block. Role first, task last, instructions interleaved.
 - Less XML, more prose.
-- Tends to follow the most recent instruction — order matters.
+- Tends to follow the most recent instruction — order matters; place the critical instruction last.
 
 ### Local / Ollama (Llama, Mistral, etc.)
-- Smaller context windows. Be aggressive about brevity.
-- More structural rigidity required — these models drift faster.
-- Repeat critical constraints near the end of the prompt.
+- Target system prompts under ~1K tokens; longer prompts cause drift and instruction-following degradation.
+- More structural rigidity required — these models drift faster than frontier models.
+- Repeat critical constraints near the end of the prompt; recency bias is stronger here.
 
 When `target_model = general`, default to Claude-style XML structure. It's the most explicit and degrades gracefully.
 
@@ -155,6 +157,12 @@ There is no composite score. Reporting six dimensions as a single number is itse
 
 The audit output is six per-dimension integer scores plus a binary anti-pattern verdict. The Guardian renders this. The `optimize_prompt` tool runs remediation when either condition fails.
 
+### Why six dimensions, not eight
+
+The schema in Section I has eight sections; the rubric scores six. The four always-applicable schema sections (Role, Task, Context, Output) map directly to the first four rubric dimensions. The remaining two rubric dimensions (Anti-pattern absence, Production readiness) are cross-cutting qualities the schema doesn't enumerate.
+
+The three conditional schema sections — Reasoning Scaffold (5), Examples (6), Confidence/Calibration (8) — are unscored by design. Their appropriateness is binary: they should be present when the task demands them and absent when it doesn't. Inappropriate inclusion (CoT on trivial recall) and inappropriate omission (no output schema on a JSON-consumer task) are both caught as anti-pattern presence in the binary check, not as low scores.
+
 ---
 
 ## V. How This Relates to Product Commandments
@@ -187,14 +195,14 @@ When writing a new system prompt or specialist prompt:
 
 ## VII. Implementation References
 
-This Doctrine is the authoritative spec. Implementations include:
+This Doctrine is the authoritative spec. Implementation status as of 2026-05-19:
 
-- **`optimize_prompt`** (every product's `tools/prompt.py` or equivalent) — applies this Doctrine at runtime to rebuild raw prompts. Its system prompt should be a condensed version of this document. When this Doctrine changes, the optimizer's system prompt updates.
-- **Prompt Guardian's structural scoring layer** — every product's Guardian scores against the six structural dimensions above *in addition to* its product-specific commandments.
-- **SPECIALIST_TEMPLATE.md** — every new specialist must declare which structural sections it uses and which product commandments it's audited against.
-- **Borg Guardian** (Operator-side) — aggregates structural and commandment scores across all products, reports drift cross-tenant.
+- **`optimize_prompt`** — runtime tool that rebuilds raw prompts against this Doctrine. **Implemented in TOP** (`local-mcp/tools/prompt.py`). **Not yet ported** to Operator, Custer MCP, or Rubicon. The TOP implementation is the reference; its system prompt is a condensed version of this document.
+- **Prompt Guardian structural scoring layer** — scores prompts against the six dimensions above in addition to product commandments. **Implemented in TOP, Operator, and Custer MCP**. **Not present in Rubicon** (paused since 2026-04-13).
+- **SPECIALIST_TEMPLATE.md** — every new specialist declares which structural sections it uses and which product commandments it's audited against. Present in TOP and Custer MCP.
+- **Cross-product aggregation** — *planned, not built.* A future capability to aggregate structural and commandment scores across products and report drift cross-tenant. Working name "Borg Guardian" appears in roadmap notes; no implementation as of 2026-05-19.
 
-When this Doctrine is updated, all four implementations must be reviewed for compliance. A change to the structural schema (e.g., adding a ninth section) requires propagation to every product's optimizer and Guardian.
+When this Doctrine is updated, every implementation listed above must be reviewed for compliance. A change to the structural schema (e.g., adding a ninth section) requires a propagation pass across products — currently a manual sweep until the optimizer ports complete.
 
 ---
 
@@ -240,5 +248,6 @@ This Doctrine is versioned. Material changes (new sections, new anti-patterns, s
 |---|---|---|
 | 1.0 | 2026-04-30 | Initial draft. Eight-section schema, twelve anti-patterns, six-dimension structural rubric. |
 | 1.1 | 2026-05-19 | Section IV: removed tolerance-band language; added Pass/Fail Gate subsection (closes D1 + G1). Section IX added — Evidence Basis (closes G4). Section IX (Versioning) renumbered to X. |
+| 1.2 | 2026-05-19 | Section II: quantified model-family token guidance — replaced "long/shorter/aggressive" with ~10K / ~2K / ~1K token defaults (closes D3). Section IV: added "Why six dimensions, not eight" subsection explaining schema/rubric asymmetry (closes G3). Section VII: replaced "every product" capability claims with verified per-product implementation status; reframed Borg Guardian from present-tense to planned-not-built (closes D2). |
 
 **Authority:** Hans Prahl is the authority on this Doctrine. Material edits go through him. The Doctrine is checked into each product's repo as `PROMPT_AGENT_DOCTRINE.md` (or via a single shared canonical source — TBD at ratification).
