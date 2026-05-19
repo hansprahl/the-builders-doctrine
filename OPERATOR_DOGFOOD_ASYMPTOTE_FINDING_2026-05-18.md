@@ -4,7 +4,16 @@
 **Product:** Operator (`~/Projects/operator/`)
 **Method:** Dogfood loop — render spec package → hand to fresh build agent →
 measure gap composition. Four internal iterations (v0–v3, Claude Code) plus
-one external iteration (v1.5, OpenAI Codex CLI / GPT-5.5).
+**two** external iterations (v1.5 run 1 — Acme invoice automation;
+v1.5 run 2 — NDA / vendor-contract clause review). Both external runs:
+OpenAI Codex CLI v0.131.0 / GPT-5.5.
+
+**Updated 2026-05-18 evening (+~90 min after Run 1):** N=2 cross-domain
+external evidence now logged. Run 2 strengthens the disconfirmation: Bucket
+B (cross-section contradictions) held at exactly 42.9% across two distinct
+workflow domains. The headline below is updated to reflect the N=2 finding.
+The original single-run executive summary is preserved further down for
+the historical record.
 **Spec source:** Acme Widgets synthetic invoice-automation brief
 (`data/engagements/acme-widgets-synthetic-test-data-a4937a/workflow_briefs/invoice_automation_v4.json`)
 **Operator HEAD at run:** `481086a` (commit "specs.py — v3 dogfood
@@ -278,19 +287,131 @@ In order of value-per-cost:
 
 ---
 
+---
+
+## Update — Run 2 (2026-05-18 evening, +~90 min after Run 1)
+
+The single-shot Run 1 finding above raised an open question: was the
+42.9% Bucket B dominance Acme-specific (artifact of the invoice-automation
+workflow shape), or a general property of the v3 renderer? Run 2 tests
+cross-domain stability with a different workflow: NDA / vendor-contract
+clause review. Same external substrate (GPT-5.5 / Codex CLI). Same
+BUILD_PROMPT, same gap rubric, fresh workspace, fresh brief.
+
+### Run 2 results
+
+5/5 acceptance scenarios pass. 7 gaps surfaced. Composition (with
+reclassification of Codex's labels per the rubric):
+
+| Bucket | Run 1 (invoice) | Run 2 (contract review) | Cross-run signal |
+|---|---:|---:|---|
+| A — Mechanical render defect | 28.6% | 14.3% | declining as renderer matures |
+| B — Cross-section contradiction | **42.9%** | **42.9%** | **STABLE across domains — load-bearing finding** |
+| C — Missing client decision | 28.6% | 14.3% | declining; floor smaller than originally claimed |
+| D — External-dependency | 0% | 28.6% | workflow-shape dependent |
+
+### Headline N=2 finding
+
+**Bucket B holding at exactly 42.9% across two distinct workflow domains
+is not random.** The v3 renderer has a stable, reproducible cross-section-
+contradiction blind spot that is independent of workflow domain. The
+asymptote claim, as originally stated, is disconfirmed not by a single-
+run anomaly but by a reproducible structural property of the renderer.
+
+### Secondary N=2 findings
+
+- **Bucket C dropped from 28.6% → 14.3%.** The originally-revised pitch
+  ("~20–30% irreducible sub-floor") is too optimistic. Honest N=2 range:
+  ~14–29% Bucket C with central tendency ~20%.
+- **Bucket D appeared in Run 2 (28.6%, was 0% in Run 1).** Workflow-shape
+  dependent — contract review has irreducible external dependencies
+  (stakeholder pilot signoff, platform-managed observability) that
+  invoice automation didn't. Some workflow shapes have legitimate
+  Bucket D content; pretending every backlog is pure-internal is
+  inaccurate.
+- **Codex still did not surface a circularity caveat.** N=2 confirms the
+  Run 1 informative null: input-provenance self-disclosure is Claude-
+  specific behavior, not universal builder behavior.
+- **Builder competence replicated.** Same architectural choices (frozen
+  dataclasses, enums, sha256/sha1, deterministic in-memory mocks). Same
+  pytest collection-error and same 9-line conftest.py fix. Same honest
+  fixed-price-buildability read. The spec format is portable across
+  workflow domains given GPT-5.5 as the builder.
+
+### Updated v4 validator backlog — six items now
+
+Three new defect classes from Run 2, additive to Run 1's three:
+
+| # | Defect class | Source | Severity |
+|---|---|---|---|
+| 1 | TRD↔SOW cross-document contradiction | Run 1 | BLOCKING |
+| 2 | Service-account roster missing execution agents | Run 1 | BLOCKING |
+| 3 | Fixture packaging — generate stubs or fail loud | Run 1 + Run 2 | BLOCKING |
+| 4 | Idempotency-key cross-section consistency | Run 2 | BLOCKING |
+| 5 | Exception-class enum validator (mirror AUDIT_VERB_NOT_IN_ENUM) | Run 2 | BLOCKING |
+| 6 | Tier × exception route disambiguation | Run 2 | MAJOR |
+
+None of these were predictable from the v3 internal iteration. All of
+them came out of running the loop against external builders.
+
+### Twice-revised pitch sentence
+
+| Generation | Sentence | Evidence basis |
+|---|---|---|
+| Original (morning 2026-05-18) | "Operator surfaces the *irreducible client-decision floor* in 3 iterations / ~$5" | Internal Claude-on-Claude only |
+| Revised after Run 1 (evening) | "...the spec-defect backlog converges on ~10–15 questions of which ~20–30% are irreducible client decisions, ~40% are contradictions closeable by tooling, ~30% are mechanical/packaging" | N=1 external |
+| Revised after Run 2 (this update) | "...the backlog converges on ~7–10 questions of which **~14–29%** are irreducible client decisions (central tendency ~20%, range varies by workflow shape), ~40% are cross-section contradictions closeable by tooling, and the remainder split between mechanical defects and (for some workflow shapes) irreducible external dependencies" | N=2 external |
+
+Each revision moves the sentence further from cleanly memorable and
+closer to the data. That is the right direction. The pitch surface has
+not yet been buyer-tested; the v1.5 doctrine release should not commit
+to a public sentence until at least one real-buyer read has happened.
+
+### Updated honest limits
+
+The honest-limits section above stands, with these additions from Run 2:
+
+- **N=2 same model family, two different workflow domains.** Stronger
+  evidence than N=1 but still single-substrate. The natural next experiment
+  is N=2 cross model families (Gemini 2.5 Pro on either spec).
+- **Run 2's spec brief was Hans-and-Claude-authored** (drafted by Claude
+  in conversation with Hans this evening). Same circularity-on-input as
+  Run 1.
+- **Run 2's brief was validated against v3 internal validators before
+  rendering.** Two consistency issues caught by the internal validators
+  were fixed before Codex saw the spec. Run 2's gap-surfacing therefore
+  measures what gets past the v3 validators, not what gets past v0.
+
+### Status for v1.5 doctrine release
+
+Reaffirmed from the original section above: this finding is candidate
+v1.5 appendix material, **not** Law I/VI causal-claim evidence. The
+N=2 replication strengthens the methodology evidence (Principle 13 /
+Working Backwards / falsifiable measurement instrument) but does not
+move the biographical-moat causal claim, which remains gated on the
+statistician work scheduled separately per `RELEASE_PLAN_v1.md`.
+
+---
+
 ## Cross-references
 
 - Internal iterations:
   `~/Projects/operator/library/2026-05-18/dogfood_loop/trd_brd_machine_executability_v{0,1,2,3}*.md`
-- External iteration:
+- External iteration Run 1 (Acme invoice automation):
   `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_codex_gpt5_5-eb81f6.md`
+- External iteration Run 2 (contract review):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_codex_gpt5_5_run2_contract_review-9873f1.md`
 - Evidence packet (protocol + rubric + spec package):
   `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_evidence_packet/`
-- Operator HEAD at run: `481086a`
+- Run 2 source brief: `/tmp/contract_review_brief.json` (not committed)
+- Operator HEAD at Run 1: `481086a` (specs.py v3)
+- Operator HEAD at Run 2: `89d00bc` (STORY postscript + STARTUP refresh)
 - Operator STORY chapter 2026-05-18 — *"The asymptote, and what we
   actually sell"* — captures the internal-loop reframe that was
-  partially disconfirmed by this external run; the STORY chapter
-  remains accurate as a *narrative-of-belief-at-the-time*, with this
-  evidence file as the *belief-after-falsification* artifact.
+  partially disconfirmed by Run 1 and replicated-disconfirmed by
+  Run 2; the STORY chapter remains accurate as a *narrative-of-belief-
+  at-the-time*, with this evidence file as the *belief-after-
+  falsification* artifact. STORY postscript (commit `89d00bc`) adds
+  the Run-1 disconfirmation in-narrative.
 - Project memory:
   `~/.claude/projects/-Users-hansprahl-Projects/memory/project_operator_dogfood_asymptote_2026-05-18.md`
