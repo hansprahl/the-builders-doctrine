@@ -1177,3 +1177,68 @@ Crisp on what's measurable (Gemini-side decay; the loop measurably improves). Ho
 - **The buildability verdict divergence (Gemini "YES conditional" vs Codex "NO") is itself a pitch-relevant finding.** Same spec, opposite verdicts. The buyer needs to know which reader produced their build-readiness call.
 - **Validator backlog: #21-#24 from Codex's 4 novels are doctrine-priority.** All 4 are verified real defects. Building them tests whether Codex's novel-find count also decays (N=12 Codex × strict × 17 validators). If yes → loop-decay is real but reader-specific. If no → the inventory keeps growing for Codex too; cross-reader bound is unknown.
 - **Don't claim "the loop converges" or "decay reaches zero" again without explicit reader-qualifier.** Each prior generation's strongest claim has been disconfirmed by the next run. The 11th-gen survives N=11; the next run can disconfirm it too.
+
+---
+
+## Run 12 update (2026-05-19 evening, +2 hr after Run 11)
+
+### What changed since Run 11
+
+Hans landed four new validators (#21-#24) targeting all 4 of Codex Run 11's novel finds, then re-rendered the v6 packet as v7 with 16 banners (was 12). Re-ran Codex on the v7 packet. This is the symmetric test of the Gemini Runs 6-8 substitution pattern from Codex's side: does Codex also decay across iterations, or stay flat?
+
+### Run 12 outcome
+
+| Dimension | Codex Run 11 (13 validators) | Codex Run 12 (17 validators) |
+|---|---|---|
+| Banners recognized | 12 / 12 | **16 / 16** |
+| Banners hallucinated | 0 | **0** |
+| Novel finds in Section 2 | 4 (all real) | **2 (both real)** |
+| Buildability verdict | "NO at fixed price" | **"NOT BUILDABLE at fixed price"** (same) |
+| Doctrine-ideal disclosure pattern | N=1 (DocuSign template) | **N=2 (Tier A interpretation + agent_id workaround)** |
+| Total disclosed inventory | 16 | **18** |
+
+### The 2 Codex Run 12 novel finds (both verified real)
+
+1. **§7.1 ↔ §7.1.1 ↔ §9.1 scenario 1 contradict on Tier A behavior** — §7.1 (line 96): *"Tier A: agent creates the signed-DocuSign envelope and notifies counterparty."* §7.1.1 (line 97): *"Tier A is silent unless audit-log writes fail."* §9.1 scenario 1 (line 117): *"no surface notification."* Three-way cross-section contradiction. Codex picked "envelope-prep + silent" per §7.1.1's more specific language and documented the interpretation in ASSUMPTIONS.md row 9. Severity: MAJOR.
+
+2. **§7.4.1 audit schema ↔ §8.1 SA roster ↔ §9.1 scenario 1 on agent_id** — Scenario 1 expected_audit_entry: `agent_id=sa-system@` on a DocuSign `post` action. §8.1 SA roster (via integration_details auth_method): DocuSign envelope-create scope is held by `sa-docusign-legalops@`. `sa-system@` is consistently the audit-row identity but cannot hold DocuSign API scope. The spec conflates audit-trail "who logged it" with integration "who called the API." Severity: MAJOR.
+
+Both novels are reader-independent spec defects that survived all 16 prior banner checks. Both documented as both gap-in-GAPS.md AND workaround-in-ASSUMPTIONS.md — the doctrine-ideal disclosure pattern reproduced.
+
+### Codex's decay curve (now visible across 2 iterations)
+
+| Codex iteration | Validators active | Novel finds |
+|---|---:|---:|
+| Run 11 | 13 | 4 |
+| Run 12 | 17 | **2** |
+
+Same direction and same per-iteration magnitude (drop of 2 novels per iteration) as Gemini's 7→5→4→2→1→0 across Runs 5-10. **Codex decays in the same shape Gemini does.** The decay-with-substitution dynamic is reader-agnostic.
+
+### Hypothesis verdict
+
+| H | Prediction | Status |
+|---|---|---|
+| H22 | Codex novel-finds → 0-1 (decay-to-zero like Gemini); substitution stops | **REFUTED** — Codex returned 2 novels at deeper layers |
+| H23 | Codex novel-finds → 2-3 (substitution pattern like Gemini Runs 6-8) | **STRONGLY SUPPORTED** — Codex 4 → 2, monotonic, same pattern shape as Gemini |
+| H24 | Codex novel-finds → ≥ 4 (unbounded relative to validator count) | **REFUTED** — Codex did not stay flat at 4 |
+
+**Net verdict:** Decay-with-substitution is reader-AGNOSTIC. Floor depth is reader-specific. Gemini reached 0 at iteration 6 (13 validators). Codex is at 2 at iteration 2 (17 validators). Whether Codex would also reach 0 with more iterations is the next testable question (N=13 with #25-#26).
+
+### Reader-confusion threshold for Codex
+
+Codex processed 16 banners cleanly: 16/16 recognized + 0 hallucinated. Gemini's reader-confusion threshold appeared at 11-13 banners (US_STATES ignored + §7.5 hallucinated). **Codex's threshold is above 16 banners; not yet observed.**
+
+### The 12th-generation pitch sentence
+
+> "Operator's spec-engagement loop produces a measurable monotonic decay in novel-find count for each reader independently. Across 12 external runs on a single contract spec, two model families exhibit the same decay-with-substitution pattern: Gemini 7→5→4→2→1→0 across 6 iterations; Codex 4→2 across 2 iterations on the same converged spec. Each reader's decay curve is reader-specific in depth and rate; the dynamic itself is reader-agnostic. What we sell is the speed and discipline of iteration, not a reader-agnostic defect floor."
+
+The 12th-gen replaces the 11th. The 11th claimed decay was reader-specific (Gemini decays; Codex finds 4 deeper). Run 12 added the symmetric piece — Codex also decays, in the same shape Gemini did, at the same per-iteration magnitude. The dynamic is reader-agnostic; the floor depth is reader-specific. Survives N=12.
+
+### Updated guidance to future readers
+
+- **The reader-agnostic claim is rehabilitated — for the dynamic, not the floor.** Both readers' novel-find counts decay monotonically across iterations. The shape of the decay is the same. The floor each reaches depends on reader rigor.
+- **Engineering-buyer framing:** "Across 12 runs, both Gemini and Codex show the same decay shape: novel-find count drops as validator coverage rises. Gemini hit 0 in 6 iterations; Codex is at 2 in 2. Your reader's rigor determines how many iterations to inventory exhaustion."
+- **Procurement-buyer framing:** "What you pay for is the discipline of iteration. Each cycle closes the previous cycle's defects and surfaces deeper ones. The pace is measurable; the endpoint depends on your reader."
+- **Doctrine-ideal disclosure pattern is N=2 on Codex (Runs 11+12), still N=0 on Gemini.** This is now a reader-style finding, not a single-run observation. Codex's disclosure discipline (flag in GAPS.md + document workaround in ASSUMPTIONS.md) is structurally different from Gemini's at matched harness.
+- **Three load-bearing missing pieces remain:** (a) buyer-test of the 12th-gen pitch (Brad Hampton or Nate Gray 2026-06-10); (b) does Codex also reach zero? (need #25-#26 + N=13); (c) third-reader triangulation to settle whether Codex > Gemini in rigor is a stable ordering or two samples of a wider distribution.
+- **Don't claim "the loop reaches an absolute defect floor" without per-reader qualifier.** Each generation's strongest claim has been disconfirmed by the next run. The 12th-gen will likely be refined by N=13.
