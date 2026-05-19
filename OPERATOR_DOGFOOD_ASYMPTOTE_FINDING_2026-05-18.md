@@ -1090,3 +1090,90 @@ Names the new failure mode. Preserves the decay claim. Doesn't overclaim.
 - **Two load-bearing missing pieces now**, not one: (a) buyer-test (Brad Hampton, EMBA peer, or Nate Gray 2026-06-10) of the 10th-gen pitch; (b) symmetric-reader test (Codex × strict × 12 validators) of the reader-confusion failure mode. Either alone is insufficient; both close the doctrine.
 - **The "buildable across all readers + rigor levels" claim is still intact** — Run 9's 5/5 acceptance PASS preserves the 9-run constant.
 - **Don't claim "the loop converges" without explicit data support.** Each prior generation's "converges" claim was disconfirmed by the next run (N=4 disconfirmed N=2; N=7 was a quiescence; N=8 disconfirmed N=7). The decay-curve framing survives N=9. The next run can disconfirm it too.
+
+---
+
+## N=10 update — 2026-05-19 evening (Gemini × contract × strict × 13 validators-active, cache-cleared)
+
+Run 10 added validator #20 (CIRCUIT_BREAK_RECOVERY_MISSING, commit `16f87d0`) closing Run 9's single novel find. Pre-run: `rm -rf ~/.gemini/tmp/dogfood-v1-5-*` to test the memory-leakage hypothesis for Run 9's hallucinated CONFIDENCE_ALERT_AMBIGUITY banner.
+
+**Result: novel-find count = 0.** First time across 6 iterations the decay reached zero.
+
+But two reader-failure patterns from Run 9 PERSISTED through the cache clear:
+- US_STATES_ENUMERATION_MISSING still ignored (3rd consecutive Gemini run; workflow.py line 76 again hardcoded `["New York", "Delaware", "California", "US"]`)
+- CONFIDENCE_ALERT_AMBIGUITY still hallucinated at §7.5 (3rd consecutive run; the v6 TRD has zero occurrences of `N%` per grep)
+
+**Memory-leakage hypothesis REFUTED.** The failure is in how Gemini parses the v5/v6 TRD content itself, not session memory carry-over from Runs 5-7. Two surviving hypotheses for the failure mode:
+1. §-section confusion — US_STATES is the only banner with a dual-section reference (`§5 / §4.1`); other banners are single-section
+2. §7.5 cross-reference is genuinely ambiguous in Gemini's reading — line 305 has `>5%` literal; line 309 says "threshold per the alert_channels rule above (alert b)" — the indirection creates the appearance of two thresholds even though there's only one
+
+**Buildability verdict shifted to "YES (conditional)"** — first time across 10 runs. Gemini's reasoning: "100% self-disclosed; vendor can accurately price the discovery phase." This is reader-specific (see N=11 below where Codex says "NO" on the same spec).
+
+---
+
+## N=11 update — 2026-05-19 evening (Codex × contract × strict × 13 validators-active, symmetric reader test)
+
+**First true symmetric reader test of the Run 9 reader-confusion failure mode.** Same v6 TRD, same harness, same 13 validators — only reader family changed (Gemini 2.5 → GPT-5.5 Codex CLI).
+
+### Cross-reader matrix
+
+| Dimension | Gemini (Run 10) | Codex (Run 11) |
+|---|---|---|
+| Banners recognized | 11 / 12 (ignored US_STATES) | **12 / 12** |
+| Banners hallucinated | 1 (CONFIDENCE_ALERT_AMBIGUITY at §7.5) | **0** |
+| Novel finds in Section 2 | 0 | **4 (all verified real)** |
+| Hidden gaps in workflow.py | 1 (US States 3-state synthesis) | 0 |
+| Documented assumptions matching gaps | 0 | 1 (DocuSign template id documented + flagged) |
+| Buildability verdict | "YES (conditional)" | "NO at fixed price" |
+| Total disclosed inventory | 13 (12 reported + 1 hidden) | **16 (12 banners + 4 novel)** |
+
+**Codex finds 3 more defects than Gemini on the same spec at the same harness rigor.**
+
+### The 4 Codex novel finds (all verified real, none are hallucinations)
+
+1. **Scenario 2 names `ip_assignment_overreach` — not in §4.2 taxonomy** — Brief line 126 literally says "ip_assignment_overreach pattern triggers senior-attorney + GC dual route." But §4.2 taxonomy lists `ip_assignment_gap` (a different exception used in scenario 4). Real spec typo / inconsistency Gemini missed across 9 runs. Severity: MAJOR.
+
+2. **Scenario 5 splits decision/error_class across two taxonomy entries** — Scenario 5 expected_audit_entry: `decision=low_confidence_extraction, error_class=manual_review`. The §4.2 taxonomy lists these as TWO different exception classes with different SLAs (2hr vs 4hr) and different notification rules. Real cross-section contradiction. Severity: MAJOR.
+
+3. **Cloud Scheduler has no service-account in §8.1 roster** — Brief's approval_mechanism says "Cloud Scheduler fires every 5 min checking for stalled queue items past SLA." §8.1 SA roster lists sa-gmail-legalops@, sa-docusign-legalops@, sa-ironclad-legalops@, sa-slack-legalops@, sa-system@. No sa-scheduler@. Real gap. Severity: MAJOR.
+
+4. **DocuSign integration has no template_id for envelope prep** — Scenario 1 expects DocuSign envelope prep; integration_details has `POST /envelopes` endpoint but no template_id or selection rule. Real missing client decision. Severity: MAJOR.
+
+### Doctrine-ideal disclosure pattern observed in Codex Run 11
+
+Codex documented assumption #8 in ASSUMPTIONS.md: "DocuSign envelope prep uses a mock template id `northstar-countersignature`; the TRD requires envelope prep but does not name the production template id." **AND flagged it as Section 2 novel #4.**
+
+**First reader across 11 runs to BOTH flag a gap AND document the workaround.** Gemini repeatedly hid US_STATES (3 consecutive runs) without documenting. The doctrine-ideal is: surface the gap publicly, document the build assumption, let the buyer see both.
+
+### Hypothesis verdict
+
+| H | Prediction | Status |
+|---|---|---|
+| H19 | Reader-confusion is Gemini-specific | **STRONGLY SUPPORTED** — Codex 12/12 recognized + 0 hallucinated |
+| H20 | Reader-confusion is universal at ~12 banners | **REFUTED** — Codex showed zero reader-confusion at 12 banners |
+| H21 | Reader-specific recognition patterns | **PARTIALLY SUPPORTED** — Codex doesn't subset-recognize Gemini's set, it reads everything Gemini reads PLUS 4 deeper defects. The delta is reader-rigor at matched banner count |
+
+### The disconfirmation of "decay to zero"
+
+Run 10 (Gemini) said novel-find = 0. Run 11 (Codex) said novel-find = 4 on the same spec at the same harness rigor.
+
+**The decay from 7 → 0 across Runs 5-10 was reader-specific.** When a more rigorous reader processes the same converged spec, 4 new defects emerge at deeper interfaces (scenario↔taxonomy, scenario↔integration_details, approval_mechanism↔SA roster). The "zero" floor Gemini reached at Run 10 was a finite-reader artifact, not an absolute bound.
+
+**The TRUE reader-knowable defect inventory on this spec at strict-harness with 13 validators is at least 16.** Reader-bounded, not absolute. The actual bound is still unknown.
+
+### The 11th-generation pitch sentence
+
+> "Operator's spec-engagement loop measurably improves at the spec level — Gemini's novel-find count decays 7 → 0 across 6 validator iterations on a single contract spec. But that decay is reader-specific: when Codex reads the same converged spec at strict harness, it surfaces 4 deeper defects Gemini misses across 9 runs. The reader the buyer's build platform uses determines both the count AND the depth of the inventory the buyer sees. What we sell is the speed and discipline of iteration, not a finite reader-agnostic defect list."
+
+Crisp on what's measurable (Gemini-side decay; the loop measurably improves). Honest on what's not (the inventory floor is reader-bounded). Survives Run 11's disconfirmation.
+
+### Updated guidance to future readers
+
+- **Stop pitching "decay to zero" without reader qualifier.** The decay is real for Gemini. Codex on the same spec finds 4 more defects. The buyer's reader determines what they see; "reader-agnostic" is now off the table.
+- **Engineering-buyer framing:** "Across 11 runs, Gemini's novel-find decays from 7 to 0. The same converged spec read by Codex surfaces 4 deeper defects. Your build platform's reader determines which floor you hit."
+- **Procurement-buyer framing:** "What you pay for is the speed and discipline of iteration. The defect inventory the buyer sees depends on which reader processes the spec — readers with different rigor surface different defects at the same spec."
+- **The doctrine-ideal disclosure pattern is "flag the gap AND document the workaround."** Codex did this once (DocuSign template id). No Gemini run ever did. Future spec-engagement claims should reference Codex's behavior as the gold standard.
+- **Three load-bearing missing pieces now, not two:** (a) buyer-test of the 11th-gen pitch (Brad Hampton or Nate Gray 2026-06-10); (b) third-reader triangulation (Claude itself or base GPT-5) to settle whether Codex-finds-4 is reader-style or stochastic; (c) cross-domain test (re-render Acme invoice brief at HEAD `16f87d0`, run both readers) to settle whether the cross-reader rigor delta is loop-property or spec-property.
+- **The buildability verdict divergence (Gemini "YES conditional" vs Codex "NO") is itself a pitch-relevant finding.** Same spec, opposite verdicts. The buyer needs to know which reader produced their build-readiness call.
+- **Validator backlog: #21-#24 from Codex's 4 novels are doctrine-priority.** All 4 are verified real defects. Building them tests whether Codex's novel-find count also decays (N=12 Codex × strict × 17 validators). If yes → loop-decay is real but reader-specific. If no → the inventory keeps growing for Codex too; cross-reader bound is unknown.
+- **Don't claim "the loop converges" or "decay reaches zero" again without explicit reader-qualifier.** Each prior generation's strongest claim has been disconfirmed by the next run. The 11th-gen survives N=11; the next run can disconfirm it too.
