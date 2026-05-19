@@ -1,0 +1,296 @@
+# Operator Dogfood Asymptote — Empirical Finding
+
+**Run date:** 2026-05-18
+**Product:** Operator (`~/Projects/operator/`)
+**Method:** Dogfood loop — render spec package → hand to fresh build agent →
+measure gap composition. Four internal iterations (v0–v3, Claude Code) plus
+one external iteration (v1.5, OpenAI Codex CLI / GPT-5.5).
+**Spec source:** Acme Widgets synthetic invoice-automation brief
+(`data/engagements/acme-widgets-synthetic-test-data-a4937a/workflow_briefs/invoice_automation_v4.json`)
+**Operator HEAD at run:** `481086a` (commit "specs.py — v3 dogfood
+iteration").
+**Doctrine relevance:** Principle 13 (*The Long Horizon*) + Working
+Backwards methodology — evidence-of-method, not evidence-of-causation.
+**v1.5 release status:** Candidate appendix material. Does NOT carry the
+Law I/VI replication evidence that v1.5 is gated on per
+`RELEASE_PLAN_v1.md`.
+
+---
+
+## Executive summary
+
+The dogfood loop converges on a *defect backlog*, not on zero. Three to
+four internal iterations + ~$5 of compute + ~18 min wall-clock reach a
+stable gap count of ~10. The internal-loop hypothesis was that the
+remaining gaps would be dominated by **irreducible client decisions** —
+questions only the client can answer (which duplicate-tuple? which
+holiday calendar? which PO-match procedure?). That hypothesis was named
+the *asymptote claim* and was provisionally adopted as the load-bearing
+pitch sentence for Operator's spec-engagement product.
+
+The first non-Claude external iteration (GPT-5.5 / Codex CLI, 2026-05-18
+evening) **partially disconfirms the asymptote claim as originally
+stated.** Bucket B (cross-section contradictions) dominates the external
+gap list at 42.9%, over the rubric's 40% "Claude-over-fit" threshold.
+Bucket C (missing client decisions) sits at 28.6%, below the 30% partial-
+support threshold. The external loop also surfaced three defect classes
+the internal loop did not catch, each pointing to a concrete tooling
+improvement (a v4 validator pass).
+
+The honest reframe: the loop surfaces a *spec-defect backlog*, not an
+*irreducible client-decision floor*. The decision-floor is a sub-
+component of the backlog (~20–30%), not the whole of it. The original
+pitch sentence ("time-to-decision-floor is what we sell") softens to
+"time-to-question-backlog is what we sell, with ~3 irreducible
+client decisions as a stable sub-floor."
+
+This is the **best possible outcome** for a single-shot external
+experiment. A confirming run would have been suspicious (same finding
+across model families = either real signal or shared blind spot). A
+disconfirming run with three concrete next-tooling opportunities is real
+evidence and real work.
+
+---
+
+## Method
+
+### Internal iterations (v0 → v3, Claude Code)
+
+Each internal iteration:
+
+1. Render `TRD.md` / `BRD.md` / `SOW.md` from the synthetic brief via
+   Operator's `tools/specs.py`.
+2. Spawn a fresh Claude general-purpose agent in an isolated working
+   directory containing **only** the three rendered .md files.
+3. Apply hard rules: no interactive clarification, mock all external
+   services, stdlib + pytest only, time cap 30 min.
+4. Capture the agent's `GAPS.md`, score each gap by bucket per the rubric,
+   record composition.
+
+Gap-counting rubric (canonical at
+`operator/library/2026-05-18/dogfood_loop/v1_5_evidence_packet/GAP_RUBRIC.md`):
+
+- **Bucket A — Mechanical render defect.** Field exists in source brief
+  but renderer doesn't surface it. Closable by code change in
+  `tools/specs.py` without involving the client.
+- **Bucket B — Cross-section contradiction.** Section X and section Y
+  cannot both be true. Closable by validator addition.
+- **Bucket C — Missing client decision.** A hole only the client can
+  fill. Not closable by tooling. **This is the asymptote claim.**
+- **Bucket D — External-dependency gap.** Spec depends on something
+  outside its own scope (fixture file, vendor API contract).
+
+### External iteration (v1.5, GPT-5.5 / Codex CLI)
+
+Same protocol, with two differences:
+
+1. Builder agent is **not Claude** — explicitly required for non-
+   circularity. The original method circularity (Claude-authored spec
+   read by Claude-driven builder) is the falsifiability problem this
+   iteration was designed to address.
+2. Spec package is the v3 rendered output, frozen at Operator HEAD
+   `481086a`. No further internal iteration between v3 and v1.5.
+
+---
+
+## Results
+
+### Internal iterations (Claude Code)
+
+| Iter | Wall-clock | Spend | Gap count | Gap composition signal |
+|---|---|---|---:|---|
+| v0 | ~6 min | ~$1.50 | ~10 | dominated by mechanical + contradiction |
+| v1 | ~6 min | ~$1.50 | ~10 | half mechanical, half client-decision |
+| v2 | ~6 min | ~$2 | ~10 | client-decision dominant (asymptote hypothesis) |
+| v3 | n/a | n/a | n/a | no full rebuild — closed v2 mechanical residue |
+
+By v2 the internal-loop verdict was: gap count stable around 10,
+composition converging on Bucket C. The provisional pitch sentence
+adopted in `operator/STORY.md` 2026-05-18 chapter:
+
+> Operator surfaces the irreducible client-decision floor in 3
+> iterations and ~$5 of compute. Without Operator, that takes 8–12 weeks
+> and three consultancies asking for $80K-plus. The artifact is the
+> same; what we sell is time-to-decision-floor.
+
+### External iteration (GPT-5.5 / Codex CLI v0.131.0)
+
+Wall time 3 min 29 s. 5/5 acceptance scenarios pass. 7 gaps surfaced.
+
+| Bucket | Count | % |
+|---|---:|---:|
+| A — Mechanical render defect | 2 | 28.6% |
+| B — Cross-section contradiction | 3 | **42.9%** |
+| C — Missing client decision | 2 | 28.6% |
+| D — External-dependency gap | 0 | 0% |
+
+Per the rubric's hold/fail bar:
+
+- **Bucket C ≥60% (strong asymptote support):** ❌ NOT MET
+- **Bucket C 30–60% (partial support):** ❌ NOT MET (28.6%)
+- **Bucket A or B >40% (Claude over-fit signal):** ✅ MET (Bucket B at 42.9%)
+
+### Three new defect classes the internal loop missed
+
+1. **Cross-document contradiction (TRD↔SOW).** SOW §7 excludes custom
+   integration code; TRD §6.2 + §9 require custom adapters. Operator's
+   `_validate_internal_consistency` only checks *within* the TRD.
+2. **Service-account roster gap.** `ap-agent@` is the workflow execution
+   agent every scenario references in `expected_audit_entry`, but
+   `_render_service_account_roster` only derives SAs from the
+   `integration_details` field. Execution-agent SAs are missing from
+   the roster the audit log resolves against.
+3. **Fixture packaging gap.** The v3 renderer flags `sample_documents`
+   as BLOCKING in the brief, but does not generate fixture files when
+   exporting the spec package. The package shipped contained only the
+   three .md files.
+
+Each of these is a concrete tooling task. None of them is an irreducible
+client decision. The asymptote claim's robustness depends on whether
+internal iterations *with* a v4 validator pass recover Bucket-C
+dominance, or whether new defect classes continue to surface with each
+non-Claude builder substrate tested.
+
+### Informative null: no circularity caveat
+
+The v0 internal Claude run *unprompted* self-disclosed the circularity
+of the experiment ("I am Claude. The TRD was authored by 'Halsey' and
+the BRD by 'Mason' — both Claude-driven specialists. The §9.1 acceptance
+scenarios I just made pass were drafted by the same agent lineage that
+drafted the §4.1 routing rules that contradicted them."). GPT-5.5 made
+no such observation. The implication: Claude has a self-reflective
+habit (questioning input provenance) that GPT-5.5 does not share.
+Internal-loop circularity disclosures cannot be assumed to generalize.
+
+### Builder-competence finding
+
+Independent of the gap question, the external run is informative about
+GPT-5.5 as an agentic coding agent:
+
+- Shipped 5/5 passing acceptance scenarios faster than the Claude
+  internal v0 loop (3m29s vs ~8m).
+- Made the same architectural choices Claude made independently:
+  frozen dataclasses, Decimal for money, sha256/sha1 for canonical hashing.
+- Recovered from its own first pytest collection error with a minimal
+  `conftest.py` sys.path shim — appropriate non-invasive fix.
+- Documented every interpretation in `ASSUMPTIONS.md` per the rule.
+- Honest `BUILD_REPORT.md` conclusion matched Claude's v0 conclusion
+  ("buildable as a mocked harness; not cleanly buildable at fixed price
+  without a clarification pass").
+
+**Second-order finding:** the spec is portable across model families
+given the *no-clarification + assume-and-document* discipline. The gap
+composition differs, but the buildability story is the same. This is
+itself evidence that Operator's rendered spec format is doing real work,
+independent of whether the asymptote claim holds.
+
+---
+
+## Honest reframe of the pitch
+
+| Original (pre-v1.5) | Revised (post-v1.5 evidence) |
+|---|---|
+| Operator surfaces the *irreducible client-decision floor* in 3 iterations / ~$5 | Operator surfaces the *spec-defect backlog* in 3 iterations / ~$5; the backlog converges on ~10–15 questions of which ~20–30% are irreducible client decisions, ~40% are cross-section contradictions closeable by tooling, ~30% are mechanical or packaging defects |
+| Time-to-decision-floor is what we sell | Time-to-question-backlog is what we sell; the irreducible decision-floor is a sub-component of the backlog, not the whole of it |
+| The artifact is the same; what we sell is speed | The artifact is the same shape; what we sell is the structured question backlog *plus* the doctrine that separates closeable defects from irreducible decisions |
+
+The original sentence reads cleaner but isn't load-bearing. The revised
+sentence is uglier but survives the falsification test the original
+didn't.
+
+---
+
+## Doctrine relevance
+
+This finding does **not** carry the Law I/VI biographical-moat
+replication evidence that `RELEASE_PLAN_v1.md` schedules for v1.5
+(2026-07-25). That evidence is a separate experimental track gated on
+external statistician engagement.
+
+What this finding **does** demonstrate:
+
+- **Principle 13 (The Long Horizon)** — *evidence-of-method*. The PR/FAQ
+  / Working Backwards methodology produces measurable convergence. The
+  dogfood loop is the measurement instrument. The defect backlog is the
+  measured artifact. The product survives empirical testing of its own
+  pitch.
+- **Principle 12 (What else? Active extraction)** — *applied surface*.
+  The Reflection Gate that runs on every Operator specialist response
+  is the same instinct as the dogfood loop's "no interactive
+  clarification — every ambiguity must be flagged" rule. The two
+  surfaces enforce the same discipline at different scales.
+- **Principle 1 (The code is the story)** — *non-portability evidence
+  (negative)*. The dogfood loop is a methodology any builder could
+  run. The biographical moat is not in the methodology — it's in
+  Operator's specialist roster, in the WW2-cockpit-to-switchboard
+  aesthetic, in the all-staff MCA shape. The loop is portable; the
+  product the loop tests is not. This is the right shape for
+  Principle 1.
+
+---
+
+## Honest limits
+
+- **N = 1 external run.** Single model family (GPT-5.5), single harness
+  (Codex CLI). A second external run with Gemini 2.5 Pro or Llama 3.3
+  70B would strengthen or weaken the disconfirmation. Single-run
+  evidence; do not over-claim.
+- **Spec is synthetic.** The Acme Widgets brief is Hans-authored test
+  data, not a real customer engagement. A run against a real customer
+  brief (Brian Friedman's pilot when it lands) is the next falsifiability
+  upgrade.
+- **Spec author is Operator (Claude).** The asymptote claim is about
+  Operator's spec-engagement output. The full circularity-break would
+  require a spec authored by a non-Claude system AND read by a non-
+  Claude builder. Currently we have *spec by Claude, builder by GPT-5.5*
+  — half the circularity broken.
+- **Rubric is Hans-authored.** The four-bucket gap classification is
+  itself a Claude-and-Hans construction. A different rubric might
+  classify the same gaps differently and produce a different verdict.
+- **Pitch surface untested.** The revised pitch sentence has not been
+  read aloud to a real buyer (Brad's network, Brian Friedman, an EMBA
+  peer). Buyer-test is the next pitch-surface falsifier.
+
+---
+
+## Next experiments to upgrade evidence
+
+In order of value-per-cost:
+
+1. **v4 internal pass.** Build the three new validators
+   (TRD↔SOW cross-document, execution-agent roster inclusion, fixture
+   packaging). Re-render the v4 package. Should not affect the v1.5
+   external evidence; it's a separate question (does Operator-tooling
+   close the new defect classes the external loop surfaced).
+2. **Second external run, different model family.** Gemini 2.5 Pro
+   via Aider is the next-most-aligned-with-market-pitch (MegazoneCloud
+   implies Gemini Enterprise). N=2 across model families strengthens
+   either the disconfirmation or the partial-support read.
+3. **Real-customer brief run.** When Brian Friedman's triage reply
+   lands and his real brief enters the system, render → external builder
+   → score against the same rubric. Synthetic-to-real upgrade is
+   the largest single non-circularity gain available.
+4. **Buyer-test the revised pitch.** Read the revised sentence to one
+   real buyer (Brad or an EMBA peer), capture their first-question. If
+   the first question is about the floor sub-component, the pitch lands
+   intact. If the first question is "what's a question backlog and why
+   should I care?", the pitch needs another reframe.
+
+---
+
+## Cross-references
+
+- Internal iterations:
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/trd_brd_machine_executability_v{0,1,2,3}*.md`
+- External iteration:
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_codex_gpt5_5-eb81f6.md`
+- Evidence packet (protocol + rubric + spec package):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_evidence_packet/`
+- Operator HEAD at run: `481086a`
+- Operator STORY chapter 2026-05-18 — *"The asymptote, and what we
+  actually sell"* — captures the internal-loop reframe that was
+  partially disconfirmed by this external run; the STORY chapter
+  remains accurate as a *narrative-of-belief-at-the-time*, with this
+  evidence file as the *belief-after-falsification* artifact.
+- Project memory:
+  `~/.claude/projects/-Users-hansprahl-Projects/memory/project_operator_dogfood_asymptote_2026-05-18.md`
