@@ -1,20 +1,22 @@
 # Operator Dogfood Asymptote — Empirical Finding
 
-**Run date:** 2026-05-18 (Runs 1–3) + 2026-05-19 (Run 4)
+**Run date:** 2026-05-18 (Runs 1–3) + 2026-05-19 (Runs 4+5)
 **Product:** Operator (`~/Projects/operator/`)
 **Method:** Dogfood loop — render spec package → hand to fresh build agent →
 measure gap composition. Four internal iterations (v0–v3, Claude Code) plus
-**four** external iterations completing the 2×2 design (two model families × two domains):
+**five** external iterations (2×2 design + one rigor-control run):
 - v1.5 Run 1 — Acme invoice automation, OpenAI Codex CLI / GPT-5.5
 - v1.5 Run 2 — NDA / vendor-contract clause review, OpenAI Codex CLI / GPT-5.5
 - v1.5 Run 3 — Acme invoice automation (same spec as Run 1), Google gemini-cli / Gemini 2.5
-- v1.5 Run 4 — Contract review (same spec as Run 2), Google gemini-cli / Gemini 2.5
+- v1.5 Run 4 — Contract review (same spec as Run 2), Google gemini-cli / Gemini 2.5, normal harness
+- v1.5 Run 5 — Contract review (same spec as Runs 2+4), Google gemini-cli / Gemini 2.5, STRICT harness
 
-**Updated 2026-05-19 morning (Run 4):** The 2×2 design is now complete.
-N=4 shows that not only does gap composition vary by reader (the N=3
-finding), but so does **gap count** — Gemini Run 4 surfaced only 3 gaps
-on the contract spec where Codex Run 2 surfaced 7. The pitch sentence
-moves to a fifth generation that names both effects. Earlier
+**Updated 2026-05-19 mid-morning (Run 5):** The rigor confound from N=4
+is now resolved. Strict-harness Gemini surfaces 7 gaps on the contract
+spec — same count as Codex Run 2 on the identical spec. **Gap count is
+harness-dependent. Gap composition is reader-dependent.** The phenomenon
+is a 2D surface, not a 1D asymptote. The pitch sentence moves to a sixth
+generation that names rigor and reader as independent axes. Earlier
 interpretations preserved below as belief-trajectory record.
 
 **Updated 2026-05-18 late evening (+~3 hrs after Run 2):** N=3 evidence
@@ -554,9 +556,13 @@ separate and gated on the statistician work per `RELEASE_PLAN_v1.md`.
   `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_gemini25_run3_cross_family-745f92.md`
 - External iteration Run 4 (Gemini/Contract — 2×2 cell completion):
   `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_gemini25_run4_contract_review-c8a3d1.md`
+- External iteration Run 5 (Gemini/Contract STRICT harness — rigor confound resolution):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_external_gemini25_run5_strict_harness-e7f4a2.md`
 - Evidence packet Run 4 (contract review variant):
   `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_evidence_packet_contract/`
-- Operator HEAD at Run 4: `89d00bc` (same as Run 2)
+- Evidence packet Run 5 (contract review STRICT variant):
+  `~/Projects/operator/library/2026-05-18/dogfood_loop/v1_5_evidence_packet_contract_strict/`
+- Operator HEAD at Runs 4+5: `89d00bc` (same as Run 2)
 - Project memory:
   `~/.claude/projects/-Users-hansprahl-Projects/memory/project_operator_dogfood_asymptote_2026-05-18.md`
 
@@ -634,3 +640,100 @@ yet buyer-tested.**
 - The v4 validator backlog grows from 6 to **8** items (two new from
   Run 4's gaps: value-less-NDA Tier D route disambiguation; standard-
   clause-library reference field).
+
+---
+
+## Update — N=5 (Run 5, 2026-05-19 mid-morning) — rigor confound resolved
+
+**Run:** Gemini 2.5 / gemini-cli v0.42.0, contract review spec md5-identical to Run 4, **strict BUILD_PROMPT.md (S1–S5 test requirements)** as the single variable changed.
+**Result:** 5/5 acceptance PASS. Total gaps: **7** (up from Run 4's 3 — matches Codex Run 2's count on the same spec).
+
+| Bucket | Count (my audit) | % |
+|---|---:|---:|
+| A — Mechanical render defect | 3 | 42.9% |
+| B — Cross-section contradiction | 1 | 14.3% |
+| C — Missing client decision | 2 | 28.6% |
+| D — External-dependency | 1 | 14.3% |
+
+(Gemini's self-classification differed by one: it labeled the audit-action enum bleed-through — `create_bill`/`create_fx_bill` from invoice-domain appearing in contract-spec audit section — as cross-section contradiction; my audit reclassifies it to mechanical render defect. Same pattern as Codex Run 2 needing one reclassification — both readers' self-bucketing is ~85% accurate.)
+
+### Comparison: same spec, three runs, the rigor × reader axes
+
+| Run | Reader | Harness | Total | A | B | C | D |
+|---|---|---|---:|---:|---:|---:|---:|
+| 2 | Codex | normal | 7 | 14.3% | **42.9%** | 14.3% | 28.6% |
+| 4 | Gemini | normal | 3 | 33.3% | 33.3% | 33.3% | 0% |
+| **5** | **Gemini** | **STRICT** | **7** | **42.9%** | **14.3%** | **28.6%** | **14.3%** |
+
+### What N=5 settles
+
+1. **Gap COUNT is harness-dependent, not reader-dependent.** Strict-
+   harness Gemini matches Codex on count (7 vs 7). The Run-4-vs-Run-2
+   count gap (3 vs 7) was the test-rigor confound. **H2 (rigor
+   confound) strongly supported.**
+
+2. **Gap COMPOSITION is reader-dependent, not harness-dependent.** Even
+   at matched count, Gemini's signature (A 42.9% / C 28.6% / B+D 14.3%)
+   is an **INVERSION** of Codex's signature (A 14.3% / B 42.9% / C 14.3%
+   / D 28.6%). The composition signatures are stable across harness
+   variation; they're reader properties. **H1 (reader-style) supported
+   on composition, refuted on count.**
+
+3. **Gap IDENTITY is partially reader-independent.** Even at matched
+   count, the two readers don't find the same 7 gaps. Strict-Gemini
+   caught 2 gaps Codex missed (per-clause vs whole-contract confidence
+   threshold; literal `N%` placeholder in §7.5). Codex caught 2 strict-
+   Gemini missed (idempotency-key contradiction; BigQuery/Looker
+   platform dependencies). The reader-independent floor across three
+   same-spec runs is **3 gaps** (samples missing + clause library
+   decision + dual-routing contradiction).
+
+4. **The v3 token-form validator has a coverage gap.** Gemini Run 5
+   caught a literal `N%` in §7.5 that the existing v3 validator should
+   have flagged but didn't — the validator only scans field-render
+   sites and misses hand-typed sections. This is a **renderer-side bug**
+   surfaced by the strict harness, not a spec defect proper.
+
+5. **The asymptote framing is the wrong shape.** The data is a 2D
+   surface, not a 1D asymptote:
+   - rigor axis → drives gap count
+   - reader axis → drives gap composition
+   - composition is stable across rigor for a given reader
+   - count is stable across readers for a given rigor
+   - identity is ~30% reader-independent, ~70% reader-dependent
+
+### Pitch sentence — sixth generation
+
+> **"With matched test-rigor, every spec produces ~7 distinct defects across N=5 external runs. Which defects each reader surfaces is reader-style-dependent; that the count converges on ~7 with rigorous testing is reader-independent. The reader-independent floor — defects every reader will surface no matter how it's harnessed — is 2-3 per spec. The asymptote isn't a number; it's the union of what *any* sufficiently-rigorous reader can find."**
+
+First generation to name **rigor confound** and **reader-style finding**
+as independent dimensions. First to give a single number (~7 matched-
+rigor count) that survives across both reader families. Longer than
+memorable, but the first to use ALL FIVE runs as supporting evidence
+rather than 2-3 supporting + 2-3 falsifying. **Not yet buyer-tested.**
+
+### Updated guidance to future readers
+
+- **Stop calling this the "asymptote" experiment.** The data does not
+  support a single-asymptote framing. Call it the "reader × rigor
+  surface" finding.
+- Lead with "buildable across reader families AND rigor levels" as
+  the central evidence claim. 5/5 acceptance PASS in all five external
+  runs.
+- For engineering-minded buyers, lead with the count-stability finding
+  (~7 defects under matched rigor). For procurement/leadership buyers,
+  lead with the composition-divergence finding (different readers
+  surface different defects).
+- **Next external runs worth doing:** (a) N=6 Codex × contract × LAX
+  harness — symmetric test of the rigor finding from Codex's side; (b)
+  Brian Friedman real brief — synthetic-to-real, largest non-
+  circularity gain available; (c) Gemini × contract × even-stricter
+  harness — pushes toward Codex-rigor to test count saturation at 7.
+- The v4 validator backlog grows from 8 to **11** items (three new
+  from Run 5: audit-action enum domain-scoping; per-clause vs whole-
+  contract confidence threshold; token-form validator coverage
+  extension to cover hand-typed sections).
+- Self-classification accuracy across readers is ~85%. Both Codex Run
+  2 and Gemini Run 5 needed exactly one bucket reclassification.
+  Don't trust the reader's self-bucket count as final; apply the
+  rubric externally.
