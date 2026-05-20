@@ -1,6 +1,6 @@
 # Refusal Propagation Off-Ramp — Primitive Spec
 
-**Status:** **v0.2 — STRIPPED.** Spec only, no chassis code, no validation gate, no portfolio ledger. Reduced from 396 lines / 13 sections (v0.1) to the smallest mechanism that actually does work, per Grok adversarial review (preserved in §5). Law VII applies: provisional doctrine until at least three live §II.8 cycles have run through it.
+**Status:** **v0.2 — FROZEN 2026-05-20 for v1.0 ship.** Spec only, no chassis code, no validation gate, no portfolio ledger. Reduced from 396 lines / 13 sections (v0.1) to the smallest mechanism that actually does work, per Grok adversarial review (preserved in §5). Law VII applies: provisional doctrine until at least three live §II.8 cycles have run through it.
 
 **Date opened:** 2026-05-18.
 **Owns deliverable slot:** *Refusal-propagation off-ramp primitive spec — 2026-05-25 (8 hrs)* in `STARTUP.md` Phase 1, shipped 7 days early.
@@ -64,7 +64,7 @@ No deviation taxonomy. No structured types. The reason field must do the work. E
 
 ### Step 3 — Stale-cycle tripwire
 
-A cycle that has been open more than 30 days without all four product entries surfaces at the next weekly bandwidth-overlay check ([BANDWIDTH_OVERLAY_2026-05-15.md](BANDWIDTH_OVERLAY_2026-05-15.md) §5; first check 2026-05-21 EOD) and blocks the next doctrine-repo release tag until closed. No centralized ledger; the tripwire is a grep across the four product files.
+A cycle that has been open more than 30 days without all four product entries surfaces at the next weekly bandwidth-overlay Thursday-EOD check ([BANDWIDTH_OVERLAY_2026-05-15.md](BANDWIDTH_OVERLAY_2026-05-15.md) §4d; first check 2026-05-21 EOD) and blocks the next doctrine-repo release tag until closed. No centralized ledger; the tripwire is a grep across the four product files.
 
 ---
 
@@ -132,3 +132,4 @@ The one finding I do not fully accept: Grok closed with *"Execute clean or kill 
 - **v0.1 — 2026-05-18T02:35Z** — Initial draft. 396 lines, 13 sections. Author: Hans Prahl + Claude (Opus 4.7, 1M context). Committed `803b917`.
 - **v0.1+grok — 2026-05-18** — Grok adversarial review appended verbatim (commit `5ef9ad0`) before strip, preserving the v0.1 surface and the critique as a single artifact in git history.
 - **v0.2 — 2026-05-18** — Stripped to scope per Grok adversarial review (§5 above). Removed: deviation taxonomy (old §5), portfolio ledger (old §6), weaponized-off-ramping defense (old §7), validation gate (old §9), cost table (old §10), bootstrap cycle (old §11), commit-discipline meta-section (old §12), open-decisions table (old §13). Added: §3 honest negatives (what this protocol cannot do); §4 upstream-doctrine open work. Net: 396 lines → this file. Same Phase 1 deliverable slot, smaller surface.
+- **v0.2-FROZEN — 2026-05-20** — Ship-readiness pass for v1.0 (2026-06-01). Fixed cross-reference bug at §3 Step 3: tripwire surface is BANDWIDTH_OVERLAY §4d (Weekly check-in protocol, Thursday EOD) not §5 (Pre-registered truncation triggers — a one-shot, not a recurring check). Status bumped from STRIPPED to FROZEN. No semantic change to the protocol itself; spec body unchanged. Verified: §II.8 anchor exists, all 4 product `REFUSAL_AUDIT.md` files exist, BANDWIDTH_OVERLAY §4d Thursday cadence matches "first check 2026-05-21 EOD" target. Provisional-doctrine status (Law VII) unchanged — three live cycles still required.
