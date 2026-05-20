@@ -1,6 +1,6 @@
 # Shaping Operations — Phase 0, Branches, and Sequels
 
-**Status:** v0.1 draft — 2026-05-20
+**Status:** v0.2 — 2026-05-20 — gating-mechanism shell validated at Squad scale via Exp 07b cross-family falsification (Grok + Gemini both above falsification thresholds); PC content quality measured as a multiplier on top of the shell.
 **Source authority:** ADP 5-0 (The Operations Process), FM 5-0 (Planning and Orders Production), JP 3-0 (Joint Operations) Phasing Model
 **Builder authority:** Hans Prahl (J3 muscle memory, surfaced 2026-05-20 during Exp 06 hardening)
 **Relationship to other doctrine:** Extension to [MISSION_COMMAND_ARCHITECTURE.md](MISSION_COMMAND_ARCHITECTURE.md); operates within the MDMP subroutine the doctrine already names. Civilian glosses follow the convention established in [ADP_6_0_TRANSLATION.md](ADP_6_0_TRANSLATION.md).
@@ -300,7 +300,29 @@ Estimated cost: ~$5-10, ~2 hours build, half-day analysis.
 
 ## Status
 
-Draft v0.1. Doctrine repo entry. No code written. Pilot pending decision.
+**v0.2 — gating-mechanism shell validated at Squad scale, with measured content-quality multiplier on top.**
+
+Empirical history:
+
+- **v0.1 (drafted 2026-05-20 morning).** Doctrine entry only, no code, pilot pending.
+- **Pilot — Exp 07 (2026-05-20 afternoon).** Full ~90-line hand-authored Shaping OPORD prepended to D18 (Sonnet + coord, no personas). Result: 11/12 wins vs D18 under both Sonnet and Opus graders; NA axis +2.14. Initial verdict: structured-PC gating validated.
+- **Adversarial review — Grok (2026-05-20).** Verdict: ARTIFACTUAL. Six attacks landed; primary attack: cannot separate the gating *mechanism* from the ~90 lines of substantive *content*. Doctrine propagation HALTED.
+- **Falsification — Exp 07b (2026-05-20 evening).** Stripped the substantive content to a single neutral sentence ("List any open pre-conditions or gaps from prior artifacts and close them before declaring complete. Use named roles where appropriate.") and ran N=6 against N=6 D18 baseline. Blind-graded by four graders (Sonnet, Opus, Grok-4, Gemini 2.5 Pro). Non-Anthropic graders decisive per pre-registered spec.
+  - Cross-family verdict: 32/48 wins (67%), NA delta +1.02. Both falsification thresholds (NA ≥ +0.8, wins ≥ 7/12) cleared.
+  - Verdict: **SURVIVES in attenuated form.** Shell carries ~48% of the original NA lift; substantive PC content carries the other ~52%.
+
+What this means for the doctrine:
+
+- The gating *shell* (Soldiers prompted to surface and close gaps with named roles) is the load-bearing primitive. It carries measurable lift independent of PC quality.
+- The substantive PC *content* (specific roles, dated triggers, status flags, sequencing) is a measured multiplier on top of the shell — roughly doubling the named-accountability lift in the Wabash case.
+- Both primitives are real. A v0.2 implementation may ship with the minimum-viable shell and add hand-authored PCs as a quality multiplier where the deliverable warrants the authoring cost.
+
+Deferred follow-ups:
+
+- Human-grading third leg (HUMAN_GRADING_PACKET.md, 12 EXP07B-vs-D18 pairs) is queued; verdict revisable if it lands materially different from the LLM consensus.
+- Exp 07b secondary analysis (EXP07B-minimal vs EXP07-full head-to-head) not yet graded; current shell-vs-content split is estimated by subtracting deltas, not measured directly.
+- Generalization beyond Wabash regulatory-compliance brief untested.
+- Phase 0 Squad as *generator* (can an agent produce equivalent-quality PCs?) deferred to a separate experiment.
 
 ---
 
