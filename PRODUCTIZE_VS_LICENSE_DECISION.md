@@ -174,7 +174,7 @@ Three artifacts, committed same day:
 - Does not lock the answer pre-2026-05-25. Options A/B/C remain open until §4 rubric is scored and Hans signs the call.
 - Does not engage any outside counsel. All counsel-gated questions live in §6 appendix with explicit triggering events.
 - Does not commit Hans to permanent framing. §3.5 anchors the provisional-with-2026-07-31-re-review framing.
-- Does not address Operator's `PATENT_DISCLOSURE.md` inventor-bio error (line 160 — "USMC retired" should be "Army NG retired"). That's flagged elsewhere for first patent-attorney contact, not blocked by #7.
+- Does not address Operator's `OPERATOR_PATENT_DISCLOSURE.md` (the actual filename — earlier scaffold draft cited `PATENT_DISCLOSURE.md`/line 160 from a stale memory; bio verified correct at line 204 on 2026-05-20). Any future patent-disclosure changes still gate on first patent-attorney contact, not on #7.
 - Does not address the "raise money" workstream. That is a separate strategic question, parallel to #7, with its own scope-and-options conversation needed before any scaffold.
 
 ---

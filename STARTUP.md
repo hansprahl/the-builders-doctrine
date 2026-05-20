@@ -29,11 +29,11 @@ AI Tradecraft (umbrella, by Hans Prahl)
 
 Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-05-15.md`. Phase 1 closes 2026-05-25; Phase 2 closes 2026-06-01 (public release).
 
-**Phase 1 — Final v1.0 prep (in flight):**
-- 2026-05-22 — All framework holds carry execution dates (Law VII compliance pass) [6 hrs]
-- 2026-05-25 — Productize-vs-license decision locked (10 hrs, Hans + counsel)
-- 2026-05-25 — Refusal-propagation off-ramp primitive spec (8 hrs)
-- 2026-05-25 — Founder-romance detector — pre-commit hook on doctrine repo (13 hrs; regex implementation per original `feedback_close_up_this_session.md` round-7 spec — the Adversarial Review chassis successor was retracted 2026-05-19 by Grok KILL verdict)
+**Phase 1 — Final v1.0 prep:**
+- ~~2026-05-22 — All framework holds carry execution dates (Law VII compliance pass) [6 hrs]~~ — **SHIPPED 2026-05-15 (`4d24319`), 7 days early; 1.5 actual hrs; inline edits, no standalone artifact**
+- ~~2026-05-25 — Productize-vs-license decision locked (10 hrs, Hans + counsel)~~ — **LOCKED 2026-05-20 (`712684a`), 5 days early; Option C (Hybrid); ~4 actual hrs counsel-free per scaffold reshape**
+- ~~2026-05-25 — Refusal-propagation off-ramp primitive spec (8 hrs)~~ — **FROZEN 2026-05-20 (`f800b38`), 5 days early; v0.2-FROZEN; ~1 actual hr spot-check**
+- 2026-05-25 — Founder-romance detector — pre-commit hook on doctrine repo (13 hrs; regex implementation per original `feedback_close_up_this_session.md` round-7 spec — the Adversarial Review chassis successor was retracted 2026-05-19 by Grok KILL verdict) — **IN FLIGHT**
 
 **Phase 2 — Public-facing artifacts:**
 - 2026-05-27 — Pitch / CLAUDE / EXPLAINER rewrite — reshape for v1.0 claims, **no biographical-moat causal claim** (15 hrs)
@@ -88,7 +88,7 @@ Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-0
 
 - **Material doctrine edits** — Hans approval + version bump. Editorial (typo, clarification, example) is fine.
 - **Patent-adjacent text** — Subsystem A (the closed loop) is patent-pending. The split between free (Assayer scorer + doctrine) and paid (corrector, stash-and-rollback, two-corrector router, recommendations engine, CI gate) is load-bearing for IP. **Do not move features across that line without Hans + Peter Lemire.**
-- **`PATENT_DISCLOSURE.md` (in Operator repo)** — pre-filing legal doc. Has a known inventor-bio error (line 160 says "USMC retired"; correct is Army NG retired). Do **not** unilaterally edit; flag for IP attorney at first contact.
+- **`OPERATOR_PATENT_DISCLOSURE.md` (in Operator repo)** — pre-filing legal doc. Bio verified correct as of 2026-05-20 at line 204 (*"U.S. Army retired First Sergeant (Colorado Army National Guard). 21 years total: 5 USMC active 1996–2001 + 16 ARNG"*). Do **not** unilaterally edit; any future bio or claim change goes through Hans + IP attorney.
 - **The Refusal list** — canonical lives in `THE_BUILDERS_DOCTRINE.md II.8`. Per-product audit logs are downstream (`REFUSAL_AUDIT.md`). Don't fork.
 
 ## Recent significant changes
