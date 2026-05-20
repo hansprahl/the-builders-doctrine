@@ -36,10 +36,16 @@ Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-0
 - 2026-05-25 — Founder-romance detector — pre-commit hook on doctrine repo (13 hrs; regex implementation per original `feedback_close_up_this_session.md` round-7 spec — the Adversarial Review chassis successor was retracted 2026-05-19 by Grok KILL verdict) — **IN FLIGHT**
 
 **Phase 2 — Public-facing artifacts:**
-- 2026-05-27 — Pitch / CLAUDE / EXPLAINER rewrite — reshape for v1.0 claims, **no biographical-moat causal claim** (15 hrs)
-- 2026-05-29 — v1.0 release notes draft — explicit Principle #1 deprecation + v1.5 roadmap (4 hrs)
-- 2026-05-30 — Public landing page (6 hrs)
-- 2026-06-01 — **v1.0 git tag + public release announcement**
+- ~~2026-05-27 — EXPLAINER rewrite — no biographical-moat causal claim~~ — **SHIPPED 2026-05-20 (`9ffa65e`), 7 days early; ~40 min actual.** Deprecation-as-trust-signal frame adopted; reshape collapsed 15-hr scope. (Remaining: per-product CLAUDE.md audience-tune and doctrine-root CLAUDE.md were separated as smaller items.)
+- ~~2026-05-29 — v1.0 release notes draft~~ — **SHIPPED 2026-05-20 (`4fe5afa`), 9 days early; ~20 min actual.** First-ever logged founder-romance-detector override (Principle #4 verbatim name caught as FP).
+- ~~2026-05-30 — Public landing page artifact~~ — **SHIPPED 2026-05-20 (`dd2732b`), 10 days early; ~1 hr actual.** One-pager static HTML at `docs/index.html` + `docs/style.css`. Carries deprecation-as-trust-signal frame. **Not deployed.** Deploy is gated to ship day (see "Ship-day deploy" below).
+- 2026-06-01 — **v1.0 git tag + public release announcement + landing-page deploy** — see steps below
+
+**Ship-day deploy (2026-06-01) — two-step Pages enablement:**
+1. **Flip repo public.** GitHub → Settings → General → Danger Zone → "Change repository visibility" → Public. Confirms the v1.0 ship is observable. *Why now and not earlier:* the repo is currently private and GitHub Pages on private repos requires Pro/Team/Enterprise. Keeping it private through Phase 1+2 also kept pre-ship drift (the strikethrough commits, the doctrine sweeps) invisible — landing page sits in `docs/` ready but unreachable until this flip.
+2. **Enable Pages.** GitHub → Settings → Pages → Source = "Deploy from a branch" → Branch = `main` / Folder = `/docs` → Save. The page resolves at `https://hansprahl.github.io/the-builders-doctrine/` within ~1–2 minutes. Optional: register `assayerhq.com`, add a CNAME file to `docs/CNAME`, configure DNS A records per GitHub's published IPs.
+3. **Tag** `git tag -a v1.0-public -m "..."` and `git push origin v1.0-public`.
+4. **Brad Hampton outreach 2026-06-02** with the live URL.
 
 **Wk 05-29 is fully protected** — EMBA finals + Exam 2 + Conceptual Quiz week, zero doctrine hours per the bandwidth overlay.
 
