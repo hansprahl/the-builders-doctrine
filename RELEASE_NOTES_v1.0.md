@@ -68,6 +68,12 @@ AI Tradecraft (umbrella, by Hans Prahl)
 
 v1.0 is the public release of the doctrine + the free Kit. Operator's commercial release is a separate timeline.
 
+### 1.6 Commercial structure (provisional lock 2026-05-20)
+
+v1.0 ships under a **Hybrid** commercial structure. Operator (Subsystem A patent-pending), the AI Tradecraft umbrella, and the audit + certification function remain Hans-owned under all scenarios. The Builders' Kit operationalization layer (hosted onboarding, fielding deployments, customer success) is open to license when a real third-party counterparty surfaces. Legal instruments for any future licensing defer to counsel review at the point a deal is named — none are required for the v1.0 lock itself.
+
+The structure is provisional. Mandatory re-review at 2026-07-31 release-gate check per the release-cadence framework. Full rationale, four-lens rubric scoring, and counsel-gated-question appendix in `PRODUCTIZE_VS_LICENSE_DECISION.md`.
+
 ---
 
 ## 2. What we deprecated in v1.0

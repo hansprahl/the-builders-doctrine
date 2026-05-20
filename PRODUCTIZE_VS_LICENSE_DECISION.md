@@ -1,6 +1,6 @@
 ---
-status: SCAFFOLD — provisional decision lock target 2026-05-25
-gate: Phase 1 deliverable #7 per RELEASE_PLAN_v1.md (reshaped to 4 hrs counsel-free, was 10 hrs)
+status: LOCKED 2026-05-20 — Option C (Hybrid); provisional with mandatory re-review 2026-07-31
+gate: Phase 1 deliverable #7 per RELEASE_PLAN_v1.md (reshaped to 4 hrs counsel-free, was 10 hrs) — SHIPPED 5 days early
 owner: Hans Prahl (founder-only — no counsel engagement required for v1.0 lock)
 parent: RELEASE_PLAN_v1.md §5 (Phase 1)
 ---
@@ -82,14 +82,14 @@ Per `RELEASE_PLAN_v1.md §6`, if no external builder runs the Kit by 2026-07-31,
 
 Score each option (A/B/C) on the four lenses Hans uses for reliability calls (`quote_reliability.md`):
 
-| Lens | Question | A score | B score | C score |
+| Lens | Question | A — Productize | B — License | C — Hybrid |
 |---|---|---|---|---|
-| **Audit** | If a buyer audits this in 12 months, which option's claims hold up? | _ | _ | _ |
-| **Scale** | Which option survives 10× user volume without Hans being the bottleneck? | _ | _ | _ |
-| **Promise** | Which option lets Hans honor the doctrinal commitments (chain of command, biographical moat, "designed to be needed less") to customers? | _ | _ | _ |
-| **Founder** | Which option does Hans want to operate inside for the next 5 years? | _ | _ | _ |
+| **Audit** | If a buyer audits this in 12 months, which option's claims hold up? | Strong (Hans signs every audit; biographical signal lands on the same entity) | **Weak** (licensee signatures dilute biographical signal; audits become other-people's-work) | Strong (audits stay Hans-signed; the visibly-author-required layer stays with the author) |
+| **Scale** | Which option survives 10× user volume without Hans being the bottleneck? | **Weak** (Hans is the bottleneck; bandwidth-failing per §3.1) | Strong (licensee absorbs sales/CS/operationalization load) | Strong (operationalization scales via licensee; audits cap at Hans's calendar, which is acceptable for a high-margin layer) |
+| **Promise** | Which option lets Hans honor the doctrinal commitments (chain of command, biographical moat, "designed to be needed less") to customers? | Strong (chain of command end-to-end; one entity owns the promise) | **Weak** (licensee runs CX; chain of command breaks at the operationalization boundary; "designed to be needed less" hard to enforce through a third party) | Strong (Hans owns the high-trust + patent-pending layers; licensee bound by audit gates on the operationalization layer) |
+| **Founder** | Which option does Hans want to operate inside for the next 5 years? | Acceptable but bandwidth-failing pre-July 2026 | Not chosen (no named counterparty in the data) | **Acceptable** — matches the operating shape Hans chose 2026-05-20 |
 
-Lock the option with the highest combined score where no single lens drops below "acceptable." If two options tie, the tiebreaker is the lens Hans is least sure he can honor — that's the lens that names the actual risk.
+**LOCKED: Option C (Hybrid).** Three lenses favor C with no lens below "acceptable." A wins Audit + Promise narrowly but fails Scale hard against §3.1 bandwidth reality. B fails Audit AND has no named counterparty — locking B would be a paper commitment against zero counterparty (a Sarah-Chen-shape, per `feedback_grok_second_opinion_workflow.md`). The tiebreaker question — least-sure-Hans-can-honor lens — is Scale-for-C: capacity to operate the audit function at 10× user volume depends on whether the certification function admits sub-Hans signers later. That's the real risk and is recorded explicitly so the 2026-07-31 re-review can score it against actual evidence.
 
 ---
 
@@ -179,7 +179,36 @@ Three artifacts, committed same day:
 
 ---
 
-## 9. Cross-references
+## 9. Lock decision — 2026-05-20
+
+**Decision:** Option C (Hybrid). Shipped 5 days early against 2026-05-25 target.
+
+**Locked structure:**
+
+```
+Hans-owned (under all scenarios):
+├── Operator               — Subsystem A patent-pending; non-negotiable carve-out per §3.4
+├── AI Tradecraft          — umbrella mark
+├── Assayer                — free public scorer + doctrine document
+└── Audit + certification function — high-trust, biographically-load-bearing per §3.3
+
+Open to license when a real counterparty surfaces:
+└── Builders' Kit operationalization — hosted onboarding, fielding deployments, customer success
+```
+
+**Rationale.** Three of four rubric lenses (Audit, Scale, Promise) favor C with no lens below acceptable. Option A failed Scale against §3.1 bandwidth honest budget — sustained productization budget pre-July 2026 is effectively zero per BANDWIDTH_OVERLAY actuals; locking A would commit to a 2026-06-01 sales motion Hans cannot staff. Option B failed Audit (licensee-run audits dilute biographical signal at the layer where biographical signal is provably load-bearing) AND had no named counterparty in the data — locking B would be a paper commitment against zero counterparty.
+
+**Provisional, not permanent.** Per §3.5 first-external-builder gate, mandatory re-review at 2026-07-31 release-gate check. The lock may be confirmed, re-shaped, or retracted at re-review — all three are doctrinally legitimate per Law VII.
+
+**Signer:** Hans Prahl, 2026-05-20.
+
+**Scale-of-audit-function risk (recorded):** Capacity to operate the certification function at 10× user volume depends on whether the function admits sub-Hans signers later (apprentice-certifier or third-party-attested-by-Hans patterns). This is the named risk lens for C. Re-evaluate at 2026-07-31 against actual user-volume evidence.
+
+**No counsel engagement triggered.** Lock is founder-only per §6 — every counsel-gated question stays in §6 appendix until its triggering event fires.
+
+---
+
+## 10. Cross-references
 
 - `~/Projects/the-builders-doctrine/RELEASE_PLAN_v1.md` §5 Phase 1 — deliverable #7 timing; update estimate from 10 hrs → 4 hrs on lock day
 - `~/Projects/the-builders-doctrine/STARTUP.md` "Brand stack (locked 2026-05-05)" + "Hands-off" section — IP boundaries

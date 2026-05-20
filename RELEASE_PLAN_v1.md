@@ -68,7 +68,7 @@ v2.0 commitments are provisional per Law VII — they get explicit dates and fal
 |---|---|---|---|
 | 2026-05-14 | RELEASE_PLAN_v1.md (this artifact) | 2 | Hans |
 | 2026-05-22 | All framework holds carry execution dates (was #6) — **SHIPPED 2026-05-15 (`4d24319`), 7 days early; 1.5 actual hrs vs 6 scoped; 17 holds retired by strike/pointer; 4 dated holds remain (tracked elsewhere); inline edits, no standalone artifact** | 6 | Hans |
-| 2026-05-25 | Productize-vs-license decision (was #7) — locked before public release | 10 | Hans + counsel review |
+| 2026-05-25 | Productize-vs-license decision (was #7) — locked before public release — **LOCKED 2026-05-20 (5 days early): Option C (Hybrid). Counsel-free per scaffold reshape; ~4 actual hrs vs 10 scoped. See `PRODUCTIZE_VS_LICENSE_DECISION.md` §9.** | 10 | Hans |
 | 2026-05-25 | Refusal-propagation off-ramp primitive spec (was #8) | 8 | Hans |
 | 2026-05-25 | Founder-romance detector (was #9) — pre-commit hook on doctrine repo | 13 | Hans |
 
@@ -122,7 +122,7 @@ Mapped to the original 12 deliverables from `project_late_night_2026-05-13_grok_
 | 4 | External statistician identified | **MOVED to v1.5 (06-22)** — no longer Law VI auto-fallback B trigger; sequencing is now release-cadence |
 | 5 | Law VI pre-reg + power calc | v1 DONE 2026-05-14; **v2 MOVED to v1.5 (07-01)** |
 | 6 | All framework holds carry dates | **SHIPPED 2026-05-15 (`4d24319`), 7 days early** |
-| 7 | Productize-vs-license decision | KEEP for v1.0 (05-25) |
+| 7 | Productize-vs-license decision | **LOCKED 2026-05-20 (5 days early): Option C (Hybrid)** |
 | 8 | Refusal-propagation off-ramp spec | KEEP for v1.0 (05-25) |
 | 9 | Founder-romance detector | KEEP for v1.0 (05-25) |
 | 10 | Pitch/CLAUDE/EXPLAINER rewrite | **RESHAPE for v1.0 (05-27)** — no biographical-moat causal claim language |
