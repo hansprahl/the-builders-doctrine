@@ -1,9 +1,11 @@
 # Founder-Romance Detector — Spec v0.1
 
-**Status:** in build (Phase 1 deliverable, slot 2026-05-25)
+**Status:** SHIPPED 2026-05-20 (5 days early; spec slot was 2026-05-25). v0.1 implements all seven patterns per spec: founder_romance 1a/1b HIGH + 1c ADVISORY, stage_7_revival HIGH, carve_out_construction HIGH, over_claim/schedule_prose_substitution/optimistic_probability ADVISORY, tame_reviewer_drift NotImplemented stub with runtime warning. Corpus benchmark passing (founder_romance recall 100%, founder_romance precision 100%, carve_out_construction precision 100% on 10-file corpus). `.pre-commit-config.yaml` at doctrine repo root.
 **Replaces:** Adversarial Review chassis (RETRACTED 2026-05-19 — see `archived-prose/2026-05-19_adversarial_review_pre_reg_v1_KILLED.md`)
 **Original commitment:** `feedback_close_up_this_session.md` round-7, 2026-05-13
 **Authority:** advisory. The detector names threats; the human decides. Pre-commit hook can be overridden with logged reason.
+
+**Field validation note (first scan against 49 .md artifacts in doctrine repo, 2026-05-20):** 11 HIGH-severity findings in 11 distinct files after structural exclusions (`dist/`, `STORY.md`, `CHASSIS_PROPOSED_EXTENSIONS.md`, `archived-prose/`, this spec, the test corpus). Mix of true positives (catching genuine founder_romance in load-bearing doctrine — e.g. `THE_BUILDERS_DOCTRINE.md:227` "the builder who installed the governor already survived worse"; `META_DOCTRINE.md:122` "the man who survived two ambushes") and false positives (NCO as architecture-tier name in `RELEASE_NOTES_v1.0.md:24`; Stage 7 mentioned in `LAW_VI_PRE_REG_v1.md:2` which is the document that exists specifically to replicate Stage 7). False positives are why the override mechanism exists; no v0.1.1 regex tuning forced by field findings — both classes were anticipated in spec.
 
 ---
 

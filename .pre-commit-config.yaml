@@ -1,0 +1,45 @@
+# Pre-commit hook configuration for ~/Projects/the-builders-doctrine.
+#
+# Install once per clone:
+#   pip install pre-commit
+#   pre-commit install
+#
+# The hooks here gate on doctrine drift and observer-bias patterns in
+# Markdown artifacts. Override a failing hook with:
+#
+#   git commit --no-verify -m "<message>
+#
+#   OVERRIDE: founder_romance_detector flagged <pattern> in <file>.
+#   Reviewed; <reason>. Logged."
+#
+# Override reasons live in the commit message — no separate log file (yet).
+# v0.2 candidate: auto-append override reasons to OVERRIDE_LOG.md via
+# post-commit hook (see kit/chassis/FOUNDER_ROMANCE_DETECTOR_SPEC.md §
+# "Override mechanism").
+
+repos:
+  - repo: local
+    hooks:
+      - id: founder-romance-detector
+        name: Founder-Romance Detector (kit/chassis)
+        description: >-
+          Scans staged Markdown for the seven observer-bias patterns from the
+          doctrine's caught-artifact taxonomy. Exits 1 on HIGH-severity
+          findings (founder_romance 1a/1b, stage_7_revival, carve_out_
+          construction). ADVISORY findings emit warnings and pass.
+        entry: python -m kit.chassis.founder_romance_detector
+        language: system
+        types: [markdown]
+        require_serial: true
+        # Excludes are for files whose PURPOSE includes describing or
+        # narrating the patterns. The hook is meant to catch UNINTENTIONAL
+        # founder_romance, not intentional narrative or taxonomy reference.
+        exclude: |
+          (?x)^(
+            kit/chassis/test_corpus/.*              # the detector's own corpus
+            | kit/chassis/FOUNDER_ROMANCE_DETECTOR_SPEC\.md  # spec quotes itself
+            | archived-prose/.*                       # museum of retracted prose
+            | dist/.*                                  # generated combined artifacts
+            | STORY\.md                                # founder narrative by design
+            | CHASSIS_PROPOSED_EXTENSIONS\.md         # taxonomy table contains caught examples verbatim
+          )$
