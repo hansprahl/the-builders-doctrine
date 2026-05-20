@@ -28,6 +28,7 @@ The Builders' Doctrine is a methodology for compiling lived experience into AI-p
 - **`PROMPT_DOCTRINE.md`** — universal structural rules for every prompt across every product. The rubric every product's Prompt Guardian enforces.
 - **`WORKING_BACKWARDS.md`** + **`AMAZON_LP_CROSSMAP.md`** — Amazon PR/FAQ-first scoping methodology. Operationalizes Principle #13 at the scoping layer.
 - **`STORY.md`** — origin narrative; the methodology's autobiographical source.
+- **`EXPLAINER.md`** — plain-language translator for the doctrine. For a non-technical reader, a peer at dinner, or yourself when you need to remember what the doctrine actually says. Carries the v1.0 frame (chassis + audit + deprecation discipline as the public moat; biographical-moat thesis is v1.5 conditional per §2 below).
 
 ### 1.2 The Kit
 
@@ -37,7 +38,7 @@ The Builders' Doctrine is a methodology for compiling lived experience into AI-p
 
 ### 1.3 The chassis
 
-Eight portable runtime components. 230 unit tests. 8 parity tests against TOP's production constants — these prove fidelity to the source product, not generality across all app shapes. Portability to other shapes is verified by reading the adapter pattern and matching interface contracts.
+Nine portable runtime components. 276 unit tests. 8 parity tests against TOP's production constants — these prove fidelity to the source product, not generality across all app shapes. Portability to other shapes is verified by reading the adapter pattern and matching interface contracts.
 
 | Component | Doctrine source | Surface |
 |---|---|---|
@@ -49,6 +50,7 @@ Eight portable runtime components. 230 unit tests. 8 parity tests against TOP's 
 | Prompt Guardian | Principle #6 + PROMPT_DOCTRINE | Structural scoring rubric; Borg-ported to TOP + Custer (`8a47d39`, `ca8aa33`) |
 | Reflection Gate | Principle #12 | Scope-aware (operator_tool / wellness / founder); 29 unit tests |
 | Authority Gradient | Mission Command Architecture | `Tier` / `Channel` enums + overridable tool-class table; 43 unit tests; Funkytown 02 N=3 validation |
+| Founder-Romance Detector | Law VI + observer-bias taxonomy | Seven-pattern regex linter (1a/1b HIGH + 1c ADVISORY + stage_7_revival HIGH + carve_out HIGH + over_claim/schedule_prose/optimistic_probability ADVISORY + tame_reviewer_drift NotImplemented stub); pre-commit hook; 46 unit tests; corpus benchmark passing 100%/100%/100% on the three spec gates; field-validated against 49 doctrine .md files |
 
 ### 1.4 The empirical record
 
@@ -84,7 +86,7 @@ Stage 7 of Funkytown Experiment 01 was N=3 per arm on one engineered brief, no b
 
 **Scope.** Chassis and methodology ship forward with their own measurement surfaces (`META_DOCTRINE.md §VI`); the deprecation is scoped to Law I causal claims, not engineering or structural claims.
 
-**What v1.5 settles.** The Law VI replication study (108 runs, 3 arms, 3 briefs, blinded controls, statistician sign-off, OSF.io pre-registration) returns one of three verdicts on 2026-07-25: *earned* (principle restored with empirical citation), *qualified* (principle restated with measured scope), or *retracted* (principle removed; framework continues with chassis + methodology unchanged). The pre-registration v1 is in this repo today (`LAW_VI_PRE_REG_v1.md`).
+**What v1.5 settles.** The Law VI replication study (108 runs, 3 arms, 3 briefs, blinded controls, statistician sign-off, OSF.io pre-registration) returns one of three verdicts on **2026-07-20**: *earned* (principle restored with empirical citation), *qualified* (principle restated with measured scope), or *retracted* (principle removed; framework continues with chassis + methodology unchanged). v1.5 ships 2026-07-25 carrying the verdict. The pre-registration v1 is in this repo today (`LAW_VI_PRE_REG_v1.md`).
 
 ---
 
@@ -149,7 +151,8 @@ If no external builder runs the Kit by 2026-07-31, v2.0 prep pauses and position
 
 ## 7. How to engage
 
-- **Read the doctrine.** Start with `THE_BUILDERS_DOCTRINE.md`. If the Army vocabulary in `MISSION_COMMAND_ARCHITECTURE.md` is unfamiliar, read `ADP_6_0_TRANSLATION.md` first.
+- **Start with the EXPLAINER.** `EXPLAINER.md` is the plain-language translator. If you have not seen this kind of doctrine before, read EXPLAINER first; it lands the chassis + audit + deprecation-discipline frame and points you at the doctrine prose only after the frame is loaded.
+- **Read the doctrine.** Then `THE_BUILDERS_DOCTRINE.md`. If the Army vocabulary in `MISSION_COMMAND_ARCHITECTURE.md` is unfamiliar, read `ADP_6_0_TRANSLATION.md` first.
 - **Run the Kit.** Score your existing product's STORY / COMMANDMENTS / REFUSAL_LIST / CRISIS_TRIGGERS / SPECIALIST_TEMPLATE / AGENT_DOCTRINE / SECURITY / PR_FAQ surfaces against the rubric. The interview runner walks a new build through authoring them in `depends_on` order.
 - **Port the chassis.** `kit/chassis/` is engineering. Eight components, 230 tests, 8 parity tests against production. Drop-in for any product that wires its public functions through an adapter (see `WIRING_DIAGRAM.md`).
 - **Send a builder catch.** If you run the Kit cold and something breaks — a template field that doesn't map, an interview question with no good answer, a chassis component that won't port — open an issue. Builder catches are what move v1.5 and v2.0.
