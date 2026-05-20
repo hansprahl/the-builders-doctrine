@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Builders' Doctrine — v1.0</title>
+<meta name="description" content="A methodology for building AI products you can audit. Ethics encoded as commandments. Refusals named explicitly. Agents calibrated against truthful outcomes.">
+<meta property="og:title" content="The Builders' Doctrine — v1.0">
+<meta property="og:description" content="A methodology for building AI products you can audit. Published with deprecations named.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1a1a1a">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <p class="kicker">AI Tradecraft, by Hans Prahl</p>
+  <h1>The Builders' Doctrine</h1>
+  <p class="lede">A methodology for building AI products you can audit. Ethics encoded as commandments. Refusals named explicitly. Agents calibrated against truthful outcomes.</p>
+  <p class="version">v1.0 &middot; 2026-06-01</p>
+</header>
+
+<main>
+
+<section>
+  <h2>What this is</h2>
+  <p>Most people building AI products are flying by feel. They write prompts, deploy, see what works, change things, repeat. Each product comes out as a one-off. You cannot tell why one works and another does not. You cannot reproduce the success. You cannot teach the method.</p>
+  <p>The Builders' Doctrine is the opposite posture. The rules are written first. Every product the doctrine governs follows the same thirteen principles, the same refusal list, the same audit discipline. The doctrine is published; the chassis that enforces it is open; what we test, keep, and withdraw is logged in public.</p>
+</section>
+
+<section>
+  <h2>What ships in v1.0</h2>
+  <ul class="dense">
+    <li><strong>The doctrine prose</strong> &mdash; thirteen principles (seven foundational ethics, six operational doctrines) and six methodological laws governing how the doctrine itself is allowed to make claims.</li>
+    <li><strong>The Kit</strong> &mdash; an eight-template coverage scorer plus an interview runner that walks a builder through authoring each template in dependency order.</li>
+    <li><strong>The chassis</strong> &mdash; nine portable runtime components (Crisis Floor, Approval Queue, Per-User Context, Named Specialists, AAR Loop, Prompt Guardian, Reflection Gate, Authority Gradient, Founder-Romance Detector). 276 unit tests; parity-tested against a production product.</li>
+    <li><strong>Two empirical experiments</strong> at Platoon scale, with rungs above Platoon explicitly named as hypothesis.</li>
+    <li><strong>A versioned roadmap</strong> with dated v1.5 and v2.0 commitments. Holds without dates are not allowed.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why this is hard to copy</h2>
+  <p>Three things in the framework are harder to copy than a model or a feature, and none of them require you to take anything about my biography on faith.</p>
+  <h3>The chassis</h3>
+  <p>The portable primitives: regex linters that catch observer-bias patterns at pre-commit time, refusal lists that say what the products will never build, reflection gates that audit every AI response against the product's commandments, an approval queue that gates every irreversible action. Any builder can clone and adopt these. The moat is not the code; the moat is the discipline of running it against your own work.</p>
+  <h3>The audit trail</h3>
+  <p>Every prompt change is logged. Every irreversible action is queued. Every confidence claim is checked against the actual outcome. The product cannot lie to me without leaving evidence &mdash; and I publish the evidence, including the embarrassing parts.</p>
+  <h3>The deprecation discipline</h3>
+  <p>We publish what we withdraw, with the reason. The framework's most cited causal claim &mdash; that biographical substrate produces measurable product behavior &mdash; was deprecated 2026-05-13 because the supporting study was N=3 and could not carry the weight being put on it. The retraction is in the doctrine repo. The proper study runs by 2026-07-20. If the claim earns back, it earns back. If it does not, the retraction stays and the framework still ships. The chassis surviving its own retracted load-bearing claim is the evidence that the framework is more than the founder's taste.</p>
+</section>
+
+<section class="deprecation">
+  <h2>What we deprecated, and why we publish it</h2>
+  <p>v1.0 ships under a deprecation. Principle #1's <em>causal</em> claim &mdash; the methodological claim that biographical input is what makes the resulting product better than a generic-input control &mdash; is named as not yet proven. The doctrine prose is unchanged; the substantiation is v1.5-conditional.</p>
+  <p>The Law VI replication study (108 runs, three arms, three briefs, blinded controls, external statistician audit, OSF.io pre-registration) returns one of three verdicts on <strong>2026-07-20</strong>: <em>earned</em> (principle restored with empirical citation), <em>qualified</em> (principle restated with measured scope), or <em>retracted</em> (principle removed; framework continues with chassis and methodology unchanged). v1.5 ships 2026-07-25 carrying the verdict.</p>
+  <p>Most builders will not publish what their AI does that they did not intend. Most will defend a load-bearing claim past the point where evidence supports it. The discipline of publishing the failures is the load-bearing thing. If the deeper biographical-moat thesis earns back in the v1.5 study, that is bonus, not the foundation.</p>
+</section>
+
+<section>
+  <h2>How to engage</h2>
+  <ul class="dense">
+    <li><strong>Start with the EXPLAINER.</strong> Plain-language translator. If you have not seen this kind of doctrine before, read it first; it lands the frame before you hit the prose.</li>
+    <li><strong>Read the doctrine.</strong> Then <code>THE_BUILDERS_DOCTRINE.md</code>. If the Army vocabulary in the agentic architecture is unfamiliar, the civilian glossary is one click away.</li>
+    <li><strong>Run the Kit.</strong> Score your existing product's eight surfaces against the rubric. The interview runner walks a new build through authoring them in <code>depends_on</code> order.</li>
+    <li><strong>Port the chassis.</strong> Nine components, 276 tests, eight parity tests against production. Drop-in for any product that wires its public functions through an adapter.</li>
+    <li><strong>Send a builder catch.</strong> If you run the Kit cold and something breaks &mdash; a template field that does not map, an interview question with no good answer, a chassis component that will not port &mdash; open an issue. Builder catches are what move v1.5 and v2.0.</li>
+  </ul>
+  <p class="cta">
+    <a class="primary" href="https://github.com/hansprahl/the-builders-doctrine">Read the doctrine on GitHub</a>
+  </p>
+</section>
+
+<section class="not">
+  <h2>What this release is not</h2>
+  <ul class="dense">
+    <li>It is not a claim that biographical substrate is causally load-bearing. That claim is deprecated. Law VI replication settles it in v1.5.</li>
+    <li>It is not validated agentic architecture above Platoon scale. Squad and Platoon only; rungs above are hypothesis until measured.</li>
+    <li>It is not a finished product. The Kit ships; commercial operationalization (hosted onboarding, audits, certification) is downstream of the release-gate clearance.</li>
+    <li>It is not the framework's stable state. v1.5 is committed. v2.0 is provisional. The doctrine is a living document; the laws govern how it is allowed to change.</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Hans Prahl. The doctrine is published; <a href="https://github.com/hansprahl/the-builders-doctrine">the source repo</a> is the authoritative artifact. When this page disagrees with the doctrine prose, the doctrine prose wins.</p>
+  <p class="meta">If a clean room cannot rebuild the product from doctrine and commits, I have not built a product. I have built a snowflake.</p>
+</footer>
+
+</body>
+</html>
