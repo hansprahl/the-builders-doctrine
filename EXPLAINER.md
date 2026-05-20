@@ -50,13 +50,19 @@ That's the layering:
 10. **Named specialists, never anonymous prompts.** Every AI agent has a name, a defined job, and a tool allowlist. Anonymous prompts are like anonymous soldiers — no accountability, no track record, no improvement.
 11. **Crisis floors above features.** If a product can encounter someone in crisis, the crisis response is hard-coded above every feature. It cannot be turned off, gated, or A/B-tested. The floor is unkillable.
 
-## Why this is hard to copy — the biography point
+## Why this is hard to copy — the chassis, the audit trail, and what we withdraw
 
 Most tech moats erode in five years. Models get commoditized. Features get copied. Pricing gets undercut.
 
-What does not erode: a founder's lived experience. Twenty-one years military intelligence. A brewery I built and lost. Sobriety. PTSD treatment. Two combat tours. Each one installed a discipline that now sits inside my products as principle, as commandment, as guardrail.
+Three things in the framework are harder to copy than a model or a feature, and none of them require you to take anything about my biography on faith:
 
-Anyone can clone the AI model. Nobody can clone the biography. So the framework that turns the biography into product behavior is the moat. That is what "the code is the story" means: every builder's product is an agentic version of *their* story, and you cannot agentic-version someone else's life. The method is portable — anyone can adopt it. The moat is not — it belongs to whoever's biography is doing the building.
+1. **The chassis.** The portable primitives — regex linters that catch observer-bias patterns at pre-commit time, refusal lists that say what the products will never build, reflection gates that audit every AI response against the product's commandments, an approval queue that gates every irreversible action. Any builder can clone and adopt these. The chassis is publicly versioned (v1.0 ships 2026-06-01); the moat is not the code itself but the discipline of running it against your own work.
+2. **The audit trail.** Every prompt change is logged. Every irreversible action is queued. Every confidence claim is checked against the actual outcome. The product cannot lie to me without leaving evidence — and I publish the evidence, including the embarrassing parts.
+3. **The deprecation discipline.** We publish what we withdraw, with the reason. On 2026-05-13 I deprecated the framework's most cited causal claim — that biographical substrate produces measurable product behavior — because the supporting study was N=3 and could not carry the weight I had been asking it to. The retraction is in the doctrine repo. The proper study runs by 2026-07-20. If the claim earns back, it earns back; if it doesn't, the retraction stays and the framework still ships. The chassis surviving its own retracted load-bearing claim is the evidence that the framework is more than the founder's taste.
+
+What I am *not* asking you to take on faith at v1.0: that any specific founder's biography causally produces better product behavior. That thesis is in v1.5 conditional, gated on the study running to spec. The pitch at v1.0 lands on chassis + methodology + audit discipline.
+
+What "the code is the story" still means after the deprecation: any product carries its builder's ethics whether the builder intends it or not. The work is to encode those ethics deliberately — STORY.md compiled into prompts — rather than letting them leak in by accident. The method is portable; any builder can adopt it. Whether the resulting moat is *also* portable is exactly what 2026-07-20 will test.
 
 ## How I prove the framework actually works
 
@@ -74,9 +80,9 @@ For when someone asks "what are you working on?"
 >
 > I'm doing it differently. I wrote down the rules first. There's a single document called The Builders Doctrine that governs every product I build — what makes it mine, what I refuse to build, how the AI agents are structured, how I measure whether they're working.
 >
-> Eleven principles. Seven are ethical, drawn from lived experience: Marine intelligence, two combat tours, a brewery I built and lost, sobriety, PTSD treatment. Four are operational: what I will not build, how AI is a co-author not just a tool, that every agent has a name and accountability, that crisis response is unkillable.
+> Eleven principles. Seven are ethical, four are operational. The eleven were ranked against past audited failures, not derived from autobiography — I publish what I tested, what I kept, and what I withdrew.
 >
-> The product sits on top of the doctrine. The doctrine is the moat. Anyone can copy a model. Nobody can copy the biography."
+> The moat I'm asking you to look at is the chassis plus the audit discipline: regex linters, refusal lists, reflection gates, an approval queue on every irreversible action — and a deprecation log that names what I tested and had to retract. I deprecated my own most cited principle two weeks ago because N=3 wasn't enough to ground it; the proper study runs by July 20. The discipline of publishing the failures is the load-bearing thing. If the deeper biographical-moat thesis earns back in that study, that's bonus, not the foundation."
 
 ## How to tune depth by audience
 
@@ -85,7 +91,7 @@ The audience matters. Tune the depth:
 - **Friend or family member:** the kitchen analogy + the elevator pitch. Most people will get it.
 - **EMBA peer or business person:** add the "framework as moat" point and the reproducibility protocol. They want to know it's a system, not a vibe.
 - **Grant reviewer or investor:** add the eleven principles + the measurement surface. They want to see methodology and evidence.
-- **Veteran or someone who's been through hard things:** lead with the biography point. The framework is born from lived experience, not theory. They will recognize the shape.
+- **Veteran or someone who's been through hard things:** lead with the deprecation discipline — the framework names what it tested, what it kept, and what it had to withdraw. The mechanics of an honest after-action review will read familiar; the biographical-moat thesis is in v1.5 conditional and is not the v1.0 pitch.
 
 ## The most important sentence in the whole doctrine
 
