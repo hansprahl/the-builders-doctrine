@@ -354,6 +354,13 @@ Each of these is a candidate enhancement after the four primary protocols are wi
 - Self-correction inside the protocol (empty SITREP from Squad 1/2 was re-tasked, not papered over)
 - Zero hard-floor breaches across 5 Guardian audits
 
+**Validated at Squad scale (Funkytown experiment 06, 2026-05-20):**
+- Squad = 1 SL + 4 Soldiers, single-pass, no Platoon
+- Mechanism ablation: 3 conditions × N=3 = 9 squad runs × 4 artifacts each, dual-graded (Sonnet 4.6 + Opus 4.7) blind against lean SL single-turn baseline
+- **Finding: the active ingredient is the personas × coordination interaction.** Soldier personas alone (no cross-artifact coord) lose to lean SL single-turn. Cross-artifact coord alone (no personas) ties lean SL single-turn. Only personas + coord together produce measurable lift, and the lift is concentrated on edge-case coverage (failure-mode enumeration), not on factual specificity or named-accountability.
+- **Deployment implication:** lean SL single-turn is the Squad-scale default. Wire Soldiers + personas + coord *together* only when failure-mode enumeration is the deliverable. Either factor alone does not earn the cost of Soldiers.
+- Caveat: validated on one artifact class (regulatory compliance, 4 artifacts). Same-family grader bias partially closed (Sonnet+Opus agree on the structure); non-Anthropic grader pending (D19). Replication on non-compliance brief pending (D17).
+
 **Wired but not yet validated:**
 - Lean MCA / Platoon Pattern (1 PL + 3 SLs in parallel, no soldier sub-agents) — Funkytown Stage 8b
 - RFI protocol + registry — Funkytown Stage 9 candidate
