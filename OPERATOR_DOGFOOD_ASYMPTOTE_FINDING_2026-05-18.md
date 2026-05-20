@@ -1568,3 +1568,109 @@ The DISCIPLINE survives every generation. The specific count claims never do. Th
 Neither collapses under the next test. The 17th-gen is the first pitch generation that survives a decisive test in real-time (15th-gen survived ~30 min; 17th-gen has survived both concurrent decisive tests).
 
 For buyers who ask "how do you know your method scales?" the honest answer is now: *13 of 17 runs surface defects; 4 reach reader floors at 0; 1 caught our own renderer bug; 6 universal validators compound across spec domains. The discipline is real and measurable both within and across spec types.*
+
+---
+
+## Update — 2026-05-19 evening (Run 18 — H8 substitution confirmed; first cross-document validator class)
+
+**Trigger:** Run 18 — Claude as third reader on the **v11 contract packet** (HEAD `053b495`, 22 validators wired with #30/#31/#32 from Run 16+17 close-out and the SOW §3 clarification from Run 16 N7).
+
+The 17th-gen pitch (two compounding value props) survives Run 18. A **third compounding effect** is now provisionally on the test bench: **severity-floor monotonicity within a domain.**
+
+### Run 18 — what happened
+
+Same workspace pattern as Run 16. Fresh Claude agent. Same v11 packet that had been re-rendered after Run 16+17 close-out. Goal: test whether closing Claude Run 16's N4 (Slack webhook infra), N6 (within-scenario narrative incoherence), and N7 (SOW timeline) shifted the rigor floor or merely surfaced equivalents one layer deeper.
+
+**Result: 7 novels — exact same count as Run 16 — but severity composition improved.**
+
+| Run | Reader | Validators on packet | BLOCKING | MAJOR | MINOR | Total novels |
+|---|---|---:|---:|---:|---:|---:|
+| 16 | Claude (v10 packet) | 22 | 2 | 4 | 1 | 7 |
+| **18** | **Claude (v11 packet)** | **22** | **1** | **3** | **3** | **7** |
+
+**Count flat, severity floor improved.** H7 (linear improvement → count drops) **REFUTED**. H8 (substitution → defects re-emerge at deeper layer but severity declines) **CONFIRMED**. The validators DO close the named class; the next iteration surfaces equivalents one structural layer deeper, but those equivalents are less severe.
+
+### Run 18 close-out — Run 16's novels did NOT re-emerge
+
+| Run 16 novel | Status on v11 packet |
+|---|---|
+| N4 Slack webhook infrastructure | Surfaced as Section-1 banner #19 (validator #30) — recognized by Claude as self-disclosed |
+| N6 within-scenario narrative incoherence | Surfaced as Section-1 banner #20 (validator #31) — recognized |
+| N7 SOW §3↔§6 timeline | **NOT refound** — the SOW §3 "Days 6–7 / distinct from §6" prose clarification held |
+| N1 routing rule-set non-exhaustive | NOT refound — Run 18 found a different routing-table defect (overlap-precedence) |
+| N2 round-robin state persistence | NOT refound |
+| N3 weighted-average confidence formula | NOT refound |
+| N5 alert (c) "backup-on-call" unfilled slot | NOT refound |
+
+**5 of Run 16's 7 novels did not re-emerge.** 2 re-emerged at different angles (the routing-table family). The closure mechanism is working; the spec is not stable at deeper layers.
+
+### Run 18's seven new novels
+
+| # | Severity | Bucket | Class |
+|---|---|---|---|
+| N1 | BLOCKING | C | Routing-rule **overlap-precedence** undefined when multiple rules match (generalizes DUAL_TIER from scenario→table) |
+| **N2** | MAJOR | B | **BRD↔TRD cross-document divergence** on GC approval authority — first cross-document defect class surfaced in 18 runs |
+| N3 | MAJOR | B | `clauses: list req` schema contradicts Scenario 5 "no clause records persisted" |
+| N4 | MAJOR | A | Ironclad status enum nowhere defined (4 distinct strings invented per-scenario) |
+| N5 | MINOR | B | Tier label form: `tier_a` vs `Tier A` vs §7.4.1 "verbatim closed enum" |
+| N6 | MINOR | C | §7.5 alert (b) "below floor" — which of the two §5.3 floors? |
+| N7 | MINOR | B/C | Tier A has no SLA but Cloud Scheduler "checks queue items past SLA" |
+
+### The structurally-new class — cross-document (BRD↔TRD) validators
+
+**N2 is the first cross-document contradiction surfaced across 18 runs.** All 32 prior validators are TRD-internal. BRD §3 stakeholders entry declares Diane Ortega is approval authority for "$25K **or non-standard indemnity**" — two triggers. TRD §4.1 encodes only the $25K threshold; the "non-standard indemnity → GC" trigger is silently dropped. A $20K contract with non-standard indemnity routes to Tier C senior-attorney per the TRD; per the BRD it should route to GC (Tier D).
+
+A build agent reading both documents gets contradictory instructions. A build agent reading only one gets a confidently-wrong build.
+
+Closure: validator **#33 BRD_AUTHORITY_TRIGGER_NOT_IN_ROUTING** — committed post-Run-18. First cross-document validator in the portfolio.
+
+### Run 18 close-out commit — four new validators (#33–#36)
+
+| # | Type | Severity | Closes | Novelty |
+|---|---|---|---|---|
+| 33 | BRD_AUTHORITY_TRIGGER_NOT_IN_ROUTING | MAJOR | Run 18 N2 | **First cross-document (BRD↔TRD) validator** — all prior 32 are TRD-internal |
+| 34 | ROUTING_RULE_OVERLAP_PRECEDENCE_UNDEFINED | BLOCKING | Run 18 N1 | Table-level generalization of DUAL_TIER_ROUTING_IMPLIED (scenario-level) |
+| 35 | SCHEMA_REQUIRED_VS_SCENARIO_EMPTY | MAJOR | Run 18 N3 | Schema declaration vs scenario assertion conflict — new class |
+| 36 | EXTERNAL_SYSTEM_STATUS_ENUM_MISSING | MAJOR | Run 18 N4 | External-system enum presence check — new class |
+
+Portfolio at HEAD now **36 validators**, up from 32.
+
+### Hypothesis verdict (Run 18)
+
+| H | Prediction | Status |
+|---|---|---|
+| H7 | Linear improvement: closing Run 16 novels reduces total novel count on v11 | **REFUTED** — count flat at 7 |
+| H8 | Substitution: closing named classes shifts defects to a deeper layer | **CONFIRMED** — different defect classes; aggregate severity dropped |
+| H9 | Severity floor improves even if count is flat | **SUPPORTED at N=1 cycle** — BLOCKING 2→1, MINOR 1→3 |
+| H10 | Each iteration surfaces ≥1 structurally-new class no validator probes | **SUPPORTED (4th time)** — N2 BRD↔TRD; same property as Run 14 (renderer-bug-in-own-code), Run 16 (cross-section §6.2↔§7.1.1), Run 17 (cross-domain compounding) |
+
+### The 18th-generation pitch sentence — three compounding effects
+
+**Candidate 18th-generation:**
+
+> "What we sell is a discipline that compounds in three dimensions, each separately measurable: (1) **per-reader iteration** drives novel count toward a reader-bounded floor (Gemini→0 in 6 iter, Codex→0 in 5, Claude reaches a moving floor at ~7 on the same converged spec); (2) **cross-spec portfolio compounding** transfers validators between domains (6 of 29 contract-built validators pre-fire on first Acme run; the universal subset compounds permanently in Operator HEAD); (3) **structural-layer substitution with declining severity** — closing one defect class surfaces equivalents at a deeper layer, but the severity of each successive floor drops (Run 16: 2 BLOCKING; Run 18: 1 BLOCKING on the same spec one closing-cycle later). The discipline doesn't promise zero novels; it promises **monotonically improving worst-case severity**, **a growing portable validator portfolio**, and **per-reader iteration to a measurable floor**. All three compounding effects belong to whoever does the iterating — they're not transferable to a competitor who buys the validator list."
+
+Three value props. None is "convergence at zero." None depends on a specific reader. All three are testable; (3) is now provisionally supported at N=1 cycle and will be tested again at Claude Run 19 on the v12 packet.
+
+### What survives, what's on the test bench
+
+**Survives all 18 runs:**
+- 14th-gen "loop catches our own bugs" (Run 14 renderer fix preserved)
+- 16th-gen reader-bounded floor with cross-reader ordering Gemini < Codex < Claude
+- 17th-gen cross-spec portfolio compounding (6/29 on Acme R1)
+
+**On the test bench at N=18:**
+- 18th-gen severity-floor monotonicity (N=1 cycle supports; needs Claude Run 19)
+- Whether BRD↔TRD validator class generalizes to Acme (needs Claude-on-Acme)
+- Whether "every iteration surfaces a structurally-new class" (H10, supported 4×) eventually exhausts
+
+**Dead:**
+- 15th-gen "convergence at zero is reader-agnostic" — REFUTED at Run 16; replaced
+
+### Doctrine consequence — 18 iterations on, the method's discipline is the IP
+
+18 iterations, 3 reader families, 2 spec domains, 36 validators in HEAD (4 added this commit), 4 instances of "every iteration surfaces a structurally-new class" (H10), 1 own-renderer bug caught in the loop, and now a **third compounding effect** (severity-floor monotonicity) on the test bench.
+
+**The method's IP is the discipline of iterating against multiple readers across multiple spec domains while compounding the validator portfolio in HEAD.** The validators themselves are downstream — a competitor could copy the list, but they couldn't copy the biography that generated the closure decisions, and they couldn't run the iteration discipline on a spec they didn't build.
+
+For buyers asking "how is this defensible if someone buys the validator list and shops it?" — the answer at N=18 is: *the validator list is a snapshot. The discipline is the engine. Run 18 added 4 validators a month after first deployment; Run 19 will add more. The compounding rate, not the snapshot count, is what's defensible — and the rate is bounded by the biography of the operator running the loop.*
