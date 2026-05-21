@@ -27,9 +27,11 @@ AI Tradecraft (umbrella, by Hans Prahl)
 └── Operator           — patented closed-loop implementation
 ```
 
-## Active phase — v1.0 ship sprint (2026-05-14 → 2026-06-01)
+## Active phase — v1.0 SHIPPED 2026-05-21 (11 days early)
 
-Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-05-15.md`. Phase 1 closes 2026-05-25; Phase 2 closes 2026-06-01 (public release).
+Operational plan: `RELEASE_PLAN_v1.md`. Public release flipped 2026-05-21 PM, 11 days ahead of the 2026-06-01 target. All Phase 1 + Phase 2 deliverables shipped under estimate, 5-10 days early. Repo flipped public + GitHub Pages enabled + v1.0-public tag pushed same evening. Brad outreach holds for 2026-06-02 per the v2-final draft framing ("three weeks after our 5/12 call").
+
+Next live phase: v1.5 prep (2026-05-22 → 2026-07-25). v1.5 carries the Law VI biographical-substrate replication verdict. Statistician outreach sent 2026-05-21 to Philip Beaver (Daniels MSBA director) as the DU channel; awaiting reply. Bandwidth ledger continues at 15 hr/wk per the 2026-05-21 capacity correction.
 
 **Phase 1 — Final v1.0 prep:**
 - ~~2026-05-22 — All framework holds carry execution dates (Law VII compliance pass) [6 hrs]~~ — **SHIPPED 2026-05-15 (`4d24319`), 7 days early; 1.5 actual hrs; inline edits, no standalone artifact**
@@ -41,9 +43,9 @@ Operational plan: `RELEASE_PLAN_v1.md`. Weekly ledger: `BANDWIDTH_OVERLAY_2026-0
 - ~~2026-05-27 — EXPLAINER rewrite — no biographical-moat causal claim~~ — **SHIPPED 2026-05-20 (`9ffa65e`), 7 days early; ~40 min actual.** Deprecation-as-trust-signal frame adopted; reshape collapsed 15-hr scope. (Remaining: per-product CLAUDE.md audience-tune and doctrine-root CLAUDE.md were separated as smaller items.)
 - ~~2026-05-29 — v1.0 release notes draft~~ — **SHIPPED 2026-05-20 (`4fe5afa`), 9 days early; ~20 min actual.** First-ever logged founder-romance-detector override (Principle #4 verbatim name caught as FP).
 - ~~2026-05-30 — Public landing page artifact~~ — **SHIPPED 2026-05-20 (`dd2732b`), 10 days early; ~1 hr actual.** One-pager static HTML at `docs/index.html` + `docs/style.css`. Carries deprecation-as-trust-signal frame. **Not deployed.** Deploy is gated to ship day (see "Ship-day deploy" below).
-- 2026-06-01 — **v1.0 git tag + public release announcement + landing-page deploy** — see steps below
+- ~~2026-06-01~~ **SHIPPED 2026-05-21** — **v1.0 git tag + public release announcement + landing-page deploy**
 
-**Ship-day deploy (2026-06-01) — two-step Pages enablement:**
+**Ship-day deploy (SHIPPED 2026-05-21) — two-step Pages enablement:**
 1. **Flip repo public.** GitHub → Settings → General → Danger Zone → "Change repository visibility" → Public. Confirms the v1.0 ship is observable. *Why now and not earlier:* the repo is currently private and GitHub Pages on private repos requires Pro/Team/Enterprise. Keeping it private through Phase 1+2 also kept pre-ship drift (the strikethrough commits, the doctrine sweeps) invisible — landing page sits in `docs/` ready but unreachable until this flip.
 2. **Enable Pages.** GitHub → Settings → Pages → Source = "Deploy from a branch" → Branch = `main` / Folder = `/docs` → Save. The page resolves at `https://hansprahl.github.io/the-builders-doctrine/` within ~1–2 minutes. Optional: register `assayerhq.com`, add a CNAME file to `docs/CNAME`, configure DNS A records per GitHub's published IPs.
 3. **Tag** `git tag -a v1.0-public -m "..."` and `git push origin v1.0-public`.

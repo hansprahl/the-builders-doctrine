@@ -24,3 +24,9 @@ WIP_*.md
 
 # Halsey overnight audit drafts — never commit
 OVERNIGHT_AUDIT.md
+
+# Bandwidth files — internal sprint accounting; exposes personal life-load
+# (EMBA hours, family hours, health time) and hour-by-hour actuals.
+# Removed from public flip 2026-05-21. Stays local for ongoing weekly check-ins.
+BANDWIDTH_OVERLAY_*.md
+BANDWIDTH_ACTUALS_*.md

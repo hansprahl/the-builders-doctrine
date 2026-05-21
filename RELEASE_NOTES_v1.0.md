@@ -1,10 +1,10 @@
 ---
 title: The Builders' Doctrine — v1.0 Release Notes
-version: v1.0
-release_date: 2026-06-01 (target)
-status: DRAFT — for Phase 2 review, locks 2026-05-30
+version: v1.0-public
+release_date: 2026-05-21 (shipped 11 days early from 2026-06-01 target after Phase 1+2 reshape)
+status: LOCKED
 authority: Hans Prahl
-companion_artifacts: RELEASE_PLAN_v1.md, META_DOCTRINE.md, LAW_VI_PRE_REG_v1.md, BANDWIDTH_OVERLAY_2026-05-15.md
+companion_artifacts: RELEASE_PLAN_v1.md, META_DOCTRINE.md, LAW_VI_PRE_REG_v1.md
 ---
 
 # The Builders' Doctrine — v1.0
@@ -176,4 +176,4 @@ Hans Prahl. Material edits to the doctrine require my approval and a version bum
 
 ---
 
-*v1.0 — 2026-06-01 — Ships what is proven. Names what is not. Commits dates to both.*
+*v1.0-public — 2026-05-21 — Ships what is proven. Names what is not. Commits dates to both.*

@@ -64,7 +64,7 @@ No deviation taxonomy. No structured types. The reason field must do the work. E
 
 ### Step 3 — Stale-cycle tripwire
 
-A cycle that has been open more than 30 days without all four product entries surfaces at the next weekly bandwidth-overlay Thursday-EOD check ([BANDWIDTH_OVERLAY_2026-05-15.md](BANDWIDTH_OVERLAY_2026-05-15.md) §4d; first check 2026-05-21 EOD) and blocks the next doctrine-repo release tag until closed. No centralized ledger; the tripwire is a grep across the four product files.
+A cycle that has been open more than 30 days without all four product entries surfaces at the next weekly bandwidth-overlay Thursday-EOD check (internal bandwidth ledger, §4d cadence; first check 2026-05-21 EOD) and blocks the next doctrine-repo release tag until closed. No centralized ledger; the tripwire is a grep across the four product files.
 
 ---
 
