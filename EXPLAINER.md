@@ -31,7 +31,7 @@ That's the layering:
 | SECURITY.md | The hard floors for each product. Things that cannot be violated. | Health code |
 | SPECIALIST_TEMPLATE.md | The build sheet for adding a new agent. | New-hire orientation packet |
 
-## The eleven principles, in one sentence each
+## The thirteen principles, in one sentence each
 
 **Foundational ethics — what I will and will not stand for. Each was earned somewhere in life:**
 
@@ -49,6 +49,8 @@ That's the layering:
 9. **AI as co-author, not just tool.** I'm not a developer by training. I set the intent and the judgment; the AI executes. Every commit names both contributors. Neither alone produces the product.
 10. **Named specialists, never anonymous prompts.** Every AI agent has a name, a defined job, and a tool allowlist. Anonymous prompts are like anonymous soldiers — no accountability, no track record, no improvement.
 11. **Crisis floors above features.** If a product can encounter someone in crisis, the crisis response is hard-coded above every feature. It cannot be turned off, gated, or A/B-tested. The floor is unkillable.
+12. **What else? Active extraction.** Before an agent declares a task done, it has to check what it might have missed — collection gaps, unstated assumptions, second-order effects. "I don't know" is a calibrated stop signal, not a failure. The Reflection Gate runs before every `declare_done` at every tier.
+13. **The Long Horizon.** Every feature, every refusal, every irreversible-action gate is decided against the customer outcome ten years out, not the quarter's engagement metric. Short-horizon optimizations that erode long-horizon trust get refused on principle. Working Backwards (PR/FAQ-first) is the scoping discipline that makes the long horizon concrete at the moment of decision.
 
 ## Why this is hard to copy — the chassis, the audit trail, and what we withdraw
 
@@ -80,7 +82,7 @@ For when someone asks "what are you working on?"
 >
 > I'm doing it differently. I wrote down the rules first. There's a single document called The Builders Doctrine that governs every product I build — what makes it mine, what I refuse to build, how the AI agents are structured, how I measure whether they're working.
 >
-> Eleven principles. Seven are ethical, four are operational. The eleven were ranked against past audited failures, not derived from autobiography — I publish what I tested, what I kept, and what I withdrew.
+> Thirteen principles. Seven are foundational ethics, six are operational doctrines. The thirteen were ranked against past audited failures, not derived from autobiography — I publish what I tested, what I kept, and what I withdrew.
 >
 > The moat I'm asking you to look at is the chassis plus the audit discipline: regex linters, refusal lists, reflection gates, an approval queue on every irreversible action — and a deprecation log that names what I tested and had to retract. I deprecated my own most cited principle two weeks ago because N=3 wasn't enough to ground it; the proper study runs by July 20. The discipline of publishing the failures is the load-bearing thing. If the deeper biographical-moat thesis earns back in that study, that's bonus, not the foundation."
 

@@ -97,7 +97,7 @@ Four laws operate implicitly across the doctrine. They are not formalized as sep
 - Human-time budget published 2026-05-15 with weekly tripwires per workstream.
 - Pre-registered truncation criteria — specific overlay-overrun thresholds that automatically trigger climb-pauses-at-Platoon-and-ship — committed before any downstream deliverable starts.
 - Two-tripwire-miss rule: if any single workstream overruns projected hours by 25% OR misses two consecutive weekly tripwires, the climb pauses and re-scopes.
-- Truncate-at-Platoon contingency produces a **shippable Platoon-validated v1.0 release package** — doctrine + MCA + 8 chassis components + Funkytown 01 + Funkytown 02 + ADP 6-0 translation + Law I deprecation notice + acknowledgement that rungs 3–9 are hypothesis. Public release at Platoon-validated scope is itself a real release, not a failure.
+- Truncate-at-Platoon contingency produces a **shippable Platoon-validated v1.0 release package** — doctrine + MCA + 9 chassis components + Funkytown 01 + Funkytown 02 + ADP 6-0 translation + Law I deprecation notice + acknowledgement that rungs 3–9 are hypothesis. Public release at Platoon-validated scope is itself a real release, not a failure.
 
 ---
 

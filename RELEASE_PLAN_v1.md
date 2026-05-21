@@ -23,7 +23,7 @@ companion_artifacts: BANDWIDTH_OVERLAY_2026-05-15.md, LAW_VI_PRE_REG_v1.md
 | Principle 1 (biographical moat) | ✓ ships WITH explicit deprecation notice + v1.5 commitment | doctrine §I.1 + release notes |
 | Principles 2–13 | ✓ ships | doctrine §I-II |
 | MISSION_COMMAND_ARCHITECTURE.md | ✓ ships — Platoon scope only; rungs 3-9 named as hypothesis | MCA + ADP 6-0 translation |
-| 8 chassis components | ✓ ships — engineering ports only; biographical-moat causal claim explicitly withdrawn from chassis docs | `kit/chassis/` |
+| 9 chassis components | ✓ ships — engineering ports only; biographical-moat causal claim explicitly withdrawn from chassis docs | `kit/chassis/` |
 | The Kit (88 fields, 8 templates) | ✓ ships | `kit/templates/`, `kit/onboarding/`, `kit/coverage.py` |
 | Funkytown 01 + 02 empirical results | ✓ ships as appendix | `~/Projects/funkytown/findings/` referenced |
 | ADP 6-0 translation | ✓ ships | `ADP_6_0_TRANSLATION.md` |

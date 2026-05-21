@@ -6,7 +6,7 @@ owner: Hans Prahl
 
 # Bandwidth Overlay — 2026-05-15 → 2026-06-30
 
-> **2026-05-14 update.** §2 (twelve deliverables) and §3 (weekly schedule) are **superseded by RELEASE_PLAN_v1.md** as of 2026-05-14 PM. The release-cadence reframe moves Law VI replication work into v1.5 prep (post 2026-06-01 v1.0 ship). §1 competing-demands grid, §4 tripwires, §5 truncation triggers, §6 delegation candidates, and §7 status snapshot remain operative as the weekly operational ledger. The bandwidth budget (~219 hrs across 7 weeks) still applies; the deliverable distribution against it now follows RELEASE_PLAN_v1.md Phase 1 + Phase 2.
+> **2026-05-14 update.** §2 (twelve deliverables) and §3 (weekly schedule) are **superseded by RELEASE_PLAN_v1.md** as of 2026-05-14 PM. The release-cadence reframe moves Law VI replication work into v1.5 prep (post 2026-06-01 v1.0 ship). §1 competing-demands grid, §4 tripwires, §5 truncation triggers, §6 delegation candidates, and §7 status snapshot remain operative as the weekly operational ledger. The bandwidth budget (originally ~219 hrs across 7 weeks at the 40%-of-raw heuristic; corrected 2026-05-21 to **~105 hrs at 15 hr/wk** — see §1 capacity row + memory `founder_capacity_15hr_wk_2026_05_21`) still applies; the deliverable distribution against it now follows RELEASE_PLAN_v1.md Phase 1 + Phase 2.
 
 > Law VIII: hours budget + weekly tripwires + pre-registered truncation criteria, published before first milestone.
 > Law IX: any workstream >40 founder hours or any active week with >3 parallel deliverables without delegation = schedule re-cuts at the gate, not at first missed milestone.
@@ -138,7 +138,7 @@ Trigger any of these → schedule re-cuts to truncate-at-Platoon v1.0:
 Truncate-at-Platoon v1.0 release package (if triggered):
 - THE_BUILDERS_DOCTRINE.md (13 principles)
 - MISSION_COMMAND_ARCHITECTURE.md (Platoon scope only; rungs 3–9 named as hypothesis)
-- 8 chassis components (engineering-only port; biographical-moat causal claim explicitly withdrawn)
+- 9 chassis components (engineering-only port; biographical-moat causal claim explicitly withdrawn)
 - Funkytown 01 + 02 results
 - ADP 6-0 translation
 - Law I deprecation notice

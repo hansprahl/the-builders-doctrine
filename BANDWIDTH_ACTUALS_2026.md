@@ -109,7 +109,7 @@ release_plan: RELEASE_PLAN_v1.md (supersedes overlay §2/§3 for deliverable dat
 ### §5 truncation triggers (this is the load-bearing read)
 
 - 🔴 **§5 #1 fires.** "Any single workstream overruns its estimated hours by ≥25% at week-end check" — doctrine actual (~40–60) vs. corrected capacity (15) is 167–300% over the 25% threshold. Trigger fires mechanically.
-- ✓ **Prescribed action:** truncate-at-Platoon v1.0 ships per §5 release-package list (13 principles + MCA Platoon scope + 8 chassis + Funkytown 01+02 + ADP 6-0 + Law I deprecation notice; no Company/Battalion claims).
+- ✓ **Prescribed action:** truncate-at-Platoon v1.0 ships per §5 release-package list (13 principles + MCA Platoon scope + 9 chassis + Funkytown 01+02 + ADP 6-0 + Law I deprecation notice; no Company/Battalion claims).
 - ✓ **This is consistent with RELEASE_PLAN_v1.md** (`ab95bd7`, 2026-05-14), which made truncate-at-Platoon Plan A explicitly two weeks ago. **The trigger firing ratifies the existing plan rather than forcing a reversal.** No new doctrine artifact required; the existing release plan already encodes the truncated package as the v1.0 ship.
 
 ### Action taken on red flags
@@ -137,7 +137,7 @@ _Scaffold — fill on 2026-05-29._
 |---|---|---|---|---|
 | 7 | Productize-vs-license decision | 2026-05-25 | 10 | Hans + counsel |
 | 8 | Refusal-propagation off-ramp primitive spec | 2026-05-25 | 8 | Hans |
-| 9 | Founder-romance detector (regex + pre-commit + reviewer) | 2026-05-25 | 13 | Hans; Adversarial Review chassis is the LLM-reviewer successor |
+| 9 | Founder-romance detector (regex + pre-commit + reviewer) | ~~2026-05-25~~ SHIPPED 2026-05-20 `81dfbd7` | 13 | Hans; ~2 actual hrs vs 13 scoped. Adversarial Review chassis successor was RETRACTED 2026-05-19 by Grok KILL verdict; regex implementation per original spec. |
 
 Per RELEASE_PLAN Phase 1 close. Wk 05-22 forecast doctrine load 22 hrs vs. 28 capacity; three deliverables converging on 05-25 — Law IX at threshold.
 
@@ -153,7 +153,7 @@ Tripwire still fires Thursday to confirm Health + EMBA forecasts held.
 
 ## Wk 06-05 — closes Thursday 2026-06-11 EOD
 
-_Scaffold — fill on 2026-06-11. Phase 2 deliverables in flight: pitch/CLAUDE/EXPLAINER rewrite (2026-05-27), v1.0 release notes (2026-05-29), landing page (2026-05-30), **v1.0 ship 2026-06-01**._
+_Scaffold — fill on 2026-06-11. **v1.0 ship 2026-06-01 ✓** (Phase 2 deliverables EXPLAINER `9ffa65e`, release notes `4fe5afa`, landing page `dd2732b` all SHIPPED 2026-05-20). Remaining ship-day work: tag v1.0-public + flip repo public + Pages deploy + Brad outreach 2026-06-02. Wk 06-05 may also include first Beaver-reply triage if Philip Beaver responds to the 2026-05-21 statistician channel outreach._
 
 ---
 

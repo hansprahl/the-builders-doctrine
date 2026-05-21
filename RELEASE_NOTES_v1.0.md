@@ -11,7 +11,7 @@ companion_artifacts: RELEASE_PLAN_v1.md, META_DOCTRINE.md, LAW_VI_PRE_REG_v1.md,
 
 The Builders' Doctrine is a methodology for compiling lived experience into AI-product behavior. Ethics encoded as commandments. Refusals named explicitly. Agents calibrated against truthful outcomes. v1.0 is the first public release.
 
-**What you get in v1.0.** The doctrine prose (13 principles, six methodological laws). The Kit (templates + interviews + a single-file coverage scorer). The chassis (eight portable runtime components). Two empirical experiments at Platoon scale. A versioned roadmap with dated v1.5 + v2.0 commitments.
+**What you get in v1.0.** The doctrine prose (13 principles, six methodological laws). The Kit (templates + interviews + a single-file coverage scorer). The chassis (nine portable runtime components). Two empirical experiments at Platoon scale. A versioned roadmap with dated v1.5 + v2.0 commitments.
 
 **What v1.0 names as not yet proven.** The most-cited principle's *causal* claim is deprecated pending a replication study committed for v1.5. The Mission Command Architecture is validated at Platoon scope only; rungs above are hypothesis. The hard release gate — one external builder running the Kit cold — has not been cleared. Each is named explicitly in the sections below.
 

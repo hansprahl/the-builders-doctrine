@@ -1,8 +1,8 @@
 # Builders Doctrine — v1.2 Candidates
 
-**Status:** unratified. Items here are in flight for the next doctrine version. v1.1 tag remains canonical until v1.2 is locked.
+**Status:** **LOCKED 2026-05-13** — v1.2 tag landed; all three candidates below were ratified into `THE_BUILDERS_DOCTRINE.md`. This file is preserved as the historical audit trail of what was tested before v1.2 locked. v1.0-public ships 2026-06-01 with v1.2's 13 principles. For future doctrine versions, create `CANDIDATES_v1.3.md` (or whatever the next version becomes) rather than re-using this file.
 
-**Authoring rule.** Anything in this file must survive at least one external test (an EMBA peer applying it, an SBIR reviewer reading it, a conformance audit) before being merged into the doctrine body. Candidates that fail their test get deleted, not promoted.
+**Authoring rule (preserved for future candidate cycles).** Anything in a candidates file must survive at least one external test (an EMBA peer applying it, an SBIR reviewer reading it, a conformance audit) before being merged into the doctrine body. Candidates that fail their test get deleted, not promoted.
 
 ---
 
@@ -119,11 +119,11 @@ These are surfaced here for completeness but lived in `STRESS_TEST_v1.0.md` and 
 
 ---
 
-## Ratification
+## Ratification — CLOSED 2026-05-13
 
-v1.2 is ratified when:
-1. Candidate 1 (rename) is propagated through every reference in this repo + cross-references in CLAUDE.md / memory (done 2026-05-01).
-2. Candidate 2 (portability principle) clears at least one external test.
-3. The version header in `THE_BUILDERS_DOCTRINE.md` is bumped from `v1.2-draft` to `v1.2` and the repo is tagged.
+v1.2 was ratified when all three gates closed:
+1. ✓ Candidate 1 (rename) propagated through every reference in this repo + cross-references in CLAUDE.md / memory (done 2026-05-01).
+2. ✓ Candidate 2 (portability principle) cleared at least one external test.
+3. ✓ The version header in `THE_BUILDERS_DOCTRINE.md` was bumped from `v1.2-draft` to `v1.2` and the repo was tagged on **2026-05-13**.
 
-Until all three, v1.1 remains the canonical version. v1.2-draft is in flight.
+All three closed. v1.2 is canonical. v1.0-public ships 2026-06-01 carrying v1.2's 13 principles (the v1.0-public release notes use the v1.x doctrine versioning; v1.0-public refers to the *release package version*, not the doctrine prose version).
