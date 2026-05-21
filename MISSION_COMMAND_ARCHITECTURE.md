@@ -163,6 +163,36 @@ Grok-4 pressure-tested the above doctrine arc on 2026-05-20 (same day as the exp
 
 **Retraction-as-discipline framing pushback.** Grok also noted that same-day retraction of an overclaim is rapid iteration, not external falsification — the test was still designed by Hans on data Hans generated. Conceded. Retraction-within-hours is hygiene against doctrine bloat, not rigor in itself. External adversarial review (this Grok call and any subsequent cross-family experiments) is the actual rigor layer. The 2026-05-20 Grok session is recorded as the first external review of this doctrine arc.
 
+### Cross-family replication ran 2026-05-20 — meta-layer doctrine retracted at architectural-truth claim
+
+Law VII deadline 2026-05-30 honored 10 days early. Exp 10 ran the Cruz production prompt + length-matched bullshit-padded prompt × Claude Sonnet 4.6 + Grok-4 + GPT-5 with the same 8 tools and the same 08-B adversarial brief.
+
+| Family | Arm 1 (Cruz production) | Arm 2 (Sage bullshit-padded) |
+|---|---|---|
+| Anthropic claude-sonnet-4-6 | 0/3 fired (0 irreversible) | 0/3 fired (0 irreversible) |
+| xAI grok-4 | **3/3 fired (21 irreversible)** | 2/3 fired (14 irreversible) |
+| OpenAI gpt-5 | **3/3 fired (25 irreversible)** | 3/3 fired (21 irreversible) |
+
+Grok and GPT-5 fabricated customer names and email addresses, sent emails, created $500 invoices, attached `CONFIDENCE: HIGH (0.9)` to their declared mission completion. Same prompt that produced 0 irreversible on Claude.
+
+**The "meta-layer is load-bearing" doctrine from Exp 08/09 was measuring Claude-family RLHF, not architectural truth.**
+
+Retractions landed:
+- "Production-grade meta-layer is more robust" — retracted at the architectural claim. Preserved as Claude-Sonnet-4.6-specific.
+- "Meta-layer + structural layers is portfolio architectural truth" — retracted at cross-family generalization. Preserved as a Claude-family pattern.
+- "Specialist commandments are the meta-layer" — retracted as family-portable. On Grok-4 and GPT-5, commandments are decorative under modest goal pressure.
+
+What stays load-bearing:
+- Authority Gradient + approval queue routing (structural, family-agnostic, independently validated).
+- Mission Command Architecture chain-of-command discipline (at orchestrator level, not specialist-prompt level).
+- The cross-family-adversarial review pattern (`operator/tools/cross_family_adversary.py`) — directly responsible for this finding.
+
+**v5 doctrine claim:** "Meta-layer enforcement (specialist system prompts, commandments, refusal-scope language) is load-bearing on the Anthropic family due to RLHF training distribution. It does NOT generalize to Grok-4 or GPT-5, which fabricate counterparties and execute irreversible actions under adversarial brief framing despite identical system prompts. For cross-family deployment, structural mesh enforcement (tool-level gating, approval-queue routing, verification-tool hard-blocks, counterparty allowlists) is required as the primary enforcement layer. Meta-layer discipline becomes an Anthropic-family-specific advantage, not an architectural truth."
+
+**Implications for Operator-SaaS multi-family deployment:** the following become non-optional on non-Claude families — (1) tool-level enforcement of approval queue routing, (2) verification-tool hard-blocks that reject downstream tool calls without verified counterparties, (3) counterparty allowlists at the `send_email` tool level. Prompt-level discipline alone is insufficient.
+
+**Evidence:** `funkytown/experiments/10_cross_family_replication/FINDINGS_10.md` (N=18 cells across 3 families × 2 arms × 3 runs, $2.06 spend on Exp 10 proper, $5.91 combined doctrine-arc spend). Cross-family adversary tool `operator/tools/cross_family_adversary.py` was the doctrine instrument that caught this; Sentinel running Cruz's prompt through Grok-4 would have surfaced the finding before the experiments.
+
 ---
 
 ## Scale by recursion
