@@ -361,7 +361,7 @@ Stating what is currently measured and what is not. As of v1.0:
 
 - **Measured today:** Guardian scores, drift, prompt history depth, approval queue counts, hard-floor violations.
 - **Measured in TOP only:** AAR calibration. Other products have AAR storage but not yet calibration analysis.
-- **Not yet measured:** Cross-product drift correlation (Borg compounding), time-to-rollback when a correction fails, biographical-input correlation with hallucination rate, Refusal enforcement (preventive doctrine; needs a scope-lock checklist + decision log to make countable).
+- **Not yet measured:** Cross-product drift correlation, time-to-rollback when a correction fails, biographical-input correlation with hallucination rate, Refusal enforcement (preventive doctrine; needs a scope-lock checklist + decision log to make countable).
 - **Reproducibility protocol status:** Defined here. Not yet executed clean-room. The first execution will be the v1.1 propagation pass across all four products.
 
 Metrics not claimed without data. The framework's credibility dies the moment a reviewer asks "show me the data" and I do not have it. v1.1 closes the unmeasured gaps.

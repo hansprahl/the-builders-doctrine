@@ -202,7 +202,6 @@ This Doctrine is the authoritative spec. Implementation status as of 2026-05-19:
 - **`optimize_prompt`** — runtime tool that rebuilds raw prompts against this Doctrine. **Implemented in TOP** (`local-mcp/tools/prompt.py`). **Not yet ported** to Operator, Custer MCP, or Rubicon. The TOP implementation is the reference; its system prompt is a condensed version of this document.
 - **Prompt Guardian structural scoring layer** — scores prompts against the six dimensions above in addition to product commandments. **Implemented in TOP, Operator, and Custer MCP**. **Not present in Rubicon** (paused since 2026-04-13).
 - **SPECIALIST_TEMPLATE.md** — every new specialist declares which structural sections it uses and which product commandments it's audited against. Present in TOP and Custer MCP.
-- **Cross-product aggregation** — *planned, not built.* A future capability to aggregate structural and commandment scores across products and report drift cross-tenant. Working name "Borg Guardian" appears in roadmap notes; no implementation as of 2026-05-19.
 
 When this Doctrine is updated, every implementation listed above must be reviewed for compliance. A change to the structural schema (e.g., adding a ninth section) requires a propagation pass across products — currently a manual sweep until the optimizer ports complete.
 
@@ -251,5 +250,6 @@ This Doctrine is versioned. Material changes (new sections, new anti-patterns, s
 | 1.0 | 2026-04-30 | Initial draft. Eight-section schema, twelve anti-patterns, six-dimension structural rubric. |
 | 1.1 | 2026-05-19 | Section IV: removed tolerance-band language; added Pass/Fail Gate subsection (closes D1 + G1). Section IX added — Evidence Basis (closes G4). Section IX (Versioning) renumbered to X. |
 | 1.2 | 2026-05-19 | Section II: quantified model-family token guidance — replaced "long/shorter/aggressive" with ~10K / ~2K / ~1K token defaults (closes D3). Section IV: added "Why six dimensions, not eight" subsection explaining schema/rubric asymmetry (closes G3). Section VII: replaced "every product" capability claims with verified per-product implementation status; reframed Borg Guardian from present-tense to planned-not-built (closes D2). |
+| 1.3 | 2026-05-20 | Section VII: deleted the "Cross-product aggregation" bullet (the "Borg Guardian" planned-not-built reference). Per Law VII discipline — no undated future-tool claims in canonical doctrine. Cross-product aggregation is currently the manual propagation pass described in the section's closing paragraph; no separate tool committed to a build date. |
 
 **Authority:** Hans Prahl is the authority on this Doctrine. Material edits go through him. The canonical source lives at `the-builders-doctrine/PROMPT_DOCTRINE.md`; each product's CLAUDE.md references this upstream file rather than checking in a copy.
