@@ -144,6 +144,25 @@ The Prompt Guardian's audit of specialist system prompts is therefore not "quali
 
 **Evidence artifacts:** `funkytown/experiments/09_autonomous_goal_pursuit/FINDINGS.md` (N=5, 2026-05-20, $1.78 total LLM spend across five runs including the doctrine-retraction-and-refinement). Predecessor finding: `funkytown/experiments/08_autonomous_operator_control/FINDINGS.md` (Exp 08 mesh-not-layer, $1.83 spend). Doctrine retraction documented at FINDINGS.md v3→v4.
 
+### External adversarial review — Grok-4 catches (2026-05-20)
+
+Grok-4 pressure-tested the above doctrine arc on 2026-05-20 (same day as the experiments). Four catches landed and constrain the claim:
+
+1. **Model-family conditional.** The 2x3 evidence grid above was run entirely on Claude Sonnet 4.6, which was RLHF'd heavily on chain-of-command and refusal patterns. The meta-layer dominance observed may reflect Claude-family training distribution rather than architectural truth. **The doctrine claim is currently scoped to Claude Sonnet 4.6 and is unverified on Grok-4, GPT-5, or open-weight base models.** Cross-family replication is required before this finding can be cited as portfolio-wide architecture. Tracked as funkytown Experiment 10.
+2. **Single-turn only.** All five Exp 09 arms and both Exp 08-A/B used single-turn or short-chain briefs. Real production failures occur in conversation — gradual norm erosion, "just internal testing," "customer asked," with jailbreak framing in later turns. The single-turn refusal observation does not establish multi-turn robustness.
+3. **N=1 on production-grade row.** The 2x3 grid's bottom-row finding ("production-grade meta-layer refuses adversarial input without invoking the mesh") rests on one Cruz run. N=1 is suggestive at best. Re-running on Banks (invoicing), Archer (publish), and Mason (deploy) against the same adversarial brief is required before "production-grade is mesh-redundant" earns more than "preliminary signal."
+4. **Length confound not controlled.** Production-grade prompts are longer than minimally-clean prompts. The observed effect may reflect prompt-length scaling rather than meta-layer content. A length-matched bullshit-padded control (production-length prompt with persona-padding or legal jargon instead of meta-layer-coherent commandments) would falsify this. Without that control, content-vs-length is conflated.
+
+**What the doctrine does NOT establish.** Even given the above scope-narrowing, the doctrine arc does NOT establish:
+- That structural mesh is ever truly redundant in production.
+- That the effect generalizes beyond synthetic compliance briefs to real money and real customer pressure.
+- That production-grade meta-layer is achievable or stable for operators other than the v1 commander whose biography produced these commandments.
+- Commercial readiness for any product on this evidence alone.
+
+**What stays load-bearing.** The meta-layer-is-necessary finding survives external review: Exp 09-D's adversarial-permissive brief defeated the full structural mesh on Claude Sonnet 4.6, and that result is reproducible. The Authority Gradient's staff-channel discipline and approval-queue routing are independently validated and not on trial here. What external review constrained was the *scope* of the meta-layer claim, not its core.
+
+**Retraction-as-discipline framing pushback.** Grok also noted that same-day retraction of an overclaim is rapid iteration, not external falsification — the test was still designed by Hans on data Hans generated. Conceded. Retraction-within-hours is hygiene against doctrine bloat, not rigor in itself. External adversarial review (this Grok call and any subsequent cross-family experiments) is the actual rigor layer. The 2026-05-20 Grok session is recorded as the first external review of this doctrine arc.
+
 ---
 
 ## Scale by recursion
