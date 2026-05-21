@@ -14,7 +14,7 @@ owner: Hans Prahl
 
 ---
 
-## 1. Competing demands (populated 2026-05-14 from calendar + Hans inputs)
+## 1. Competing demands (populated 2026-05-14 from calendar + Hans inputs; capacity row corrected 2026-05-21)
 
 | Workstream | Wk 05-15 | Wk 05-22 | Wk 05-29 | Wk 06-05 | Wk 06-12 | Wk 06-19 | Wk 06-26 |
 |---|---|---|---|---|---|---|---|
@@ -26,9 +26,11 @@ owner: Hans Prahl
 | **Subtotal — non-doctrine load (ex sleep)** | **39.5** | **41.5** | **47.5** | **27.5** | **27.5** | **27.5** | **27.5** |
 | Sleep (8 hrs/day × 7) | 56 | 56 | 56 | 56 | 56 | 56 | 56 |
 | **Raw available (168 − above)** | **72.5** | **70.5** | **64.5** | **84.5** | **84.5** | **84.5** | **84.5** |
-| **Realistic doctrine-productive capacity** (40% rule of raw) | **29** | **28** | **26** | **34** | **34** | **34** | **34** |
+| ~~Realistic doctrine-productive capacity (40% rule of raw)~~ | ~~29~~ | ~~28~~ | ~~26~~ | ~~34~~ | ~~34~~ | ~~34~~ | ~~34~~ |
+| **Realistic doctrine-productive capacity (Hans 2026-05-21)** | **15** | **15** | **15** | **15** | **15** | **15** | **15** |
+| Crash-week ceiling (acceptable for known windows) | 25 | 25 | 25 | 25 | 25 | 25 | 25 |
 
-> "Raw available" is hours-not-allocated. **It is not productive-work capacity.** Humans do not produce 70 focused hours of doctrine work in a week. The 40% multiplier on raw is a defensible first-pass productive-capacity number for sustained intellectual work under multi-workstream load — adjust if you have a better empirical anchor. Total realistic capacity across 7 weeks: **219 hours.**
+> **2026-05-21 capacity correction.** Hans's stated capacity is **15 hr/wk steady-state**, with crash-week ceiling ~25 hr/wk acceptable for known load windows (Exp 10/10b before 2026-05-30; LAW_VI_PRE_REG_v2 sign-off around 2026-07-01). The original 40%-of-raw heuristic (29 hr/wk) was a first-pass anchor without ground truth. Same-session calibration walked 5 → 10 → 15 as the forward-demand math was made explicit; 15 is the locked number. Original row preserved struck-through for audit-trail purposes; weekly tripwire computation runs against the **15 hr/wk** row going forward. Total realistic capacity across 7 weeks: **~105 hours** (was 219). The 152-hr deliverable total in §2 against 7 weeks is still over capacity at 15 hr/wk — but most of §2 has shipped under estimate, and remaining demand to v1.5 (~115 hrs across 10 weeks) fits 150-hr 10-week capacity with ~35-hr buffer **if statistician delegation of Law VI execution (#12) closes by 2026-06-22**. Statistician delegation is mandatory at this capacity, not optional. v1.0 ship 2026-06-01 holds with margin; v1.5 ship 2026-07-25 holds with statistician owning Law VI runs end-to-end.
 
 ---
 

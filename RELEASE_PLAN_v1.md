@@ -60,7 +60,7 @@ v2.0 commitments are provisional per Law VII — they get explicit dates and fal
 
 ## 4. v1.0 ship schedule (dated milestones)
 
-> **Capacity check against bandwidth overlay:** ~50 hours of work across 2.5 weeks. Fits inside the bandwidth overlay's 219-hour budget with margin to spare. Wk 05-29 (EMBA finals) remains protected per Law VIII.
+> **Capacity check against bandwidth overlay (re-cut 2026-05-21 against corrected 15 hr/wk steady-state):** ~50 hours of work across 2.5 weeks at original scope; ~9 hrs actual after Phase 1+2 reshape collapsed planned items 6×. Fits inside the bandwidth overlay's revised **~105-hr 7-week budget** (was 219 under the 40%-of-raw heuristic; corrected to 15 hr/wk after the founder's stated capacity at the 2026-05-21 weekly check-in). Wk 05-29 (EMBA finals) remains protected per Law VIII.
 
 ### Phase 1 — Final v1.0 prep (2026-05-14 → 2026-05-25)
 
@@ -104,9 +104,11 @@ v2.0 commitments are provisional per Law VII — they get explicit dates and fal
 | 2026-07-20 | Law VI verdict | 2 | Statistician → Hans |
 | 2026-07-25 | **v1.5 release** | 8 | Hans |
 
-**v1.0 total hours: ~89 (Phases 1+2)**
-**v1.5 total hours: ~87 (Phases 3+4 + verdict)**
-**Combined: 176 hours across 10 weeks vs. bandwidth budget of 219 hours.**
+**v1.0 total hours at original scope: ~89 (Phases 1+2). Actual after reshape: ~12 (Phase 1+2 shipped under estimate, 5–7 days early per BANDWIDTH_ACTUALS_2026.md). Remaining to ship 2026-06-01: ~2 hrs (tag + flip public + Pages deploy + Brad outreach).**
+**v1.5 total hours: ~87 (Phases 3+4 + verdict) at original scope.**
+**Combined original scope: 176 hours / 10 weeks. Remaining after Phase 1+2 ship: ~115 hours across the 10-week window.**
+
+> **Bandwidth re-cut 2026-05-21.** Original line read "Combined: 176 hours across 10 weeks vs. bandwidth budget of 219 hours" — both numbers stale. The 219-hr budget was the 40%-of-raw heuristic; corrected to **15 hr/wk × 10 wks = 150 hrs** after the founder's stated capacity at the 2026-05-21 weekly check-in. Combined remaining demand (~115 hrs) fits 150-hr corrected capacity with **~35-hr buffer**, **conditional on statistician delegation of Law VI execution (Phase 4, ~25 hrs orchestration) closing by 2026-06-22.** Solo Law VI execution would push remaining demand to ~140+ hrs and consume the buffer. Per Law IX (>40 founder hrs on a single workstream without delegation = re-cut at the gate), statistician delegation is mandatory, not optional. See [memory: founder-capacity-15hr-wk-2026-05-21](/Users/hansprahl/.claude/projects/-Users-hansprahl-Projects-the-builders-doctrine/memory/founder_capacity_10hr_wk_2026_05_21.md).
 
 ---
 
