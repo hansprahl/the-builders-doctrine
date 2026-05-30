@@ -74,9 +74,9 @@ v2.0 commitments are provisional per Law VII — they get explicit dates and fal
 
 | Date | Deliverable | Hrs | Owner |
 |---|---|---|---|
-| 2026-05-27 | Pitch / CLAUDE / EXPLAINER rewrite (was #10 — reshape for v1.0 claims, NO biographical-moat causal claim) | 15 | Hans |
-| 2026-05-29 | v1.0 release notes draft — explicit Law I deprecation + v1.5 roadmap | 4 | Hans |
-| 2026-05-30 | Public landing page (assayerhq.com or temporary) | 6 | Hans |
+| ~~2026-05-27~~ **SHIPPED 2026-05-21** | Pitch / CLAUDE / EXPLAINER rewrite (was #10 — reshape for v1.0 claims, NO biographical-moat causal claim) — **6 days early; 40 min actual vs 15 hrs scoped per reshape-collapse pattern** | 15 | Hans |
+| ~~2026-05-29~~ **SHIPPED 2026-05-21** | v1.0 release notes draft — explicit Law I deprecation + v1.5 roadmap | 4 | Hans |
+| ~~2026-05-30~~ **SHIPPED 2026-05-21** | Public landing page (`docs/index.html` + `docs/style.css` on GitHub Pages; `assayerhq.com` domain not active, temporary form satisfies plan) | 6 | Hans |
 | ~~2026-06-01~~ **SHIPPED 2026-05-21** | **v1.0 git tag + public release announcement** | 2 | Hans |
 
 ### Phase 3 — Release-gate testing + outreach (2026-06-01 → 2026-06-15)
@@ -168,8 +168,8 @@ Replacement auto-fallbacks under the release-cadence model:
 
 | Date | Decision | Triggered if |
 |---|---|---|
-| 2026-05-22 | Continue to Phase 2 or strip Phase 1 scope | Hrs spent >25% over Phase 1 estimate |
-| 2026-05-29 | Continue to Phase 2 final push or strip landing page | Hrs spent >25% over Phase 2 estimate by this date |
+| ~~2026-05-22~~ **NOT TRIGGERED** | Continue to Phase 2 or strip Phase 1 scope | Hrs spent >25% over Phase 1 estimate — all 5 Phase 1 deliverables shipped UNDER estimate, 5–7 days early per BANDWIDTH_ACTUALS_2026.md §4b |
+| ~~2026-05-29~~ **NOT TRIGGERED** | Continue to Phase 2 final push or strip landing page | Hrs spent >25% over Phase 2 estimate by this date — Phase 2 shipped 8 days early (2026-05-21), same reshape-collapse pattern as Phase 1 |
 | ~~2026-06-01~~ **2026-05-21** | Ship or slip | **SHIPPED 11 days early** — Phase 1+2 complete, strip-down not triggered |
 | 2026-06-15 | Engage statistician or convert v1.5 → v1.1 | External builder signal + cohort lead status |
 | 2026-07-01 | Lock pre-reg v2 or extend stat search | Statistician engaged + design refined |
