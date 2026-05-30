@@ -213,3 +213,18 @@ All artifacts under `funkytown/experiments/11b_strategic_layer_fuzz/`:
 - `runs/20260530T165028Z_baseline_full/` — full baseline scan artifacts (findings.jsonl, summary.json, summary.md)
 
 Total cost: $10.51 ($0.44 main + $0.08 Gemini third-judge + $1.15 baseline pilot + $8.84 full baseline scan). Wall time: ~25 minutes of compute over a ~140-minute session.
+
+## Verification of the prose revisions (2026-05-30 late)
+
+The 6 Hans-confirmed TPs collapsed to 4 unique passages (firings 2+3 share an excerpt; firings 5+6 share an excerpt). All four were revised in builders-doctrine commit `fc751af` (`BANDWIDTH_ACTUALS_2026.md` is .gitignored — edit holds locally):
+
+- `THE_BUILDERS_DOCTRINE.md` §I.12 (Reflection Gate posture) — `repackaged_clean_negative` fix: kill signal leads; "composition value" named as unmeasured Law VII hypothesis, not as warrant.
+- `RELEASE_PLAN_v1.md` §intro (Truncate-at-Platoon reframe) — `repackaged_clean_negative` fix: bandwidth-overlay kill signal leads; "versioned release cadence" named as form, not cause; v1.5/v2.0 ship called out as conditional on dated gates.
+- `MISSION_COMMAND_ARCHITECTURE.md` §"Why this is durable" #1 — `time_invested_justification` fix: duration ("centuries of refinement") demoted from warrant to structural context; Funkytown Exp 06/07/07b/03 named as warrant.
+- `BANDWIDTH_ACTUALS_2026.md` §4c.1 — `proximity_to_gtm_framing` fix: "satisfied-by-reframe" → "DEFERRED (not satisfied)"; truncate-at-Platoon trigger named as the mechanical resolution; 2026-06-22 statistician engagement called out as a new commitment v1.5 ship is conditional on.
+
+**Empirical verification** (funkytown commit `b47e3f3`, script `experiments/11b_strategic_layer_fuzz/src/verify_revisions.py`): ran the v0.2.1 detector's `scan_file()` API — same path the pre-commit hook uses — against each revised file's current state. Result: **4/4 PASS. 0 HIGH findings, 0 total findings across all 12 (file × pattern) Grok-4 calls.** Not just the originally-caught audit pattern silenced — no v0.2.1 pattern fires anywhere in the four files.
+
+Receipt: `funkytown/experiments/11b_strategic_layer_fuzz/runs/20260530T174104Z_verify_revisions/summary.json`.
+
+This closes the v0.2.0 → v0.2.1 arc end-to-end: cross-family judge convergence (99.4%) → Hans collusion-falsification (91.7%) → framing sensitivity (12/12) → Hans precision audit (6/6 TP) → HIGH-gate promotion → prose revisions land → revisions verified clean by the same gate they earned promotion through. The detector found real prose bias, Hans audited it, the prose was fixed, and the fixed prose passes the gate.
