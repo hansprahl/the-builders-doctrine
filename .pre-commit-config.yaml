@@ -43,12 +43,57 @@ repos:
         exclude: |
           (?x)^(
             kit/chassis/test_corpus/.*              # the detector's own corpus
+            | kit/chassis/test_corpus_strategic/.*    # v0.2 strategic-layer corpus
             | kit/chassis/FOUNDER_ROMANCE_DETECTOR_SPEC\.md  # spec quotes itself
+            | kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC\.md  # v0.2 spec quotes pattern examples
             | kit/chassis/findings_adversary_v1\.md   # Exp 11 findings — quotes detector output verbatim
+            | kit/chassis/findings_strategic_layer_v1\.md  # Exp 11b findings — quotes strategic-layer examples verbatim
             | archived-prose/.*                       # museum of retracted prose
             | dist/.*                                  # generated combined artifacts
             | STORY\.md                                # founder narrative by design
             | CHASSIS_PROPOSED_EXTENSIONS\.md         # taxonomy table contains caught examples verbatim
             | LAW_VI_PRE_REG_v1\.md                   # Stage 7 replication pre-reg — Stage 7 mention is the document's purpose
             | REFUSAL_PROPAGATION_OFFRAMP_SPEC\.md    # spec table lists carve-out as a forbidden pattern verbatim
+          )$
+
+      - id: strategic-layer-detector
+        name: Strategic-Layer Detector (kit/chassis, v0.2.0)
+        description: >-
+          LLM-gate scan of strategic-prose artifacts for the three Exp 11b
+          patterns: time_invested_justification, proximity_to_gtm_framing,
+          repackaged_clean_negative. v0.2.0 ships ADVISORY-only — no
+          commit block. Requires XAI_API_KEY in env. Cost per fire:
+          ~$0.06-0.10 per file scanned. See
+          kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC.md and
+          findings_strategic_layer_v1.md.
+        entry: python -m kit.chassis.strategic_layer_detector
+        language: system
+        types: [markdown]
+        require_serial: true
+        # The hook is configured to run ONLY on the curated path list
+        # below (per spec § Invocation surface, locked 2026-05-30).
+        # Files NOT in this list are skipped — costs are zero on the
+        # vast majority of doctrine commits.
+        files: |
+          (?x)^(
+            RELEASE_PLAN.*\.md
+            | MISSION_COMMAND_ARCHITECTURE\.md
+            | PRODUCTIZE_VS_LICENSE_DECISION\.md
+            | OPERATOR_DOGFOOD_.*\.md
+            | THE_BUILDERS_METHOD\.md
+            | THE_BUILDERS_DOCTRINE\.md
+            | META_DOCTRINE\.md
+            | LAW_.*_PRE_REG.*\.md
+            | BANDWIDTH_OVERLAY.*\.md
+            | EXPLAINER\.md
+          )$
+        # Excludes for files whose PURPOSE is describing the patterns
+        # (spec, findings docs), narrative-by-design (STORY), or that
+        # otherwise carry pattern language verbatim.
+        exclude: |
+          (?x)^(
+            kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC\.md
+            | kit/chassis/findings_strategic_layer_v1\.md
+            | kit/chassis/test_corpus_strategic/.*
+            | STORY\.md
           )$

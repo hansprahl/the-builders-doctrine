@@ -1,0 +1,90 @@
+# Strategic-layer detector v0.2.0 test corpus manifest
+#
+# Each file is annotated with the patterns the detector SHOULD fire on
+# (caught) or SHOULD NOT fire on (clean). Used by a future v0.2.1
+# regression suite that runs the live LLM gate against this corpus and
+# computes per-pattern precision/recall.
+#
+# v0.2.0 ship: this manifest is descriptive ground-truth. The live-LLM
+# regression suite is on the v0.2.1 roadmap (cost: ~$0.50 per pass).
+
+corpus:
+  - file: caught/time_invested_justification__idx00.md
+    should_fire: [time_invested_justification]
+    source: funkytown/experiments/11b_strategic_layer_fuzz/runs/20260530T162810Z/drafts.jsonl idx=0
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/time_invested_justification__idx01.md
+    should_fire: [time_invested_justification]
+    source: idx=1
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/time_invested_justification__idx02.md
+    should_fire: [time_invested_justification]
+    source: idx=2
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/proximity_to_gtm_framing__idx00.md
+    should_fire: [proximity_to_gtm_framing]
+    source: idx=0
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/proximity_to_gtm_framing__idx01.md
+    should_fire: [proximity_to_gtm_framing]
+    source: idx=1
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/proximity_to_gtm_framing__idx02.md
+    should_fire: [proximity_to_gtm_framing]
+    source: idx=2
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/repackaged_clean_negative__idx00.md
+    should_fire: [repackaged_clean_negative]
+    source: idx=0
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/repackaged_clean_negative__idx01.md
+    should_fire: [repackaged_clean_negative]
+    source: idx=1
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: caught/repackaged_clean_negative__idx02.md
+    should_fire: [repackaged_clean_negative]
+    source: idx=2
+    cross_family_verdict: grok-4 yes, gemini-2.5-pro yes
+
+  - file: clean/measurement_grounded_sequencing.md
+    should_fire: []
+    source: synthetic
+    note: |
+      Sequencing argument anchored in n=42 discovery evidence + 21-day
+      median time-to-pilot-decision + named re-test condition.
+
+  - file: clean/legitimate_sequencing_argument.md
+    should_fire: []
+    source: synthetic
+    note: |
+      Sequencing argument that names the risk-adjusted trade-off
+      ("Enterprise will have higher LTV and lower churn"). This is
+      the boundary case Gemini 2.5 Pro independently policed on Exp
+      11b proximity_to_gtm_framing idx=13.
+
+  - file: clean/clean_negative_closed_clean.md
+    should_fire: []
+    source: synthetic
+    note: |
+      Wargame closes a clean negative on COA Bravo with named kill
+      signals and no re-litigation. Contingency is named separately
+      (COA Charlie) rather than reopening Bravo. Anti-pattern of
+      repackaged_clean_negative.
+
+summary:
+  total_files: 12
+  caught_count: 9
+  clean_count: 3
+  patterns: 3
+  acceptance:
+    precision_floor_per_pattern: 0.80
+    recall_floor_per_pattern: 0.66
+  ship_status: descriptive ground-truth only at v0.2.0; live-LLM regression suite is v0.2.1

@@ -1,11 +1,12 @@
 # Strategic-Layer Observer-Bias Detector — Spec (v0.2 candidate)
 
-**Status:** v0.2 candidate, **draft** as of 2026-05-30. Not yet shipped.
-Pilot baseline scan ran 2026-05-30 16:40 UTC (15 strategic .md files,
-3 patterns, $1.15); 1/45 firings = 2.2% real-prose rate, all three
-patterns OPERATIONALLY FIT. Blocks on Hans's invocation-surface
-decision and on a full 104-commit scan analog before any HIGH-gate
-promotion.
+**Status:** v0.2.0 — code shipped 2026-05-30; ADVISORY-only at ship.
+Full baseline scan complete (114 commits, 148 unique (sha, file)
+pairs, 444 Grok-4 calls, $8.84). Per-pattern file-level firing rates:
+1.4%, 0.7%, 2.0% — all under the ≤5% OPERATIONALLY FIT threshold for
+HIGH-gate consideration. Commit-level block-rate estimate: 5.3%
+(vs. Exp 11's 35.6% regex baseline). HIGH-gate promotion blocked on
+Hans's audit of the 6 firings (target precision ≥60% per pattern).
 
 **Empirical basis:** `kit/chassis/findings_strategic_layer_v1.md` (Exp
 11b, 2026-05-30). Three candidate strategic-layer patterns cleared the
@@ -277,10 +278,17 @@ v0.1.1, no separate log file.
 
 1. ~~**Hans's invocation-surface decision**~~ — **LOCKED 2026-05-30:**
    on-demand CLI + curated-path pre-commit. See Invocation surface above.
-2. ~~**Real-prose baseline scan analog**~~ — **pilot closed 2026-05-30
-   16:40 UTC** (15-file curated pilot, $1.15, 1/45 firings = 2.2%; all
-   three patterns OPERATIONALLY FIT). Full 104-commit scan analog
-   **funded 2026-05-30**, queued for execution this session.
+2. ~~**Real-prose baseline scan analog**~~ — **full scan closed 2026-05-30
+   16:50 UTC.** 114-commit corpus, 148 unique (sha, file) pairs, 444
+   Grok-4 calls, $8.84. Per-pattern file-level firing: 1.4%, 0.7%,
+   2.0%; commit-level block-rate estimate 5.3%. All three patterns
+   OPERATIONALLY FIT (≤5%). Six total firings — three in TPS like the
+   v1.0 release-cadence reframe in `RELEASE_PLAN_v1.md` (`5480322b`),
+   the bandwidth date reframe in `BANDWIDTH_ACTUALS_2026.md`, and two
+   `MISSION_COMMAND_ARCHITECTURE.md` revisions of the
+   "centuries-of-refinement" warrant. HIGH-gate promotion is now
+   gated on Hans precision audit of those 6 firings only (target
+   ≥60% precision per pattern).
 3. **Human re-judge of 12-draft stratified sample from Exp 11b** —
    packet shipped to `funkytown/experiments/11b_strategic_layer_fuzz/audit_packet_hans/AUDIT_HANS_12.md`
    on 2026-05-30. Pending Hans rating (~10 min).

@@ -115,6 +115,36 @@ This is genuinely ambiguous. **Possible TP:** structure matches the definition �
 
 **Implication for spec:** the 2.2% firing rate is low enough that an LLM gate at ADVISORY severity is operationally viable for an on-demand or curated-path pre-commit invocation surface. HIGH-gate promotion remains contingent on a full 104-commit scan analog + Hans precision audit (per spec § Success criteria), but the pilot does not surface the noise problem that killed the regex 1a/1b HIGH gate.
 
+## Full baseline scan over 114 real commits (2026-05-30 16:50 UTC)
+
+The full real-prose firing-rate measurement Hans funded. Same git-walk shape as Exp 11's `baseline_scan.py` (114 .md-touching commits since 2026-03-01) but the gate is Grok-4 per the spec. 148 unique (sha, file) pairs survived the pre-commit-config exclude list × 3 strategic patterns = 444 LLM calls.
+
+| Pattern | file-level fires | firing rate | verdict |
+|---|---|---|---|
+| `time_invested_justification` | 2 / 148 | 1.4% | OPERATIONALLY FIT |
+| `proximity_to_gtm_framing` | 1 / 148 | 0.7% | OPERATIONALLY FIT |
+| `repackaged_clean_negative` | 3 / 148 | 2.0% | OPERATIONALLY FIT |
+| **Total** | **6 / 444** | **1.4%** | — |
+
+Commit-level block-rate estimate: **5.3%** (6 of 114 commits would have triggered ≥1 strategic-layer pattern). For reference: Exp 11's v0.1 regex baseline returned **35.6% commit block rate** on the same corpus, which forced the v0.1.1 demotion. The strategic-layer LLM gate at HIGH would be ~7x quieter than the regex v0.1 HIGH gate was.
+
+Cost: $8.84. (Pilot $1.15 + full $8.84 + Exp 11b core $0.52 = $10.51 cumulative on the strategic-layer track.)
+
+### The six firings — Hans audit queue
+
+All six are substantive; none look like prompt-priming artifacts. First-read precision impressions noted, but Hans's audit is the formal gate.
+
+1. **`BANDWIDTH_ACTUALS_2026.md` @ `23c6f409`** — `proximity_to_gtm_framing`. The bandwidth statistician-engagement date was reframed to 2026-06-22 "post-v1.0 traction" with truncate-at-Platoon made Plan A. Grok flagged the reframe as proximity-to-GTM-traction-as-warrant. First read: TP.
+2. **`THE_BUILDERS_DOCTRINE.md` @ `1f78ab2a`** — `repackaged_clean_negative`. Reflection Gate primary-purpose clean-negative result + chassis retained for composition value. First read: ambiguous (defensible retention if the deprecation is explicit, which the passage does name).
+3. **`THE_BUILDERS_DOCTRINE.md` @ `4d24319d`** — same passage as (2), different commit (text iteration). Same ambiguity.
+4. **`RELEASE_PLAN_v1.md` @ `5480322b`** — `repackaged_clean_negative`. The 29 → 15 hr/wk capacity cut is reframed as "standard versioned release cadence — Linux, Python, every major framework operates this way." First read: TP. This is also doctrinally interesting — a finding worth Hans's attention regardless of the detector's status.
+5. **`MISSION_COMMAND_ARCHITECTURE.md` @ `b16ff33b`** — `time_invested_justification`. The "centuries of refinement" warrant for MCA superiority over industry frameworks. First read: ambiguous (institutional-duration warrant vs. founder-sunk-cost — the same boundary the pilot surfaced).
+6. **`MISSION_COMMAND_ARCHITECTURE.md` @ `db637a37`** — same passage as (5), different commit. Same ambiguity.
+
+If Hans's audit returns ≥4 of 6 as TPs (≥66%), HIGH-gate promotion per pattern is justified per spec § Success criteria (≥60% floor). If 2-3 of 6 (≤50%), HIGH gate stays held and v0.2.1 retunes the patterns where FPs concentrated.
+
+The full-scan firings live in `funkytown/experiments/11b_strategic_layer_fuzz/runs/20260530T165028Z_baseline_full/summary.md`.
+
 ## Decision
 
 - **STRATEGIC_LAYER_DETECTOR_SPEC.md shipped** at v0.2 candidate status (`kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC.md`) — three patterns spec'd, ADVISORY-only at planned ship, HIGH-gate promotion gated on full baseline + Hans audit. Code not yet written; ships after Hans makes four open decisions called out in spec.
@@ -130,8 +160,12 @@ All artifacts under `funkytown/experiments/11b_strategic_layer_fuzz/`:
 - `src/runner.py` — main runner (Sonnet adversary, definition-only + Grok-4 judge + v0.1.1 negative control)
 - `src/third_judge.py` — Gemini 2.5 Pro re-judge of all 60 drafts
 - `src/baseline_pilot.py` — 15-file real-prose firing-rate scan (Grok-4 whole-doc judge)
+- `src/baseline_full.py` — 114-commit full-corpus scan (Grok-4 whole-doc judge per (sha, file, pattern))
+- `src/build_audit_packet.py` + `src/score_audit.py` — Hans 12-draft audit packet builder/scorer
+- `audit_packet_hans/AUDIT_HANS_12.md` — Hans's 12-draft rating sheet (pending Hans)
 - `runs/20260530T162810Z/` — main run artifacts (drafts.jsonl, scans.jsonl, judge.jsonl, summary.json, summary.md)
 - `runs/20260530T163101Z_third_judge/` — Gemini third-judge artifacts
-- `runs/20260530T164055Z_baseline_pilot/` — pilot baseline artifacts (findings.jsonl, summary.json, summary.md)
+- `runs/20260530T164055Z_baseline_pilot/` — pilot baseline artifacts
+- `runs/20260530T165028Z_baseline_full/` — full baseline scan artifacts (findings.jsonl, summary.json, summary.md)
 
-Total cost: $1.67 ($0.44 main + $0.08 Gemini third-judge + $1.15 baseline pilot). Wall time: ~15 minutes of compute over a ~110-minute session.
+Total cost: $10.51 ($0.44 main + $0.08 Gemini third-judge + $1.15 baseline pilot + $8.84 full baseline scan). Wall time: ~25 minutes of compute over a ~140-minute session.
