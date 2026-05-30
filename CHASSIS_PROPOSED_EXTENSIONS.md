@@ -663,13 +663,27 @@ If parity fails on the structural-layer scores (subjective LLM judgments may not
 
 ---
 
-## 5. Specialist Function-Style Runner (`chassis/specialist_runner.py`) — **PROPOSED ADDITION**
+## 5. Specialist Function-Style Runner (`chassis/specialist_runner.py`) — **RETRACTED 2026-05-30**
 
-**Status:** PROPOSED 2026-05-30 from the Borg-upstream workstream. The chassis ships `kit/chassis/specialists.py` (299 lines, class-based `Specialist` + `SpecialistRegistry`). Operator's `agents/specialists/__init__.py` (102 lines) wires a function-style alternative: `run_specialist(name, system_prompt, tools, query, ...)` that resolves the active prompt dynamically per call, injects a cross-cutting `SHAPING_SHELL` doctrine constant, and threads heartbeat + archive logging through every invocation.
+> **Status: RETRACTED 2026-05-30 by TOP-fit back-of-envelope verdict against the second-product portability gate this section pre-registered.**
+>
+> **Verdict summary:** Specialist function-style runners are inherently product-shaped. TOP's specialist invocation diverges from the proposed signature in three load-bearing ways: (1) TOP routes all user queries through a **unified orchestrator** (`local-mcp/agents/orchestrator.py:570-682`), users never address specialists by name — the proposed `name: str` parameter is the wrong abstraction; (2) TOP wires the same three middleware concerns **INSIDE each specialist's `run()`** (`agents/specialists/schedule.py:750-752` shows the pattern: `resolve_prompt("vera", SYSTEM_PROMPT)` + `query += get_queue_brief("Vera", ...)`), not in a wrapper — the proposed runner would rearrange middleware TOP already solved at a different layer; (3) TOP's only post-call hook is `_capture_confidence(...)` (orchestrator line 209), not the three-callback `on_start`/`on_end`/`on_error` system the proposal assumes. The actual TOP call site is one line, not eleven kwargs: `return _capture_confidence("vera", query, run(query))`.
+>
+> **Validation gate that fired:** Section §5's "Validation requirement #1" pre-registered: *"Before any chassis code is written, sketch how TOP would consume the runner. If the sketch reveals TOP would route specialists differently … the section is retracted in favor of keeping Operator's runner product-specific."* The sketch was run 2026-05-30 immediately after §5 was drafted. Verdict: TOP routes by orchestrator, not by name; the function signature does not fit. The gate fired correctly without a single line of chassis code written. Per the doctrine of pre-registered validation, the section retracts.
+>
+> **What ships instead:** Operator keeps `agents/specialists/__init__.py` as a product-specific runner. TOP keeps its inside-`run()` middleware pattern. The chassis-level lesson — that two products solved the same per-call middleware problem at two different layers — gets documented in `kit/chassis/specialists.py` docstring as a portability note, NOT as a runner primitive. **The chassis stays smaller and honest about what is portable.**
+>
+> **What the workflow catches and what it does not.** The back-of-envelope second-product sketch is the cheapest validation gate in the staging area's discipline. It cost ~15 minutes of analysis (no implementation) and caught a primitive that would have shipped only for Operator. The discipline catches **shape mismatches**; it does not catch **subtle behavioral divergence** (that's what parity tests are for, on primitives that pass the back-of-envelope first). The order matters — cheap gates run first; expensive gates run only on what survives them.
 
-This proposal is the most architecturally philosophical of the four: it is **not a clear win** to promote. The question is whether the function-style runner is the right abstraction at the chassis layer or whether it is correctly product-specific. Section is opened in the staging area as a **deliberation** — the alternative outcome (retraction with a documented rationale) is as valid as promotion.
+The original spec sketch follows, preserved verbatim. **Nothing below this banner is load-bearing.** The section is kept under Law VII so future builders can inspect the shape of what was caught — and so the staging-area discipline shows its second terminal state alongside §1.
+
+---
 
 **Date opened:** 2026-05-30.
+
+**Original framing (preserved for falsification record).** The chassis ships `kit/chassis/specialists.py` (299 lines, class-based `Specialist` + `SpecialistRegistry`). Operator's `agents/specialists/__init__.py` (102 lines) wires a function-style alternative: `run_specialist(name, system_prompt, tools, query, ...)` that resolves the active prompt dynamically per call, injects a cross-cutting `SHAPING_SHELL` doctrine constant, and threads heartbeat + archive logging through every invocation.
+
+This proposal was opened as the most architecturally philosophical of the four: **not a clear win** to promote. The question was whether the function-style runner was the right abstraction at the chassis layer or whether it was correctly product-specific. Section was opened in the staging area as a **deliberation** — the alternative outcome (retraction with a documented rationale) was as valid as promotion. **It retracted.**
 
 ### The failure mode
 
@@ -777,4 +791,9 @@ Per Law X applied recursively to chassis itself:
 3. **If the validation experiment falsifies the chassis** (recall <70%, precision <60%, or cost discipline fails), the section here is updated with the falsification result and either revised or retracted. Falsifications are doctrine evidence.
 4. **The regex founder-romance detector ships as the canonical 2026-05-25 deliverable.** The Adversarial Review chassis path was RETRACTED 2026-05-19 per the §1 banner — the pre-reg was killed by Grok cold-read before any chassis code was written. The regex detector reverts from "fallback" to "primary" for the Phase 1 slot. 13-hour budget. Pre-commit hook on doctrine repo per the original `feedback_close_up_this_session.md` round-7 spec.
 
-This file is a staging area, not a backlog. Sections move out (to `kit/chassis/` or to retraction) when evidence arrives. **First section to reach terminal state: §1, retracted 2026-05-19** — the file's own discipline working as designed.
+This file is a staging area, not a backlog. Sections move out (to `kit/chassis/` or to retraction) when evidence arrives.
+
+**Sections at terminal state:**
+
+- **§1, retracted 2026-05-19** by Grok cold-read KILL verdict on the pre-registration plan — first section to reach terminal state, the file's discipline working as designed.
+- **§5, retracted 2026-05-30** by TOP-fit back-of-envelope verdict on the pre-registered second-product portability gate — second section to reach terminal state, the cheapest validation gate firing correctly without a line of chassis code written. The discipline is reproducible.
