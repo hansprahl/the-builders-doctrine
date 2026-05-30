@@ -232,11 +232,25 @@ If any of these fail, the chassis stays in staging until the failure is addresse
 
 ---
 
-## 2. OutputGate Chassis (`chassis/output_gate.py`) — **NEW PRIMITIVE**
+## 2. OutputGate Chassis (`chassis/output_gate.py`) — **RETRACTED 2026-05-30**
 
-**Status:** PROPOSED 2026-05-30 from the Borg-upstream workstream surfaced during the Operator chassis-wiring day. Reference implementation runs in production today as `operator/tools/reflect.py` (117 lines).
+> **Status: RETRACTED 2026-05-30 by Grok cold-read confirming the TOP-fit back-of-envelope verdict.** Routed through [`2026-05-30_grok_cold_read_chassis_proposals_2_3_4.md`](2026-05-30_grok_cold_read_chassis_proposals_2_3_4.md); Grok's verdict transcript captured in the commit history. Per the §1 precedent, external cold-read on a kill verdict is the discipline; the same discipline that retracted §5 same-day on internal sketch alone got an independent confirm here.
+>
+> **Verdict summary (Grok):** *"The reference implementation (`operator/tools/reflect.py`) is a clean, minimal post-response LLM judge … useful in Operator because Operator generates high volume of heterogeneous specialist outputs where per-response quality regressions are real and expensive. TOP does not have that surface. Its core ethics (voice, anti-dependency, 'points toward the world') are almost entirely prompt-layer invariants enforced by PromptGuardian + template discipline. The only hard delivery gate is the pre-input crisis check. Adding a synchronous post-response LLM judge would add latency and cost for drift that almost always originates upstream in the prompt or specialist, not in the final utterance. No evidence in the TOP corpus that response-level quality failures are a distinct failure mode from prompt regressions. The proposal assumes a separable response-layer quality problem that TOP does not exhibit."*
+>
+> **Validation gate that fired:** §2's first validation requirement was the parity test against `reflect.py` + portability test on TOP. The cheaper *second-product portability sketch* (no chassis code written; ~15 min of analysis) ran first per the §5 retraction precedent and surfaced TOP's response-flow architecture has no response-quality gate by design — voice/warmth concerns live in the prompt layer (`_SHARED_ETHICS` at `local-mcp/agents/orchestrator.py:77-95`), monitored by PromptGuardian, not by an LLM-judge per-response. The gate fired correctly before any chassis code was written.
+>
+> **What ships instead:** Operator keeps `tools/reflect.py` as a product-specific delivery filter. TOP keeps voice-as-prompt-invariant + pre-input crisis check as the right architecture for its surface. **Per Grok's nuance: if anything from §2 survives, it should be an *optional, product-opt-in* "response quality hook" with zero mandated hooks or dual-check surface — but even that is not chassis-shape today; it can be opened as a fresh proposal when a second product surfaces with response-level quality failures distinct from prompt regressions.**
+>
+> **What the workflow catches and what it does not.** The cheap-gate-first pattern caught §2 the same way it caught §5: portability shape doesn't fit, no chassis code written. Cost: ~15 minutes of analysis vs ~1-2 person-weeks of chassis implementation + parity-test machinery. The gate cannot catch *subtle behavioral divergence* between a chassis primitive and its product reference — that's what parity tests are for, on primitives that pass the back-of-envelope first. Order matters: cheap gates first; expensive gates only on what survives them.
 
-**Date opened:** 2026-05-30, during the Operator `chassis/wire-all-primitives` migration.
+The original spec sketch follows, preserved verbatim. **Nothing below this banner is load-bearing.** The section is kept under Law VII so future builders can inspect the shape of what was caught.
+
+---
+
+**Date opened:** 2026-05-30, during the Operator `chassis/wire-all-primitives` migration. **Retracted same-day.**
+
+**Original framing (preserved for falsification record).** Reference implementation runs in production today as `operator/tools/reflect.py` (117 lines).
 
 **Why this is a different primitive from `chassis/reflection_gate.py`.** The existing `ReflectionGate` implements Principle #12 *active extraction* — K/I/G (Known/Inferred/Gap) coverage scoring on agent work products during development, scope-aware refusals, RFI routing. It is an **introspection/coverage** gate, used at `declare_done` to surface what the agent does not know.
 
@@ -394,11 +408,25 @@ If parity fails, the section here is updated with the divergence pattern and eit
 
 ---
 
-## 3. AAR Enrichments (`chassis/aar.py` — extension) — **PROMOTION**
+## 3. AAR Enrichments (`chassis/aar.py` — extension) — **RETRACTED 2026-05-30**
 
-**Status:** PROPOSED 2026-05-30 from the Borg-upstream workstream. The chassis already has `kit/chassis/aar.py` (390 lines, class-based `AARLog` with SQLite persistence). Operator's `tools/aar.py` (216 lines) is smaller but **richer in semantics**: it integrates with a Knowledge Graph, mutates entity status on outcome, queries pending outcomes, and refreshes specialist confidence estimates. This proposal promotes those semantic hooks upstream — NOT by importing the KG into the chassis (KG-agnosticism is the right chassis posture) but by adding **callback hooks** so each capability can plug in.
+> **Status: RETRACTED 2026-05-30 by Grok cold-read confirming the TOP-fit verdict.** Same Grok cold-read package as §2 and §4: [`2026-05-30_grok_cold_read_chassis_proposals_2_3_4.md`](2026-05-30_grok_cold_read_chassis_proposals_2_3_4.md).
+>
+> **Verdict summary (Grok):** *"The four-hook surface (OutcomeLinker, EntityStatusUpdater, EstimateRefresher, PendingOutcomesProvider) is tightly coupled to Operator's knowledge-graph + mutable confidence entity model. TOP's AAR (`local-mcp/tools/doctrine_aar.py` + `doctrine_store.py`) is a different animal: it tracks habit/goal/recommendation outcomes for a wellness user, not business actions with pending commitments and specialist confidence refresh. It already does its own inline mutations and has no need for the callback shape. The proposal correctly identified valuable semantics in Operator's `tools/aar.py`, but those semantics are not portable substrate. They are rich product behavior."*
+>
+> **Validation gate that fired:** §3's first validation requirement was the parity test against Operator's KG-wired AAR + partial-hook portability test on TOP. The cheaper *second-product portability sketch* (per the §5 precedent) ran first and surfaced TOP would wire **zero of four hooks** — TOP has no running mutable confidence objects to refresh (TOP's calibration is read-only aggregate end-of-cycle, not refreshable), no KG link semantics on wellness outcomes (the model is wellness-tracking, not action-tracking), inline mutation already wired in TOP's `record_recommendation_outcome()` (no callback needed), and a hardcoded non-swappable pending-outcomes function. The four-hook chassis surface would have shipped for one consumer only.
+>
+> **What ships instead:** Operator keeps `tools/aar.py` with the four KG-aware behaviors at the product/tool layer. The existing `kit/chassis/aar.py` (the simple AARLog logging primitive) **is correctly the chassis floor** — Grok's specific finding: *"Richer AAR patterns belong in the product/tool layer."* The chassis stays small and KG-agnostic; the Operator-shaped richness stays Operator-side.
+>
+> **What the workflow catches and what it does not.** Same cheap-gate-first pattern caught §3 in ~15 minutes. The pattern catches *callback-surface mismatch with the second product*; it does not catch whether the existing chassis AARLog itself meets both products' needs (TOP has built its own product-layer AAR; whether they could converge on the existing chassis primitive is a separate, larger question outside §3's scope).
 
-**Date opened:** 2026-05-30.
+The original spec sketch follows, preserved verbatim. **Nothing below this banner is load-bearing.** The section is kept under Law VII so future builders can inspect the shape of what was caught.
+
+---
+
+**Date opened:** 2026-05-30. **Retracted same-day.**
+
+**Original framing (preserved for falsification record).** The chassis already has `kit/chassis/aar.py` (390 lines, class-based `AARLog` with SQLite persistence). Operator's `tools/aar.py` (216 lines) is smaller but **richer in semantics**: it integrates with a Knowledge Graph, mutates entity status on outcome, queries pending outcomes, and refreshes specialist confidence estimates. This proposal promoted those semantic hooks upstream — NOT by importing the KG into the chassis (KG-agnosticism is the right chassis posture) but by adding **callback hooks** so each capability could plug in. **The hooks turned out to be Operator-shaped, not portable.**
 
 ### The failure mode
 
@@ -513,11 +541,33 @@ Promoted into `kit/chassis/aar.py` when:
 
 ---
 
-## 4. PromptGuardian Enrichments (`chassis/prompt_guardian.py` — extension) — **PROMOTION**
+## 4. PromptGuardian Enrichments (`chassis/prompt_guardian.py` — extension) — **RETRACTED 2026-05-30** (with narrow PROMOTE-SUBSET option preserved)
 
-**Status:** PROPOSED 2026-05-30 from the Borg-upstream workstream. The chassis already has `kit/chassis/prompt_guardian.py` (551 lines, `Commandment` / `CommandmentScore` / `GuardianReport` dataclasses + `PromptGuardian` base class). Operator's `tools/prompt_guardian.py` (1171 lines, 2.1× larger) ships a closed-loop dual-layer auditor in production: structural-rubric scoring layered on commandment scoring, doctrine-text SHA versioning, version history + rollback API, auto-rollback on regression, multi-layer correction routing with evidence-based surgery. The chassis primitive is **building blocks**; Operator's version is **the engine**. This proposal promotes the engine's load-bearing pieces upstream.
+> **Status: RETRACTED 2026-05-30 by Grok cold-read confirming the TOP-fit verdict.** Most interesting of the four retractions because Grok's verdict surfaced a **fact-correction** that updates the load-bearing finding behind the proposal. Routed through [`2026-05-30_grok_cold_read_chassis_proposals_2_3_4.md`](2026-05-30_grok_cold_read_chassis_proposals_2_3_4.md).
+>
+> **Grok fact-correction (load-bearing).** The cold-read package asserted that *"TOP imports Operator's `tools/prompt_guardian.py` wholesale … identical to Operator's, via copy-paste."* **That was wrong.** Grok's actual file-comparison finding: the two files have **diverged** (Operator 1354 lines vs TOP 1171 lines). The commandment sets are different (Operator's business set vs TOP's wellness set). **However, the overall architecture — dual-layer scoring, closed-loop correction + auto-rollback, history, doctrine SHA pinning, corrector routing pattern — is clearly the same design, with TOP having taken the Operator implementation and adapted it.** The phrase that survives Grok's fact-check is *copy-adapt at the tool layer*, not *identical copy-paste*. The doctrinal finding (cross-product reuse is happening at the tool layer, not via chassis extension) holds; the precision was wrong.
+>
+> **Verdict summary (Grok):** *"TOP did not wait for or use a chassis primitive. It took the working engine and copied/adapted it. The five 'enrichments' in the §4 proposal are things TOP already solved at the tool layer. … Retract the full enrichment surface as a mandated chassis upgrade. The only portable pieces worth extracting are the structural scoring contracts (`StructuralDimension`, `StructuralScore`, `DualLayerReport` etc.) as type definitions. Everything else (the engine, the correction router, the history + rollback logic) is legitimately product-specific policy code."*
+>
+> **Validation gate that fired:** §4's first validation requirement was the parity test against Operator's 30-day audit corpus + TOP portability test. The cheaper *second-product portability sketch* surfaced that all five enrichment surfaces are already live in TOP — at the tool layer, via copy-adapt, not via chassis. The proposal was solving a problem that had already been solved by a different mechanism. Promoting the surfaces into the chassis would not accelerate adoption (it was the wrong vector); it would codify Operator's specific engine shape at an abstraction layer designed for thin universal primitives.
+>
+> **What ships instead (preserves the PROMOTE-SUBSET option):**
+>
+> 1. **Operator keeps `tools/prompt_guardian.py` as the source-of-truth engine.** TOP keeps its 1171-line adapted version. The two-channel reuse pattern (chassis for thin substrate, tool layer for rich engines) is honored.
+>
+> 2. **Narrow PROMOTE-SUBSET surviving option:** the **structural scoring type contracts** (`StructuralDimension`, `StructuralScore`, `DualLayerReport` — and only the dataclasses, not the scorer engine itself) are a smaller, focused chassis addition that COULD earn a slot in a future cycle as portable *type definitions* (not policy code). Grok's finding: *"If the doctrine community benefits from every product proving structural-layer scoring works the same way Operator does, promote just the dataclass shapes."* This is not opened today as §6; it stays as a recorded option for the next chassis cycle to evaluate.
+>
+> 3. **Two-channel reuse pattern documented in doctrine** (see the new closing meta-note at the bottom of this file). This is the most load-bearing outcome of §4's retraction: the discovery that rich product engines legitimately travel across products via copy-adapt at the tool layer, distinct from the thin universal substrate the chassis represents.
+>
+> **What the workflow catches and what it does not.** The cheap-gate-first pattern caught §4 the same way it caught §§2, 3, 5: portability shape mismatched, no chassis code written. **It also caught a precision error** in the cold-read package itself ("identical copy-paste" → "copy-adapt with adaptation"), demonstrating that external cold-read on a kill verdict surfaces facts the internal sketch can miss. The gate cannot catch *whether the surviving PROMOTE-SUBSET (dataclasses only) is itself worth promoting* — that requires a fresh sketch when next a chassis cycle opens, and a third product to validate against.
 
-**Date opened:** 2026-05-30.
+The original spec sketch follows, preserved verbatim. **Nothing below this banner is load-bearing.** The section is kept under Law VII so future builders can inspect the shape of what was caught — and the PROMOTE-SUBSET option above so future builders can choose to revisit the narrow type-contracts question.
+
+---
+
+**Date opened:** 2026-05-30. **Retracted same-day.**
+
+**Original framing (preserved for falsification record).** The chassis already has `kit/chassis/prompt_guardian.py` (551 lines, `Commandment` / `CommandmentScore` / `GuardianReport` dataclasses + `PromptGuardian` base class). Operator's `tools/prompt_guardian.py` (1171 lines, 2.1× larger) ships a closed-loop dual-layer auditor in production: structural-rubric scoring layered on commandment scoring, doctrine-text SHA versioning, version history + rollback API, auto-rollback on regression, multi-layer correction routing with evidence-based surgery. The chassis primitive was characterized as **building blocks**; Operator's version as **the engine**. This proposal sought to promote the engine's load-bearing pieces upstream. **The promotion was the wrong vector: TOP had already solved the same problem via tool-layer copy-adapt; the chassis stays the wrong layer for rich product-doctrine-heavy engines.**
 
 ### The failure mode
 
@@ -796,4 +846,53 @@ This file is a staging area, not a backlog. Sections move out (to `kit/chassis/`
 **Sections at terminal state:**
 
 - **§1, retracted 2026-05-19** by Grok cold-read KILL verdict on the pre-registration plan — first section to reach terminal state, the file's discipline working as designed.
-- **§5, retracted 2026-05-30** by TOP-fit back-of-envelope verdict on the pre-registered second-product portability gate — second section to reach terminal state, the cheapest validation gate firing correctly without a line of chassis code written. The discipline is reproducible.
+- **§2, retracted 2026-05-30** (OutputGate) by Grok cold-read confirming TOP-fit verdict. TOP's response-flow architecture has no response-quality gate by design — voice/warmth concerns live in the prompt layer.
+- **§3, retracted 2026-05-30** (AAR Enrichments) by Grok cold-read confirming TOP-fit verdict. The four-hook surface was Operator-shaped (KG + mutable confidence triad); TOP would wire zero of four hooks.
+- **§4, retracted 2026-05-30** (PromptGuardian Enrichments) by Grok cold-read with fact-correction (TOP did *copy-adapt*, not *identical-copy*; the architectural finding holds) and narrow PROMOTE-SUBSET option preserved (structural scoring dataclasses only). Most load-bearing of the four 2026-05-30 retractions because it surfaced the two-reuse-channel meta-finding.
+- **§5, retracted 2026-05-30** (Specialist Function-Style Runner) by internal TOP-fit back-of-envelope verdict alone (later confirmed by the Grok cold-read pattern that retracted §§2/3/4). Section explicitly opened as a *deliberation* with retraction as an acceptable terminal state.
+
+**5 of 5 sections ever opened in this staging area have reached terminal state.** Zero have migrated to `kit/chassis/*.py`. The discipline is real.
+
+---
+
+## Meta-finding from the 2026-05-30 mass retraction — the two reuse channels
+
+The mass retraction of §§2, 3, 4, 5 in a single day (with §1 having retracted ten days prior) is the most load-bearing event in this staging area's short history. It surfaced a finding that warrants explicit doctrine language: **the Borg principle has a tiering problem.**
+
+The original Borg principle (from `CLAUDE.md`, applied across the portfolio): *"every product feeds back into Operator as the central nervous system."* That principle was recursed one further level on 2026-05-30, in the form: *"every node enriches upstream substrate — therefore rich product behavior should be promoted into the thin portable chassis."* The recursion seemed natural. Four of four 2026-05-30 proposals retracted because the recursion does not hold.
+
+The 2026-05-30 evidence (with the Grok cold-read fact-correction on §4 baked in):
+
+- **§2** — TOP does not need a response-level quality gate; voice lives in the prompt. The Operator-side richness is not portable substrate; it's a product-specific architecture choice.
+- **§3** — TOP's AAR is a different animal (wellness-tracking, not action-tracking); the four hooks proposed in §3 would all wire as `None` on TOP. The Operator-side richness is not portable substrate; it's product-shape.
+- **§4** — TOP already runs the same architecture as Operator's PromptGuardian *by copy-adapting Operator's `tools/prompt_guardian.py` at the tool layer* (not by extending the chassis). The Operator-side richness traveled to TOP through a parallel reuse channel that bypasses the chassis entirely.
+- **§5** — TOP routes specialists through a unified orchestrator, not by name; the proposed function-style runner had the wrong abstraction for TOP's topology. The Operator-side richness is the wrong fit for the chassis layer because it encodes Operator's specific routing model.
+
+**The doctrine update this surfaces** (Grok's framing, 2026-05-30 cold-read):
+
+> *"The chassis is for commodity, low-context, high-portability primitives. Rich, product-doctrine-heavy engines (full PromptGuardian with dual-layer scoring + correction loops, rich AAR with KG semantics, response-level quality filters) are not automatically good chassis candidates."*
+
+> *"The cheap-gate-first pattern is evidence that **Operator is currently the highest-fidelity expression of the doctrine, not the chassis.** When a capability is rich enough to be valuable, the fastest and currently correct path for cross-product reuse is often direct tool-layer sharing or copy-adapt between products that share the same substrate (Mission Command + Agent Doctrine + the-builders-doctrine), not premature abstraction into the chassis. This does not mean the chassis is failing. It means the Borg principle has a tiering problem that needs explicit doctrine language: thin universal substrate (chassis) vs. rich product engines that legitimately share via other vectors."*
+
+### The two reuse channels (named)
+
+1. **Chassis layer** — thin, universal, low-context primitives. Examples that have earned their slot or are in current production: `ApprovalQueue`, `CrisisFloor`, `ReflectionGate` (the K/I/G coverage primitive), `AuthorityGradient`, `UserContext`, `AARLog` (the simple logging primitive), `PromptGuardian` (the building-blocks base), `Specialist` + `SpecialistRegistry`. These are *commodity portable*. Any product can wire them with minimal product-specific shaping. Cost of forcing them through the chassis abstraction is low; benefit of unified semantics across products is high.
+
+2. **Product/tool layer sharing** — rich, doctrine-heavy engines that products copy-adapt when the abstraction cost of forcing them into the chassis is higher than the benefit. Example surfaced 2026-05-30: TOP's `local-mcp/tools/prompt_guardian.py` is a 1171-line copy-adapt of Operator's 1354-line `tools/prompt_guardian.py`. Same dual-layer architecture, same closed-loop correction + auto-rollback, same history + rollback, same doctrine SHA pinning — different commandment sets (wellness vs business). The reuse vector is **direct file-level copy-adapt with product-doctrine substitution**, not chassis composition.
+
+The two channels are not in tension. They cover different fitness landscapes:
+
+- **Chassis layer wins** when the primitive's *interface* is more stable than the *policy code* behind it, and when multiple products would compose it differently.
+- **Tool-layer sharing wins** when the *policy code* (commandments, correction routes, scoring rubrics, history shape) is itself the load-bearing substance and forcing it through a thin abstraction would either gut the policy or balloon the chassis surface.
+
+### What this implies for future proposals to this file
+
+- Sections opened in this staging area must explicitly assess **whether the candidate primitive is commodity-shape (chassis-fit) or rich-engine-shape (tool-layer-fit)** before specifying validation experiments. A section that proposes promoting a rich engine into the chassis without naming its tier mismatch will be auto-retracted on next cold-read.
+- The PROMOTE-SUBSET disposition (extract only the smallest portable type contracts from a richer reference) is a valid intermediate outcome. §4's surviving option (structural-scoring dataclasses only) demonstrates the shape.
+- The cheap-gate-first pattern — back-of-envelope second-product portability sketch BEFORE any chassis code is written — is the cheapest validation gate available and the highest-leverage discipline this staging area enforces. **It should be every section's first validation requirement.** 2026-05-30 evidence: ~45 minutes of analysis × four sections caught what would have been an estimated 3-6 person-weeks of chassis code + parity-test machinery.
+
+### Status of this finding
+
+**This meta-note is NOT yet doctrine-canonized.** It is a 2026-05-30 staging-area observation surfaced by the §4 cold-read. The right next move is to evaluate whether this two-channel tiering framing belongs in `THE_BUILDERS_DOCTRINE.md` (canonical doctrine) and/or in `CLAUDE.md`'s Borg-principle framing as a tiering refinement. That evaluation is a separate session's work, not staging-area work. The finding is preserved here as the historical record of where it surfaced.
+
+---
