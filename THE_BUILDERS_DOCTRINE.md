@@ -265,6 +265,24 @@ Sovereignty is enforced before code can be merged. The Guardian enforces it at t
 
 The product cannot lie to me without leaving evidence in the audit trail. The audit trail is the architecture.
 
+### The Two Reuse Channels — Empirical Observation (2026-05-30, Tentative)
+
+The Borg principle (`~/.claude/CLAUDE.md`, "every product feeds back into Operator") is operationalized through two distinct channels, not one. Naming them is a 2026-05-30 observation from the chassis Borg-upstream workstream mass retraction; the observation is held tentatively until the empirical base is larger.
+
+**The discipline.** Before any candidate is promoted into `kit/chassis/`, run the cheap-gate-first portability sketch against the second consuming product (typically TOP). Classify the candidate as commodity-shape (chassis-fit) or rich-engine-shape (tool-layer-fit) before specifying validation. A candidate that proposes promoting a rich engine into the chassis without naming its tier is auto-retracted on next cold-read. Default disposition for chassis additions is REJECT; PROMOTE-SUBSET (extracting only the smallest portable type contracts from a richer reference) is preferred over PROMOTE-FULL.
+
+**The two channels.**
+
+*Channel 1 — Chassis layer.* Thin, universal, low-context primitives wired identically across products. Current production examples: `ApprovalQueue`, `CrisisFloor`, `ReflectionGate`, `AuthorityGradient`, `UserContext`, `AARLog` (the simple primitive, not Operator's KG-enriched version), `PromptGuardian` (the building-blocks base, not Operator's 1354-line engine), `Specialist` + `SpecialistRegistry`. The interface is more stable than the policy code behind it; products compose them differently.
+
+*Channel 2 — Tool-layer copy-adapt.* Rich, doctrine-heavy engines that products copy from each other and substitute the doctrine-specific surfaces (commandments, scoring rubrics, history shape) without going through a shared abstraction. Current example: TOP's `local-mcp/tools/prompt_guardian.py` (1171 lines) is a copy-adapt of Operator's `tools/prompt_guardian.py` (1354 lines) — same dual-layer architecture, same closed-loop correction with auto-rollback, same history and doctrine SHA pinning, different commandment sets (wellness vs business). The policy code is itself the load-bearing substance; forcing it through a thin abstraction would either gut the policy or balloon the chassis surface.
+
+**Why this matters.** Tool-layer copy-adapt is currently the *dominant* cross-product reuse mechanism for anything that carries significant product doctrine. The chassis has stayed small precisely because rich engines have traveled via this second channel. The implicit prior assumption that chassis expansion is the primary or preferred vector for Borg feedback is incorrect; both channels are first-class. Formalizing the second channel is therefore not a minor clarification — it is a correction to that implicit assumption.
+
+**Empirical posture.** N=5 staging-area proposals in `CHASSIS_PROPOSED_EXTENSIONS.md` (2026-05-19 through 2026-05-30); 5 retracted on tier-mismatch or over-architecting grounds; §4's Grok cold-read produced the explicit two-channel naming. Roughly 45 minutes of cheap-gate-first sketches × four sections on 2026-05-30 caught what would have been an estimated 3–6 person-weeks of chassis code + parity-test machinery. The N is small and clustered in one workstream. **This observation is held as load-bearing for the 2026-05-30 → 2026-09-30 window. If the next four staging-area proposals (N=9 total) produce zero retractions on tier-mismatch grounds, the observation will be re-audited for over-weighting.** The "cheap gate retracts everything" failure mode is itself a signal worth watching — if no candidate passes through to PROMOTE-FULL, the test may be over-tuned.
+
+**Relationship to the 2026-05-15 audit.** The 2026-05-15 audit struck a previously-deferred "Borg" section from this doctrine on the grounds that the empirical chassis-port surface had no doctrinal prose to add. That judgment was correct given the data available then. The 2026-05-30 mass retraction is additional signal the prior audit did not yet have access to; it does not reverse the 2026-05-15 call. Numbered-principle promotion is held until the next natural falsification or confirmation event — a second mass-retraction with the same tier-mismatch pattern, or the first clear case where a rich engine successfully promotes to chassis via the new discipline.
+
 ---
 
 ## V. The Doctrine Stack
@@ -372,7 +390,7 @@ Metrics not claimed without data. The framework's credibility dies the moment a 
 
 **v1.0 ships:** Prime Directive, I (Why), II (Principles with lineage), III (Person), IV (Architecture of Trust), V (Doctrine Stack), VII (Measurement Surface).
 
-**Sections not in this doctrine (2026-05-15 holds audit):** Method lives as its own document (`THE_BUILDERS_METHOD.md`) — section in the Doctrine would be redundant. Living-document policy is `META_DOCTRINE.md` (Laws V–X). Audience-specific framing belongs in pitch artifacts, not canonical doctrine. Cross-product Borg behavior is encoded in the chassis-port surface and validated empirically; doctrinal prose adds no signal. The four previously-deferred sections (VI Method, VIII Borg, IX Audience, X Living-document) were struck rather than dated — the work is either elsewhere or unneeded.
+**Sections not in this doctrine (2026-05-15 holds audit):** Method lives as its own document (`THE_BUILDERS_METHOD.md`) — section in the Doctrine would be redundant. Living-document policy is `META_DOCTRINE.md` (Laws V–X). Audience-specific framing belongs in pitch artifacts, not canonical doctrine. Cross-product Borg behavior is encoded in the chassis-port surface and validated empirically; doctrinal prose adds no signal. 2026-05-30 observation: the cross-product Borg mass retraction produced a tiering refinement (two distinct reuse channels) now documented in Section IV. This does not reverse the 2026-05-15 judgment; it records additional signal the prior audit did not yet see. The four previously-deferred sections (VI Method, VIII Borg, IX Audience, X Living-document) were struck rather than dated — the work is either elsewhere or unneeded.
 
 **Authority:** Hans Prahl. Material edits go through me. Editorial edits (clarification, examples, typo correction) do not. The Doctrine is checked into a private repo (`hansprahl/the-builders-doctrine`) at v1.0; each product gets a local copy with a propagation script that flags drift on pre-commit. Public release at v1.1 after the first cross-product stress test.
 
