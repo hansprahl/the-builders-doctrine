@@ -483,7 +483,7 @@ Each of these is a candidate enhancement after the four primary protocols are wi
 
 Three reasons MCA is a stronger architectural thesis than other multi-agent frameworks:
 
-1. **It's not invented; it's ported.** Mission Command is the result of centuries of refinement under conditions where coordination failures killed people. The constraints are battle-tested. Industry's frameworks are five years old and tested at toy-problem scale.
+1. **It's not invented; it's ported under measurement.** Mission Command is codified in U.S. Army ADP 6-0 and field-applied across the modern force. In this portfolio it carries bench evidence: Funkytown Exp 06 D14+D18 (persona × coord interaction VALIDATED at Squad scale); Exp 07/07b (PC-gating survives cross-family falsification — Grok + Gemini above thresholds); Exp 03 (Company-scale verification N=3, $25.33/run, D6 observability defect surfaced). The age of the doctrine and the age of industry frameworks are structural context, not the warrant — the warrant is the measured behavior in the experiments above, which is what the rungs-3-9 scaling claim is staked against.
 
 2. **The substrate is biographical, not merely structural.** Stage 7 empirically demonstrated that generic biography in the same structure produces materially different decision posture. The doctrine layer is causally load-bearing. That's not a moat that can be reverse-engineered from the public framework — it requires lived experience.
 

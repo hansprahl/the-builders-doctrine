@@ -9,9 +9,7 @@ companion_artifacts: BANDWIDTH_OVERLAY_2026-05-15.md, LAW_VI_PRE_REG_v1.md
 
 # v1.0 Release Plan — Ship What's Proven, Version What's Working
 
-> **The reframe.** Truncate-at-Platoon was always the shippable v1.0 release package per Law VIII. Yesterday it was named the contingency plan. Today (2026-05-14) it becomes Plan A. v1.0 ships what is proven now with explicit deprecation of what isn't. v1.5 carries the Law VI replication verdict. v2.0 carries Company-scale validation + community study. Standard versioned release cadence — Linux, Python, every major framework operates this way.
->
-> **Why now.** The 12-deliverable schedule from 2026-05-13 evening front-loaded a $2K statistician engagement and 78 hours of formal-study work into 10 weeks of constrained bandwidth (EMBA + Custer + health). The bandwidth overlay caught the infeasibility this morning and triggered a Law IX re-cut. The release-cadence reframe is the deeper Law IX move: re-cut not just the dates, but the scope.
+> **The reframe.** The bandwidth overlay caught a capacity-infeasibility kill signal on 2026-05-14 morning: the 2026-05-13 12-deliverable schedule front-loaded a $2K statistician engagement and 78 hours of formal-study work into 10 weeks of constrained bandwidth (EMBA + Custer + health). Law IX fired a re-cut on scope, not just dates: Truncate-at-Platoon — already the shippable v1.0 package per Law VIII — becomes Plan A explicitly today (2026-05-14). v1.0 ships what is proven now with explicit deprecation of what isn't. v1.5 ship is conditional on the Law VI replication verdict (2026-07-20) and statistician engagement closure (2026-06-22). v2.0 ship is conditional on Company-scale validation + community study. The "versioned release cadence" comparison — Linux, Python, every major framework operates this way — is structural form; the cause was the named capacity kill signal, not preference for cadence.
 
 ---
 
