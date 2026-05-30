@@ -197,6 +197,9 @@ _BIO_ADJACENCY_RATIONALE = (
 
 
 def _detect_role_as_narrator(text: str, file_path: Optional[str]) -> list[Finding]:
+    # v0.1.1: demoted HIGH -> ADVISORY per Exp 11 baseline scan (35.6% block
+    # rate on real doctrine commits, ~25% HIGH precision). See
+    # findings_adversary_v1.md and spec §"v0.1.1 severity revision".
     findings: list[Finding] = []
     for line_idx, line in enumerate(text.splitlines(), start=1):
         for pattern in _ROLE_AS_NARRATOR_PATTERNS:
@@ -205,7 +208,7 @@ def _detect_role_as_narrator(text: str, file_path: Optional[str]) -> list[Findin
                 findings.append(
                     Finding(
                         pattern=Pattern.FOUNDER_ROMANCE,
-                        severity=Severity.HIGH,
+                        severity=Severity.ADVISORY,
                         excerpt=_excerpt(line, match),
                         line_number=line_idx,
                         rationale=_BIOGRAPHICAL_CLOSER_RATIONALE,
@@ -218,7 +221,12 @@ def _detect_role_as_narrator(text: str, file_path: Optional[str]) -> list[Findin
 
 
 def _detect_stoic_nco_register(text: str, file_path: Optional[str]) -> list[Finding]:
-    """1b — military-register phrase within 80 chars of a doctrinal claim verb."""
+    """1b — military-register phrase within 80 chars of a doctrinal claim verb.
+
+    v0.1.1: demoted HIGH -> ADVISORY per Exp 11 baseline scan. Sub-check
+    1b shares the same false-positive class as 1a (the doctrine prose
+    itself uses military register to argue from biography).
+    """
 
     findings: list[Finding] = []
     for line_idx, line in enumerate(text.splitlines(), start=1):
@@ -230,7 +238,7 @@ def _detect_stoic_nco_register(text: str, file_path: Optional[str]) -> list[Find
                 findings.append(
                     Finding(
                         pattern=Pattern.FOUNDER_ROMANCE,
-                        severity=Severity.HIGH,
+                        severity=Severity.ADVISORY,
                         excerpt=_excerpt(line, nco_match),
                         line_number=line_idx,
                         rationale=_STOIC_NCO_RATIONALE,
@@ -608,13 +616,19 @@ _DETECTORS: tuple[Callable[[str, Optional[str]], list[Finding]], ...] = (
 def scan(text: str, *, file_path: Optional[str] = None) -> list[Finding]:
     """Scan a string for all enabled patterns and return findings.
 
-    v0.1 implements:
-      - founder_romance 1a, 1b (HIGH), 1c (ADVISORY)
+    v0.1.1 implements:
+      - founder_romance 1a, 1b, 1c (all ADVISORY)
       - over_claim (ADVISORY)
       - stage_7_revival (HIGH)
       - schedule_prose_substitution (ADVISORY)
       - carve_out_construction (HIGH)
       - optimistic_probability (ADVISORY)
+
+    Severity change from v0.1: founder_romance 1a + 1b demoted HIGH -> ADVISORY
+    per Exp 11 (funkytown experiment 11) baseline scan and Grok-4 v2
+    pressure-test. See findings_adversary_v1.md for the empirical basis.
+    Grok cold-read is the formal first-line gate for founder_romance until
+    v0.1.2+ regex retuning closes the precision gap.
 
     Pattern 7 (tame_reviewer_drift) is NotImplemented; opt-in via direct call
     to _detect_tame_reviewer_drift if you want the warning surfaced.

@@ -92,7 +92,8 @@ class BiographicalCloserUnitTests(unittest.TestCase):
         text = "The man who stood post in the Guard does not bet the framework on un-replicated data."
         hits = self._fr_1a_findings(text)
         self.assertEqual(len(hits), 1)
-        self.assertEqual(hits[0].severity, Severity.HIGH)
+        # v0.1.1: 1a demoted HIGH -> ADVISORY per Exp 11 baseline scan.
+        self.assertEqual(hits[0].severity, Severity.ADVISORY)
 
     def test_role_variants_all_fire_1a(self) -> None:
         cases = [
@@ -188,7 +189,8 @@ class StoicNcoRegisterUnitTests(unittest.TestCase):
         text = "Stand post on the wire; the framework requires it."
         hits = self._fr_1b_findings(text)
         self.assertGreaterEqual(len(hits), 1)
-        self.assertEqual(hits[0].severity, Severity.HIGH)
+        # v0.1.1: 1b demoted HIGH -> ADVISORY per Exp 11 baseline scan.
+        self.assertEqual(hits[0].severity, Severity.ADVISORY)
 
     def test_chain_of_command_with_doctrine_fires(self) -> None:
         text = "Chain of command is the doctrine; the doctrine is chain of command."
@@ -608,7 +610,8 @@ class CLISmokeTests(unittest.TestCase):
         fr_1a = [f for f in findings if f.sub_pattern == "1a_biographical_closer"]
         self.assertEqual(len(fr_1a), 1)
         formatted = fr_1a[0].format()
-        self.assertIn("HIGH", formatted)
+        # v0.1.1: 1a demoted HIGH -> ADVISORY per Exp 11 baseline scan.
+        self.assertIn("ADVISORY", formatted)
         self.assertIn("founder_romance", formatted)
         self.assertIn("test.md:1", formatted)
 

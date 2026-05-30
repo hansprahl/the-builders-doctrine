@@ -25,8 +25,14 @@ repos:
         description: >-
           Scans staged Markdown for the seven observer-bias patterns from the
           doctrine's caught-artifact taxonomy. Exits 1 on HIGH-severity
-          findings (founder_romance 1a/1b, stage_7_revival, carve_out_
-          construction). ADVISORY findings emit warnings and pass.
+          findings (stage_7_revival, carve_out_construction). ADVISORY
+          findings emit warnings and pass.
+
+          v0.1.1: founder_romance 1a + 1b demoted HIGH -> ADVISORY per
+          Exp 11 baseline scan (35.6% block rate on real commits,
+          ~25% HIGH precision). See kit/chassis/findings_adversary_v1.md.
+          Grok cold-read is the formal first-line gate for founder_romance
+          until v0.1.2+ regex retuning.
         entry: python -m kit.chassis.founder_romance_detector
         language: system
         types: [markdown]
@@ -38,8 +44,11 @@ repos:
           (?x)^(
             kit/chassis/test_corpus/.*              # the detector's own corpus
             | kit/chassis/FOUNDER_ROMANCE_DETECTOR_SPEC\.md  # spec quotes itself
+            | kit/chassis/findings_adversary_v1\.md   # Exp 11 findings — quotes detector output verbatim
             | archived-prose/.*                       # museum of retracted prose
             | dist/.*                                  # generated combined artifacts
             | STORY\.md                                # founder narrative by design
             | CHASSIS_PROPOSED_EXTENSIONS\.md         # taxonomy table contains caught examples verbatim
+            | LAW_VI_PRE_REG_v1\.md                   # Stage 7 replication pre-reg — Stage 7 mention is the document's purpose
+            | REFUSAL_PROPAGATION_OFFRAMP_SPEC\.md    # spec table lists carve-out as a forbidden pattern verbatim
           )$
