@@ -145,33 +145,36 @@ inherits that conservatism: ship ADVISORY immediately, hold HIGH gate
 behind the same 104-commit-baseline-on-real-prose discipline (see
 Section "Success criteria" below).
 
-## Invocation surface — open design question
+## Invocation surface — LOCKED 2026-05-30
 
-Four candidates, none yet chosen:
+**Decision (Hans):** On-demand CLI **plus** pre-commit hook on a short
+curated path list.
 
-1. **Pre-commit hook on flagged paths only.** Run the LLM gate only on
-   files matching `(RELEASE_PLAN|ROADMAP|BOARD|PITCH|MDMP|WARGAME|.*_DECISION)`
-   patterns or any file in a known strategic directory. Cost: ~$0.01-0.05
-   per commit when a strategic file touched, $0 otherwise. **Tradeoff:**
-   Misses strategic-layer founder-romance that lands in
-   `CLAUDE.md`/`THE_BUILDERS_DOCTRINE.md`/etc.
-2. **On-demand CLI / Claude Code slash command.** `python -m
-   kit.chassis.strategic_layer_detector <file>` invoked manually before
-   important strategic writing ships. Cost: per invocation, user-paced.
-   **Tradeoff:** Relies on discipline; misses the founder-romance the
-   founder didn't think to scan.
-3. **Sampled pre-commit.** 1-in-N strategic-prose commits scanned
-   automatically; results logged to a review queue. Cost: configurable.
-   **Tradeoff:** Probabilistic coverage.
-4. **CI-only gate.** Runs on push (not commit), once per branch. Cost:
-   bounded per merge cycle. **Tradeoff:** Bias has already landed in
-   the branch by the time the gate fires.
+- **On-demand CLI.** `python -m kit.chassis.strategic_layer_detector
+  <file>` invoked manually before important strategic writing ships.
+  Cost: per invocation, user-paced.
+- **Pre-commit hook (curated paths only).** Runs only when a staged
+  file matches the curated list. Cost: ~$0-0.10 per commit when a
+  strategic file is touched, $0 otherwise.
 
-**Recommended starting point:** (2) on-demand CLI **plus** (1) hook on a
-short curated path list (`RELEASE_PLAN_*.md`,
-`MISSION_COMMAND_ARCHITECTURE.md`, `PRODUCTIZE_VS_LICENSE_DECISION.md`,
-`OPERATOR_DOGFOOD_*.md`, plus per-product `ARCHITECTURE.md`,
-`NORTHSTAR.md`). Decision deferred to Hans.
+Curated path list (initial; extends in v0.2.x as new strategic
+artifacts are produced):
+
+- `RELEASE_PLAN*.md`
+- `MISSION_COMMAND_ARCHITECTURE.md`
+- `PRODUCTIZE_VS_LICENSE_DECISION.md`
+- `OPERATOR_DOGFOOD_*.md`
+- Per-product `ARCHITECTURE.md`
+- Per-product `NORTHSTAR.md`
+- `LAW_*_PRE_REG*.md`
+- `BANDWIDTH_OVERLAY_*.md`
+- `THE_BUILDERS_METHOD.md`
+- `THE_BUILDERS_DOCTRINE.md`
+- `META_DOCTRINE.md`
+
+Override mechanism for the pre-commit-fires-when-touched case mirrors
+v0.1.1 (`git commit --no-verify` with a logged reason in the commit
+message).
 
 ## Cost model
 
@@ -272,16 +275,15 @@ v0.1.1, no separate log file.
 
 ## Open follow-ups before v0.2.0 ships
 
-1. **Hans's invocation-surface decision** (pre-commit + curated paths,
-   on-demand CLI, sampled, or CI-only).
+1. ~~**Hans's invocation-surface decision**~~ — **LOCKED 2026-05-30:**
+   on-demand CLI + curated-path pre-commit. See Invocation surface above.
 2. ~~**Real-prose baseline scan analog**~~ — **pilot closed 2026-05-30
-   16:40 UTC.** 15-file curated pilot, $1.15, 1/45 firings (2.2%); all
-   three patterns OPERATIONALLY FIT. Full 104-commit scan analog still
-   open and required for HIGH-gate promotion; budget approval required
-   (~$8-10 est).
+   16:40 UTC** (15-file curated pilot, $1.15, 1/45 firings = 2.2%; all
+   three patterns OPERATIONALLY FIT). Full 104-commit scan analog
+   **funded 2026-05-30**, queued for execution this session.
 3. **Human re-judge of 12-draft stratified sample from Exp 11b** —
-   falsifies adversary-judge collusion via shared definition text.
-   ~10 min Hans time as rater.
-4. **`Finding` shape decision** — reuse v0.1.1's `Finding` dataclass
-   unchanged, or extend with `judge_model` + `judge_cost_usd`? Mild
-   refactor either way.
+   packet shipped to `funkytown/experiments/11b_strategic_layer_fuzz/audit_packet_hans/AUDIT_HANS_12.md`
+   on 2026-05-30. Pending Hans rating (~10 min).
+4. ~~**`Finding` shape decision**~~ — **LOCKED 2026-05-30:** reuse v0.1.1
+   `Finding` dataclass unchanged. Cost accounting lives in a separate
+   log, not the Finding object.
