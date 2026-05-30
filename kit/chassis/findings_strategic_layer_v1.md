@@ -88,10 +88,37 @@ Three candidate strategic-layer observer-bias patterns — `time_invested_justif
 2. **Real doctrine prose is mostly clean of these patterns.** If real founder writing rarely exhibits these biases, an LLM gate would mostly add cost with no gate value. Real-prose baseline scan on 104+ commits — the Exp 11 method — is the falsifier.
 3. **LLM-gate cost is prohibitive.** $0.005 per draft × N commits × M patterns × pre-commit hook frequency may exceed practical cost. Mitigation: gate runs only on flagged-by-regex commits or on demand, not every pre-commit; per-commit cost should land under $0.05.
 
+## Pilot baseline scan on real doctrine prose (2026-05-30 16:40 UTC)
+
+Closes the symmetric Exp 11 lesson check: do these patterns fire so often on real strategic prose that an LLM gate would be operationally unworkable?
+
+15 curated strategic .md files from the-builders-doctrine repo (THE_BUILDERS_DOCTRINE.md, META_DOCTRINE.md, MISSION_COMMAND_ARCHITECTURE.md, RELEASE_PLAN_v1.md, PRODUCTIZE_VS_LICENSE_DECISION.md, OPERATOR_DOGFOOD_ASYMPTOTE_FINDING_2026-05-18.md, LAW_VI_PRE_REG_v1.md, BANDWIDTH_OVERLAY_2026-05-15.md, STARTUP.md, REFUSAL_PROPAGATION_OFFRAMP_SPEC.md, STORY.md, EXPLAINER.md, THE_BUILDERS_METHOD.md, PROMPT_DOCTRINE.md, README.md) × 3 patterns × Grok-4 whole-doc judge call = 45 firing-rate measurements.
+
+| Pattern | files fired | firing rate | verdict |
+|---|---|---|---|
+| `time_invested_justification` | 1 / 15 | 6.7% | OPERATIONALLY FIT |
+| `proximity_to_gtm_framing` | 0 / 15 | 0.0% | OPERATIONALLY FIT |
+| `repackaged_clean_negative` | 0 / 15 | 0.0% | OPERATIONALLY FIT |
+| **Total** | **1 / 45** | **2.2%** | — |
+
+Cost: $1.15.
+
+**The contrast with Exp 11's v0.1 regex baseline is the point.** That scan returned 35.6% commit block rate at HIGH severity (founder_romance 1a/1b) with ~25% precision — operationally unworkable, forced the v0.1.1 demotion. The Exp 11b strategic patterns return 2.2% firing on real strategic prose, with the single fire being a genuinely substantive boundary case (see below). The "ship at HIGH → demote to ADVISORY" sequence the regex detector had to run does NOT recur for these patterns on this corpus.
+
+### The single fire — `MISSION_COMMAND_ARCHITECTURE.md`, `time_invested_justification`
+
+> *"Mission Command is the result of centuries of refinement under conditions where coordination failures killed people. The constraints are battle-tested. Industry's frameworks are five years old and tested at toy-problem scale."*
+
+Grok rationale: "The passage uses the centuries-long duration of military refinement itself as the direct warrant for MCA's superiority, with no outcome metrics or alternative-use comparison bridging the time claim to the strategic adoption decision."
+
+This is genuinely ambiguous. **Possible TP:** structure matches the definition — duration positioned as warrant, no measurement bridge to "toy-problem scale" claim. **Possible FP:** the passage is appealing to an *external* institutional body's track record, not the founder's own invested time; "battle-tested under conditions where coordination failures killed people" is an oblique measurement claim (selection pressure ≠ random walk). Reasonable reviewers can disagree. This is exactly the case-type the LLM gate exists to surface for human review.
+
+**Implication for spec:** the 2.2% firing rate is low enough that an LLM gate at ADVISORY severity is operationally viable for an on-demand or curated-path pre-commit invocation surface. HIGH-gate promotion remains contingent on a full 104-commit scan analog + Hans precision audit (per spec § Success criteria), but the pilot does not surface the noise problem that killed the regex 1a/1b HIGH gate.
+
 ## Decision
 
-- **Open v0.2 spec entry** for `kit/chassis/strategic_layer_detector/` — an LLM-gate module with three patterns: `time_invested_justification`, `proximity_to_gtm_framing`, `repackaged_clean_negative`. Cost model: ADVISORY-only by default (matching the conservatism of v0.1.1's path through the founder_romance demotion), with HIGH gate only behind a v0.2.x precision baseline.
-- **Hold the spec entry until v0.2.x baseline scan** runs the same 104-commit method on the strategic patterns. The Exp 11 lesson — "external-reviewer recommendations can be inverted by baseline data on real prose" — applies symmetrically here.
+- **STRATEGIC_LAYER_DETECTOR_SPEC.md shipped** at v0.2 candidate status (`kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC.md`) — three patterns spec'd, ADVISORY-only at planned ship, HIGH-gate promotion gated on full baseline + Hans audit. Code not yet written; ships after Hans makes four open decisions called out in spec.
+- **Pilot baseline result above strongly favors going ahead with v0.2.0 code.** 2.2% real-prose firing rate is the inverse of Exp 11's 35.6% block-rate problem.
 - **Update v1.5 doctrine** to acknowledge the strategic-layer extension as scoped (LLM-gate, not regex). No prose change to the seven existing patterns.
 
 ## Reproducibility
@@ -102,7 +129,9 @@ All artifacts under `funkytown/experiments/11b_strategic_layer_fuzz/`:
 - `src/adversary_prompts.py` — three pattern definitions + judge prompt template
 - `src/runner.py` — main runner (Sonnet adversary, definition-only + Grok-4 judge + v0.1.1 negative control)
 - `src/third_judge.py` — Gemini 2.5 Pro re-judge of all 60 drafts
+- `src/baseline_pilot.py` — 15-file real-prose firing-rate scan (Grok-4 whole-doc judge)
 - `runs/20260530T162810Z/` — main run artifacts (drafts.jsonl, scans.jsonl, judge.jsonl, summary.json, summary.md)
 - `runs/20260530T163101Z_third_judge/` — Gemini third-judge artifacts
+- `runs/20260530T164055Z_baseline_pilot/` — pilot baseline artifacts (findings.jsonl, summary.json, summary.md)
 
-Total cost: $0.52. Wall time: ~10 minutes of compute over an ~85-minute session.
+Total cost: $1.67 ($0.44 main + $0.08 Gemini third-judge + $1.15 baseline pilot). Wall time: ~15 minutes of compute over a ~110-minute session.

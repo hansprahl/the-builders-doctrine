@@ -1,8 +1,11 @@
 # Strategic-Layer Observer-Bias Detector — Spec (v0.2 candidate)
 
 **Status:** v0.2 candidate, **draft** as of 2026-05-30. Not yet shipped.
-Blocks on a real-prose baseline scan (Exp 11b open follow-up) and on
-Hans's invocation-surface decision.
+Pilot baseline scan ran 2026-05-30 16:40 UTC (15 strategic .md files,
+3 patterns, $1.15); 1/45 firings = 2.2% real-prose rate, all three
+patterns OPERATIONALLY FIT. Blocks on Hans's invocation-surface
+decision and on a full 104-commit scan analog before any HIGH-gate
+promotion.
 
 **Empirical basis:** `kit/chassis/findings_strategic_layer_v1.md` (Exp
 11b, 2026-05-30). Three candidate strategic-layer patterns cleared the
@@ -271,9 +274,11 @@ v0.1.1, no separate log file.
 
 1. **Hans's invocation-surface decision** (pre-commit + curated paths,
    on-demand CLI, sampled, or CI-only).
-2. **Real-prose baseline scan analog** — cost estimate ~$1-2 for a
-   small pilot (10-30 strategic docs), ~$8-10 for the full 104-commit
-   sweep. Budget approval required.
+2. ~~**Real-prose baseline scan analog**~~ — **pilot closed 2026-05-30
+   16:40 UTC.** 15-file curated pilot, $1.15, 1/45 firings (2.2%); all
+   three patterns OPERATIONALLY FIT. Full 104-commit scan analog still
+   open and required for HIGH-gate promotion; budget approval required
+   (~$8-10 est).
 3. **Human re-judge of 12-draft stratified sample from Exp 11b** —
    falsifies adversary-judge collusion via shared definition text.
    ~10 min Hans time as rater.
