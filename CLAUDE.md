@@ -64,7 +64,7 @@ If the detector fires on a verbatim doctrine quote (e.g., principle name "Chain 
 **Kit + chassis:**
 - `kit/coverage.py` — single-file scorer (88 fields, 8 templates)
 - `kit/templates/`, `kit/onboarding/` — eight templates with interview runners
-- `kit/chassis/` — 10 portable runtime components (Crisis Floor, Approval Queue, Per-User Context, Named Specialists, AAR Loop, Prompt Guardian, Reflection Gate, Authority Gradient, Founder-Romance Detector v0.1.1, Strategic-Layer Detector v0.2.0 LLM-gate); 291 unit tests (276 v0.1.1 + 15 v0.2.0)
+- `kit/chassis/` — 10 portable runtime components (Crisis Floor, Approval Queue, Per-User Context, Named Specialists, AAR Loop, Prompt Guardian, Reflection Gate, Authority Gradient, Founder-Romance Detector v0.1.1, Strategic-Layer Detector v0.2.1 LLM-gate HIGH); 291 unit tests (276 v0.1.1 + 15 v0.2.1)
 
 **Per-product CLAUDE.md files (downstream inheritance):**
 - `~/Projects/local-mcp/CLAUDE.md` — TOP (chassis parity baseline)

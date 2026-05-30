@@ -57,15 +57,16 @@ repos:
           )$
 
       - id: strategic-layer-detector
-        name: Strategic-Layer Detector (kit/chassis, v0.2.0)
+        name: Strategic-Layer Detector (kit/chassis, v0.2.1)
         description: >-
           LLM-gate scan of strategic-prose artifacts for the three Exp 11b
           patterns: time_invested_justification, proximity_to_gtm_framing,
-          repackaged_clean_negative. v0.2.0 ships ADVISORY-only — no
-          commit block. Requires XAI_API_KEY in env. Cost per fire:
-          ~$0.06-0.10 per file scanned. See
-          kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC.md and
-          findings_strategic_layer_v1.md.
+          repackaged_clean_negative. v0.2.1: HIGH-gate active for all
+          three (promoted 2026-05-30 per Hans 6/6 precision audit; see
+          findings_strategic_layer_v1.md). Exits 1 on HIGH; override via
+          `git commit --no-verify` with a logged reason. Requires
+          XAI_API_KEY in env (soft-fails to skipped-with-warning if
+          unavailable). Cost per fire: ~$0.06-0.10 per file scanned.
         entry: python -m kit.chassis.strategic_layer_detector
         language: system
         types: [markdown]
@@ -84,7 +85,7 @@ repos:
             | THE_BUILDERS_DOCTRINE\.md
             | META_DOCTRINE\.md
             | LAW_.*_PRE_REG.*\.md
-            | BANDWIDTH_OVERLAY.*\.md
+            | BANDWIDTH.*\.md
             | EXPLAINER\.md
           )$
         # Excludes for files whose PURPOSE is describing the patterns

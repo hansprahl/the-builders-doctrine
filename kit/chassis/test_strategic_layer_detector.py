@@ -51,8 +51,10 @@ class TestPatternDefinitions(unittest.TestCase):
 
     def test_all_advisory_at_ship(self):
         for pid in PATTERN_DEFINITIONS:
-            self.assertEqual(SEVERITY[pid], Severity.ADVISORY,
-                             f"{pid} not ADVISORY at v0.2.0 ship")
+            # v0.2.1 (2026-05-30): all three patterns promoted ADVISORY ->
+            # HIGH per Hans 6/6 precision audit on the full-baseline firings.
+            self.assertEqual(SEVERITY[pid], Severity.HIGH,
+                             f"{pid} not HIGH at v0.2.1 promotion")
 
 
 class TestScanReturnsFindings(unittest.TestCase):
@@ -75,7 +77,7 @@ class TestScanReturnsFindings(unittest.TestCase):
         self.assertEqual(len(findings), 1)
         f = findings[0]
         self.assertEqual(f.pattern.value, "time_invested_justification")
-        self.assertEqual(f.severity, Severity.ADVISORY)
+        self.assertEqual(f.severity, Severity.HIGH)
         self.assertIn("accumulated depth", f.excerpt)
         self.assertEqual(f.file_path, "test.md")
 
@@ -93,14 +95,14 @@ class TestScanReturnsFindings(unittest.TestCase):
         ids = {f.pattern.value for f in findings}
         self.assertEqual(ids, {p.value for p in StrategicPattern})
 
-    def test_findings_are_advisory_severity(self):
+    def test_findings_are_high_severity_after_promotion(self):
         judge = _fixed_judge({
             "proximity_to_gtm_framing": {"verdict": "yes",
                 "excerpt": "x", "rationale": "r"},
         })
         findings = scan(SAMPLE_PROXIMITY, judge=judge)
         self.assertEqual(len(findings), 1)
-        self.assertEqual(findings[0].severity, Severity.ADVISORY)
+        self.assertEqual(findings[0].severity, Severity.HIGH)
 
 
 class TestLineNumberLookup(unittest.TestCase):
@@ -133,7 +135,7 @@ class TestFindingFormat(unittest.TestCase):
         findings = scan(SAMPLE_PROXIMITY, judge=judge, file_path="strat.md")
         self.assertEqual(len(findings), 1)
         formatted = findings[0].format()
-        self.assertIn("ADVISORY", formatted)
+        self.assertIn("HIGH", formatted)
         self.assertIn("repackaged_clean_negative", formatted)
         self.assertIn("kill signals", formatted)
         self.assertIn("strat.md", formatted)

@@ -84,12 +84,16 @@ PATTERN_DEFINITIONS: dict[str, str] = {
 }
 
 
-# Severity table at v0.2.0 ship. All ADVISORY; HIGH-gate promotion
-# requires the full baseline scan + Hans audit per spec.
+# Severity table.
+#
+# v0.2.0 shipped ADVISORY-only. v0.2.1 (2026-05-30) promotes all three
+# patterns to HIGH per Hans precision audit of the 6 baseline firings
+# (6/6 TP, 100% precision per pattern, above the >=60% spec threshold).
+# See findings_strategic_layer_v1.md "Hans precision audit" section.
 SEVERITY: dict[str, Severity] = {
-    StrategicPattern.TIME_INVESTED_JUSTIFICATION.value: Severity.ADVISORY,
-    StrategicPattern.PROXIMITY_TO_GTM_FRAMING.value: Severity.ADVISORY,
-    StrategicPattern.REPACKAGED_CLEAN_NEGATIVE.value: Severity.ADVISORY,
+    StrategicPattern.TIME_INVESTED_JUSTIFICATION.value: Severity.HIGH,
+    StrategicPattern.PROXIMITY_TO_GTM_FRAMING.value: Severity.HIGH,
+    StrategicPattern.REPACKAGED_CLEAN_NEGATIVE.value: Severity.HIGH,
 }
 
 
@@ -305,15 +309,24 @@ def scan_file(path: Path, model: str = "grok-4") -> list[Finding]:
 def _main(argv: list[str]) -> int:
     """CLI entry point.
 
-    v0.2.0: ADVISORY-only. Always exits 0 even when findings fire;
-    findings emit to stderr as warnings. HIGH-gate promotion (and
-    exit 1 on HIGH) is deferred to v0.2.x.
+    v0.2.1: HIGH-gate active for all three patterns (promoted from
+    ADVISORY 2026-05-30 per Hans 6/6 precision audit). Exits 1 if any
+    HIGH findings present; override via the standard pattern:
+
+        git commit --no-verify -m "<message>
+
+        OVERRIDE: strategic_layer_detector flagged <pattern> in <file>.
+        Reviewed; <reason>. Logged."
+
+    Soft-fail behavior: if the judge client cannot be built (no
+    XAI_API_KEY, network unreachable, openai SDK missing), the affected
+    file is skipped with a warning and the commit is NOT blocked.
     """
     if len(argv) < 2:
         print(
             "usage: python -m kit.chassis.strategic_layer_detector "
             "<file> [<file>...]\n"
-            "       v0.2.0: ADVISORY-only LLM gate. Always exits 0.",
+            "       v0.2.1: LLM gate (Grok-4). Exits 1 on HIGH findings.",
             file=sys.stderr,
         )
         return 2
@@ -330,25 +343,38 @@ def _main(argv: list[str]) -> int:
         return 0
 
     all_findings: list[Finding] = []
+    skipped_files: list[tuple[Path, str]] = []
     for path in files:
         try:
             all_findings.extend(scan_file(path))
         except Exception as e:
-            print(
-                f"warning: strategic_layer_detector skipped {path}: "
-                f"{type(e).__name__}: {e}",
-                file=sys.stderr,
-            )
+            skipped_files.append((path, f"{type(e).__name__}: {e}"))
             continue
+
+    for path, reason in skipped_files:
+        print(
+            f"warning: strategic_layer_detector skipped {path}: {reason}",
+            file=sys.stderr,
+        )
 
     for finding in all_findings:
         print(finding.format(), file=sys.stderr)
 
+    has_high = any(f.severity == Severity.HIGH for f in all_findings)
+    if has_high:
+        high_count = sum(1 for f in all_findings
+                         if f.severity == Severity.HIGH)
+        print(
+            f"\n{high_count} HIGH-severity strategic-layer finding(s). "
+            f"Revise prose or override with logged reason (git commit "
+            f"--no-verify and document the reason in the commit message).",
+            file=sys.stderr,
+        )
+        return 1
+
     if all_findings:
         print(
-            f"\n{len(all_findings)} ADVISORY strategic-layer finding(s). "
-            f"v0.2.0 ships ADVISORY-only — no commit gate. Review prose "
-            f"or proceed.",
+            f"\n{len(all_findings)} ADVISORY strategic-layer finding(s).",
             file=sys.stderr,
         )
 

@@ -1,12 +1,14 @@
 # Strategic-Layer Observer-Bias Detector — Spec (v0.2 candidate)
 
-**Status:** v0.2.0 — code shipped 2026-05-30; ADVISORY-only at ship.
-Full baseline scan complete (114 commits, 148 unique (sha, file)
-pairs, 444 Grok-4 calls, $8.84). Per-pattern file-level firing rates:
-1.4%, 0.7%, 2.0% — all under the ≤5% OPERATIONALLY FIT threshold for
-HIGH-gate consideration. Commit-level block-rate estimate: 5.3%
-(vs. Exp 11's 35.6% regex baseline). HIGH-gate promotion blocked on
-Hans's audit of the 6 firings (target precision ≥60% per pattern).
+**Status:** v0.2.1 — HIGH gate active for all three patterns
+(promoted 2026-05-30 per Hans 6/6 precision audit on the full baseline
+scan firings). v0.2.0 shipped ADVISORY-only earlier the same day; the
+promotion happened in the same session because the four evidence
+ladders all converged: cross-family adversarial agreement 99.4%,
+Hans-collusion-falsification 91.7%, prompt-framing stability 100%,
+Hans real-prose precision 100% (6/6). Commit-level block-rate
+estimate: 5.3% (vs. Exp 11's 35.6% regex baseline). See
+`findings_strategic_layer_v1.md` for the empirical record.
 
 **Empirical basis:** `kit/chassis/findings_strategic_layer_v1.md` (Exp
 11b, 2026-05-30). Three candidate strategic-layer patterns cleared the
@@ -130,21 +132,28 @@ fire on confident strategic prose).
 `[[feedback-dont-repackage-clean-negatives]]` is this pattern in
 behavioral form. The detector codifies the rule.
 
-## Severity table (v0.2 ship)
+## Severity table
 
-| Pattern | v0.2 ship | Future-HIGH gate |
+| Pattern | v0.2.0 ship | v0.2.1 (2026-05-30) |
 |---|---|---|
-| `time_invested_justification` | **ADVISORY** | Conditional on baseline + Hans audit |
-| `proximity_to_gtm_framing` | **ADVISORY** | Conditional on baseline + Hans audit |
-| `repackaged_clean_negative` | **ADVISORY** | Conditional on baseline + Hans audit |
+| `time_invested_justification` | ADVISORY | **HIGH** |
+| `proximity_to_gtm_framing` | ADVISORY | **HIGH** |
+| `repackaged_clean_negative` | ADVISORY | **HIGH** |
 
-**Why ADVISORY-only at ship.** The Exp 11 path was: ship at HIGH →
-baseline scan → discover 35.6% block rate + ~25% precision → demote to
-ADVISORY. The Exp 11 lesson is to never ship a HIGH gate without a
-real-prose baseline that confirms operationally viable precision. v0.2
-inherits that conservatism: ship ADVISORY immediately, hold HIGH gate
-behind the same 104-commit-baseline-on-real-prose discipline (see
-Section "Success criteria" below).
+**Why v0.2.1 promoted same day.** The conservative v0.2.0 ADVISORY-only
+ship was the planned path. But the full baseline scan + Hans 6/6
+precision audit completed in the same session and all four evidence
+ladders converged decisively: cross-family adversarial agreement
+99.4%, Hans-collusion-falsification 91.7% (12-draft audit), prompt-
+framing stability 100% (fresh-Grok), real-prose precision 100%
+(6/6 firings audit). Holding ADVISORY past confirming evidence would
+have been ceremony, not discipline.
+
+The Exp 11 lesson (never ship HIGH without a real-prose baseline) is
+honored: the baseline ran (114 commits, $8.84) and returned 1.4-2.0%
+per-pattern firing rate — well under the spec's ≤5% operational floor.
+The 5.3% commit-level block rate is ~7x quieter than the Exp 11 regex
+v0.1 baseline (35.6%) that forced the v0.1.1 demotion.
 
 ## Invocation surface — LOCKED 2026-05-30
 
@@ -255,12 +264,11 @@ v0.1.1, no separate log file.
 
 | Version | Status | Content |
 |---|---|---|
-| v0.2-draft | this file (2026-05-30) | spec + 3 ADVISORY patterns; not yet coded |
-| v0.2.0 | TBD | ship: 3 ADVISORY patterns + test corpus + on-demand CLI |
-| v0.2.1 | TBD | invocation-surface decision shipped (Hans choice) |
-| v0.2.2 | TBD | real-prose baseline scan output documented |
-| v0.2.x | TBD | HIGH-gate promotion per pattern, conditional on baseline + Hans audit |
-| v0.3 | TBD | cross-document `tame_reviewer_drift` (v0.1.1's NotImplemented item, also LLM-gate) |
+| v0.2-draft | shipped 2026-05-30 | spec + 3 ADVISORY patterns; not yet coded |
+| v0.2.0 | shipped 2026-05-30 | code: detector + test corpus + on-demand CLI + curated-path pre-commit hook + 15/15 unit tests, ADVISORY-only |
+| v0.2.1 | shipped 2026-05-30 | HIGH-gate promotion for all three patterns per Hans 6/6 precision audit |
+| v0.2.x | future | retune per pattern if precision drift surfaces in production; broaden curated path list as new strategic artifacts appear |
+| v0.3 | future | cross-document `tame_reviewer_drift` (v0.1.1's NotImplemented item, also LLM-gate) |
 
 ## What this detector does NOT replace
 
@@ -289,9 +297,13 @@ v0.1.1, no separate log file.
    "centuries-of-refinement" warrant. HIGH-gate promotion is now
    gated on Hans precision audit of those 6 firings only (target
    ≥60% precision per pattern).
-3. **Human re-judge of 12-draft stratified sample from Exp 11b** —
-   packet shipped to `funkytown/experiments/11b_strategic_layer_fuzz/audit_packet_hans/AUDIT_HANS_12.md`
-   on 2026-05-30. Pending Hans rating (~10 min).
+3. ~~**Human re-judge of 12-draft stratified sample from Exp 11b**~~ —
+   **CLOSED 2026-05-30:** Hans 12/12 rated, 91.7% Hans-both-judges
+   agreement, FALSIFIES collusion concern (>=75% threshold). Fresh-Grok
+   framing-sensitivity pass also 12/12 (no detectable framing drift).
 4. ~~**`Finding` shape decision**~~ — **LOCKED 2026-05-30:** reuse v0.1.1
    `Finding` dataclass unchanged. Cost accounting lives in a separate
    log, not the Finding object.
+5. ~~**Hans precision audit of 6 baseline firings**~~ — **CLOSED 2026-05-30:**
+   6/6 TP, 100% per-pattern precision; all three patterns PROMOTED to
+   HIGH (see Severity table). v0.2.1 ships HIGH-gate.

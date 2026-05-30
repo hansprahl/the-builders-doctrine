@@ -145,6 +145,50 @@ If Hans's audit returns ≥4 of 6 as TPs (≥66%), HIGH-gate promotion per patte
 
 The full-scan firings live in `funkytown/experiments/11b_strategic_layer_fuzz/runs/20260530T165028Z_baseline_full/summary.md`.
 
+## Hans 12-draft collusion-falsification audit (2026-05-30 17:13 UTC)
+
+Stratified packet of 12 drafts (4 per pattern, including the known Gemini dissent at proximity_to_gtm_framing idx=13). Hans rated each yes/no against the pattern definition without seeing LLM-judge verdicts. Falsification threshold: ≥75% Hans-both-judges agreement → adversary-judge collusion concern refuted.
+
+| Comparison | Match | Rate |
+|---|---|---|
+| Hans vs. original Grok-4 (v2) | 12/12 | 100.0% |
+| Hans vs. Gemini 2.5 Pro | 11/12 | 91.7% |
+| Hans vs. **BOTH** | 11/12 | 91.7% |
+
+**FALSIFIES the collusion concern.** Above the 75% threshold by a wide margin. The single Hans/Gemini disagreement is on proximity_to_gtm_framing idx=13 — the same boundary case Gemini flagged in the original third-judge run. Hans agreed with both Grok passes that the draft exhibits the bias; Gemini called legitimate-sequencing carve-out. Two-of-three judges plus Hans now align on idx=13, sharpening the three-family agreement at the cost of one Gemini dissent.
+
+### Fresh-Grok prompt-framing sensitivity pass (2026-05-30 17:12 UTC)
+
+Same 12 drafts run through Grok-4 with the *audit-sheet framing* ("would a careful human reviewer catch this on careful read?") instead of the original *detector-audit framing*. Tests whether the original 100% Grok-yes was prompt-driven.
+
+- Fresh Grok yes: **12/12 = 100%**
+- Fresh Grok ↔ original v2 Grok: 12/12 = 100% (no detectable framing drift)
+- Fresh Grok ↔ Gemini: 11/12 = 91.7% (same idx=13 boundary case)
+
+Cost: $0.03. Result lives at `funkytown/experiments/11b_strategic_layer_fuzz/audit_packet_hans/GROK_AUDIT_12.md`.
+
+## Hans precision audit of 6 real-prose firings (2026-05-30 17:18 UTC)
+
+Per spec § Success criteria, HIGH-gate promotion per pattern requires ≥60% precision on a Hans audit of the baseline-scan firings. The 6 firings rated:
+
+| Pattern | TP | FP | precision | recommendation |
+|---|---|---|---|---|
+| `time_invested_justification` | 2 | 0 | 100% | **PROMOTE HIGH** |
+| `proximity_to_gtm_framing` | 1 | 0 | 100% | **PROMOTE HIGH** |
+| `repackaged_clean_negative` | 3 | 0 | 100% | **PROMOTE HIGH** |
+| **Total** | **6** | **0** | **100%** | — |
+
+**All three patterns PROMOTED to HIGH.** Caveat on n: per-pattern sample sizes are small (n=1, n=2, n=3) but the spec criterion is precision-floor not sample-size-minimum, and the precision is 100% on every cell. Future drift surfacing in production triggers v0.2.x retune; for now the four-ladder convergence (cross-family 99.4%, collusion-falsification 91.7%, framing-sensitivity 100%, real-prose-precision 100%) is decisive.
+
+### Operational consequences of HIGH-gate activation
+
+The 6 TPs live in current files: `THE_BUILDERS_DOCTRINE.md` (×2 commits, repackaged Reflection Gate retention), `MISSION_COMMAND_ARCHITECTURE.md` (×2 commits, "centuries of refinement" warrant), `RELEASE_PLAN_v1.md` (capacity cut → "release cadence"), `BANDWIDTH_ACTUALS_2026.md` (date slip → "post-v1.0 traction"). All five files are now in the curated path list for the strategic-layer pre-commit hook. Future commits that re-touch the still-present trigger passages will be blocked at HIGH unless either:
+
+1. **The prose is revised** to remove the trigger (replacing time-as-warrant with measurement, replacing proximity-as-warrant with risk-adjusted sequencing, refuting clean-negative kill signals directly rather than reopening as optionality), or
+2. **Override per commit** with a logged reason: `git commit --no-verify -m "<msg>\n\nOVERRIDE: strategic_layer_detector flagged <pattern> in <file>. Reviewed; <reason>. Logged."`
+
+The 6 specific Hans-confirmed TPs are also doctrinal review items independent of the detector's status — passages worth revisiting on their own merits.
+
 ## Decision
 
 - **STRATEGIC_LAYER_DETECTOR_SPEC.md shipped** at v0.2 candidate status (`kit/chassis/STRATEGIC_LAYER_DETECTOR_SPEC.md`) — three patterns spec'd, ADVISORY-only at planned ship, HIGH-gate promotion gated on full baseline + Hans audit. Code not yet written; ships after Hans makes four open decisions called out in spec.
