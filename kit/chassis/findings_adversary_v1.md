@@ -188,11 +188,37 @@ A regex-based observer-bias detector with the v0.1 anchors for `founder_romance`
 
 If any of these turn out true, the v0.1.1 patch is reversible in one commit (re-elevate 1a/1b to HIGH).
 
+## Third-judge robustness — Gemini 2.5 Pro re-judges the 96 v2 misses (2026-05-30 16:19 UTC)
+
+Closes "what would kill this finding" #3. Gemini 2.5 Pro (Google family — third independent lineage beyond Sonnet and Grok) re-judged the same 96 detector-missed drafts from the v2 run using the identical `JUDGE_SYSTEM_PROMPT` and per-pattern definitions. No drafts regenerated.
+
+- **Gemini verdict = yes: 91 / 96 = 94.8%**
+- Agreement with Grok-4 (both yes): 91 / 96 = 94.8%
+- Cost: $0.11
+- Pre-registered decision rule: ≥90% → finding hardens. Met.
+
+Per-pattern Gemini-yes:
+
+| Pattern | n | Gemini-yes | Gemini-no |
+|---|---|---|---|
+| founder_romance | 19 | 19 | 0 |
+| carve_out_construction | 18 | 18 | 0 |
+| stage_7_revival | 19 | 19 | 0 |
+| over_claim | 9 | 9 | 0 |
+| schedule_prose_substitution | 20 | 18 | 2 |
+| optimistic_probability | 11 | 8 | 3 |
+
+The five Gemini-no dissents all came from the two ADVISORY patterns Grok had wanted promoted to HIGH and that baseline data already killed. Gemini's rationales: the adversarial drafts ground projections in "specific data sources / comparable benchmarks / measurement gate / falsification criterion" and therefore fail the bias definition. This is a fair call — the v2 adversary occasionally over-corrected on those two patterns by adding empirical scaffolding. It is independent evidence against promoting `optimistic_probability` and `schedule_prose_substitution` to HIGH.
+
+The four structurally clearer patterns (`founder_romance`, `carve_out_construction`, `stage_7_revival`, `over_claim`) registered 100% three-family agreement: 65/65 calls all "yes." Cross-family lockup on whether the bias is real; the v0.1.1 demotion of `founder_romance` 1a/1b was about regex precision on real doctrine prose, not about whether the bias call is correct.
+
+Smallest amended claim: the bias signal the v2 adversary produced is not Sonnet-specific or Grok-specific. Three independent LLM families converge >94% on "this paragraph exhibits the named observer-bias pattern" for the structurally-clear pattern set. The regex problem is a regex problem, not a judge problem.
+
 ## Follow-ups (not done in this session)
 
 - **v0.1.2 corpus assembly.** Use the 104-commit baseline scan output as the source for a labeled corpus (caught / clean / mixed) — Hans hand-labels a stratified sample of ~30 findings per pattern, retune regex thresholds, target ≥60% HIGH precision before re-promoting any pattern.
 - **Formal precision audit of all 56 HIGH findings.** Brief task — ~30 min Hans audit on the full HIGH set, not a 4-case spot-check.
-- **Third-judge robustness check.** Replicate v2 with GPT-5 or Llama 3.1 as a third independent judge; measure cross-family agreement rate beyond Sonnet→Grok.
+- ~~**Third-judge robustness check.**~~ **Closed 2026-05-30 16:19 UTC** — Gemini 2.5 Pro re-judge, 91/96 (94.8%) yes, finding hardens. See section above.
 - **Strategic-layer founder-romance probe (Exp 11b candidate).** Time-invested justifications, proximity-to-GTM framings, repackaged-clean-negative-as-optionality. None of these are in the current spec. Exp 11b would generate adversarial drafts for the candidate patterns and assess whether they extend the detector beyond prose-level into strategic-decision text.
 - **`tame_reviewer_drift`** still NotImplemented. Out of v0.1.1 scope.
 
@@ -208,8 +234,10 @@ All artifacts under `funkytown/experiments/11_adversary_fuzz/`:
 - `src/grok_pressure_test.py` — Grok-4 cold-read on v1
 - `src/grok_pressure_test_v2.py` — Grok-4 cold-read on v2
 - `src/baseline_scan.py` — 104-commit baseline scan with precision spot-check sample
+- `src/third_judge.py` — Gemini 2.5 Pro replay of the 96 v2 misses (third independent family)
 - `runs/20260530T153006Z/` — v1 run artifacts (drafts.jsonl, scans.jsonl, judge.jsonl, summary.json, audit_sample.md, grok_pressure_test.md)
 - `runs/20260530T154245Z_v2/` — v2 run artifacts (same shape, + grok_pressure_test_v2.md)
 - `runs/20260530T155033Z_baseline/` — baseline scan results (scan_results.json, scan_results.md, findings_sample.jsonl, per_commit.jsonl)
+- `runs/20260530T161933Z_third_judge/` — Gemini 2.5 Pro re-judge of the 96 v2 misses (third_judge.jsonl, summary.json, summary.md)
 
-Total experimental cost: $1.64 ($0.91 v1 + $0.73 v2 + baseline scan is detector-only, no API). Total wall time: ~12 minutes of compute over a ~90-minute session.
+Total experimental cost: $1.75 ($0.91 v1 + $0.73 v2 + $0.11 third-judge; baseline scan is detector-only, no API). Total wall time: ~14 minutes of compute over a ~100-minute session.
