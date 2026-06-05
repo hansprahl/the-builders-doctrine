@@ -1,7 +1,8 @@
 # ADP 6-0 — Civilian Translation
 
-**Status:** v0.1 — 2026-05-13 evening.
+**Status:** v0.2 — 2026-06-05 (added FM 6-0 execution-terms block).
 **Purpose:** Bridge the Army vocabulary that load-bears across `MISSION_COMMAND_ARCHITECTURE.md`, `THE_BUILDERS_DOCTRINE.md`, and `META_DOCTRINE.md` into language a non-military reader can follow on first read without losing the doctrinal precision.
+**Scope note:** Despite the filename, this glossary spans **both** layers of ported Army doctrine — **ADP 6-0** (the *philosophy* of mission command) and **FM 6-0** (the *execution* manual: staff organization and operations). Most execution vocabulary (MDMP, running estimate, OPORD/SITREP, COP, CCIR, battle rhythm) was already glossed here from the start; the dedicated FM 6-0 block near the end covers the remaining execution terms. For the source-attribution and wired-vs-unbuilt inventory of the FM 6-0 layer, see `FM_6_0_CROSSMAP.md`.
 
 This is a glossary plus a few short essays. Read top-to-bottom the first time. Reference-skim after that.
 
@@ -141,6 +142,24 @@ Two more protocols sit on top of these for larger units:
 | **Echelon** | A level in the command hierarchy. Squad is an echelon. Platoon is an echelon. Soldiers are not. |
 | **Span of control** | How many direct reports a leader can effectively coordinate. Doctrine says ~3-7 per echelon; above that, coordination breaks. |
 | **Recursive composability** | Squad-of-fire-teams is a unit. Platoon-of-squads is a unit. Same rules apply at every echelon. Scale is recursion, not re-architecture. |
+
+---
+
+## FM 6-0 execution terms — civilian gloss
+
+The terms above are the load-bearing vocabulary that already runs through the architecture. The block below covers the remaining **FM 6-0** execution mechanics — the ones named in `FM_6_0_CROSSMAP.md` but not yet wired (mostly ⚠️ named-unbuilt or ❌ absent). They appear in roadmap and architecture discussions; gloss them the first time they surface in any external artifact.
+
+| Term | Army meaning | Civilian gloss |
+|---|---|---|
+| **TLP** (Troop Leading Procedures) | The small-unit leader's 8-step planning drill (receive mission → warning order → tentative plan → initiate movement → recon → complete plan → issue order → supervise). The squad-tier analog of MDMP. | The lightweight planning checklist a team lead runs when there's no staff to run full MDMP for them. |
+| **RDSP** (Rapid Decision-Making & Synchronization Process) | The re-plan loop used *during* execution when the situation shifts and there's no time for a full MDMP cycle: compare to the order, decide if a fix is within intent, adjust, re-synchronize. | How you adjust mid-execution without stopping to re-run the whole plan — bounded by the original intent. |
+| **WARNORD** (Warning Order) | A preliminary heads-up issued before the full OPORD so subordinates can start parallel preparation. | "Something's coming, start prepping" — early notice that buys the team time before the detailed order lands. |
+| **FRAGORD** (Fragmentary Order) | A short order that changes or adds to an OPORD already in effect — only the deltas, not a re-statement. | "Amendment to the existing plan" — the parts that changed, not a fresh full brief. |
+| **Rehearsal** | A practice run of the plan before execution to confirm understanding, surface coordination gaps, and fix them while it's still cheap. | The dry run / dress rehearsal — catch the breakdowns in practice, not in the live operation. |
+| **Risk Management (RM)** | The deliberate process of identifying hazards, assessing likelihood × severity, applying controls, then re-assessing as conditions change. Distinct from *prudent risk acceptance* (the ADP 6-0 calibration posture) — RM is the worksheet-level process. | The structured hazard-and-mitigation pass you run before committing — not gut-feel risk tolerance. |
+| **Liaison** | A dedicated channel maintaining coordination between two units that must work together but don't share a chain of command. In the architecture, the RFI protocol is the closest analog. | The designated point of contact between two teams — keeps them synchronized without merging them. |
+| **Military briefing** | A structured presentation in one of a few fixed formats (information / decision / mission / staff brief), each with a defined purpose. | The standardized formats for telling the commander what they need to know — sorted by whether the goal is *inform*, *decide*, or *direct*. |
+| **Command post (CP)** | The node where the staff runs the operation — where the COP is maintained, orders are produced, and the battle rhythm runs. In the architecture, the COP system + staff channel are the CP analog. | The operations room / war room — the place (for us, the process node) where the staff actually runs the fight. |
 
 ---
 
