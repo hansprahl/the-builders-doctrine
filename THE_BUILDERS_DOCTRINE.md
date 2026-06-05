@@ -13,6 +13,9 @@
 
 Total: thirteen principles (seven foundational ethics + six operational doctrines). See `## II. The Founding Principles` for the canonical list.
 
+**Post-v1.2 additions (named here; folded into the next version bump):**
+- **Training Architecture (TA)** — `TRAINING_ARCHITECTURE.md`, 2026-06-05. Ports ADP 7-0 (*Training*) as the portfolio's readiness doctrine, companion to MCA: where MCA (ADP 6-0) governs runtime authority, TA governs pre-runtime readiness — *certify to standard before trust, sustain by AAR.* METL = the capability registry / specialist scope; Task-Conditions-Standards = the eval spec (the standard IS the test); crawl-walk-run = sandbox→approval-gate→live rollout; SPECIALIST_TEMPLATE + Guardian-before-merge = leader certification; AAR→retrain closes the loop. Doctrine that *names a discipline already in production* (Guardian, Reflection Gate, AAR component, capability registry) — carries no separate empirical claim. First instance: the `operator/learn-ai/` curriculum.
+
 ---
 
 ## Prime Directive

@@ -45,7 +45,8 @@ See [RELEASE_NOTES_v1.0.md](RELEASE_NOTES_v1.0.md) for full detail on each.
 **Doctrine prose:**
 - [THE_BUILDERS_DOCTRINE.md](THE_BUILDERS_DOCTRINE.md) — the 13 principles
 - [META_DOCTRINE.md](META_DOCTRINE.md) — six methodological laws governing the doctrine itself
-- [MISSION_COMMAND_ARCHITECTURE.md](MISSION_COMMAND_ARCHITECTURE.md) — portfolio-wide agentic architecture
+- [MISSION_COMMAND_ARCHITECTURE.md](MISSION_COMMAND_ARCHITECTURE.md) — portfolio-wide agentic architecture (ADP 6-0, runtime authority)
+- [TRAINING_ARCHITECTURE.md](TRAINING_ARCHITECTURE.md) — portfolio-wide readiness doctrine (ADP 7-0, certify-to-standard before trust); folds in its own civilian glossary
 - [PROMPT_DOCTRINE.md](PROMPT_DOCTRINE.md) — universal prompt structural rules
 - [WORKING_BACKWARDS.md](WORKING_BACKWARDS.md) — Amazon PR/FAQ-first scoping discipline
 - [EXPLAINER.md](EXPLAINER.md) — plain-language translator (start here)
