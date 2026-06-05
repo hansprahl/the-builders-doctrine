@@ -1,8 +1,8 @@
 # ADP 6-0 — Civilian Translation
 
-**Status:** v0.2 — 2026-06-05 (added FM 6-0 execution-terms block).
+**Status:** v0.3 — 2026-06-05 (added ADP 2-0 / IPB analysis-terms block).
 **Purpose:** Bridge the Army vocabulary that load-bears across `MISSION_COMMAND_ARCHITECTURE.md`, `THE_BUILDERS_DOCTRINE.md`, and `META_DOCTRINE.md` into language a non-military reader can follow on first read without losing the doctrinal precision.
-**Scope note:** Despite the filename, this glossary spans **both** layers of ported Army doctrine — **ADP 6-0** (the *philosophy* of mission command) and **FM 6-0** (the *execution* manual: staff organization and operations). Most execution vocabulary (MDMP, running estimate, OPORD/SITREP, COP, CCIR, battle rhythm) was already glossed here from the start; the dedicated FM 6-0 block near the end covers the remaining execution terms. For the source-attribution and wired-vs-unbuilt inventory of the FM 6-0 layer, see `FM_6_0_CROSSMAP.md`.
+**Scope note:** Despite the filename, this glossary spans **three** layers of ported Army doctrine — **ADP 6-0** (the *philosophy* of mission command), **FM 6-0** (the *execution* manual: staff organization and operations), and **ADP 2-0 / IPB** (the *analysis* layer: intelligence preparation and collection management). Most core vocabulary (MDMP, running estimate, OPORD/SITREP, COP, CCIR, K/I/G, RFI) was already glossed here from the start; the dedicated FM 6-0 and IPB blocks near the end cover the remaining execution and analysis terms. For source attribution and the wired-vs-unbuilt inventory of each layer, see `FM_6_0_CROSSMAP.md` and `IPB_CROSSMAP.md`.
 
 This is a glossary plus a few short essays. Read top-to-bottom the first time. Reference-skim after that.
 
@@ -160,6 +160,24 @@ The terms above are the load-bearing vocabulary that already runs through the ar
 | **Liaison** | A dedicated channel maintaining coordination between two units that must work together but don't share a chain of command. In the architecture, the RFI protocol is the closest analog. | The designated point of contact between two teams — keeps them synchronized without merging them. |
 | **Military briefing** | A structured presentation in one of a few fixed formats (information / decision / mission / staff brief), each with a defined purpose. | The standardized formats for telling the commander what they need to know — sorted by whether the goal is *inform*, *decide*, or *direct*. |
 | **Command post (CP)** | The node where the staff runs the operation — where the COP is maintained, orders are produced, and the battle rhythm runs. In the architecture, the COP system + staff channel are the CP analog. | The operations room / war room — the place (for us, the process node) where the staff actually runs the fight. |
+
+---
+
+## ADP 2-0 / IPB analysis terms — civilian gloss
+
+The blocks above cover the *philosophy* and *execution* layers. This block covers the **analysis** layer — the intelligence vocabulary named in `IPB_CROSSMAP.md`. A few of these (K/I/G, RFI, PIR/EEI) are already glossed above because the doctrine inherited the *discipline* early; the terms below are the IPB *method* vocabulary, mostly ⚠️ named-unbuilt or ❌ absent. Gloss them the first time they surface in any external artifact — and never let an IPB reference drift into a moat claim while Law VI is open (frame it as method provenance, not biographical proof).
+
+| Term | Army meaning | Civilian gloss |
+|---|---|---|
+| **IPB** (Intelligence Preparation of the Battlefield/OE) | The four-step analytic drill run before and during operations: define the operational environment → describe its effects → evaluate the threat → determine threat courses of action. The intelligence counterpart to MDMP. | The structured way you study a problem space *before* acting — bound it, map its constraints, model who's against you, predict their moves. |
+| **OE** (Operational Environment) | The total set of conditions — terrain, weather, civil, threat — that bear on the operation. IPB Step 1 is bounding it. | The problem space and everything in it that affects the outcome. |
+| **OAKOC / ASCOPE / PMESII-PT** | Checklists for IPB Step 2: OAKOC frames terrain (observation, avenues of approach, key terrain, obstacles, cover); ASCOPE/PMESII-PT frame the civil/human environment. | The structured prompts that keep you from forgetting a category when you map the environment's constraints. |
+| **Threat template / threat model** | A doctrinal picture of how the adversary is organized and how it fights, built in IPB Step 3 before predicting specific actions. | A reusable model of the opponent — what they can do and how they tend to do it — separate from any one prediction. |
+| **MLCOA / MDCOA** | The two enemy courses of action IPB Step 4 produces: the *most likely* and the *most dangerous*. Planning addresses both — what they'll probably do and what would hurt most. | The "what they'll probably do" and the "worst case" — you plan for both, not just the likely one. |
+| **NAI / TAI** (Named / Targeted Area of Interest) | A NAI is a place/topic you watch because adversary activity there confirms or denies a hypothesis; a TAI is where you act on it. | A declared "watch this spot" (and, for TAI, "act here if it lights up") — anchors your monitoring to specific questions. |
+| **I&W** (Indicators & Warnings) | Pre-defined observable signs that, if seen, mean a predicted threat action is underway — tied to the PIR they answer. | The tripwires you set in advance: "if we see X, it means Y is happening." |
+| **Collection plan / ISR synchronization** | The matrix that assigns every PIR to a collector, a NAI, and a time window — so coverage is deliberate, not accidental. | The schedule of who-watches-what-and-when, built so nothing important goes unwatched. |
+| **Source reliability / info credibility** (A–F / 1–6) | The two-axis grade the Army puts on every report: how reliable the *source* is (A–F) and how credible the *information* is (1–6), rated independently. | A standard way to tag "how much do we trust the source" separately from "how much do we trust this particular claim." |
 
 ---
 
