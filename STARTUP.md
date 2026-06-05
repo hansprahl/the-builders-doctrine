@@ -144,7 +144,8 @@ Next live phase: v1.5 prep (2026-05-22 → 2026-07-25). v1.5 carries the Law VI 
 - `THE_BUILDERS_DOCTRINE.md` — the methodology prose, v1.2 (13 principles)
 - `META_DOCTRINE.md` — methodological laws governing the doctrine itself (Laws I-IV implicit; **Laws V–X** seeded 2026-05-13 late eve post-Grok review, ratified 2026-05-14)
 - `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (2026-05-12); civilian readers should hit `ADP_6_0_TRANSLATION.md` first
-- `ADP_6_0_TRANSLATION.md` — civilian glossary for the Army vocabulary in MCA + doctrine (2026-05-13 late eve)
+- `ADP_6_0_TRANSLATION.md` — civilian glossary for the Army vocabulary in MCA + doctrine (2026-05-13 late eve); the **philosophy-layer** translation
+- `FM_6_0_CROSSMAP.md` — **execution-layer** cross-map (2026-06-05); names FM 6-0 as the source of MCA's staff/protocol layer (OPORD/SITREP/COP/MDMP/AAR + the Staff Channel). Wired-vs-named-vs-absent inventory, Law VII disposition per row. Ships no new claim; gaps stay Law V/Law X gated. RDSP + rehearsals are the only genuinely-absent items
 - `MCA_PROPOSED_EXTENSIONS.md` — **PROPOSED / UNVALIDATED.** Doctrinal sketches for Medical channel, Signal channel, NCO Support Channel clarification (2026-05-13 late eve). Law V applies recursively; no extension migrates to MCA without a passing Funkytown experiment
 - `CHASSIS_PROPOSED_EXTENSIONS.md` — staging area for chassis-primitive proposals. §1 Adversarial Review **RETRACTED 2026-05-19** by Grok cold-read KILL on the pre-registration plan; preserved verbatim under §1 banner as falsification evidence per Law VII. First section to reach terminal state. The regex founder-romance detector ships for the 2026-05-25 slot instead. The file's "staging area, not backlog" discipline is now empirically validated
 - `SCHEDULER_SPEC_DRAFT.md` — primitive spec paired with MCA
