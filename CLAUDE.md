@@ -43,7 +43,8 @@ If the detector fires on a verbatim doctrine quote (e.g., principle name "Chain 
 - `THE_BUILDERS_DOCTRINE.md` — 13 principles (canonical artifact)
 - `META_DOCTRINE.md` — six methodological laws (V–X)
 - `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (Platoon-validated; rungs 3-9 hypothesis)
-- `ADP_6_0_TRANSLATION.md` — civilian glossary for Army vocabulary in MCA
+- `ADP_6_0_TRANSLATION.md` — civilian glossary for Army vocabulary in MCA (philosophy layer)
+- `FM_6_0_CROSSMAP.md` — execution-layer cross-map; names FM 6-0 as the source of MCA's staff/protocol layer; wired-vs-named-vs-absent inventory with Law VII dispositions
 - `PROMPT_DOCTRINE.md` — universal prompt structural rules (canonical upstream)
 - `THE_BUILDERS_METHOD.md` — builder-facing method
 - `EXPLAINER.md` — plain-language translator; the v1.0 public-facing on-ramp; carries the deprecation-as-trust-signal frame
