@@ -109,7 +109,7 @@ The curriculum is to TA what a product is to MCA: a concrete instance of the doc
 Same honesty discipline as MCA. This document does **not** establish:
 
 - That naming the discipline "Training Architecture" improves any outcome beyond what each component (Guardian, Reflection Gate, AAR, SPECIALIST_TEMPLATE) already delivers on its own. The unification is for legibility and reuse, not a measured performance claim.
-- That the T/C/S-as-eval framing has been ablation-tested the way MCA's Authority Gradient was in Funkytown. It has not. It is doctrine adopted because the components are already load-bearing, not because a controlled experiment showed the framing wins.
+- That the T/C/S-as-eval framing has been ablation-tested the way MCA's Authority Gradient was in Funkytown. It has not. It is doctrine adopted because the components are already load-bearing, not because a controlled experiment showed the framing wins. **The validation home for closing this gap is Funkytown** (`funkytown/CLAUDE.md` registers TA as a certification-harness candidate) — does writing an explicit standard *before* build measurably change agent outcomes is the open experiment.
 - That crawl-walk-run rollout is followed everywhere today. It is the standard this document sets; conformance is a separate audit.
 - Anything about non-Claude families. Like the MCA meta-layer finding, any claim that certification-by-prompt-standard transfers across model families is unverified and out of scope here.
 
