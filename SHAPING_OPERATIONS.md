@@ -36,6 +36,8 @@ We are the latter. This document specifies the fix.
 | IV | Stabilize | Restore essential services and security |
 | V | Enable Civil Authority | Transition to civil control |
 
+> **Doctrine currency note (ground-truth audit, 2026-07-07).** The six-phase 0–V model above is the *legacy* joint phasing construct. Current Army capstone doctrine — **ADP 5-0 (2019)** and **ADP 3-0** — has moved off the rigid Phase 0–V frame to the **competition continuum** (competition · crisis · armed conflict) and the **four strategic roles: shape · prevent · prevail · consolidate gains** (ADP 5-0 ¶1-9). The good news for this document: **"Shape" survived the transition** — it is now the *first strategic role* ("shape operational environments"), so the core idea here (deliberately shaping the environment before decisive operations) is doctrinally *current*; only the "Phase 0 / six-phase" scaffolding is dated. Read "Phase 0" below as **the shape strategic role**, and the phasing ladder as the competition continuum. The exact phasing definitions live in **JP 3-0** and the branch/sequel definitions in **JP 5-0** (neither yet pulled — collection gap).
+
 **Key doctrinal points:**
 
 1. Phase 0 is **continuous**, not a discrete event. Shaping never stops. While Phase III is running for one mission, Phase 0 is already shaping the environment for the next mission.

@@ -2,7 +2,7 @@
 
 **Status:** Empirically validated at the Platoon scale (N=3 each across 7 ablation stages, ~$64 in API spend, Funkytown experiment 01). Provisionally adopted as the portfolio-wide agentic architecture.
 
-**Source doctrine:** U.S. Army ADP 6-0, *Mission Command: Command and Control of Army Forces*. Mission Command is the Army's published doctrine for decentralized execution under clear commander's intent. Refined over centuries of bloody iteration. Stress-tested under conditions where coordination failure kills people.
+**Source doctrine:** U.S. Army ADP 6-0, *Command and Control* (07 July 2026), which supersedes ADP 6-0 *Mission Command: Command and Control of Army Forces* (31 July 2019). Mission Command is the Army's published doctrine for decentralized execution under clear commander's intent. Refined over centuries of bloody iteration. Stress-tested under conditions where coordination failure kills people. (Ground-truth audit 2026-07-07: the 2026 rewrite retitled the manual "Command and Control" but **kept the seven principles of mission command and the command-and-control warfighting function intact** — the substance this doc ports is unchanged; only the edition/title citation was stale.)
 
 **Civilian readers:** Read [ADP_6_0_TRANSLATION.md](ADP_6_0_TRANSLATION.md) first. It glosses every Army term in this document (OPORD, SITREP, PL/SL/CC, S-2/S-4, COCOM-as-destination-not-pitch, etc.) without softening the load-bearing distinctions.
 
@@ -22,7 +22,7 @@ ADP 6-0 lists seven principles of Mission Command. Each maps cleanly to an LLM-a
 | **Commander's intent** | Every INTENT_DOWN carries the *why*, not just the *what*. Without intent, decentralized execution collapses into compliance under diverging reality. |
 | **Mission orders** | Standard message protocol: OPORD-shaped INTENT_DOWN ↓ , SITREP-shaped status ↑. Fixed schemas per direction. |
 | **Disciplined initiative** | Soldiers may revise within scope; refuse outside scope; flag ambiguity rather than invent. Principle 12 ("what else?") is the in-echelon check. |
-| **Prudent risk acceptance** | Honest confidence reporting. "I don't know" as calibrated stop signal. Truth-as-architecture. |
+| **Risk acceptance** | Honest confidence reporting. "I don't know" as calibrated stop signal. Truth-as-architecture. (ADP 6-0 names the principle "Risk acceptance"; "prudent risk" was the 2012-era phrasing.) |
 
 ---
 
@@ -55,7 +55,7 @@ Platoon Leader (PL) — Officer-tier, Opus
 - **Standard message formats per direction.** OPORD-shaped INTENT_DOWN includes situation/mission/execution/constraints/end-state. SITREP-shaped status_up includes status, artifacts produced (each with soldier callsign), QC notes, what-the-higher-echelon-should-know.
 - **Doctrine inheritance.** Battalion SOP > Company SOP > Platoon SOP. Each echelon's rules are a subset and specialization of the parent's. NCO doctrine = Officer doctrine subsetted for execution-discipline.
 - **Context isolation between echelons.** PL sees SITREPs, not Soldier internals. Aggregation happens at every echelon. This is the property that makes MCA scale where flat-context multi-agent frameworks hit context limits at N=20.
-- **MDMP within the PL's loop.** The Platoon Leader's planning before INTENT_DOWN is MDMP-shaped (Receipt of Mission → Mission Analysis → COA Development → Approval → Orders Production). MDMP is the planning subroutine. MCA is the architecture.
+- **MDMP within the PL's loop.** The Platoon Leader's planning before INTENT_DOWN is MDMP-shaped (Receipt of Mission → Mission Analysis → COA Development → COA Analysis/Wargame → COA Comparison → COA Approval → Orders Production — the seven steps of FM 5-0 ¶1-57). MDMP is the planning subroutine. MCA is the architecture.
 
 ---
 

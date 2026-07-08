@@ -56,7 +56,7 @@ Status legend: **✅ Wired** (built and in the architecture) · **⚠️ Named, 
 | ADP 2-0 / IPB element | What we have here | Status | Disposition (Law VII) |
 |---|---|---|---|
 | **K/I/G discipline** (Known / Inferred / Gap) | Truth-as-Architecture; the GAP feeds the RFI loop; Principle 12 ("what else?") generates gaps | ✅ Wired & validated | Core of the doctrine; in use across products |
-| **Calibrated confidence** | Agent Doctrine #7 (Confidence Scoring); "I don't know" as calibrated stop; prudent risk acceptance | ✅ Wired & validated | In use; LOW confidence treated as signal, not failure |
+| **Calibrated confidence** | Agent Doctrine #7 (Confidence Scoring); "I don't know" as calibrated stop; risk acceptance | ✅ Wired & validated | In use; LOW confidence treated as signal, not failure |
 | **RFI** (Request for Information) | MCA third protocol; structured registry/routing schema; closes the K/I/G GAP loop | ✅ Wired (doctrine); registry ⚠️ Stage 9 candidate | Protocol in use; registry/routing deferred (Stage 9) |
 | **PIR / EEI** (priority intel / essential elements) | MCA "Staff processes"; staff drives proactive collection — *plumbing owned by* `FM_6_0_CROSSMAP.md` | ⚠️ Named, unbuilt | Deferred — Law X gated; here it is the *requirement that drives analysis*, not the schedule |
 | **CCIR** (commander's critical info requirements) | Staff agents as standing watchers; MCA names it highest-leverage next add | ⚠️ Named, unbuilt | Deferred — Law X gated; see FM 6-0 cross-map for the staff-process reading |

@@ -44,7 +44,7 @@ Status legend: **✅ Wired** (built and in the architecture) · **⚠️ Named, 
 | **Staff organization (S-1…S-9)** | MCA Staff Channel; named specialists (Drake/S-2, Marshall/Legal, Halsey/S-6); `ADP_6_0_TRANSLATION` staff-numbering gloss | ✅ Wired (as advisory roles) | Structure named and in use |
 | **Cross-functional staff *agents* (S-2/3/4/6 as standing agents)** | MCA "Not yet started" | ⚠️ Named, unbuilt | Deferred — Law V + Law X gated; no date until prior packet ships |
 | **Command post organization & operations** | COP system (MCA §COP); three-layer COP per product | ✅ Wired (doctrine); live cross-run COP state ⚠️ Funkytown Stage 10 candidate | COP doctrine in use; persistent state store deferred (Stage 10) |
-| **MDMP** (receipt → mission analysis → COA dev → approval → orders) | Operator runs it; SHAPING flow; AGENT_DOCTRINE; ADP translation | ✅ Wired | In use at Platoon scope |
+| **MDMP** (7 steps: receipt → mission analysis → COA dev → COA analysis/wargame → COA comparison → COA approval → orders) | Operator runs it; SHAPING flow; AGENT_DOCTRINE; ADP translation | ✅ Wired | In use at Platoon scope (audit 2026-07-07: step list corrected from a 5-step compression) |
 | **Troop Leading Procedures (TLP)** | SL-tier task assignment within squad; referenced, not formalized as the 8-step drill | ⚠️ Partial | Squad-tier planning works; formal TLP drill not schema'd |
 | **Rapid Decision-Making & Synchronization (RDSP)** | — re-plan-on-the-fly mid-execution loop | ❌ Absent | Genuine gap; deferred — Law X gated |
 | **Running estimates** | MCA "Staff processes" table; AGENT_DOCTRINE; ADP translation | ⚠️ Named, unbuilt | Deferred — feeds COP; Law V + Law X gated |
@@ -107,4 +107,4 @@ When the statistician packet ships and Law X opens, the natural first pickup is 
 
 ## Source
 
-- FM 6-0, *Commander and Staff Organization and Operations*, Headquarters, Department of the Army (May 2014, w/ Change 2, April 2016). Companion to ADP 6-0 (*Mission Command: Command and Control of Army Forces*). ADP 6-0 is the philosophy; FM 6-0 is how the staff executes it.
+- FM 6-0, *Commander and Staff Organization and Operations*, Headquarters, Department of the Army (**May 2022**, which supersedes the 5 May 2014 edition). Companion to ADP 6-0 (*Command and Control*, 07 July 2026, superseding *Mission Command…* 2019). ADP 6-0 is the philosophy; FM 6-0 is how the staff executes it. (Editions corrected 2026-07-07 ground-truth audit; the coordinating-staff roster used to cross-map the specialists is FM 6-0 2022 ¶2-46.)

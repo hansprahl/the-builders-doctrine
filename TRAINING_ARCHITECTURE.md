@@ -14,15 +14,19 @@
 
 ## The principles, ported
 
-ADP 7-0 carries a small set of training principles. Each maps to a portfolio property that already exists or should:
+ADP 7-0 (2024) enumerates **nine** principles of training (¶3-2). Each maps to a portfolio property that already exists or should. (Principle names below are verbatim from ADP 7-0; the 2026-07-07 ground-truth audit corrected an earlier version of this table that listed five and mislabeled two.)
 
-| Principle (ADP 7-0) | Portfolio property |
+| Principle (ADP 7-0 ¶3-2) | Portfolio property |
 |---|---|
 | **Commanders are the primary trainers** | Hans authors the commandments and STORY; the biography *is* the training data. The trainer of every specialist is the commander, not a vendor benchmark. (Builders Doctrine: "the prompts are the training data, and the builder writes the prompts.") |
+| **NCOs train individuals, crews, and small teams; they advise commanders** | The NCO/SL tier owns task-level standards and QC within scope (MCA authority gradient). Squad-tier training and re-tasking happens without laddering to the commander. |
+| **Train using multiechelon techniques** | Certification runs at every echelon (Squad → Platoon → Company), not just top-level. A capability is trained at the tier that owns it. |
+| **Train as a combined arms team** | Specialists are certified working *together* (MDMP handoffs, cross-specialist review), not only in isolation — the combined staff, not just the individual officer. |
+| **Train to standard using appropriate doctrine** | A capability ships when it passes its standard (GO), not when a sprint ends; and the standard is the *doctrine* (SPECIALIST_TEMPLATE, the commandments), not an improvised bar. Calendar pressure does not lower it. |
 | **Train as you fight** | Certify under realistic conditions, not toy ones. The **Rubicon-simulated** stage runs plans against cohort digital twins; Drake (OPFOR) wargames against real adversary models; cross-family adversarial review tests prompts against Grok/GPT/Llama, not just the home model. |
-| **Train to standard, not to time** | A capability ships when it passes its standard (GO), not when a sprint ends. Calendar pressure does not lower the bar. |
-| **Train to sustain** | The Guardian's *weekly* audit and the AAR loop keep a certified capability at standard after launch — proficiency decays without sustainment. |
-| **Protect training time** | Certification is not optional overhead to be cut under deadline. The CI gate (`guardian_ci.py`) makes it non-skippable. |
+| **Sustain levels of training proficiency over time** | The Guardian's *weekly* audit and the AAR loop keep a certified capability at standard after launch — proficiency decays without sustainment. |
+| **Train to maintain** | Keep the tool itself serviceable: the reliability-checkpoint discipline (leave the tool better than you found it), the health heartbeat, dependency hygiene. Training includes maintaining the machine that trains. |
+| **Fight to train** | Certification is not optional overhead to be cut under deadline. The CI gate (`guardian_ci.py`) makes it non-skippable — training time is defended, not sacrificed to the next feature. |
 
 ---
 
