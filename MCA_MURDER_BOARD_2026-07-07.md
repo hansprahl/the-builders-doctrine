@@ -130,6 +130,33 @@ pluggable-kernel thesis empirically. Deferred; not gated here.
 **Immediate build queue:** (a) E1 experiment design + harness [now]; (b) kernel chassis primitive,
 first step = cheap-gate-first portability sketch [after/parallel]. One at a time.
 
+## Cheap-gate-first sketch — RESULT (2026-07-07, recon against actual chassis code)
+
+The board recommended "extract a 5-primitive kernel as a chassis primitive" without seeing the code.
+Recon against `the-builders-doctrine/kit/chassis/` shows most of it is already shipped, and two of the
+gaps should NOT be chassis-ized:
+
+- **P1 world-boundary approval gate** — ✅ already chassis (`approval_queue.py` + `authority_gradient.py`).
+- **P3 advisory-decline-becomes-evidence log** — ✅ already chassis (`authority_gradient.py` STAFF
+  "never-override-always-log").
+- **P2 self-approval ban** — ⚠️ enforced by CONVENTION (Operator strips approve/reject from specialist
+  tool allowlists), NOT by a chassis identity check. `approval_queue.py` has no actor≠approver guard.
+- **P4 intent-contract schema** — ❌ gap: OPORD-down is a tier concept, no `goal+constraints+risk` object.
+- **P5 calibrated-confidence output** — ⚠️ partial: AAR calibrates retrospectively; no output-tag primitive.
+- **`parity_top.py`** already IS the TOP-portability harness (runs TOP's real data through the chassis).
+
+**Portability gate (vs. TOP):** P2 and P4 are **multi-agent-shaped** — TOP is single-agent, so neither
+self-approval-ban nor agent-to-agent intent-passing ports. Forcing them into the universal chassis
+balloons the substrate for single-agent products → **P2, P4 stay operator-local (or thin
+`authority_gradient` extensions), NOT new chassis primitives.** P5 is the only gap that plausibly ports
+to TOP → the one legitimate new-chassis-primitive candidate, pending its own sketch.
+
+**Decision:** Do NOT build a new "kernel" chassis primitive. The chassis already carries P1+P3; P2 is a
+convention to optionally harden in `approval_queue` (actor≠approver guard, product-neutral, ports);
+P4 stays operator-local; P5 is a separate candidate. **Gate all of it behind E1** — enshrine nothing in
+a primitive until E1 proves what's load-bearing.
+
 ---
 
-*Ratified. E1 is the active build.*
+*Ratified. E1 is the active build. Chassis-kernel work reduced to (at most) an approval_queue
+actor≠approver guard + a P5 confidence sketch — deferred behind E1.*
