@@ -31,9 +31,41 @@ assertion sitting in the slot the truth would have occupied.
 The letters are the method, and the method is a loop. Each move addresses one cell of the
 known/unknown matrix, and each requires machinery the others cannot supply.
 
+> ### ⚠ RETRACTED 2026-08-10 — the Hold cell's mechanism claim
+>
+> **"Reading confirms the lie; only provocation is verification" is
+> DISCONFIRMED and withdrawn.** Retracted by the pre-committed decision rule of
+> the first live test, six hours after this file was written.
+>
+> Thirteen guardrails Operator's own documents claim are active, two blind arms.
+> An independent reader with no session context found **every failure the
+> planted violations found, plus one they missed** — an SMS channel replying to
+> strangers with no approval. **Disagreements where reading said sound and
+> provocation said dead: zero.** The frozen rule assigned that outcome to "the
+> Hold premise is dead" before any data existed.
+>
+> Full pathology: `operator/eval/guardrail_verification/RESULT_2026-08-10.md`.
+> Chart frozen at `979855f`; provoke arm locked at `2fc78e3` before the reader
+> was seen.
+>
+> **What survives.** The *cell* stands — false known-knowns are real and 4 of 13
+> claimed controls were not in force. What died is the claim that provocation is
+> the privileged instrument for finding them.
+>
+> **Candidate replacement, untested, needs its own chart:** the distinction may
+> be *naive reading versus adversarial verification*, with provocation and
+> instructed reading as two implementations of one thing. The reader was told
+> "do not rely on what docstrings claim, find the enforcing code path" — that is
+> not the naive reading this cell used as its foil. **This is a new hypothesis
+> and does not get to rescue the dead one.**
+>
+> Recorded honestly rather than quietly amended: the prover was also sloppy —
+> four instrument errors, one of which decided the result. A better prover might
+> have tied. That is a limitation, not a defense.
+
 | | cell | what it is | how it fails | **the move** |
 |---|---|---|---|---|
-| **H** | Known Known | what you know you know | the **false** known-known — the guardrail you believe is wired | **HOLD.** Provocation. Plant the violation, watch it fire, date the record. Reading the code confirms the lie. |
+| **H** | Known Known | what you know you know | the **false** known-known — the guardrail you believe is wired | **HOLD.** ~~Provocation. Reading the code confirms the lie.~~ **Mechanism claim retracted — see above.** Verification of some adversarial kind is still required; which kind is now an open question. |
 | **A** | Known Unknown | the named gap | gaps go unowned and rot back into unknown-unknown | **ADMIT.** Tasking. Method, owner, done-when. A gap without an owner is a wish. |
 | **N** | Unknown Known | held but never surfaced | present in the corpus, not retrieved at the moment of decision | **NOTICE.** Selection at the point of decision. Put it where the decision happens; choose what governs rather than dumping everything in. |
 | **S** | Unknown Unknown | not enumerable | invisible by construction | **SWEEP.** External provocation. An adversary who is not you, and a record of what got killed. |
