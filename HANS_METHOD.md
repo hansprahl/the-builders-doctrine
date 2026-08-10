@@ -39,10 +39,15 @@ known/unknown matrix, and each requires machinery the others cannot supply.
 >
 > Thirteen guardrails Operator's own documents claim are active, two blind arms.
 > An independent reader with no session context found **every failure the
-> planted violations found, plus one they missed** — an SMS channel replying to
-> strangers with no approval. **Disagreements where reading said sound and
-> provocation said dead: zero.** The frozen rule assigned that outcome to "the
-> Hold premise is dead" before any data existed.
+> planted violations found, plus one they missed** — an SMS channel that sends
+> model-written replies with no approval queue. **Disagreements where reading
+> said sound and provocation said dead: zero.** The frozen rule assigned that
+> outcome to "the Hold premise is dead" before any data existed.
+>
+> *(Severity correction, same day: that SMS finding was first written up as
+> "replies to strangers." False — an allowlist of three gates it. The verdict
+> held; the severity did not. It was the fifth instrument error of the exercise
+> and the only one published before being caught.)*
 >
 > Full pathology: `operator/eval/guardrail_verification/RESULT_2026-08-10.md`.
 > Chart frozen at `979855f`; provoke arm locked at `2fc78e3` before the reader
