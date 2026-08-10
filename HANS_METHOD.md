@@ -228,6 +228,93 @@ two of those three are very likely already taken.
 
 ---
 
+## THE LOAD-BEARING GAP — is any of this portable? Named 2026-08-10, untested.
+
+**In plain English: Hans may have built something only he can use, and has never checked.**
+
+Two lines in this doctrine pull against each other, and the tension has never been examined.
+*Sovereignty requires an epistemic ledger.* And *the method is portable to any builder; the
+moat belongs to whoever's biography is doing the building.*
+
+**Three possible states. Nobody can currently tell which one is true.**
+
+| | state | what it makes this |
+|---|---|---|
+| **A** | portable and cheap — someone reads the page, runs a cell, finds something real | a genuine contribution; the market is everyone with a system they cannot verify |
+| **B** | portable but expensive — needs a graveyard, a panel, multiple vendor subscriptions for the Sweep cell, and pre-registration discipline | a consulting practice, not a movement. Viable, but a different business than this artifact implies |
+| **C** | not portable — it works because of twenty-one years of collection instinct, 800 hours of machinery, and a temperament that pre-registers predictions it expects to lose | true and useless to anyone else |
+
+**2026-08-10 made C more plausible, not less.** With the doctrine repo, the graveyard, the
+ledger, and the discipline all in place, the first guardrail pilot found **four of the
+author's own thirteen claimed controls dead.** Not from sloppiness — from the ordinary
+silent decay this method exists to catch. If the person who invented it, holding the most
+machinery, runs a 31% failure rate on his own cells, *"build an epistemic ledger"* is not
+advice a normal person can act on.
+
+**This outranks the prior-art question.** Prior art decides whether the idea can be
+*claimed*. Portability decides whether it is *worth anything to anyone but its author*. A
+99-agent sweep went to the first; zero minutes have gone to the second.
+
+### The decomposition that makes it testable
+
+The method has two halves that have been treated as one:
+
+- **Building the frame** — deciding what the cells are, what counts as a control, what the
+  decision rule is. Where the 800 hours went. Almost certainly not portable.
+- **Running the frame** — taking a defined list and verifying it. Mechanical.
+
+**Evidence already in hand on the second half, and it is encouraging.** In the 2026-08-10
+pilot an agent with **zero context, zero hours, and no biography** was handed a frame and
+one instruction — *do not trust the docstrings, find the enforcing call site* — and
+**outperformed the person who built the system.** Running a cell may be far cheaper than
+800 hours implies. What that does **not** test is whether anyone can *construct* a frame:
+the reader was handed a list Hans built and a rule Claude wrote.
+
+### The cheap test
+
+One person who is not Hans, with a real system they cannot verify. Hand them the artifact
+and nothing else — no coaching, no author in the room. Have them run **Hold**: list what
+the system claims to protect, plant a violation for each, record what fired.
+
+Measure four things: did they finish · how long · did they find anything real · and did they
+do it correctly, or make the prover's mistake of grepping for a name, finding nothing, and
+declaring a surface nonexistent.
+
+**One person, one afternoon, and it discriminates A from B from C directly.**
+
+## Positioning — open weights are necessary and not sufficient
+
+**2026-08-10, and the exhibit is lived rather than argued.** Meta published *"The Future Is
+for Everyone"* — Muse Glimmer released under a permissive open license, Muse Spark 1.2 for
+developers, a $1B fund, and a policy push against concentration of AI power.
+
+The same day, on the same machine, Hans **downloaded those open weights within hours and
+could not run them.** 19.7 GiB required against a 17.3 GiB Metal ceiling. And when the
+hardware does arrive, the other wall is already measured: local models produced 21–24
+confabulations on a frozen 49-question bank, raw.
+
+**A model you own, on hardware you own, under a license nobody can revoke, that still makes
+things up.** Openness was never the constraint.
+
+Three things this clarifies, and the first is the commercially useful one:
+
+1. **Open weights externalize verification onto the user.** Closed providers absorb that
+   cost centrally. Open the weights and the responsibility goes to people with no eval
+   infrastructure. **Every open-weight deployment is a system whose owner cannot verify
+   it** — which enlarges the problem this method addresses rather than solving it.
+2. **Distributing weights does not distribute judgment.** The manifesto argues against
+   concentration of *power*. It does not address concentration of *error*: a model that
+   confabulates, copied ten million times, is a confident liar with ten million owners who
+   cannot tell.
+3. **Open weights are only liberating for those who can verify.** For everyone else it is a
+   downgrade — a vendor's imperfect guardrails traded for none, and the difference is
+   imperceptible, because a confabulating model feels exactly like a working one.
+
+**Sovereignty without verification is unsupervised failure with better branding.** Position
+public work here — not against open weights, which are good, but on the layer they leave
+open. Note the clock: as "AI sovereignty" becomes a marketing term for open weights, the
+more precise meaning gets harder to claim, not easier.
+
 ## What this method does NOT claim
 
 - **Not that four cells are exhaustive.** Four is inherited and convenient. No argument has
@@ -268,10 +355,11 @@ stays hypothesis-grade and Law VII is not yet in force against it.
 
 | # | requirement | why it matters |
 |---|---|---|
-| 1 | **Guardrail inventory with planted violations**, portfolio-wide | Converts the largest cell from belief to fact. Every claimed guardrail gets a dated fire-or-fail record. Currently: **never run anywhere.** |
-| 2 | **One measured cell-closure** in a bounded domain | The only thing that answers "is this binding, or just true?" Show a decision made with the map beating the same decision without. |
-| 3 | **Finish the prior-art sweep** for the three unsearched claim areas | Cheapest possible kill, still outstanding. |
-| 4 | **External murder board** — after 1 and 3, not before | A panel grading a frame with no evidence attached grades the prose. |
+| **1** | **THE PORTABILITY TEST — one person who is not Hans runs the Hold cell from this page alone.** Reordered to first 2026-08-10. | **The load-bearing assumption.** Decides whether this is a contribution, a consulting practice, or a private habit. One person, one afternoon, and it discriminates all three. Nothing else on this list matters if the answer is C. |
+| 2 | **Guardrail inventory with planted violations**, portfolio-wide | Converts the largest cell from belief to fact. **Partially run 2026-08-10** on Operator: 13 controls, 4 dead, and it retracted the Hold cell's mechanism. Never run on any other product. |
+| 3 | **One measured cell-closure** in a bounded domain | The only thing that answers "is this binding, or just true?" Show a decision made with the map beating the same decision without. |
+| 4 | **Finish the prior-art sweep** for the three unsearched claim areas | Cheap, still outstanding — but **demoted below portability**: prior art decides whether the idea can be claimed, portability decides whether it is worth claiming. |
+| 5 | **External murder board** — after 1, 2 and 4, not before | A panel grading a frame with no evidence attached grades the prose. |
 
 **Falsification indicators, pre-committed:** graveyard headstones scattering evenly across
 cells · a prior-art hit describing the sovereignty connection · a Hold-class fix repairing a
