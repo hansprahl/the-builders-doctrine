@@ -33,6 +33,7 @@ simple kill, 0.92-as-yes, COS Holding below GREEN, or using HANS to dodge a one-
 5. Score worship without trust line
 6. Autopilot COS past GREEN
 7. No kill criteria / no review date
+8. Wrong body for SMS (Hege texting; Operator owns SMS)
 
 ---
 

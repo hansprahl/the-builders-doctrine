@@ -137,8 +137,8 @@ live demo → KK conf 0.92 → Hans ratify → permanent rule `PATH_JAIL_RULE.md
 **Trust line on Hold cards (2026-08-11):** `TRUST: GREEN|AMBER|RED` is the product;
 score supports it. See funkytown `experiments/26_claude_cowork_recon/TRUST_LINE.md`.
 
-**COS Green Hold tested (Exp 28):** auto-Hold GREEN only; text Hans on issues. Working
-Hold only — not permanent doctrine marriage.
+**COS Green Hold tested (Exp 28):** Hege desk auto-Hold GREEN only; issues escalate via
+**Operator SMS** (Hege does not SMS). Working Hold only — not permanent doctrine marriage.
 
 ---
 
