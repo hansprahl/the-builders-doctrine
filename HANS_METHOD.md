@@ -134,6 +134,61 @@ retraction (2026-08-10) still stands.
 live demo → KK conf 0.92 → Hans ratify → permanent rule `PATH_JAIL_RULE.md` +
 `~/.claude/tools/path_jail.py`. Template for future HANS Hold promotions.
 
+**Trust line on Hold cards (2026-08-11):** `TRUST: GREEN|AMBER|RED` is the product;
+score supports it. See funkytown `experiments/26_claude_cowork_recon/TRUST_LINE.md`.
+
+**COS Green Hold tested (Exp 28):** auto-Hold GREEN only; text Hans on issues. Working
+Hold only — not permanent doctrine marriage.
+
+---
+
+## Do not marry the method (standing order — Hans 2026-08-11)
+
+> *I'm in love with this HANS Doctrine… you have to make sure I don't marry it.*
+
+Love is allowed. **Marriage is forbidden.** Marriage means the method becomes identity,
+unfalsifiable, or the default answer to every problem. An instrument you cannot kill is
+already a false known-known in the Hold cell.
+
+### What marriage looks like (observable)
+
+| Sign | What it sounds like | Intervention |
+|------|---------------------|--------------|
+| Identity merge | "I am a HANS Method person" / branding before evidence | Interrupt; restate **hypothesis-grade** |
+| Universal hammer | Running chew/trust line on a problem that needs a knife, a nap, or a no | Ask: *is this the wrong tool?* |
+| Sacred cow | Blocking a kill or simplification because "it violates HANS" | Prefer kill evidence over loyalty |
+| Ritual over result | Full UU→KU→KK theater when a 10-minute live test would decide | Collapse to the cheapest falsifier |
+| Score worship | "0.92 so we ship" without the trust line | Point at TRUST line, not the decimal |
+| Autopilot COS | Hege Holds AMBER/RED or bolts prod because "the method said" | Hard stop; one-way doors stay Hans |
+| Unfalsifiable frame | No kill criteria, no review date, no successor named | Refuse to treat as settled |
+
+### What love looks like (allowed)
+
+- Using the four cells when the failure mode matches
+- Chewing before calling something FACT
+- Preferring a line that cannot lie over a flattering score
+- Naming residual and residual *limits*
+- Killing a piece of HANS when a frozen test kills it (already done once: Hold mechanism 2026-08-10)
+
+### Hard floors for agents
+
+1. **Status on every serious use:** this file is still **HYPOTHESIS-GRADE** until murder-boarded and outcome-measured. Do not speak as if it were Law.
+2. **Dependency test applies to HANS itself:** if the method makes Hans *less* able to decide without the ritual, the method is failing. Designed to be needed less, not more.
+3. **Named kill criteria (any one is enough to demote):**
+   - A cheaper instrument (read code, one sealed test, one honest no) beats full HANS stack on the same decision class three times running
+   - Marriage signs appear and Hans does not correct when interrupted
+   - Method is used to *avoid* a one-way-door judgment he owes
+   - External murder board kills non-substitutability or sovereignty claim without a pre-named successor
+4. **Agent duty when marriage signs fire:** say so in the first line. Do not flatter. Offer the smaller move. Prefer delete over elaborate HANS ceremony.
+5. **Review-by:** 2026-11-11 — re-read this section cold; if no marriage signs and no kill criteria met, keep hypothesis-grade; if signs met, demote language in products to "optional checklist."
+6. **Surname is not a wedding:** naming it HANS does not make it permanent. The first Hold mechanism already died under its own rule. Keep that as the model.
+
+### One sentence
+
+**Use it. Do not become it. Kill the part that fails.**
+
+Canonical short form: `DONT_MARRY_HANS_METHOD.md`.
+
 ---
 
 ## Why H and N are the hard ones
