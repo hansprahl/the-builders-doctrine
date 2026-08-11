@@ -348,6 +348,67 @@ owner attached.
 
 ---
 
+## How to disprove this and end up with something better
+
+**The rule that turns a kill into an upgrade: pre-register the SUCCESSOR, not just the
+falsifier.** Before running a test, write down *"if this dies, the next version says X."*
+On 2026-08-10 that was not done — the Hold cell died and its replacement hypothesis was
+written twenty minutes later, after the data, which is exactly when rationalization walks
+in. Name the successor first and the kill hands you the next version instead of leaving you
+improvising in the rubble.
+
+| claim | what kills it | the successor, named in advance |
+|---|---|---|
+| **Sweep needs an outside LINEAGE** | Give a same-lineage agent a genuinely adversarial task on a real target | **Sovereignty becomes fully local** — the one cell thought to require an outside vendor runs at home |
+| **Portability** | One person, one page, one cell, no coaching | contribution → consulting practice → private habit |
+| **Non-substitutability** | 2×2 crossover: an H-class and an N-class failure, each fix applied to each | **The method collapses to one sentence: verify adversarially, repeatedly.** Simpler, possibly correct |
+| **Operator-vs-system inversion** | Classify failures by whose belief was wrong, on a corpus that is not Hans's | the method points at the AI rather than at its operator — a different product, a different buyer |
+| **Binding-ness** | Measured cell-closure against the same effort spent on money, time, or model tier | true but not worth doing — a checklist, not a strategy |
+
+### Order, and it is not the obvious one
+
+**Decomposition before parts.** If non-substitutability is false there are not four steps,
+there is one step wearing four hats — and three iterations would have gone into polishing
+cells that are not separate things. The crossover is cheap and belongs at step zero.
+
+Then **Sweep-lineage**, because it is cheap, its failure is *good news*, and **it is already
+half-disconfirmed by evidence nobody has examined.** The 1-in-64 self-catch rate was
+measured under conditions where the inside model was never *tasked* to hunt
+unknown-unknowns. In the 2026-08-10 pilot an agent of the **same lineage**, given one
+adversarial instruction, found what the prover missed. That is an outside **seat**, not an
+outside **lineage** — and if the cell is about role isolation rather than model provenance,
+the "sovereignty requires calling an outside vendor" tension dissolves entirely.
+
+Then **portability**, then **non-substitutability**, then the expensive one last.
+
+### The whole-loop test must measure interaction, not repetition
+
+Running the four steps again in sequence is four unit tests in a trench coat. The
+integration test earns its name by measuring whether closing one cell degrades another,
+and whether the loop converges or oscillates. Its natural form is already requirement 3:
+run the method end to end on an untouched domain and show a decision made with the map
+beating the same decision without it.
+
+### Two disciplines that keep the loop from becoming a trap
+
+**Delete, do not qualify.** Doctrine's failure mode is accretion — a claim dies, gets hedged
+into a footnote, and the page becomes armor. The 2026-08-10 retraction was clean. Keep that.
+
+**At least one pre-registered successor must be the empty set** — *"this frame is wrong, use
+something else."* This method self-applies: attacking it with Sweep, tasking the gap with
+Admit, retrieving what was already known with Notice, holding what survives. That is a
+genuine strength, and it is also exactly how a system becomes unfalsifiable — every attack
+gets processed *through* the frame, every counterexample becomes evidence the frame works.
+**If every branch terminates in another version of HANS, this is not a falsification
+program. It is an immune system for a belief.**
+
+### Phases are for establishing it, not for running it
+
+Decay is concurrent. While Hold is being perfected, Notice is rotting — the Prompt Guardian
+ran correctly until 2026-05-15 and then stopped for three months while attention was
+elsewhere. Once established, the loop cannot stay phased. It stops being a project and
+becomes a heartbeat.
+
 ## Before ratification
 
 Four things are owed. Execution dates attach when Hans sets them; until then this artifact
@@ -359,7 +420,8 @@ stays hypothesis-grade and Law VII is not yet in force against it.
 | 2 | **Guardrail inventory with planted violations**, portfolio-wide | Converts the largest cell from belief to fact. **Partially run 2026-08-10** on Operator: 13 controls, 4 dead, and it retracted the Hold cell's mechanism. Never run on any other product. |
 | 3 | **One measured cell-closure** in a bounded domain | The only thing that answers "is this binding, or just true?" Show a decision made with the map beating the same decision without. |
 | 4 | **Finish the prior-art sweep** for the three unsearched claim areas | Cheap, still outstanding — but **demoted below portability**: prior art decides whether the idea can be claimed, portability decides whether it is worth claiming. |
-| 5 | **External murder board** — after 1, 2 and 4, not before | A panel grading a frame with no evidence attached grades the prose. |
+| **2b** | **EXTERNAL MURDER BOARD — moved up from #5 on 2026-08-10.** Multi-lineage panel, run after portability. | **Reason for the move:** the original deferral was *"a panel grading a frame with no evidence attached grades the prose"* — and the artifact now carries a measured pilot, a same-day retraction rendered by a frozen rule, 64 classified kills, and an honest prior-art section. The evidence bar is met. **The reason to hurry is sunk cost:** a cold read is cheapest when the author is least attached, and this frame already has a day and a surname invested in it. The retraction is the strongest exhibit to hand a panel and it did not exist that morning. |
+| 5 | ~~External murder board, last~~ | Superseded by 2b. **Standing indictment while it remains unrun: every attack on this method so far — the ACH, the graveyard classification, the prior-art sweep, the guardrail pilot — was run by an agent of one lineage, from inside. The Sweep cell's own measured claim is that an inside attacker finds 1 unknown-unknown in 64. By its own argument, the frame has barely been tested.** |
 
 **Falsification indicators, pre-committed:** graveyard headstones scattering evenly across
 cells · a prior-art hit describing the sovereignty connection · a Hold-class fix repairing a
