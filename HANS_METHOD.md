@@ -57,12 +57,25 @@ known/unknown matrix, and each requires machinery the others cannot supply.
 > claimed controls were not in force. What died is the claim that provocation is
 > the privileged instrument for finding them.
 >
-> **Candidate replacement, untested, needs its own chart:** the distinction may
-> be *naive reading versus adversarial verification*, with provocation and
-> instructed reading as two implementations of one thing. The reader was told
-> "do not rely on what docstrings claim, find the enforcing code path" — that is
-> not the naive reading this cell used as its foil. **This is a new hypothesis
-> and does not get to rescue the dead one.**
+> **The differential, run the same night, names the broken link precisely.** The
+> chain was: docs make claims → doc-reading cannot detect falsity → **code-reading
+> cannot either** → therefore only provocation works. **Link three is what broke.**
+> The cell's real foil was reading the *documentation*, which fails badly and
+> decisively — a doc-reader would have scored at least 4 of 13 wrong. That got
+> generalized to *reading*, and instructed code-reading went untested until it
+> wasn't: it caught **3 of 4 dead controls outright** and **never once called a
+> dead control healthy.** Naive code-reading is still untested — the cell may yet
+> be right about a reader who skims for a definition rather than a call site.
+>
+> **Candidate replacement, sharpened by the differential, needing its own chart:
+> reading DETECTS, provoking REFUTES — a pipeline, not a contest.** Provocation
+> found nothing reading missed, but it killed the reader's one false positive.
+> The two arms did different jobs. **This is a new hypothesis and does not get to
+> rescue the dead one** — it earns doctrine only with a frozen chart and its own
+> successor named in advance.
+>
+> Full pathology and fix routing: the DIFFERENTIAL section of
+> `operator/eval/guardrail_verification/RESULT_2026-08-10.md`.
 >
 > Recorded honestly rather than quietly amended: the prover was also sloppy —
 > four instrument errors, one of which decided the result. A better prover might
