@@ -187,6 +187,21 @@ Not override (bypass). Not remember (passive recall). Not memorize (thesaurus).
 Operator: `tools/hege_exception_sms.py` + commander verbs in `sms_commander.py`.  
 Hege raises; Operator SMS; Hans decides. Channel split is load-bearing.
 
+### Bottom-up staff push (Hans 2026-08-11)
+
+> *I shouldn't have to sit in front of the computer all day and find new things.
+> Hege/Operator… the stack does all of that and pushes me data like a staff would.
+> Not top-down. Bottom-up.*
+
+| Layer | Does |
+|-------|------|
+| Bottom | Sweep, clean, chew, score, Hold GREEN in silence |
+| Push | AMBER/RED flags to phone (SO WHAT + COAs + Q&A) |
+| Top | Hans: COA only, permanent ratify, prod bolt-on |
+
+Scheduled: `com.operator.cos-lightbulb-pull` runs the bottom and the push.  
+Hans does not have to open a laptop to learn there is a decision.
+
 ---
 
 ## Do not marry the method (standing order — Hans 2026-08-11)
