@@ -107,7 +107,8 @@ Same four cells; concrete verbs on the lightbulb surface:
 |-----------|------------------------|-----------|
 | **S Sweep** | Collect **UU** hypothesis | lightbulb recon, `uu_loop`, external product probes, cold-read |
 | **A Admit** | Land **KU** — named gap + owner + done-when; **dwell** | `KU_QUEUE.md`, implement/test owed; *chew before FACT* |
-| **H Hold** | After chew → **KK** + earned confidence → Hans decides | what-else, murder board, sealed re-probe, autopsy, findings; `kk_cards/`; ratify/ingest |
+| **A+ clean** | **Clean the register before you chew the batch** | EMBA analyst process (copy first, drop noise, protect list, manifest) — see below |
+| **H Hold** | After chew → **KK** + TRUST line → Hans / COS-GREEN | what-else, murder board, live test, `kk_cards/`; ratify/ingest; COS Hold GREEN only |
 | **N Notice** | Mine / connect latent patterns at decision time | collection mine (next), memory-rag over ingested KKs |
 
 **Triggerable chew loop (Hans):** UU hypothesis → what-else → murder board → implement/re-probe
@@ -139,6 +140,36 @@ score supports it. See funkytown `experiments/26_claude_cowork_recon/TRUST_LINE.
 
 **COS Green Hold tested (Exp 28):** Hege desk auto-Hold GREEN only; issues escalate via
 **Operator SMS** (Hege does not SMS). Working Hold only — not permanent doctrine marriage.
+
+**Loop test PASS (2026-08-11 evening):** Arm A silence + Arm B interrupt + collection pull
+on cleaned set → 5 HOLD, 0 RAISE, Operator dry-drain empty. Real `--send` still Hans-gated.
+
+### Data clean is part of the method (Hans 2026-08-11)
+
+> *we are cleaning our data right… we have a process for this* — EMBA (Beaver XMBA 4364),
+> lived in Operator (yahoo-archive / WMT clean 2026-06-30).
+
+**Not optional hygiene theater.** A dirty UU/KU register is a false known-known factory:
+noise gets chewed as if it were a real gap. Cleaning is **Admit-adjacent instrument work** —
+prepare the ledger before the chew loop and before COS pull.
+
+| Step | Rule (every time you get data) |
+|------|--------------------------------|
+| 1 | **Copy first** — archive sheet / `collection_pre_clean_*.jsonl` |
+| 2 | Drop useless (template, parse-noise ids) |
+| 3 | Protect list (INGESTED / RATIFIED / GREEN never dropped) |
+| 4 | Ambiguous real KUs **kept** (dwell, not invent COMPLETE) |
+| 5 | Manifest: kept/dropped + policy (`_manifest/clean_stats.json`) |
+
+Code: funkytown `experiments/26_claude_cowork_recon/clean_collection.py`  
+Pattern twin: `~/Projects/yahoo-archive/README.md` + `_manifest/clean_stats.json`
+
+```
+Sweep UU → [CLEAN register] → Admit KU dwell → chew → live test → TRUST
+  → GREEN: Hege working Hold (silence)
+  → AMBER/RED: raise → Operator SMS (Hans; --send is one-way)
+  → Hans ratify permanent / prod bolt-on
+```
 
 ---
 
