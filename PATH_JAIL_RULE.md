@@ -55,3 +55,11 @@ Regression: re-run `python demo_path_jail.py` (and optionally `--agent`).
 Apply when building or reviewing file tools in: Operator, Hege/home-ai, Grok Build workflows, Funkytown harnesses, any agent with host FS access.
 
 **Do not ship** host-file agents that only prompt-limit scope.
+
+---
+
+## Process note (also permanent)
+
+Hans clarified 2026-08-11: *“permanent meant for the testing before getting to me.”*
+
+The path-jail **rule** is permanent. The **live-test-before-ratify** gate is also permanent portfolio process for any future KK that reaches Hans (`promote.py` requires `--live-test-report` with PASS).
