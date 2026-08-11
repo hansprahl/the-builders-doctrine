@@ -168,8 +168,24 @@ Pattern twin: `~/Projects/yahoo-archive/README.md` + `_manifest/clean_stats.json
 Sweep UU → [CLEAN register] → Admit KU dwell → chew → live test → TRUST
   → GREEN: Hege working Hold (silence)
   → AMBER/RED: raise → Operator SMS (Hans; --send is one-way)
-  → Hans ratify permanent / prod bolt-on
+  → Hans replies: re-chew | reject | hold
+  → hold = HANS Hold cell (write verified KK memory)
+  → permanent doctrine / prod bolt-on still needs ratify path
 ```
+
+### Commander SMS replies (final, 2026-08-11)
+
+| Verb | HANS cell / meaning |
+|------|---------------------|
+| **re-chew** | Stay in Admit dwell — more work, no memory written |
+| **reject** | Kill the claim — closed, no Hold |
+| **hold** | **Hold** — write verified KK into working memory |
+
+Not override (bypass). Not remember (passive recall). Not memorize (thesaurus).  
+**Hold** is the method’s own verb for making the known-known memory.
+
+Operator: `tools/hege_exception_sms.py` + commander verbs in `sms_commander.py`.  
+Hege raises; Operator SMS; Hans decides. Channel split is load-bearing.
 
 ---
 
