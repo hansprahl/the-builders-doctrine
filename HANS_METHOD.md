@@ -96,6 +96,42 @@ document. What survives is continuous mechanical maintenance.
 
 ---
 
+## Operationalization — lightbulb chew pipeline (2026-08-11)
+
+**Hans named the agent-recon / finding pipeline as this method in action** (Funkytown Exp 26
+session; Grok Bot access blocked → Claude Cowork recon → UU hunt → Heuer-gated promotion).
+
+Same four cells; concrete verbs on the lightbulb surface:
+
+| HANS cell | Lightbulb state / move | Machinery |
+|-----------|------------------------|-----------|
+| **S Sweep** | Collect **UU** hypothesis | lightbulb recon, `uu_loop`, external product probes, cold-read |
+| **A Admit** | Land **KU** — named gap + owner + done-when; **dwell** | `KU_QUEUE.md`, implement/test owed; *chew before FACT* |
+| **H Hold** | After chew → **KK** + earned confidence → Hans decides | what-else, murder board, sealed re-probe, autopsy, findings; `kk_cards/`; ratify/ingest |
+| **N Notice** | Mine / connect latent patterns at decision time | collection mine (next), memory-rag over ingested KKs |
+
+**Triggerable chew loop (Hans):** UU hypothesis → what-else → murder board → implement/re-probe
+→ autopsy (if charted) → findings → **KK for Hans to decide**, with agent **confidence he can
+trust** (earned from that stack, not a skim).
+
+**Epistemology (Hans, same session):** *You can read something new, but to understand it you
+have to chew on it and connect it with other things to make sure it is FACT and TRUTH. You
+don't take someone's word for it — even your own.* That is Admit dwell + Hold verification,
+not a skip from Sweep to "I ratified a list."
+
+**Heuer alignment:** ACH / anti-satisficing / diagnosticity / confidence caps live in
+`promote.py --ku-to-kk` gates. Source text: home-ai corpus
+`Psychology_of_Intelligence_Analysis.md`.
+
+**Artifacts:** `~/.claude/skills/lightbulb/`, funkytown
+`experiments/26_claude_cowork_recon/` (SYNTHESIS, KU_QUEUE, kk_cards, loop/).
+
+**Status of this section:** descriptive map of a working pipeline onto HANS cells. It does
+**not** by itself ratify the whole HANS Method hypothesis above. The Hold-mechanism
+retraction (2026-08-10) still stands.
+
+---
+
 ## Why H and N are the hard ones
 
 In **Admit** and **Sweep** you already know you are ignorant. You are suspicious by default,
