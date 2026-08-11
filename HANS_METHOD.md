@@ -130,6 +130,10 @@ not a skip from Sweep to "I ratified a list."
 **not** by itself ratify the whole HANS Method hypothesis above. The Hold-mechanism
 retraction (2026-08-10) still stands.
 
+**First full Hold cycle completed (2026-08-11):** LB-015 path-jail — Sweep/Admit/chew →
+live demo → KK conf 0.92 → Hans ratify → permanent rule `PATH_JAIL_RULE.md` +
+`~/.claude/tools/path_jail.py`. Template for future HANS Hold promotions.
+
 ---
 
 ## Why H and N are the hard ones
