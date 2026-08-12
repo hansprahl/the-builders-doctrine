@@ -423,6 +423,7 @@ Below the four primary protocols (OPORD, SITREP, RFI, COP), real military comman
 | **CCIR** | Commander's Critical Information Requirements | Standing items the commander wants flagged immediately on encounter. Never asked twice, never missed. (e.g., "If Helton announces a major endorsement, flag immediately regardless of time.") |
 | **PIR / EEI** | Priority Intel Requirements / Essential Elements of Information | Pre-defined intelligence questions that drive proactive collection. (e.g., "What is Helton's weekly door-knock count? Confirm by Friday EOW.") |
 | **Battle rhythm** | Scheduled cycles | When SITREP / orders / synchronization happens. Not "whenever" but "0600 morning brief, 1200 mid-day SITREP, 1800 evening debrief." |
+| **Orders minimum** | Action document bar | Plan is not action. Every staff order carries when (local plain time) + mission + owners + standard + GOTWA-lite. No Zulu / ceremonial DTG required. Full OPORD/TLP only when the op earns it. **Canonical:** `operator/ORDERS_MINIMUM.md` (captured 2026-08-12). |
 | **Mission analysis** | S-3 staff function | Synthesizing higher's intent into subordinate orders. The cognitive input to MDMP. |
 | **Running estimate** | Continuous staff product | "What is the current state of enemy/friendly/terrain/weather, updated continuously." Feeds the COP. |
 
