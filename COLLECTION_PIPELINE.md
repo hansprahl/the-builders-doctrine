@@ -71,7 +71,9 @@ produced by ordinary work dies in the file that named it.
 
 | Intake | Enters at | Where it queues |
 |---|---|---|
-| Recon probe or field note | UU | the running experiment's `KU_QUEUE.md` |
+| Recon probe or field note | UU | the running experiment's `UU_REGISTER.md` |
+| Recon after implement/test | KU | the same experiment's `KU_QUEUE.md` via `promote.py` |
+| **Commander-ratified problem STATEMENT** | card | `operator/PROBLEM_CARDS/` (CRs may spawn portfolio KUs) |
 | **AAR routing section** | KU | portfolio queue |
 | **Decision memo "could not verify"** | KU | portfolio queue |
 | **Autopsy residual** | KU | portfolio queue |

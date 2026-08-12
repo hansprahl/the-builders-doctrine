@@ -1,6 +1,8 @@
 # STARTUP — The Builders' Doctrine (AI Tradecraft meta-repo)
 
-> Last updated: 2026-05-15. When this file disagrees with the code, the code wins.
+> Last updated: 2026-08-12 — COLLECTION_PIPELINE entry table names PROBLEM_CARDS + recon UU vs KU. When this file disagrees with the code, the code wins.
+>
+> Prior: Last updated: 2026-05-15. When this file disagrees with the code, the code wins.
 
 ## Identity
 
