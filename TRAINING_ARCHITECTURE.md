@@ -57,6 +57,8 @@ T/C/S is the bridge between a capability and its eval: **the standard is the eva
 
 Where a capability has no written standard, it has not been specified — it has only been hoped for.
 
+**Baseline / constant first** (`BASELINE_CONSTANT.md`, Hans 2026-08-12). The untreated score is a written condition. You do not vary the task, the word, or the model until that number is on disk. A printed positive control is not that number.
+
 ---
 
 ## Certify before trust — the train-and-certify-leaders loop
