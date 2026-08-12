@@ -197,10 +197,15 @@ Hege raises; Operator SMS; Hans decides. Channel split is load-bearing.
 | Method score / TRUST GREEN | Process package complete — not calibrated truth odds |
 | Working Hold | Candidate known known after line |
 | **MEASURED_PASS** | Live demo re-test passed — claim still holds under its control |
-| Process improvement | **Separate chart required** — not inferred from Hold |
+| Process improvement | **Control chart:** with hard mechanism vs soft control on fixed bank |
 
 Battery: funkytown `experiments/28_cos_green_hold/hold_verify.py`  
-Pre-reg: `PREREG_HOLD_MEASUREMENT.md`
+Process chart: `process_improvement_ablation.py`  
+Pre-reg: `PREREG_HOLD_MEASUREMENT.md` + `PREREG_PROCESS_IMPROVEMENT.md`  
+
+**First process chart (2026-08-12):** 4/4 rules IMPROVES_PROCESS on bank  
+(path jail, no invent, secret channel, continuity disk). Soft arm fails; hard arm clean.  
+Does **not** prove prompt-only LLM compliance.
 
 ### Bottom-up staff push (Hans 2026-08-11)
 
