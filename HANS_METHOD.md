@@ -187,6 +187,21 @@ Not override (bypass). Not remember (passive recall). Not memorize (thesaurus).
 Operator: `tools/hege_exception_sms.py` + commander verbs in `sms_commander.py`.  
 Hege raises; Operator SMS; Hans decides. Channel split is load-bearing.
 
+### Hold is not fact until measured (Hans 2026-08-11)
+
+> *Before we go all the way… test what we claim as Held. Does it improve
+> process? Is it truth and fact? By what degree? Measure, measure, measure.*
+
+| Layer | What it is |
+|-------|------------|
+| Method score / TRUST GREEN | Process package complete — not calibrated truth odds |
+| Working Hold | Candidate known known after line |
+| **MEASURED_PASS** | Live demo re-test passed — claim still holds under its control |
+| Process improvement | **Separate chart required** — not inferred from Hold |
+
+Battery: funkytown `experiments/28_cos_green_hold/hold_verify.py`  
+Pre-reg: `PREREG_HOLD_MEASUREMENT.md`
+
 ### Bottom-up staff push (Hans 2026-08-11)
 
 > *I shouldn't have to sit in front of the computer all day and find new things.
