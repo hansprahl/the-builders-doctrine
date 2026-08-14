@@ -316,6 +316,34 @@ frame is decoration.*
 | **S** — Unknown Unknown | **~2** | an author's own coding habits sanitize the author's own tests |
 | **A** — Known Unknown | **0** | none recorded |
 
+**N replication — +6 in one session, 2026-08-13 evening.** Independent of the corpus
+above (that run classified `type: feedback` memories; these are live findings from a
+single build session, collected before the frame was consulted). Full table and
+citations: `home-ai/dogfood/AAR_2026-08-13_evening_voice_and_brain.md`.
+
+1. A second-seat chain had already run at 02:07 that morning; the examiner argued for
+   hours it had never been demonstrated.
+2. `serve._VOCAL_NOISE` had blocked inbound sniff/cough/pffft since 2026-08-03; Hans
+   asked for the capability it already had.
+3. The unified `MEMORY.md` states *"the per-project memory dirs are symlinks to this
+   dir"*; home-ai sat out of compliance while sessions hand-copied around it.
+4. `test_tts_plain.py:147` already asserted `"Saint Louis"`; the examiner reasoned
+   about the corpus instead and was corrected by the gate going red.
+5. **No-self-grading rule 5 (positive control) was ratified 2026-08-11 and not applied
+   2026-08-13** — a published verdict rested on a test that could not move.
+6. **The N cell itself** — the examiner told Hans there was no Unknown-Known cell,
+   while `HANS_METHOD.md` sat in the auto-loading `MEMORY.md` active threads.
+
+**The sharpest instance is #5 paired with #6, and it points at a delivery defect
+rather than a doctrine gap.** Two constraints ratified within 48 hours — positive
+control and DIRECT TO SOURCE — were written, filed, and indexed, and **neither fired
+at the decision point.** N is not a knowledge problem. It is a *selection* problem,
+which is why the move is NOTICE and not COLLECT. Contributing factor now measured:
+`~/.claude/memory-rag/index.py:50` embeds `[:1500]` head-only, leaving **65.2% of the
+corpus structurally unretrievable** and biased against the newest material because
+close-ups append — an N generator running continuously
+([[project-hege-memory-recall-measurement-2026-08-11]]).
+
 **~23 of 28 failure-derived memories land in the two cells the method predicts fail
 silently.** They did not scatter. The clustering holds across memories written long before
 the frame existed.
