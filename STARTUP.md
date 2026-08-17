@@ -2,7 +2,11 @@
 
 > Last updated: 2026-08-12 — COLLECTION_PIPELINE entry table names PROBLEM_CARDS + recon UU vs KU. When this file disagrees with the code, the code wins.
 >
+
+# ARCHIVE — startup live slice ends here
+
 > Prior: Last updated: 2026-05-15. When this file disagrees with the code, the code wins.
+
 
 ## Identity
 
