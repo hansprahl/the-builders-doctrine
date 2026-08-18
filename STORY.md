@@ -1,5 +1,6 @@
 # The Builders' Doctrine — The Story
 
+
 *The plain-English account of building the methodology and the kit that operationalizes it. Founder-narrative voice. Each dated chapter captures what was built, why, and what it taught. Source material for writing, pitches, and the long-form essay that's eventually going to position this work in the world.*
 
 ---
@@ -11,6 +12,14 @@ The Builders' Doctrine is the methodology I extracted from building TOP and Oper
 That question has been the gate for months. The methodology was real on the page; it was unproven as a portable artifact. Everything between here and a public release is about closing that gap.
 
 The brand for the venture is AI Tradecraft. The byline is mine. The methodology ships free. The operationalization — hosted onboarding, audits, certification — is what generates revenue downstream, when there's something worth charging for. The hard gate is one external builder running the kit cold and producing a working product instance. Until that happens, none of this goes public.
+
+## 2026-08-18 — Two bowls
+
+I have been calling a lot of things known knowns. They are not. A known known is a belief I accepted after chew. A fact is something I can show.
+
+If a named gap can be shown, it becomes a fact. If something already in the record can be shown, it becomes a fact. I do not promote a belief to a fact by renaming it.
+
+Filed in `COLLECTION_PIPELINE.md`. The ratified known list is still empty. That is honest.
 
 ---
 

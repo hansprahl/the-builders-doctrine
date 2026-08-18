@@ -62,6 +62,57 @@ test.*
 **Also forbidden:** one product, one run, one lineage → portfolio change. That is
 single-source reporting wearing confidence as a costume.
 
+### Fact is not a known known (stamped 2026-08-18)
+
+Hans, 2026-08-18: do not convert known knowns into facts. Two bowls.
+
+A known unknown is something heard or read. It goes through the chew. Hans says yes
+or no. Then it is a belief. That belief is a **KK**. It can still carry judgment. It
+is not proven the way two plus two is four.
+
+A **FACT** must be shown. A date in the store. A name the code will not drop. A test
+that fails if the line is wrong. No chew required for the truth of it. Weight above
+a KK.
+
+- Do not rename the pipeline UU → FACT. Facts sit beside the chew loop, not on it.
+- A **KU** that can be shown becomes a FACT. It does not have to become a KK first.
+  If it cannot be shown, it stays on the chew loop toward KK.
+- An **unknown known** (held in the record, not surfaced) that can be shown becomes
+  a FACT. That is Notice with a proof, not a new belief.
+- Do not convert a KK into a FACT. Belief does not graduate to proof by renaming.
+- Do not call the vault "thousands of known knowns." The ratified KK ledger is
+  empty until Hans accepts a KK. The state store is the small fact floor. The rest
+  is record.
+- A pin is a fact the machine will not drop. Quiet in the mouth. Loud in CODE.
+- 2026-08-10 folded "buckets of truth" into KK as MEASURED. This stamp pulls FACT
+  back out. Measured-and-shown is a fact. Chewed-and-believed is a KK.
+
+### Enforcement is derived — Pinned/Unpinned (ratified 2026-08-18)
+
+A ratified KK has an enforcement status, and **no hand ever writes it**. Hans named
+the axis (UP/KP/PP); a three-lineage murder board (grok/gpt/gemini, Fable excluded)
+killed the manual letters 3/3 — a hand-written tag can lie about an automated state —
+and Hans stamped the rewrite:
+
+- **Source of truth = test results.** A checkable KK is **Pinned** when a machine
+  re-verifies it (a battery case, a heartbeat check, a provoked guard) and the latest
+  run contains it; **Unpinned** otherwise. Prose is a read-only client of this truth.
+- **The report is the ritual.** `~/.claude/tools/knowledge_census.py` derives the
+  Knowledge Enforcement Report (house_check, dated); it is the agenda for the daily
+  "turning out the lights" segment. A **behavioral** finding closes by becoming a pin.
+- **DESYNC is a first-class state:** a ledger that claims cases no tape contains is
+  the predicted lie; each instance resolves by finding the case or striking the claim.
+- **Pin-theater guard:** the first time a claim becomes Pinned, a second reviewer
+  audits the test for substance ("does it meaningfully fail?"). Instruments that
+  measure ship a runnable positive control, run by the gate — the census itself
+  calibrates on planted fixtures and exits 2 rather than print an untrusted report.
+- **Scope guard:** applies to checkable claims only. Biography and world lines that
+  can be shown are **FACTS**, not KKs. Decisions stay KK with review-by dates.
+
+First census (2026-08-18): 51 behavioral classes — 32 pinned / 15 DESYNC / 4 unpinned;
+instruments 6 watched / 33 unwatched / 3 dark; ratified-KK ledger empty. The panel
+transcript and plan live with the 2026-08-18 session artifacts.
+
 ---
 
 ## Entry points
