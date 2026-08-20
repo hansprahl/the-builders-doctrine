@@ -167,7 +167,8 @@ rich research that competes hypotheses; we try to disprove the evidence we find.
 | Adversarial half vs control half | You wrote the test, the inputs, and the score |
 
 *Same type of stuff* means the same **claim class** — the same mechanism or decision rule —
-not the same wording.
+not the same wording. The letters under The floor for leaving KU name these rows. They do
+not rewrite them.
 
 ### The floor for leaving KU
 
@@ -180,6 +181,27 @@ One of:
 
 Load-bearing walls — send, pay, cage, the trust line, portfolio doctrine — want **A and B**.
 Narrow reversible lab claims may use B alone, and must log that multi-source was not met.
+
+The table is the floor. Same floor, named in letters (stamped 2026-08-20). These letters
+name rows already in this section. They do not add a path.
+
+**k + k = pile.** Do not promote. The pile is the Not independent column: three summaries
+of the same transcript; same model, same prompt, N=3; an agent saying "done" three ways.
+Adding more of the same is still one source.
+
+**Path B = named leftover × a live test that can fail.** That is the Path B row already: a
+live implement or test that can fail, with the residual named. The × is that pair. It is
+not Path A.
+
+**Path A = ≥3 independent sources of one claim class.** The operator is ⊥ — does not share
+a parent. That is the Independent column already: different product or harness, different
+model family or blind lineage, disk vs chat, a separate instrument. Path A is not k³.
+
+**Fake k³ does not count.** Same model, same prompt, N=3 is already Not independent. The
+chew that reads the table then these letters should match.
+
+**A single source still ceilings at KU.** This sitting names operators. It does not mint a
+KK. Fact stays the other bowl, already stamped above.
 
 ### ACH posture, not confirmation hunting
 
