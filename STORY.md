@@ -13,6 +13,18 @@ That question has been the gate for months. The methodology was real on the page
 
 The brand for the venture is AI Tradecraft. The byline is mine. The methodology ships free. The operationalization — hosted onboarding, audits, certification — is what generates revenue downstream, when there's something worth charging for. The hard gate is one external builder running the kit cold and producing a working product instance. Until that happens, none of this goes public.
 
+## 2026-08-22 — Staff brings choices. I stamp.
+
+I asked whether the Builders' Doctrine helped at all, then Operator doctrine, then I named the standing order: look at doctrine before we make changes. Always. Later I had to say it again, sharper: I am the commander and I make decisions. Staff had started running "next" as if the cut were already made.
+
+That is the sitting. Collection was two products wearing one name. We named the split. We murdered the file as Law. Grok, GPT, Gemini. Fifteen cents. Ingest is dead. Cutting the queue back to multi_search is dead. The epistemology keeps. The pager is a probe, not how I ratify. The join at the write cut is retrieval, not a new organ.
+
+I stamped the staff recs. Send the OpenMaus card back to KU. Five pager fires, all no. Keep the pile until the 24th, then let the clock speak. Do not make the join the grader.
+
+The doctrine still helps as a brake. Operator commandments are the tighter fit. Neither one is a recipe for magic. Magic was supposed to be combining what I already hold. What shipped is one dry line when two stores both hit. I grade whether that changes a call. So far, on the Notice class, it has not.
+
+Then the tell. Doctrine should be tested frequently. It is fluid until it is not. And I need to be told about it. That is Law VII, not a fourteenth principle. Staff does not update the file and assume I saw it.
+
 ## 2026-08-18 — Two bowls
 
 I have been calling a lot of things known knowns. They are not. A known known is a belief I accepted after chew. A fact is something I can show.

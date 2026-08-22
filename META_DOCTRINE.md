@@ -84,6 +84,7 @@ Four laws operate implicitly across the doctrine. They are not formalized as sep
 - Every hold in the framework requires an execution date pointing at a falsification experiment, or it gets retracted.
 - Three retroactive applications on 2026-05-13: Principle 3 (TOP retention falsification verdict by 2026-06-15), Law VI Stage 7 replication (kickoff 2026-05-20, completion 2026-06-30), refusal-propagation off-ramp primitive (spec deadline 2026-05-25).
 - Any hold without a date by 2026-05-20 either gets a date or gets retracted.
+- **Tell the commander (Hans 2026-08-22).** *"our doctrine should be tested frequently...it is fluid until it is not."* And: *"i need to be told about it."* Fluid means KU / hypothesis-grade / a hold with a date. Not-fluid means ratified Law, a dated lock, or a named kill. Testing without telling him is a silent freeze or a silent rewrite. Startup and close-up sitreps open with what was tested, what is still fluid, and what locked. Cursor standing order: `~/Projects/.cursor/rules/tell-hans-doctrine.mdc`. This is not a new Law.
 
 ---
 

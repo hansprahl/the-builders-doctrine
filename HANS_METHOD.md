@@ -109,7 +109,7 @@ Same four cells; concrete verbs on the lightbulb surface:
 | **A Admit** | Land **KU** — named gap + owner + done-when; **dwell** | `KU_QUEUE.md`, implement/test owed; *chew before FACT* |
 | **A+ clean** | **Clean the register before you chew the batch** | EMBA analyst process (copy first, drop noise, protect list, manifest) — see below |
 | **H Hold** | After chew → **KK** + TRUST line → Hans / COS-GREEN | what-else, murder board, live test, `kk_cards/`; ratify/ingest; COS Hold GREEN only |
-| **N Notice** | Mine / connect latent patterns at decision time | collection mine (next), memory-rag over ingested KKs |
+| **N Notice** | Selection at the decision. Two stores in one breath when both hit | `decide_check.join_line` + `fact_pager` (probe, not a grader). Collection mine still not first (NOTICE-PS-001) |
 
 **Triggerable chew loop (Hans):** UU hypothesis → what-else → murder board → implement/re-probe
 → autopsy (if charted) → findings → **KK for Hans to decide**, with agent **confidence he can

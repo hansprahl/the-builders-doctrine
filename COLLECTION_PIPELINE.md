@@ -351,8 +351,28 @@ field notes without a live PASS into the wall state machine. That costume is
 how twelve stamped lines became "ratified KKs" the census could not enforce.
 
 **Generality remains a hypothesis** until a second surface completes a Hold
-cycle (chew → live PASS → Hans ratifies → ingest). OpenMaus KU-OM-015 is a
-proposed card on 2026-08-22, not that cycle finished.
+cycle (chew → live PASS → Hans ratifies → ingest). OpenMaus KU-OM-015 was
+sent back to KU on 2026-08-22 (no live PASS on our gates). That cycle is
+not finished.
 
-LB-P010 soak closed the same day: KEEP the RAISE/HOLD filter; do not ratify
-this file as portfolio-wide law until it is murder-boarded.
+LB-P010 soak closed the same day: KEEP the RAISE/HOLD filter.
+
+### Panel stamp (2026-08-22)
+
+Murder board: grok / gpt / gemini. No Fable. Cost $0.15.
+Transcript: `operator/output/murder_board_collection_pipeline_2026-08-22/`.
+
+Hans stamped the staff rec on the panel:
+
+- **KILL** ingest of this file as portfolio Law (H1a).
+- **KILL** cutting the machinery back to `multi_search` (H1c).
+- Epistemology and the RAISE/HOLD filter **KEEP**, file stays **KU**.
+- Do not fork an `EPISTEMOLOGY.md` and ingest it as Law.
+- `fact_pager` is a probe, not the ratification engine. CR-3 still speaks
+  2026-08-24.
+- `decide_check.join_line` is retrieval at the cut, not a grader and not
+  an organ (NOTICE-PS-001 crown kill).
+- No 25-fire sample this sitting.
+
+This file is still not Law. A second-surface Hold cycle with a live PASS
+is still owed before ingest.
