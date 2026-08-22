@@ -1,10 +1,10 @@
 # STARTUP — The Builders' Doctrine (AI Tradecraft meta-repo)
 
-> Last updated: 2026-08-22 15:14 MDT — Panel stamped. Collection pipeline stays KU, not Law. When this file disagrees with the code, the code wins.
+> Last updated: 2026-08-22 15:25 MDT — Stamp A: soak until 2026-08-24. Compact tape on disk. When this file disagrees with the code, the code wins.
 
-> **This sitting:** murder board grok/gpt/gemini $0.15. Hans stamped staff rec: KILL ingest-as-Law, KILL cut-to-multi_search, KEEP epistemology as KU, join is not a grader, pager is a probe until 2026-08-24. Law VII tell: doctrine is fluid until it is not, and he is told in the sitrep first breath. Doctrine-first + tell-hans-doctrine are Cursor standing orders, not new Principles. HANS_METHOD Notice line now points at `decide_check.join_line` + pager; method still hypothesis-grade.
-> **Pickup:** do not ingest this file. Second-surface Hold cycle still owed (Operator live walk on P032, or explicit static-is-enough). CR-3 on the pager speaks 2026-08-24.
-> **Do not:** fork EPISTEMOLOGY.md as Law · make join_line the ratification engine · grade the 519 ungraded fires · mint Principle 14.
+> **This sitting:** murder board grok/gpt/gemini $0.15. Hans stamped staff rec: KILL ingest-as-Law, KILL cut-to-multi_search, KEEP epistemology as KU, join is not a grader, pager is a probe until 2026-08-24. Law VII tell: doctrine is fluid until it is not, and he is told in the sitrep first breath. Then stamp A: stop. Compact handoff: `~/Projects/.grok/COMPACT_HANDOFF.md`.
+> **Pickup:** do not ingest this file. CR-3 pager speaks 2026-08-24. Operator P032 only if he orders it. After compact, read the handoff, not the chat summary.
+> **Do not:** fork EPISTEMOLOGY.md as Law · make join_line the ratification engine · grade the 519 ungraded fires · mint Principle 14 · invent the next mission.
 
 ## Crystal Ball
 Tally: 0 HIT / 0 MISS / 0 VOID (since 2026-08-22)

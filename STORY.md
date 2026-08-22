@@ -25,6 +25,8 @@ The doctrine still helps as a brake. Operator commandments are the tighter fit. 
 
 Then the tell. Doctrine should be tested frequently. It is fluid until it is not. And I need to be told about it. That is Law VII, not a fourteenth principle. Staff does not update the file and assume I saw it.
 
+I stamped stop. The next door is the 24th, when the pager clock speaks. Not an Operator probe. Not a new cut. Compact the window with the tape on disk.
+
 ## 2026-08-18 — Two bowls
 
 I have been calling a lot of things known knowns. They are not. A known known is a belief I accepted after chew. A fact is something I can show.
