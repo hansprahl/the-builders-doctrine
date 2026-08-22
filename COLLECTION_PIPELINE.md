@@ -87,6 +87,8 @@ a KK.
 - 2026-08-10 folded "buckets of truth" into KK as MEASURED. This stamp pulls FACT
   back out. Measured-and-shown is a fact. Chewed-and-believed is a KK.
 
+stamped 2026-08-20: a Fact has to be able to be proven, and relevant.
+
 ### Enforcement is derived — Pinned/Unpinned (ratified 2026-08-18)
 
 A ratified KK has an enforcement status, and **no hand ever writes it**. Hans named
@@ -334,3 +336,23 @@ could fail.
 
 Skill-level mechanics, commands and per-experiment queues live with the instance. This file
 holds only what is true on every surface.
+
+## Two products, one epistemology (named 2026-08-22)
+
+The loop above is the epistemology. It is not one machine.
+
+| Product | Job | What may wear KK |
+|---|---|---|
+| **Wall pipeline** | A behavioral rule survives chew + a test that can fail; Hans ratifies; a machine re-verifies | Path-jail, secret channel, no-invent COMPLETE, continuity-is-disk. GREEN holds. |
+| **Decision queue** | Named unknowns dwell. Only RAISE (decision + owner + trigger + consequence) reaches Hans | A proposed KK card. Quotes and biography that can be *shown* are FACTS, not KKs. |
+
+Do not unify them by stuffing founder quotes, rehearsal fuel (REH-*), or
+field notes without a live PASS into the wall state machine. That costume is
+how twelve stamped lines became "ratified KKs" the census could not enforce.
+
+**Generality remains a hypothesis** until a second surface completes a Hold
+cycle (chew → live PASS → Hans ratifies → ingest). OpenMaus KU-OM-015 is a
+proposed card on 2026-08-22, not that cycle finished.
+
+LB-P010 soak closed the same day: KEEP the RAISE/HOLD filter; do not ratify
+this file as portfolio-wide law until it is murder-boarded.
