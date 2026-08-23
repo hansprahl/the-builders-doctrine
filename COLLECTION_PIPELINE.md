@@ -2,15 +2,15 @@
 
 **UU → KU → KK → RATIFIED → INGESTED.**
 
-> **Status: IN USE on one surface, GENERALIZED 2026-08-12, unvalidated off that surface.**
-> The state machine, the multi-source bar and the trust line have run on the agent-recon
-> surface since 2026-08-11 with working code and live queues. The claim that the same loop
-> serves every surface — engagements, builds, coursework, our own instruments — is one day
-> old and has not been tested. Treat the machinery as proven and the generality as a
-> hypothesis.
+> **Status: KU.** Ingest-as-Law **KILLED** 2026-08-22 (H1a). Cut-to-`multi_search` **KILLED** (H1c).
+> Epistemology and RAISE/HOLD **KEEP**. Not Law. Not a second method. Soak / CR-3 pager 2026-08-24.
+> KU-OM-015 sent back. Do not fork `EPISTEMOLOGY.md` and ingest it. Do not restamp this sitting.
 >
-> Parent frame: [HANS_METHOD.md](HANS_METHOD.md). This is the operational loop for
-> Sweep → Admit → Hold. It is not a second method.
+> One surface is in use (agent-recon since 2026-08-11). Generality off that surface is still
+> a hypothesis — unvalidated. Treat the machinery as proven on that surface only.
+>
+> Parent frame: [HANS_METHOD.md](HANS_METHOD.md) (hypothesis-grade). Operational loop for
+> Sweep → Admit → Hold. Panel stamp is at the bottom of this file (`bfa706e`).
 
 ---
 
