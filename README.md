@@ -48,7 +48,7 @@ See [RELEASE_NOTES_v1.0.md](RELEASE_NOTES_v1.0.md) for full detail on each.
 - [MISSION_COMMAND_ARCHITECTURE.md](MISSION_COMMAND_ARCHITECTURE.md) — portfolio-wide agentic architecture (ADP 6-0, runtime authority)
 - [TRAINING_ARCHITECTURE.md](TRAINING_ARCHITECTURE.md) — portfolio-wide readiness doctrine (ADP 7-0, certify-to-standard before trust); folds in its own civilian glossary
 - [PROMPT_DOCTRINE.md](PROMPT_DOCTRINE.md) — universal prompt structural rules
-- [COLLECTION_PIPELINE.md](COLLECTION_PIPELINE.md) — how something noticed becomes something known (UU → KU → KK → ratified); multi-source bar, ACH posture, trust line. Operational loop for the HANS Method's Sweep → Admit → Hold
+- [COLLECTION_PIPELINE.md](COLLECTION_PIPELINE.md) — **KU, not Law.** Ingest-as-Law killed 2026-08-22. UU → KU → KK → ratified on paper; one surface in use; generality still a hypothesis. Operational loop for the HANS Method's Sweep → Admit → Hold.
 - [WORKING_BACKWARDS.md](WORKING_BACKWARDS.md) — Amazon PR/FAQ-first scoping discipline
 - [EXPLAINER.md](EXPLAINER.md) — plain-language translator (start here)
 
