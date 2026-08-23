@@ -35,6 +35,16 @@ A quiet board is not the same as a filed unknown. Stubbing score tapes so a scan
 
 Then: if I summarize, does memory break. The stamp is on disk. The chat is not. The 15:32 handoff does not have this evening. Pre-compact first.
 
+## 2026-08-22 — late — I ordered the probe
+
+The afternoon stamp said no Operator walk unless I ordered it. Later I said order it. That is the first of the class. Staff ran Exp 53 on clean Operator main. Banks. Doubles. Zero writes in fifteen. The against-own-build miss is on the tape. I do not ingest OpenMaus because a gate held.
+
+Keep-going after that was instruments. The health score was lying — the key was in the file, the first check never loaded it. Hybrid mode already defaults on. We did not add a flag. Nine point nine. One pending approval is a real row.
+
+I asked what else would make the collection pipeline healthy. Healthy is KU that dwells, not a quiet board. Census: DESYNC zero. I said go. multi_search still finds the old defect pair and still misses two invented tokens. Exp 53 routing is another n on the FINDINGS row. Still HOLD. Sunday is the pager.
+
+Then the window would not compact. The chat is not the sit. The sit is this file and the handoff.
+
 ## 2026-08-18 — Two bowls
 
 I have been calling a lot of things known knowns. They are not. A known known is a belief I accepted after chew. A fact is something I can show.

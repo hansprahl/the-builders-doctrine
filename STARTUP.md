@@ -1,16 +1,20 @@
 # STARTUP — The Builders' Doctrine (AI Tradecraft meta-repo)
 
-> Last updated: 2026-08-22 18:48 MDT — Evening tape. AAR wallpaper stamped. Compact handoff current. When this file disagrees with the code, the code wins.
+> Last updated: 2026-08-22 22:16 MDT — Close-up. When this file disagrees with the code, the code wins.
 
-> **This sitting (evening):** pipeline pointers unclaimed (KU, not Law). Hans asked to mint the AAR board. Rec: leave the no-routing wallpaper. He stamped it. LB-P011 control holds. Chew autopsy cited LB-P054, no new ID. Pre-compact 18:48. Handoff: `~/Projects/.grok/COMPACT_HANDOFF.md`.
-> **Pickup:** read the handoff, not the chat summary. Do not ingest COLLECTION_PIPELINE. Do not stub AAR no-routing rows to silence the scanner. CR-3 pager speaks 2026-08-24. Operator P032 only if he orders it.
-> **Do not:** fork EPISTEMOLOGY.md as Law · mint Principle 14 · invent KUs for score tapes · scoop sibling dirty trees · restamp OM-015 · invent the next mission.
+> **This sitting (close-up):** Hans ordered the Operator probe. Exp 53 0/15. Health 9.9. Census DESYNC 0. multi_search holds. LB-P011 n=2 HOLD. Pipeline KU. Compact UI dead — new chat.
+> **Pickup:** `~/Projects/.grok/COMPACT_HANDOFF.md`. Sunday 10:00 pager ceremony. CR-3 2026-08-24.
+> **Do not:** ingest · plant UNWATCHED · grade 590 · scoop sibling dirty · mint Principle 14 · restamp OM-015
 
 ## Crystal Ball
-Tally: 0 HIT / 0 MISS / 0 VOID (since 2026-08-22)
+Tally: 0 HIT / 1 MISS / 0 VOID (since 2026-08-22)
 - [2026-08-22, conf 80%] On 2026-08-24 the pager still has an ungraded majority — observable: `fact_pager.py stats` ungraded > graded · resolve-by: 2026-08-24 EOD
 - [2026-08-22, conf 70%] KU-OM-015 is still sent-back, not ingested, on 2026-08-29 — observable: card header still says sent back · resolve-by: 2026-08-29
-- [2026-08-22, conf 55%] Next sitting does not order an Operator live P032 probe — observable: no new Exp-32-class RESULT against Operator specialists · resolve-by: next doctrine or Operator close-up
+- [2026-08-22, conf 55%] Sunday pager ceremony does not grade more than the existing 23 rows — observable: `fact_pager.py stats` graded stays 23 or the ceremony notes say stats-only · resolve-by: 2026-08-23 12:00 MDT
+- [2026-08-22, conf 50%] Next new chat opens from the handoff file, not from this thread's compact — observable: first sitrep cites `COMPACT_HANDOFF.md` · resolve-by: next sitting
+
+## Crystal Ball — graded
+- MISS [graded 2026-08-22 19:30] (conf 55%) Next sitting does not order an Operator live P032 probe — he said "order operator probe." Exp 53 RESULT exists.
 
 # ARCHIVE — startup live slice ends here
 
