@@ -27,6 +27,14 @@ Then the tell. Doctrine should be tested frequently. It is fluid until it is not
 
 I stamped stop. The next door is the 24th, when the pager clock speaks. Not an Operator probe. Not a new cut. Compact the window with the tape on disk.
 
+## 2026-08-22 — evening — Wallpaper is not a card
+
+The afternoon tape said stop. The evening still ran the house. Pointers that still called the pipeline Law got unclaimed. Lint last-exit 1 was already dead on disk. I asked to mint the AAR board. Staff rec: do not. Forty-nine flags were not forty-nine unknowns. The row that matters was empty. I said stamp that.
+
+A quiet board is not the same as a filed unknown. Stubbing score tapes so a scanner shuts up would have killed the control we already owed. The chew autopsy went onto a card that existed. No new ID. The rest stay wallpaper.
+
+Then: if I summarize, does memory break. The stamp is on disk. The chat is not. The 15:32 handoff does not have this evening. Pre-compact first.
+
 ## 2026-08-18 — Two bowls
 
 I have been calling a lot of things known knowns. They are not. A known known is a belief I accepted after chew. A fact is something I can show.

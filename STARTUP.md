@@ -1,10 +1,10 @@
 # STARTUP — The Builders' Doctrine (AI Tradecraft meta-repo)
 
-> Last updated: 2026-08-22 15:25 MDT — Stamp A: soak until 2026-08-24. Compact tape on disk. When this file disagrees with the code, the code wins.
+> Last updated: 2026-08-22 18:48 MDT — Evening tape. AAR wallpaper stamped. Compact handoff current. When this file disagrees with the code, the code wins.
 
-> **This sitting:** murder board grok/gpt/gemini $0.15. Hans stamped staff rec: KILL ingest-as-Law, KILL cut-to-multi_search, KEEP epistemology as KU, join is not a grader, pager is a probe until 2026-08-24. Law VII tell: doctrine is fluid until it is not, and he is told in the sitrep first breath. Then stamp A: stop. Compact handoff: `~/Projects/.grok/COMPACT_HANDOFF.md`.
-> **Pickup:** do not ingest this file. CR-3 pager speaks 2026-08-24. Operator P032 only if he orders it. After compact, read the handoff, not the chat summary.
-> **Do not:** fork EPISTEMOLOGY.md as Law · make join_line the ratification engine · grade the 519 ungraded fires · mint Principle 14 · invent the next mission.
+> **This sitting (evening):** pipeline pointers unclaimed (KU, not Law). Hans asked to mint the AAR board. Rec: leave the no-routing wallpaper. He stamped it. LB-P011 control holds. Chew autopsy cited LB-P054, no new ID. Pre-compact 18:48. Handoff: `~/Projects/.grok/COMPACT_HANDOFF.md`.
+> **Pickup:** read the handoff, not the chat summary. Do not ingest COLLECTION_PIPELINE. Do not stub AAR no-routing rows to silence the scanner. CR-3 pager speaks 2026-08-24. Operator P032 only if he orders it.
+> **Do not:** fork EPISTEMOLOGY.md as Law · mint Principle 14 · invent KUs for score tapes · scoop sibling dirty trees · restamp OM-015 · invent the next mission.
 
 ## Crystal Ball
 Tally: 0 HIT / 0 MISS / 0 VOID (since 2026-08-22)
