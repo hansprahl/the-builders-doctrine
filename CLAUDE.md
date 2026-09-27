@@ -40,6 +40,7 @@ If the detector fires on a verbatim doctrine quote (e.g., principle name "Chain 
 ## Pointer index — load-bearing artifacts
 
 **Doctrine prose:**
+- `~/Projects/.cursor/HOUSE_ROE.md` — house never-violate spine (compiled 2026-08-26; not a Law; not this repo). Product commandments are the delta.
 - `THE_BUILDERS_DOCTRINE.md` — 13 principles (canonical artifact)
 - `META_DOCTRINE.md` — six methodological laws (V–X)
 - `MISSION_COMMAND_ARCHITECTURE.md` — portfolio-wide agentic architecture (Platoon-validated; rungs 3-9 hypothesis)
