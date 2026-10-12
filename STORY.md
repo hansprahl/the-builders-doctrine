@@ -13,6 +13,14 @@ That question has been the gate for months. The methodology was real on the page
 
 The brand for the venture is AI Tradecraft. The byline is mine. The methodology ships free. The operationalization — hosted onboarding, audits, certification — is what generates revenue downstream, when there's something worth charging for. The hard gate is one external builder running the kit cold and producing a working product instance. Until that happens, none of this goes public.
 
+## 2026-10-12 — The watch, not a new house.
+
+He heard a man on Bret Baier's show say we are not alone. The man was Jay Stratton, not Jay Clayton. Stratton was on for a book. He asked if he and this seat should start from the assumption that it is true, and get involved, or at least put it in the philosophy.
+
+*stamp it*
+
+One sentence, under truth as architecture. A claim this large stays on the watch. The evidence bar does not drop. If it becomes a record we can check, we move. Until then we remember the tape and we do not rebuild the house around it. Commit `fc5967a`. No new product. The desk, the campaign, and the school stay the work.
+
 ## 2026-08-22 — Staff brings choices. I stamp.
 
 I asked whether the Builders' Doctrine helped at all, then Operator doctrine, then I named the standing order: look at doctrine before we make changes. Always. Later I had to say it again, sharper: I am the commander and I make decisions. Staff had started running "next" as if the cut were already made.
