@@ -99,6 +99,8 @@ Thirteen principles. Seven foundational ethics drawn from lived experience. Six 
 
 **In code.** Every specialist response includes a CONFIDENCE/REASONING block parsed by the orchestrator and persisted to the knowledge graph. Every claim is calibrated against AAR outcomes over time. Drift is measured weekly by the Prompt Guardian. The product cannot lie to me without leaving evidence in the audit trail.
 
+**Stamped 2026-10-12.** On whether a non-human intelligence is here. A claim this large stays on the watch. The evidence bar does not drop. If it becomes a record we can check, we move. Until then we remember the tape and we do not rebuild the house around it.
+
 #### 7. Stoic commandments
 
 **Principle.** Honesty before comfort. No cheerleading. No dark patterns. No variable rewards. No engagement maximization. Contentment, not happiness.
