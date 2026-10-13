@@ -91,6 +91,8 @@ Thirteen principles. Seven foundational ethics drawn from lived experience. Six 
 
 **In code.** Per-user data isolation with no silent fallbacks. `LookupError` is correct behavior when user context is unset. Voter file PII isolation in Custer (CRS 1-2-305). Local-first storage for wellness content in TOP. Every product's `.gitignore` blocks credentials and PII at the pre-commit hook via gitleaks. No third-party processors for sensitive data without explicit consent.
 
+**Stamped 2026-10-12.** Everything fails loud to the seat that is building, and it does not fail to Hans.
+
 #### 6. Truth as architecture
 
 **Principle.** I built a lie detector into my own product. Reflection gates. Prompt Guardian audits. AAR calibration.
